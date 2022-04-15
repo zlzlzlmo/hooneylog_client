@@ -1,6 +1,11 @@
+/* eslint-disable default-case */
+/* eslint-disable no-console */
 import { useEffect, useState } from 'react';
 import Editor from '@toast-ui/editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
+import { HookCallback } from '@toast-ui/editor/types/editor';
+import { storage } from 'config/firebase';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 const useEditor = () => {
   const [editor, setEditor] = useState<Editor | null>(null);
@@ -11,18 +16,22 @@ const useEditor = () => {
       height: '700px',
       initialValue: ' ',
       hooks: {
-        addImageBlobHook: (blob, callback) => {
+        addImageBlobHook: (blob: File | Blob, callback: HookCallback) => {
+          let filename = '';
           const reader = new FileReader();
           reader.readAsDataURL(blob);
           reader.onload = () => {
-            if (reader.result == null) {
-              return;
+            if ('name' in blob) {
+              filename = blob.name;
             }
-            if (typeof reader.result !== 'string') {
-              return;
-            }
-
-            callback(reader.result);
+            console.log('filename : ', filename);
+            const storageRef = ref(storage, `images/${Math.random()}_${Math.random()}_${filename}`);
+            const uploadTask = uploadBytes(storageRef, blob);
+            uploadTask.then((snapshot) => {
+              getDownloadURL(snapshot.ref).then((downloadURL) => {
+                callback(downloadURL);
+              });
+            });
           };
         },
       },
