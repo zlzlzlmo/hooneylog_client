@@ -6,9 +6,7 @@ function Header() {
   return (
     <header className={styles.container}>
       <nav>
-        <div className={styles.logo_box}>
-          <Image src="/images/logo.png" alt="logo" width={500} height={500} objectFit="contain" />
-        </div>
+        <h1 className={styles.logo}>HooneyLog</h1>
       </nav>
     </header>
   );

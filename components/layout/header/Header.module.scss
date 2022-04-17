@@ -2,12 +2,11 @@
     width:100%;
     height:9rem;
     nav {
-        max-width: 128rem;
-        margin:0 auto;
+        
 
-        .logo_box {
-            width:20rem;
-            height: 20rem;
+        .logo {
+            user-select: none;
+            cursor: pointer;
         }
     }
 }

@@ -32,16 +32,6 @@ const useEditor = () => {
             uploadTask.then((snapshot: UploadResult) => {
               getDownloadURL(snapshot.ref).then((downloadURL: string) => {
                 callback(downloadURL);
-
-                try {
-                  const docRef = addDoc(collection(fireStore, 'users'), {
-                    first: 'Ada',
-                    last: 'Lovelace',
-                    born: 1815,
-                  });
-                } catch (e) {
-                  console.error('Error adding document: ', e);
-                }
               });
             });
           };
