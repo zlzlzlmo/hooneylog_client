@@ -24,7 +24,5 @@ body {
 }
 
 #__next {
-  max-width: 112rem;
-  margin:0 auto;
-  padding:0 5%;
+  min-height: 100vh;
 }

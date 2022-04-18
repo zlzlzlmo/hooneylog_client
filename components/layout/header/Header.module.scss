@@ -1,15 +1,18 @@
 @import "styles/variable";
 .container {
-    width:100%;
-    height:9rem;
-    nav {
+    width:100vw;
+    height:6rem;
+    color:#fff;
+    background-color:#3F6393;
+
+    .inner_header {
+        max-width: $standard-max-width;
+        margin:0 auto;
+
         .logo {
             user-select: none;
             cursor: pointer;
         }
-
-        .strong {
-            color:$base-color;
-        }
     }
+    
 }

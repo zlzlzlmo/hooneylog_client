@@ -4,11 +4,9 @@ import styles from './Header.module.scss';
 function Header() {
   return (
     <header className={styles.container}>
-      <nav>
-        <h1 className={styles.logo}>
-          HooneyLog<span className={styles.strong}> ★</span>
-        </h1>
-      </nav>
+      <div className={styles.inner_header}>
+        <h1 className={styles.logo}>HooneyLog</h1>
+      </div>
     </header>
   );
 }
