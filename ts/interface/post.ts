@@ -8,7 +8,7 @@ interface BodyChild extends KeyType {
   text: string;
 }
 
-interface PostBody extends KeyType {
+export interface PostBody extends KeyType {
   children: BodyChild[];
   markDefs: unknown[];
   style: string;

@@ -1,29 +1,29 @@
 .container {
     border-bottom: 0.2rem solid lightgray;
     padding:3% 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height:24rem;
+    display: grid;
+    grid-template-columns: 7fr 3fr;
     cursor: pointer;
 
-    .title {
-        font-size: 2.5rem;
-        color: steelblue;
+    .content_box {
+        .title {
+            font-size: 2.5rem;
+            color: steelblue;
+        }
+    
+        .desc {
+            margin: 3% 0;
+            height: 5rem;
+            overflow:hidden;
+            text-overflow: ellipsis!important;
+        }
     }
-
-    .desc {
-        margin: 3% 0;
-    }
-
+    
     .img_box {
-        width:100rem;
-        height:17rem;
-    }
-
-    img {
-        width:100%;
-        height: 100%;
-        object-fit: contain;
+        img {
+            width:100%;
+            height: 12rem;
+            object-fit: cover;
+        }
     }
 }

@@ -14,8 +14,8 @@ interface PostListProps {
 const PostList = ({ postList }: PostListProps) => {
   return (
     <ul className={styles.container}>
-      {postList.map(({ title, _createdAt }, index) => (
-        <PostItem key={index} title={title} createAt={_createdAt} />
+      {postList.map(({ title, _createdAt, mainImage, body }, index) => (
+        <PostItem key={index} title={title} createAt={_createdAt} mainImage={mainImage} body={body} />
       ))}
     </ul>
   );

@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@sanity/client": "^3.3.0",
+    "@sanity/image-url": "^1.0.1",
     "@toast-ui/editor": "^3.1.4",
     "@types/firebase": "^3.2.1",
     "firebase": "^9.6.11",
