@@ -1,4 +1,6 @@
-.container {
+@import "styles/variable";
+
+.container  {
     border-bottom: 0.2rem solid lightgray;
     padding:3% 0;
     display: grid;
@@ -7,15 +9,23 @@
 
     .content_box {
         .title {
+            height: 4rem;
+            overflow:hidden;
+            text-overflow: ellipsis;
             font-size: 2.5rem;
-            color: steelblue;
+            color: $base-color;
         }
     
         .desc {
             margin: 3% 0;
             height: 5rem;
             overflow:hidden;
-            text-overflow: ellipsis!important;
+            text-overflow: ellipsis;
+            color:$sub-color-1;
+        }
+
+        .reg_date {
+            color:$sub-color-2;
         }
     }
     
