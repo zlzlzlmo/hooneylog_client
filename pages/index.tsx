@@ -1,11 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable import/extensions */
-import type { NextPage } from 'next';
-import Head from 'next/head';
-import Image from 'next/image';
 import Layout from 'components/layout/Layout';
 import PostList from 'components/posts/PostList';
-import { useEffect } from 'react';
 import { Post } from 'ts/interface/post';
 import Pagination from 'components/common/pagination/Pagintation';
 import Content from 'components/layout/content/Content';
