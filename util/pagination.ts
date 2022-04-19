@@ -2,11 +2,14 @@
 /* eslint-disable no-plusplus */
 /* eslint-disable no-use-before-define */
 
+import { Device } from 'ts/enum';
+import { getDeviceType } from './common';
+
 class PaginationContoller<T> {
   private readonly allItems: T[] = [];
 
   // * 한 페이지에 보여줘야할 갯수
-  private readonly itemLengthPerPage = 3;
+  private readonly itemLengthPerPage = 1;
 
   private itemsToShow: T[] = [];
 
@@ -16,13 +19,17 @@ class PaginationContoller<T> {
 
   // * 보여줘야할 아이템에 push하기
   private pushItemsToShow(startIdx: number): void {
-    this.itemsToShow = [];
+    if (getDeviceType() !== Device.Mobile) {
+      this.itemsToShow = [];
+    }
 
     for (let i = startIdx; i < startIdx + this.itemLengthPerPage; i++) {
       if (this.allItems[i] !== undefined) {
         this.itemsToShow.push(this.allItems[i]);
       }
     }
+
+    console.log('this.itemsToShow : ', this.itemsToShow);
   }
 
   // * 총 가져와야할 페이네이션 숫자

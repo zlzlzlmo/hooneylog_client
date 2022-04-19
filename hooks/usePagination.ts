@@ -1,6 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useMemo, useState } from 'react';
+import { Device } from 'ts/enum';
 import { Post } from 'ts/interface/post';
+import { getDeviceType } from 'util/common';
 import PaginationContoller from 'util/pagination';
 
 interface UsePaginationProps {
@@ -20,16 +22,16 @@ const usePagination = ({ postList }: UsePaginationProps) => {
     setStartIndex(Number(data.selected));
   };
 
-  const paginationWithMemo = useMemo(() => {
+  const paginatioInstancenWithMemo = useMemo(() => {
     return new PaginationContoller<Post>(postList);
   }, []);
 
   useEffect(() => {
-    setPageCount(paginationWithMemo.getTotalPageCount());
+    setPageCount(paginatioInstancenWithMemo.getTotalPageCount());
   }, [postList]);
 
   useEffect(() => {
-    setPostListToShow(paginationWithMemo.getItemsToShow(startIndex));
+    setPostListToShow(paginatioInstancenWithMemo.getItemsToShow(startIndex));
   }, [startIndex]);
 
   return { pageCount, postListToShow, handlePageClick };

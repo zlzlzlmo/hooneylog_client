@@ -1,5 +1,6 @@
+@import "styles.variable";
 .container {
-    max-width: 125rem;
+    max-width: $desktop-max-width;
     margin:0 auto;
 }
 .input {

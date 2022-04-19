@@ -2,6 +2,7 @@ import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 import imageUrlBuilder from '@sanity/image-url';
 import client from 'sanity/config';
 import { DateTimeFormatOptions } from 'ts/interface/date';
+import { Device } from 'ts/enum';
 
 /* eslint-disable import/prefer-default-export */
 export const getSanityImageurl = (source: SanityImageSource) => {
@@ -22,4 +23,17 @@ export const dateFormat = (dateString: string) => {
   const date = new Date(dateString);
 
   return date.toLocaleDateString('ko-KR', options);
+};
+
+export const getDeviceType = (): Device => {
+  const widthSize = window.innerWidth;
+
+  if (widthSize > 1024) {
+    return Device.Desktop;
+  }
+  if (widthSize > 480) {
+    return Device.Tablet;
+  }
+
+  return Device.Mobile;
 };

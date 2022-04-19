@@ -3,13 +3,13 @@
     width:100vw;
     height:6rem;
     color:#fff;
-    background-color:#3F6393;
+    background-color:$base-color;
 
     .inner_header {
 
         font-size: 3rem;
         line-height: 6rem;
-        max-width: $standard-max-width;
+        max-width: $desktop-max-width;
         margin:0 auto;
         padding:0 5%;
 
