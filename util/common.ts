@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 import imageUrlBuilder from '@sanity/image-url';
 import client from 'sanity/config';
@@ -25,7 +26,10 @@ export const dateFormat = (dateString: string) => {
   return date.toLocaleDateString('ko-KR', options);
 };
 
-export const getDeviceType = (): Device => {
+export const getDeviceType = (): Device | undefined => {
+  if (typeof window === 'undefined') {
+    return;
+  }
   const widthSize = window.innerWidth;
 
   if (widthSize > 1024) {

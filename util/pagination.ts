@@ -9,7 +9,7 @@ class PaginationContoller<T> {
   private readonly allItems: T[] = [];
 
   // * 한 페이지에 보여줘야할 갯수
-  private readonly itemLengthPerPage = 1;
+  private readonly itemLengthPerPage = 6;
 
   private itemsToShow: T[] = [];
 

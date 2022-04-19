@@ -8,6 +8,8 @@ import Content from 'components/layout/content/Content';
 import Introduce from 'components/layout/introduce/Introduce';
 import ApiManager from 'util/api';
 import usePagination from 'hooks/usePagination';
+import { getDeviceType } from 'util/common';
+import { Device } from 'ts/enum';
 
 interface HomePageProps {
   postList: Post[];
@@ -21,7 +23,7 @@ const HomePage = ({ postList }: HomePageProps) => {
         <Introduce mainImage="/images/background.jpg" />
         <Content>
           <PostList postList={postListToShow} />
-          <Pagination pageCount={pageCount} handlePageClick={handlePageClick} />
+          {getDeviceType() !== Device.Mobile && <Pagination pageCount={pageCount} handlePageClick={handlePageClick} />}
         </Content>
       </Layout>
     </div>
