@@ -8,10 +8,8 @@ const Layout: React.FC = ({ children }) => {
   return (
     <>
       <Header />
-      <Content>
-        <Introduce />
-        {children}
-      </Content>
+      <Introduce />
+      <Content>{children}</Content>
       <Footer />
     </>
   );

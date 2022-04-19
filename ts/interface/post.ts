@@ -1,17 +1,30 @@
-interface KeyType {
+interface SanityKeyType {
   _key: string;
   _type: string;
 }
 
-interface BodyChild extends KeyType {
+interface SanityBodyChild extends SanityKeyType {
   marks: unknown[];
   text: string;
 }
 
-export interface PostBody extends KeyType {
-  children: BodyChild[];
+export interface SanityPostBody extends SanityKeyType {
+  children: SanityBodyChild[];
   markDefs: unknown[];
   style: string;
+}
+
+export interface SanityImage {
+  _type: string;
+  asset: {
+    _ref: string;
+    _type: string;
+  };
+}
+
+export interface SanitySlug {
+  _type: string;
+  current: string;
 }
 
 export interface Post {
@@ -20,19 +33,10 @@ export interface Post {
   _rev: string;
   _type: string;
   _updatedAt: string;
-  body: PostBody[];
+  body: SanityPostBody[];
   categories: unknown[];
-  mainImage: {
-    _type: string;
-    asset: {
-      _ref: string;
-      _type: string;
-    };
-  };
+  mainImage: SanityImage;
   publishedAt: string;
-  slug: {
-    _type: string;
-    current: string;
-  };
+  slug: SanitySlug;
   title: string;
 }

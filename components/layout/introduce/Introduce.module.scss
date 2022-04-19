@@ -1,3 +1,38 @@
+@import "styles/variable";
+@import "styles/mixin";
+
 .container {
-   
+   height: 50rem;
+   background-image: url("/images/background.jpg");
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-position: 0 -50rem;
+   background-attachment: fixed;
+
+   font-size: 4rem;
+   color:$white-color;
+   @include flexCenter;
+
+   .text {
+ 
+    width: 75rem;
+    animation: typing 2s steps(22), blink .5s step-end infinite alternate;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid;
+    font-size: 4rem;
+   }
 }
+
+
+@keyframes typing {
+    from {
+      width: 0
+    }
+  }
+      
+  @keyframes blink {
+    50% {
+      border-color: transparent
+    }
+  }
