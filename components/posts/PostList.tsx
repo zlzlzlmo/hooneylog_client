@@ -13,8 +13,8 @@ interface PostListProps {
 const PostList = ({ postList }: PostListProps) => {
   return (
     <section className={styles.container}>
-      {postList.map(({ title, _createdAt, mainImage, body }, index) => (
-        <PostItem key={index} title={title} createAt={_createdAt} mainImage={mainImage} body={body} />
+      {postList.map(({ title, _createdAt, mainImage, body, slug }, index) => (
+        <PostItem key={index} title={title} createAt={_createdAt} mainImage={mainImage} body={body} slug={slug.current} />
       ))}
     </section>
   );

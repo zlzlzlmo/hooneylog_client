@@ -1,15 +1,26 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable consistent-return */
-import { GetStaticProps, GetStaticPropsContext, PreviewData } from 'next/types';
-import { ParsedUrlQuery } from 'querystring';
+import Content from 'components/layout/content/Content';
+import Introduce from 'components/layout/introduce/Introduce';
+import Layout from 'components/layout/Layout';
+import PostDetail from 'components/postDetail/PostDetail';
+import { GetStaticProps } from 'next/types';
 import React, { useEffect } from 'react';
 import { Post } from 'ts/interface/post';
 import ApiManager from 'util/api';
 
-const PostDetailPage = ({ post }: any) => {
-  useEffect(() => {
-    console.log('post : ', post);
-  }, []);
-  return <div>dd</div>;
+interface PostDetailPageProps {
+  post: Post;
+}
+const PostDetailPage = ({ post }: PostDetailPageProps) => {
+  return (
+    <Layout>
+      <Introduce mainImage={post.mainImage} />
+      <Content>
+        <PostDetail body={post.body} title={post.title} createdAt={post._createdAt} />
+      </Content>
+    </Layout>
+  );
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {

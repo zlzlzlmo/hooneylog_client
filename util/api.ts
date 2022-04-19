@@ -1,6 +1,3 @@
-/* eslint-disable consistent-return */
-/* eslint-disable class-methods-use-this */
-
 interface Api<T> {
   result: T;
 }
@@ -13,9 +10,7 @@ class ApiManager<T> {
   }
 
   async SanityFetch(): Promise<Api<T>> {
-    const res = await fetch(
-      `https://e5m09ops.api.sanity.io/v2021-10-21/data/query/production?query=${this.encodeURIQuery}`,
-    );
+    const res = await fetch(`https://e5m09ops.api.sanity.io/v2021-10-21/data/query/production?query=${this.encodeURIQuery}`);
     const result = await res.json();
     return result;
   }

@@ -8,19 +8,21 @@ import PostList from 'components/posts/PostList';
 import { useEffect } from 'react';
 import { Post } from 'ts/interface/post';
 import Pagination from 'components/common/pagination/Pagintation';
+import Content from 'components/layout/content/Content';
+import Introduce from 'components/layout/introduce/Introduce';
 
 interface HomePageProps {
   postList: Post[];
 }
 const HomePage = ({ postList }: HomePageProps) => {
-  useEffect(() => {
-    console.log('Test : ', postList);
-  }, []);
   return (
     <div>
       <Layout>
-        <PostList postList={postList} />
-        <Pagination pageCount={10} handlePageClick={(data) => {}} />
+        <Introduce mainImage="/images/background.jpg" />
+        <Content>
+          <PostList postList={postList} />
+          <Pagination pageCount={10} handlePageClick={(data) => {}} />
+        </Content>
       </Layout>
     </div>
   );

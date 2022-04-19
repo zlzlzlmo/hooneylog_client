@@ -1,0 +1,25 @@
+.category {
+    padding:0 0.5rem;
+    padding-bottom: 0.2rem;
+    color:#fff;
+    background-color: #5D93D9;
+}
+
+.title {
+    font-weight: bold;
+    margin:2rem 0;
+}
+
+.sub_info {
+    span {
+
+        color:gray;
+        margin-right: 2rem;
+    }
+}
+
+.main_content {
+    border-top: 0.1rem solid lightgray;
+    padding-top: 2.5rem;
+    margin-top: 2.5rem;
+}

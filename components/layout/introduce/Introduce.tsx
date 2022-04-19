@@ -1,12 +1,17 @@
+import useIntroduce from 'hooks/useIntroduce';
 import React from 'react';
+import { SanityImage } from 'ts/interface/post';
 import styles from './Introduce.module.scss';
 
-const Introduce = () => {
+interface IntroduceProps {
+  mainImage: SanityImage | string;
+}
+const Introduce = ({ mainImage }: IntroduceProps) => {
+  const { imageUrl, isHome } = useIntroduce({ mainImage });
+
   return (
-    <section className={styles.container}>
-      <div className={styles.text}>안녕하세요. 프론트엔드 개발자 신승훈입니다</div>
-      {/* <h1 className={styles.title}>writing</h1>
-      <section className={styles.description}>이곳은 개발 일지를 쓰는 곳입니다.</section> */}
+    <section className={styles.container} style={{ backgroundImage: `url(${imageUrl})`, height: `${isHome ? '50rem' : '35rem'}` }}>
+      {isHome && <div className={styles.text}>안녕하세요! 프론트엔드 개발자, 신승훈입니다 :)</div>}
     </section>
   );
 };
