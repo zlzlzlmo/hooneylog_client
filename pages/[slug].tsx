@@ -15,7 +15,7 @@ interface PostDetailPageProps {
 const PostDetailPage = ({ post }: PostDetailPageProps) => {
   return (
     <Layout>
-      <Introduce mainImage={post.mainImage} />
+      <Introduce mainImage={post.mainImage} title={post.title} />
       <Content>
         <PostDetail body={post.body} title={post.title} createdAt={post._createdAt} />
       </Content>
