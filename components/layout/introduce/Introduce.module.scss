@@ -11,8 +11,7 @@
     animation: typing 2s steps(22), blink .5s step-end infinite alternate;
     white-space: nowrap;
     overflow: hidden;
-    border-right: 3px solid;
-    font-size: 4rem;
+    border-right: 0.3rem solid;
    }
 
    .slug_text {
@@ -22,7 +21,15 @@
    }
 
    @media (max-width:820px) {
-    display: none;
+    font-size: 1.8rem;
+    .text {
+      border-right: none;
+      width: auto;
+      white-space: normal;
+      animation-name: moveInLeft;
+      animation-duration: 1s;
+      animation-timing-function: ease-out;
+    }
   }
 }
 

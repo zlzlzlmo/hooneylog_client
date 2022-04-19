@@ -3,12 +3,12 @@
 /* eslint-disable no-use-before-define */
 
 class PaginationContoller<T> {
-  private allItems: T[] = [];
-
-  private itemsToShow: T[] = [];
+  private readonly allItems: T[] = [];
 
   // * 한 페이지에 보여줘야할 갯수
-  private itemLengthPerPage = 1;
+  private readonly itemLengthPerPage = 6;
+
+  private itemsToShow: T[] = [];
 
   constructor(allItems: T[]) {
     this.allItems = allItems;
@@ -31,7 +31,7 @@ class PaginationContoller<T> {
   }
 
   // * 클릭된 페이지에 보여져야할 테이블 리스트 아이템 가져오기
-  getItemsToShow(startIdx: number) {
+  getItemsToShow(startIdx: number): T[] {
     if (this.allItems === null || this.allItems.length === 0) {
       return [];
     }
