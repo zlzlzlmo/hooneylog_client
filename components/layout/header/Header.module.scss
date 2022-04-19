@@ -6,8 +6,12 @@
     background-color:#3F6393;
 
     .inner_header {
+
+        font-size: 3rem;
+        line-height: 6rem;
         max-width: $standard-max-width;
         margin:0 auto;
+        padding:0 5%;
 
         .logo {
             user-select: none;
