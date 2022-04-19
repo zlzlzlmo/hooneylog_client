@@ -7,18 +7,33 @@ import Pagination from 'components/common/pagination/Pagintation';
 import Content from 'components/layout/content/Content';
 import Introduce from 'components/layout/introduce/Introduce';
 import ApiManager from 'util/api';
+import { useEffect, useState } from 'react';
+import PaginationContoller from 'util/pagination';
 
 interface HomePageProps {
   postList: Post[];
 }
 const HomePage = ({ postList }: HomePageProps) => {
+  const [pageCount, setPageCount] = useState(0);
+  const [postListToShow, setPostListToShow] = useState<Post[]>([]);
+  const [startIndex, setStartIndex] = useState(0);
+  useEffect(() => {
+    const pagination = new PaginationContoller<Post>(postList);
+    setPageCount(pagination.getTotalPageCount());
+    setPostListToShow(pagination.getShowItems(startIndex));
+  }, [startIndex]);
+
+  const handlePageClick = (data: any) => {
+    setStartIndex(Number(data.selected));
+    console.log('Data : ', data);
+  };
   return (
     <div>
       <Layout>
         <Introduce mainImage="/images/background.jpg" />
         <Content>
-          <PostList postList={postList} />
-          <Pagination pageCount={10} handlePageClick={(data) => {}} />
+          <PostList postList={postListToShow} />
+          <Pagination pageCount={pageCount} handlePageClick={handlePageClick} />
         </Content>
       </Layout>
     </div>

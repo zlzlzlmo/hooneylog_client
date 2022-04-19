@@ -2,40 +2,21 @@
 /* eslint-disable no-plusplus */
 /* eslint-disable no-use-before-define */
 
-class PaginationContoller {
-  private static instance: PaginationContoller;
+import { Post } from 'ts/interface/post';
 
-  private allItems: unknown[] = [];
+class PaginationContoller<T> {
+  private allItems: T[] = [];
 
-  private itemLengthPerPage = 10;
+  private itemLengthPerPage = 1;
 
-  private showItems: unknown[] = [];
+  private showItems: T[] = [];
 
-  private pageLimit = 10;
-
-  set setAllItems(allItems: unknown[]) {
+  set setAllItems(allItems: T[]) {
     this.allItems = allItems;
   }
 
-  static getInstance(): PaginationContoller {
-    if (this.instance) {
-      return this.instance;
-    }
-
-    this.instance = new PaginationContoller();
-
-    return this.instance;
-  }
-
-  // * 보여줘야할 아이템에 push하기
-  private pushShowItems(startIdx: number): void {
-    this.showItems = [];
-
-    for (let i = startIdx; i < startIdx + this.pageLimit; i++) {
-      if (this.allItems[i] !== undefined) {
-        this.showItems.push(this.allItems[i]);
-      }
-    }
+  constructor(allItems: T[]) {
+    this.allItems = allItems;
   }
 
   // * 총 가져와야할 페이네이션 숫자
@@ -43,10 +24,21 @@ class PaginationContoller {
     return Math.ceil(this.allItems.length / this.itemLengthPerPage);
   }
 
+  // * 보여줘야할 아이템에 push하기
+  private pushShowItems(startIdx: number): void {
+    this.showItems = [];
+
+    for (let i = startIdx; i < startIdx + this.itemLengthPerPage; i++) {
+      if (this.allItems[i] !== undefined) {
+        this.showItems.push(this.allItems[i]);
+      }
+    }
+  }
+
   // * 클릭된 페이지에 보여져야할 테이블 리스트 아이템 가져오기
   getShowItems(startIdx: number) {
     if (this.allItems === null || this.allItems.length === 0) {
-      return;
+      return [];
     }
 
     this.pushShowItems(startIdx);
