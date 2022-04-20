@@ -6,12 +6,12 @@ import Layout from 'components/layout/Layout';
 import PostDetail from 'components/postDetail/PostDetail';
 import { useRouter } from 'next/router';
 import { GetStaticProps } from 'next/types';
-import React, { useEffect } from 'react';
-import { Post } from 'ts/interface/post';
-import ApiManager from 'util/api';
+import React from 'react';
+import { sanityClient } from 'sanity/config';
+import { SanityPost } from 'ts/interface/post';
 
 interface PostDetailPageProps {
-  post: Post;
+  post: SanityPost;
 }
 const PostDetailPage = ({ post }: PostDetailPageProps) => {
   const router = useRouter();
@@ -24,10 +24,30 @@ const PostDetailPage = ({ post }: PostDetailPageProps) => {
     <Layout>
       <Introduce mainImage={post.mainImage} title={post.title} />
       <Content>
-        <PostDetail body={post.body} title={post.title} createdAt={post._createdAt} />
+        <PostDetail body={post.body} title={post.title} createdAt={post._createdAt} authorName={post.author.name} />
       </Content>
     </Layout>
   );
+};
+
+export const getStaticPaths = async () => {
+  const query = `
+    *[_type=="post"]{
+      _id,
+      slug {
+      current
+    } 
+  }
+  `;
+
+  const postList = await sanityClient.fetch<Pick<SanityPost, '_id' | 'slug'>[]>(query);
+
+  const slugs = postList.map(({ slug }) => ({ params: { slug: slug.current } }));
+
+  return {
+    paths: slugs,
+    fallback: 'blocking',
+  };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
@@ -36,11 +56,28 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       notFound: true,
     };
   }
+
   const { slug } = params;
 
-  const api = new ApiManager<Post[]>(`*[_type=="post" && slug.current == "${slug}"]`);
-  const post = (await api.SanityFetch()).result[0];
+  const query = `
+    *[_type=="post"]{
+      _createdAt,
+      _id,
+      author-> {
+      name,image
+    },
+    body,
+    mainImage,
+    slug,
+    title
+    }
+  `;
 
+  const response = await sanityClient.fetch<SanityPost[]>(query, {
+    slug,
+  });
+
+  const post = response[0];
   return {
     props: {
       post,
@@ -48,13 +85,4 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   };
 };
 
-export const getStaticPaths = async () => {
-  const api = new ApiManager<Post[]>(`*[_type=="post"] | order(_createdAt desc)`);
-  const postList = (await api.SanityFetch()).result;
-  const slugs = postList.map(({ slug }) => ({ params: { slug: slug.current } }));
-  return {
-    paths: slugs,
-    fallback: true,
-  };
-};
 export default PostDetailPage;

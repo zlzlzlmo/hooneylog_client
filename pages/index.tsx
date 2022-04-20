@@ -2,16 +2,16 @@
 /* eslint-disable import/extensions */
 import Layout from 'components/layout/Layout';
 import PostList from 'components/posts/PostList';
-import { Post } from 'ts/interface/post';
+import { SanityPost } from 'ts/interface/post';
 import Pagination from 'components/common/pagination/Pagintation';
 import Content from 'components/layout/content/Content';
 import Introduce from 'components/layout/introduce/Introduce';
-import ApiManager from 'util/api';
 import usePagination from 'hooks/usePagination';
 import { GetStaticProps } from 'next';
+import { sanityClient } from 'sanity/config';
 
 interface HomePageProps {
-  postList: Post[];
+  postList: SanityPost[];
 }
 const HomePage = ({ postList }: HomePageProps) => {
   const { pageCount, postListToShow, handlePageClick } = usePagination({ postList });
@@ -30,10 +30,24 @@ const HomePage = ({ postList }: HomePageProps) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const api = new ApiManager<Post[]>(`*[_type=="post"] | order(_createdAt desc)`);
+  // const api = new ApiManager<Post[]>(`*[_type=="post"] | order(_createdAt desc)`);
 
-  const result = api.SanityFetch();
-  const postList = (await result).result;
+  const query = `
+  *[_type=="post"]{
+    _id,
+    title,
+    author->{
+    name,
+    image
+    },
+    mainImage,
+    slug,
+    body,
+    category,
+    _createdAt
+  } | order(_createdAt desc)
+  `;
+  const postList = await sanityClient.fetch<SanityPost[]>(query);
 
   return {
     props: {

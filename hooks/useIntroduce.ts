@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
+import { urlFor } from 'sanity/config';
 import { SanityImage } from 'ts/interface/post';
-import { getSanityImageurl } from 'util/common';
 
 interface useIntroduceProps {
   mainImage: SanityImage | string;
@@ -19,7 +19,7 @@ const useIntroduce = ({ mainImage }: useIntroduceProps) => {
       setImageUrl(mainImage);
       return;
     }
-    setImageUrl(getSanityImageurl(mainImage).url());
+    setImageUrl(urlFor(mainImage).url());
   }, [mainImage]);
 
   return { imageUrl, isHome };

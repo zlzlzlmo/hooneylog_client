@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useMemo, useState } from 'react';
 import { Device } from 'ts/enum';
-import { Post } from 'ts/interface/post';
+import { Post, SanityPost } from 'ts/interface/post';
 import { getDeviceType } from 'util/common';
 import PaginationContoller from 'util/pagination';
 
 interface UsePaginationProps {
-  postList: Post[];
+  postList: SanityPost[];
 }
 
 interface ReactPagination {
@@ -15,14 +15,13 @@ interface ReactPagination {
 
 const usePagination = ({ postList }: UsePaginationProps) => {
   const [pageCount, setPageCount] = useState<number>(0);
-  const [postListToShow, setPostListToShow] = useState<Post[]>([]);
+  const [postListToShow, setPostListToShow] = useState<SanityPost[]>([]);
   const [startIndex, setStartIndex] = useState<number>(0);
 
   function handlePageClick(): void;
   function handlePageClick(data: ReactPagination): void;
   function handlePageClick(data?: ReactPagination): void {
     if (getDeviceType() === Device.Mobile) {
-      console.log('startIndex + 1');
       setStartIndex((prev: number) => {
         return prev + 1;
       });
@@ -32,7 +31,7 @@ const usePagination = ({ postList }: UsePaginationProps) => {
   }
 
   const paginatioInstancenWithMemo = useMemo(() => {
-    return new PaginationContoller<Post>(postList);
+    return new PaginationContoller<SanityPost>(postList);
   }, []);
 
   useEffect(() => {

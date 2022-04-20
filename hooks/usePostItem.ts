@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useCallback, useEffect, useState } from 'react';
+import { urlFor } from 'sanity/config';
 import { SanityImage, SanityPostBody } from 'ts/interface/post';
-import { getSanityImageurl } from 'util/common';
 
 interface usePostItemProps {
   mainImage: SanityImage;
@@ -25,7 +25,7 @@ const usePostItem = ({ mainImage, body }: usePostItemProps) => {
 
   useEffect(() => {
     getNormalAndBlockTypeText();
-    setImageUrl(getSanityImageurl(mainImage).url());
+    setImageUrl(urlFor(mainImage).url());
   }, [body, mainImage]);
 
   return { imageUrl, desc };

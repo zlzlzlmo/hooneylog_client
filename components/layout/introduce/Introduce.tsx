@@ -12,15 +12,15 @@ const Introduce = ({ title, mainImage }: IntroduceProps) => {
   const { imageUrl, isHome } = useIntroduce({ mainImage });
 
   const introduceStyle = {
-    backgroundImage: `linear-gradient(90deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.6) 65%, rgba(0,0,0,0.5) 100%),url(${imageUrl})`,
+    backgroundImage: `url(${imageUrl})`,
     backgroundSize: 'cover',
     backgroundAttachment: 'fixed',
     backgroundRepeat: 'no-repeat',
-    height: `${isHome ? '50rem' : '35rem'}`,
+    height: `${isHome ? '50rem' : '20rem'}`,
   };
   return (
     <section className={styles.container} style={introduceStyle}>
-      <div className={`${isHome ? styles.text : styles.slug_text}`}>{title}</div>
+      {isHome && <div className={styles.text}>{title}</div>}
     </section>
   );
 };

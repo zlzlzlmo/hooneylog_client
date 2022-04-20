@@ -5,7 +5,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import useIntersectionObserver from 'hooks/useIntersection';
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { Post } from 'ts/interface/post';
+import { SanityPost } from 'ts/interface/post';
 import { Box, Stack, Skeleton, SkeletonCircle, SkeletonText } from '@chakra-ui/react';
 import { getDeviceType } from 'util/common';
 import { Device } from 'ts/enum';
@@ -13,7 +13,7 @@ import PostItem from './postItem/PostItem';
 import styles from './PostList.module.scss';
 
 interface PostListProps {
-  postList: Post[];
+  postList: SanityPost[];
   handlePageClick: () => void;
   allPostListLength: number;
 }
@@ -37,14 +37,17 @@ const PostList = ({ postList, handlePageClick, allPostListLength }: PostListProp
 
   return (
     <section className={styles.container}>
-      {postList.map(({ title, _createdAt, mainImage, body, slug }, index) => (
+      {postList.map(({ title, _createdAt, mainImage, body, slug, author, category, _id }) => (
         <PostItem
-          key={index}
+          key={_id}
           title={title}
           createAt={_createdAt}
           mainImage={mainImage}
           body={body}
           slug={slug.current}
+          authorName={author.name}
+          authorImage={author.image}
+          category={category}
         />
       ))}
 

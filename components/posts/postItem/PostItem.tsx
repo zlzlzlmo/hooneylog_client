@@ -7,6 +7,7 @@ import React from 'react';
 import { SanityImage, SanityPostBody } from 'ts/interface/post';
 import { dateFormat } from 'util/common';
 import Link from 'next/link';
+import { urlFor } from 'sanity/config';
 import styles from './PostItem.module.scss';
 
 interface PostItemProps {
@@ -15,22 +16,30 @@ interface PostItemProps {
   mainImage: SanityImage;
   body: SanityPostBody[];
   slug: string;
+  authorName: string;
+  authorImage: any;
+  category: string;
 }
 
-const PostItem = ({ title, createAt, mainImage, body, slug }: PostItemProps) => {
+const PostItem = ({ title, createAt, mainImage, body, slug, authorName, authorImage, category }: PostItemProps) => {
   const { imageUrl, desc } = usePostItem({ mainImage, body });
 
   return (
     <Link href={slug}>
       <article className={styles.container}>
         <div className={styles.img_box}>
-          <img src={imageUrl !== '' ? imageUrl : ''} alt="이미지" />
+          <img src={imageUrl !== '' ? imageUrl : ''} alt="메인 이미지" />
         </div>
         <div className={styles.content_box}>
           <section className={styles.title}>{title}</section>
           <section className={styles.sub}>
-            <div className={styles.author}>By Seunghoon</div>
-            <div className={styles.category}>Typescript</div>
+            <div className={styles.author}>
+              <span className={styles.profile_img}>
+                <img src={urlFor(authorImage).url()} alt="프로필 이미지" />
+              </span>
+              <span className={styles.name}> By {authorName}</span>
+            </div>
+            <div className={styles.category}>{category}</div>
           </section>
           <p className={styles.desc}>{desc}</p>
           <section className={styles.reg_date}>{dateFormat(createAt)}</section>
