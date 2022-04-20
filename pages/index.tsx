@@ -8,8 +8,7 @@ import Content from 'components/layout/content/Content';
 import Introduce from 'components/layout/introduce/Introduce';
 import ApiManager from 'util/api';
 import usePagination from 'hooks/usePagination';
-import { getDeviceType } from 'util/common';
-import { Device } from 'ts/enum';
+import { GetStaticProps } from 'next';
 
 interface HomePageProps {
   postList: Post[];
@@ -23,15 +22,15 @@ const HomePage = ({ postList }: HomePageProps) => {
         <Introduce mainImage="/images/background.jpg" />
         <Content>
           <PostList postList={postListToShow} />
-          {getDeviceType() !== Device.Mobile && <Pagination pageCount={pageCount} handlePageClick={handlePageClick} />}
+          <Pagination pageCount={pageCount} handlePageClick={handlePageClick} />
         </Content>
       </Layout>
     </div>
   );
 };
 
-export const getStaticProps = async () => {
-  const api = new ApiManager<Post[]>(`*[_type=="post"]`);
+export const getStaticProps: GetStaticProps = async () => {
+  const api = new ApiManager<Post[]>(`*[_type=="post"] | order(_createdAt desc)`);
 
   const result = api.SanityFetch();
   const postList = (await result).result;
@@ -40,7 +39,7 @@ export const getStaticProps = async () => {
     props: {
       postList,
     },
-    revalidate: 10,
+    revalidate: 60,
   };
 };
 

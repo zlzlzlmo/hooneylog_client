@@ -1,7 +1,9 @@
+/* eslint-disable no-debugger */
 /* eslint-disable consistent-return */
 /* eslint-disable no-plusplus */
 /* eslint-disable no-use-before-define */
 
+import { startAnimation } from 'framer-motion/types/animation/utils/transitions';
 import { Device } from 'ts/enum';
 import { getDeviceType } from './common';
 
@@ -19,17 +21,11 @@ class PaginationContoller<T> {
 
   // * 보여줘야할 아이템에 push하기
   private pushItemsToShow(startIdx: number): void {
-    if (getDeviceType() !== Device.Mobile) {
-      this.itemsToShow = [];
-    }
+    this.itemsToShow = [];
+    const copyAllItems = [...this.allItems];
+    const splicedItems = copyAllItems.splice(startIdx * this.itemLengthPerPage, this.itemLengthPerPage);
 
-    for (let i = startIdx; i < startIdx + this.itemLengthPerPage; i++) {
-      if (this.allItems[i] !== undefined) {
-        this.itemsToShow.push(this.allItems[i]);
-      }
-    }
-
-    console.log('this.itemsToShow : ', this.itemsToShow);
+    this.itemsToShow = splicedItems;
   }
 
   // * 총 가져와야할 페이네이션 숫자
@@ -44,7 +40,6 @@ class PaginationContoller<T> {
     }
 
     this.pushItemsToShow(startIdx);
-
     return this.itemsToShow;
   }
 }

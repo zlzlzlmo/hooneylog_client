@@ -31,12 +31,10 @@ const PostList = ({ postList }: PostListProps) => {
         />
       ))}
 
-      {getDeviceType() === Device.Mobile && (
-        <Box padding="30" bg="white" ref={ref}>
-          <Skeleton height="25rem" />
-          <SkeletonText mt="4" noOfLines={4} spacing="4" />
-        </Box>
-      )}
+      <Box className={styles.skeleton_box} padding="30" bg="white" ref={ref}>
+        <Skeleton height="25rem" />
+        <SkeletonText mt="4" noOfLines={4} spacing="4" />
+      </Box>
     </section>
   );
 };

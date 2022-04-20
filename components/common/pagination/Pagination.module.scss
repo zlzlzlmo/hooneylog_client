@@ -37,4 +37,8 @@
         border-radius: 0.5rem;
         @include flexCenter;
     }
+
+    @media (max-width:$mobile-max-width) {
+        display: none;
+    }
 }
