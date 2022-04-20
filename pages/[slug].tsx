@@ -1,5 +1,4 @@
 /* eslint-disable no-underscore-dangle */
-/* eslint-disable consistent-return */
 import Content from 'components/layout/content/Content';
 import Introduce from 'components/layout/introduce/Introduce';
 import Layout from 'components/layout/Layout';

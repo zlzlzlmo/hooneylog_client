@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
-/* eslint-disable import/extensions */
 import Layout from 'components/layout/Layout';
 import PostList from 'components/posts/PostList';
 import { SanityPost } from 'ts/interface/post';
@@ -30,8 +28,6 @@ const HomePage = ({ postList }: HomePageProps) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  // const api = new ApiManager<Post[]>(`*[_type=="post"] | order(_createdAt desc)`);
-
   const query = `
   *[_type=="post"]{
     _id,

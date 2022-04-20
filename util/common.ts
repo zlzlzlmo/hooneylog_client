@@ -1,6 +1,4 @@
 /* eslint-disable consistent-return */
-import { SanityImageSource } from '@sanity/image-url/lib/types/types';
-import imageUrlBuilder from '@sanity/image-url';
 import { DateTimeFormatOptions } from 'ts/interface/date';
 import { Device } from 'ts/enum';
 
