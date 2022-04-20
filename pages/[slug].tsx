@@ -23,7 +23,13 @@ const PostDetailPage = ({ post }: PostDetailPageProps) => {
     <Layout>
       <Introduce mainImage={post.mainImage} title={post.title} />
       <Content>
-        <PostDetail body={post.body} title={post.title} createdAt={post._createdAt} authorName={post.author.name} />
+        <PostDetail
+          body={post.body}
+          title={post.title}
+          createdAt={post._createdAt}
+          authorName={post.author.name}
+          category={post.category}
+        />
       </Content>
     </Layout>
   );

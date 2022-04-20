@@ -14,11 +14,12 @@ interface PostDetailProps {
   title: string;
   createdAt: string;
   authorName: string;
+  category: string;
 }
-const PostDetail = ({ body, title, createdAt, authorName }: PostDetailProps) => {
+const PostDetail = ({ body, title, createdAt, authorName, category }: PostDetailProps) => {
   return (
     <article className={styles.container}>
-      <span className={styles.category}>Typescript</span>
+      <span className={styles.category}>{category}</span>
       <h1 className={styles.title}>{title}</h1>
       <section className={styles.sub_info}>
         <span className={styles.author}>{authorName}</span>
