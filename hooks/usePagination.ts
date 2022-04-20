@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useMemo, useState } from 'react';
 import { Device } from 'ts/enum';
-import { Post, SanityPost } from 'ts/interface/post';
+import { SanityPost } from 'ts/interface/post';
 import { getDeviceType } from 'util/common';
 import PaginationContoller from 'util/pagination';
 
