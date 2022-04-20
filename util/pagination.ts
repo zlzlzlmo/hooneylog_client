@@ -19,11 +19,17 @@ class PaginationContoller<T> {
     this.allItems = allItems;
   }
 
-  // * 보여줘야할 아이템에 push하기
+  // * 보여줘야할 아이템 뽑아내기
   private pushItemsToShow(startIdx: number): void {
     this.itemsToShow = [];
     const copyAllItems = [...this.allItems];
-    const splicedItems = copyAllItems.splice(startIdx * this.itemLengthPerPage, this.itemLengthPerPage);
+    let splicedItems = [];
+
+    if (getDeviceType() === Device.Mobile) {
+      splicedItems = copyAllItems.splice(0, this.itemLengthPerPage * (startIdx + 1));
+    } else {
+      splicedItems = copyAllItems.splice(startIdx * this.itemLengthPerPage, this.itemLengthPerPage);
+    }
 
     this.itemsToShow = splicedItems;
   }

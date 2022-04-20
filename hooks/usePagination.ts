@@ -18,9 +18,18 @@ const usePagination = ({ postList }: UsePaginationProps) => {
   const [postListToShow, setPostListToShow] = useState<Post[]>([]);
   const [startIndex, setStartIndex] = useState<number>(0);
 
-  const handlePageClick = (data: ReactPagination) => {
-    setStartIndex(Number(data.selected));
-  };
+  function handlePageClick(): void;
+  function handlePageClick(data: ReactPagination): void;
+  function handlePageClick(data?: ReactPagination): void {
+    if (getDeviceType() === Device.Mobile) {
+      console.log('startIndex + 1');
+      setStartIndex((prev: number) => {
+        return prev + 1;
+      });
+    } else {
+      setStartIndex(Number(data?.selected));
+    }
+  }
 
   const paginatioInstancenWithMemo = useMemo(() => {
     return new PaginationContoller<Post>(postList);

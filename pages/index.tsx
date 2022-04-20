@@ -21,7 +21,7 @@ const HomePage = ({ postList }: HomePageProps) => {
       <Layout>
         <Introduce mainImage="/images/background.jpg" />
         <Content>
-          <PostList postList={postListToShow} />
+          <PostList postList={postListToShow} handlePageClick={handlePageClick} allPostListLength={postList.length} />
           <Pagination pageCount={pageCount} handlePageClick={handlePageClick} />
         </Content>
       </Layout>
