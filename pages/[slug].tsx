@@ -74,7 +74,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     body,
     mainImage,
     slug,
-    title
+    title,
+    category
     }
   `;
 
