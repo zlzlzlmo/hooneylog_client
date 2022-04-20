@@ -3,6 +3,7 @@ import Content from 'components/layout/content/Content';
 import Introduce from 'components/layout/introduce/Introduce';
 import Layout from 'components/layout/Layout';
 import PostDetail from 'components/postDetail/PostDetail';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { GetStaticProps } from 'next/types';
 import React from 'react';
@@ -21,6 +22,9 @@ const PostDetailPage = ({ post }: PostDetailPageProps) => {
 
   return (
     <Layout>
+      <Head>
+        <title>Hooney Blog - {post.title}</title>
+      </Head>
       <Introduce mainImage={post.mainImage} title={post.title} />
       <Content>
         <PostDetail

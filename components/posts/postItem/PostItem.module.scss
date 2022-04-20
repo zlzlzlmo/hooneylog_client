@@ -2,7 +2,7 @@
 
 .container  {
     position: relative;
-    padding:3rem;
+    padding:1rem;
     border :0.1rem solid $sub-color-1;
     transition: all 0.2s ease;
     cursor: pointer;
@@ -20,6 +20,7 @@
 
     .content_box {
         .title {
+            margin-top:1rem;
             color:$base-color;
             font-weight: 600;
             font-size: 2.3rem;

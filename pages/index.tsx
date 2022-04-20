@@ -7,6 +7,7 @@ import usePagination from 'hooks/usePagination';
 import { GetStaticProps } from 'next';
 import { sanityClient } from 'sanity/config';
 import PostList from 'components/posts/PostList';
+import Head from 'next/head';
 
 interface HomePageProps {
   postList: SanityPost[];
@@ -16,6 +17,9 @@ const HomePage = ({ postList }: HomePageProps) => {
 
   return (
     <div>
+      <Head>
+        <title>Hooney Blog</title>
+      </Head>
       <Layout>
         <Introduce mainImage="/images/background.jpg" />
         <Content>
