@@ -16,7 +16,7 @@ const Introduce = ({ title, mainImage }: IntroduceProps) => {
     backgroundSize: 'cover',
     backgroundAttachment: 'fixed',
     backgroundRepeat: 'no-repeat',
-    height: `${isHome ? '50rem' : '20rem'}`,
+    height: `${isHome ? '30vh' : '20rem'}`,
   };
   return (
     <section className={styles.container} style={introduceStyle}>

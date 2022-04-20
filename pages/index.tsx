@@ -1,5 +1,4 @@
 import Layout from 'components/layout/Layout';
-import PostList from 'components/posts/PostList';
 import { SanityPost } from 'ts/interface/post';
 import Pagination from 'components/common/pagination/Pagintation';
 import Content from 'components/layout/content/Content';
@@ -7,6 +6,7 @@ import Introduce from 'components/layout/introduce/Introduce';
 import usePagination from 'hooks/usePagination';
 import { GetStaticProps } from 'next';
 import { sanityClient } from 'sanity/config';
+import PostList from 'components/posts/PostList';
 
 interface HomePageProps {
   postList: SanityPost[];
