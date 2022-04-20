@@ -6,9 +6,7 @@
 import useIntersectionObserver from 'hooks/useIntersection';
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { SanityPost } from 'ts/interface/post';
-import { Box, Stack, Skeleton, SkeletonCircle, SkeletonText } from '@chakra-ui/react';
-import { getDeviceType } from 'util/common';
-import { Device } from 'ts/enum';
+import { Box, Skeleton, SkeletonText } from '@chakra-ui/react';
 import PostItem from './postItem/PostItem';
 import styles from './PostList.module.scss';
 
