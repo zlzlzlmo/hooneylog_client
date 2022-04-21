@@ -8,7 +8,7 @@ import { Device } from 'ts/enum';
 import { getDeviceType } from './common';
 
 class PaginationContoller<T> {
-  private readonly allItems: T[] = [];
+  readonly allItems: T[] = [];
 
   // * 한 페이지에 보여줘야할 갯수
   private readonly itemLengthPerPage = 6;
