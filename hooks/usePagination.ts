@@ -32,40 +32,7 @@ const usePagination = ({ postList }: UsePaginationProps) => {
   }
 
   const paginatioInstancenWithMemo = useMemo(() => {
-    const test = [
-      ...postList,
-      ...postList,
-      ...postList,
-      ...postList,
-      ...postList,
-      ...postList,
-      ...postList,
-      ...postList,
-      ...postList,
-      ...postList,
-      ...postList,
-      ...postList,
-      ...postList,
-      ...postList,
-      ...postList,
-      ...postList,
-      ...postList,
-      ...postList,
-      ...postList,
-      ...postList,
-      ...postList,
-      ...postList,
-      ...postList,
-      ...postList,
-      ...postList,
-      ...postList,
-      ...postList,
-      ...postList,
-      ...postList,
-      ...postList,
-      ...postList,
-    ];
-    return new PaginationContoller<SanityPost>(test);
+    return new PaginationContoller<SanityPost>(postList);
   }, []);
 
   useEffect(() => {

@@ -25,16 +25,18 @@ const PostDetailPage = ({ post }: PostDetailPageProps) => {
       <Head>
         <title>Hooney Blog - {post.title}</title>
       </Head>
-      <Introduce mainImage={post.mainImage} />
-      <Content>
-        <PostDetail
-          body={post.body}
-          title={post.title}
-          createdAt={post._createdAt}
-          authorName={post.author.name}
-          category={post.category}
-        />
-      </Content>
+      <div>
+        <Introduce mainImage={post.mainImage} />
+        <Content>
+          <PostDetail
+            body={post.body}
+            title={post.title}
+            createdAt={post._createdAt}
+            authorName={post.author.name}
+            category={post.category}
+          />
+        </Content>
+      </div>
     </Layout>
   );
 };
