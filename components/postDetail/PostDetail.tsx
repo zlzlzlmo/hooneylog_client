@@ -3,11 +3,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable jsx-a11y/heading-has-content */
 import React from 'react';
-// import PortableText from 'react-portable-text';
-import { urlFor } from 'sanity/config';
 import { SanityPostBody } from 'ts/interface/post';
 import { dateFormat } from 'util/common';
 import { PortableText } from '@portabletext/react';
+import SyntaxHighlighter from 'react-syntax-highlighter';
 import styles from './PostDetail.module.scss';
 
 interface PostDetailProps {
@@ -20,13 +19,7 @@ interface PostDetailProps {
 const PostDetail = ({ body, title, createdAt, authorName, category }: PostDetailProps) => {
   const components = {
     types: {
-      code: ({ value }: any) => (
-        <pre>
-          <code className={styles[value.language]}>{value.code}</code>
-        </pre>
-      ),
-      // Any other custom types you have in your content
-      // Examples: mapLocation, contactForm, code, featuredProjects, latestNews, etc.
+      code: ({ value }: any) => <SyntaxHighlighter language="typescript">{value.code}</SyntaxHighlighter>,
     },
   };
 
@@ -39,12 +32,7 @@ const PostDetail = ({ body, title, createdAt, authorName, category }: PostDetail
         <span>{dateFormat(createdAt)}</span>
       </section>
       <main className={styles.main_content}>
-        <PortableText
-          // projectId={process.env.NEXT_PUBLIC_SANITY_DATASET}
-          // dataset={process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}
-          components={components}
-          value={body}
-        />
+        <PortableText components={components} value={body} />
       </main>
     </article>
   );
