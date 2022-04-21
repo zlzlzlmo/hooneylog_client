@@ -6,9 +6,8 @@ import useIntersectionObserver from './useIntersection';
 interface usePostListProps {
   postListToShow: SanityPost[];
   ref: React.MutableRefObject<HTMLDivElement | null>;
-  handlePageClick: () => void;
 }
-const usePostList = ({ ref, postListToShow, handlePageClick }: usePostListProps) => {
+const usePostList = ({ ref, postListToShow }: usePostListProps) => {
   const [firstUpdate, setFirstUpdate] = useState(true);
   const entry = useIntersectionObserver(ref, {});
   useEffect(() => {
@@ -17,9 +16,6 @@ const usePostList = ({ ref, postListToShow, handlePageClick }: usePostListProps)
     }
     if (entry?.isIntersecting) {
       setFirstUpdate(false);
-      if (!firstUpdate) {
-        handlePageClick();
-      }
     }
   }, [postListToShow, entry?.isIntersecting]);
 

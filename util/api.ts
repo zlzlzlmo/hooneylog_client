@@ -1,7 +1,3 @@
-interface Api<T> {
-  result: T;
-}
-
 class ApiManager<T> {
   private encodeURIQuery: string | null = null;
 
@@ -9,9 +5,11 @@ class ApiManager<T> {
     this.encodeURIQuery = encodeURIComponent(query);
   }
 
-  async SanityFetch(): Promise<Api<T>> {
-    const res = await fetch(`https://e5m09ops.api.sanity.io/v2021-10-21/data/query/production?query=${this.encodeURIQuery}`);
-    const result = await res.json();
+  async sanityFetch(): Promise<T> {
+    const res = await fetch(
+      `https://e5m09ops.api.sanity.io/v2021-10-21/data/query/production?query=${this.encodeURIQuery}`,
+    );
+    const { result } = await res.json();
     return result;
   }
 }

@@ -1,0 +1,23 @@
+@import "styles/variable";
+.container {
+    max-width: $tablet-max-width;
+    width:90%;
+    height: 4rem;
+    position: relative;
+    left:50%;
+    margin-top: 2rem;
+    border: 1px solid black;
+    transform: translateX(-50%);
+    padding-left:5%;
+    display: flex;
+    gap: 2rem;
+    svg {
+        display: inline-block;
+        height: 4rem;
+    }
+}
+
+.input {
+    outline: none;
+    width:100%;
+}

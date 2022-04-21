@@ -1,14 +1,13 @@
 import Layout from 'components/layout/Layout';
 import { SanityPost } from 'ts/interface/post';
-import Pagination from 'components/common/pagination/Pagintation';
 import Content from 'components/layout/content/Content';
 import Introduce from 'components/layout/introduce/Introduce';
 import usePagination from 'hooks/usePagination';
 import { GetStaticProps } from 'next';
-import { sanityClient } from 'sanity/config';
 import Head from 'next/head';
 import PostList from 'components/posts/PostList';
 import PostLength from 'components/common/PostLength/PostLength';
+import ApiManager from 'util/api';
 
 interface HomePageProps {
   postList: SanityPost[];
@@ -26,8 +25,8 @@ const HomePage = ({ postList }: HomePageProps) => {
           <Introduce mainImage="/images/background.jpg" />
           <Content>
             <PostLength length={postList.length} />
-            <PostList postListToShow={postListToShow} handlePageClick={handlePageClick} isLastPost={isLastPost} />
-            <Pagination pageCount={pageCount} handlePageClick={handlePageClick} />
+            <PostList postListToShow={postList} />
+            {/* <Pagination pageCount={pageCount} handlePageClick={handlePageClick} /> */}
           </Content>
         </div>
       </Layout>
@@ -51,7 +50,9 @@ export const getStaticProps: GetStaticProps = async () => {
     _createdAt
   } | order(_createdAt desc)
   `;
-  const postList = await sanityClient.fetch<SanityPost[]>(query);
+
+  const instance = new ApiManager<SanityPost[]>(query);
+  const postList = await instance.sanityFetch();
 
   return {
     props: {

@@ -4,22 +4,16 @@ import Introduce from 'components/layout/introduce/Introduce';
 import Layout from 'components/layout/Layout';
 import PostDetail from 'components/postDetail/PostDetail';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
 import { GetStaticProps } from 'next/types';
 import React from 'react';
 import { sanityClient } from 'sanity/config';
 import { SanityPost } from 'ts/interface/post';
+import ApiManager from 'util/api';
 
 interface PostDetailPageProps {
   post: SanityPost;
 }
 const PostDetailPage = ({ post }: PostDetailPageProps) => {
-  const router = useRouter();
-
-  if (router.isFallback) {
-    <div>loading</div>;
-  }
-
   return (
     <Layout>
       <Head>
@@ -57,7 +51,7 @@ export const getStaticPaths = async () => {
 
   return {
     paths: slugs,
-    fallback: 'blocking',
+    fallback: false,
   };
 };
 
@@ -71,24 +65,22 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug } = params;
 
   const query = `
-    *[_type=="post"]{
-      _createdAt,
-      _id,
-      author-> {
-      name,image
-    },
-    body,
-    mainImage,
-    slug,
-    title,
-    category
-    }
+  *[_type=="post" && slug.current == "${slug}"]{
+    _createdAt,
+    _id,
+    author-> {
+    name,image
+  },
+  body,
+  mainImage,
+  slug,
+  title,
+  category
+  }
   `;
 
-  const response = await sanityClient.fetch<SanityPost[]>(query, {
-    slug,
-  });
-
+  const instance = new ApiManager<SanityPost[]>(query);
+  const response = await instance.sanityFetch();
   const post = response[0];
   return {
     props: {
