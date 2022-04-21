@@ -17,25 +17,27 @@ const HomePage = ({ postList }: HomePageProps) => {
   const { pageCount, postListToShow, isLastPost, handlePageClick } = usePagination({ postList });
 
   return (
-    <div>
+    <>
       <Head>
         <title>Hooney Blog</title>
       </Head>
       <Layout>
-        <Introduce mainImage="/images/background.jpg" />
-        <Content>
-          <PostLength length={postList.length} />
-          <PostList postListToShow={postListToShow} handlePageClick={handlePageClick} isLastPost={isLastPost} />
-          <Pagination pageCount={pageCount} handlePageClick={handlePageClick} />
-        </Content>
+        <div>
+          <Introduce mainImage="/images/background.jpg" />
+          <Content>
+            <PostLength length={postList.length} />
+            <PostList postListToShow={postListToShow} handlePageClick={handlePageClick} isLastPost={isLastPost} />
+            <Pagination pageCount={pageCount} handlePageClick={handlePageClick} />
+          </Content>
+        </div>
       </Layout>
-    </div>
+    </>
   );
 };
 
 export const getStaticProps: GetStaticProps = async () => {
   const query = `
-  *[_type=="post"]{
+  *[_type=="post"][0...6]{
     _id,
     title,
     author->{
