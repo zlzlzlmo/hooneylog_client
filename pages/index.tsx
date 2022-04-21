@@ -26,8 +26,8 @@ const HomePage = ({ postList }: HomePageProps) => {
           <Introduce mainImage="/images/background.jpg" />
           <Content>
             <PostLength length={postList.length} />
-            <PostList postListToShow={postListToShow} handlePageClick={handlePageClick} isLastPost={isLastPost} />
-            <Pagination pageCount={pageCount} handlePageClick={handlePageClick} />
+            <PostList postListToShow={postList} />
+            {/* <Pagination pageCount={pageCount} handlePageClick={handlePageClick} /> */}
           </Content>
         </div>
       </Layout>

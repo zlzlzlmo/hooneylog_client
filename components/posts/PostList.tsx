@@ -13,13 +13,11 @@ import styles from './PostList.module.scss';
 
 interface PostListProps {
   postListToShow: SanityPost[];
-  handlePageClick: () => void;
-  isLastPost: boolean;
 }
 
-const PostList = ({ postListToShow, handlePageClick, isLastPost }: PostListProps) => {
+const PostList = ({ postListToShow }: PostListProps) => {
   const ref = useRef<HTMLDivElement | null>(null);
-  usePostList({ ref, postListToShow, handlePageClick });
+  usePostList({ ref, postListToShow });
 
   return (
     <section className={styles.container}>
@@ -36,13 +34,13 @@ const PostList = ({ postListToShow, handlePageClick, isLastPost }: PostListProps
           category={category}
         />
       ))}
-
+      {/* 
       {!isLastPost && (
         <Box className={styles.skeleton_box} padding="30" bg="white" ref={ref}>
           <Skeleton height="25rem" />
           <SkeletonText mt="4" noOfLines={4} spacing="4" />
         </Box>
-      )}
+      )} */}
     </section>
   );
 };
