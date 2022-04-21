@@ -7,6 +7,10 @@
    color:$white-color;
    font-family: 'Ubuntu', sans-serif;
    font-weight: bold;
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+   background-size: cover;
+   
    @include flexCenter;
 
    .text_top {

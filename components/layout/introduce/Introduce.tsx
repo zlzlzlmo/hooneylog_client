@@ -13,9 +13,6 @@ const Introduce = ({ mainImage }: IntroduceProps) => {
 
   const introduceStyle = {
     backgroundImage: `url(${imageUrl})`,
-    backgroundSize: 'cover',
-    backgroundAttachment: 'fixed',
-    backgroundRepeat: 'no-repeat',
     height: `${isHome ? '40vh' : '20rem'}`,
   };
   return (
