@@ -6,14 +6,14 @@ import Introduce from 'components/layout/introduce/Introduce';
 import usePagination from 'hooks/usePagination';
 import { GetStaticProps } from 'next';
 import { sanityClient } from 'sanity/config';
-import PostList from 'components/posts/PostList';
 import Head from 'next/head';
+import PostList from 'components/posts/PostList';
 
 interface HomePageProps {
   postList: SanityPost[];
 }
 const HomePage = ({ postList }: HomePageProps) => {
-  const { pageCount, postListToShow, handlePageClick } = usePagination({ postList });
+  const { pageCount, postListToShow, isLastPost, handlePageClick } = usePagination({ postList });
 
   return (
     <div>
@@ -23,7 +23,7 @@ const HomePage = ({ postList }: HomePageProps) => {
       <Layout>
         <Introduce mainImage="/images/background.jpg" />
         <Content>
-          <PostList postList={postListToShow} handlePageClick={handlePageClick} allPostListLength={postList.length} />
+          <PostList postListToShow={postListToShow} handlePageClick={handlePageClick} isLastPost={isLastPost} />
           <Pagination pageCount={pageCount} handlePageClick={handlePageClick} />
         </Content>
       </Layout>

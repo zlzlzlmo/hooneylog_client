@@ -17,6 +17,7 @@ const usePagination = ({ postList }: UsePaginationProps) => {
   const [pageCount, setPageCount] = useState<number>(0);
   const [postListToShow, setPostListToShow] = useState<SanityPost[]>([]);
   const [startIndex, setStartIndex] = useState<number>(0);
+  const [isLastPost, setIsLastPost] = useState<boolean>(false);
 
   function handlePageClick(): void;
   function handlePageClick(data: ReactPagination): void;
@@ -31,7 +32,40 @@ const usePagination = ({ postList }: UsePaginationProps) => {
   }
 
   const paginatioInstancenWithMemo = useMemo(() => {
-    return new PaginationContoller<SanityPost>(postList);
+    const test = [
+      ...postList,
+      ...postList,
+      ...postList,
+      ...postList,
+      ...postList,
+      ...postList,
+      ...postList,
+      ...postList,
+      ...postList,
+      ...postList,
+      ...postList,
+      ...postList,
+      ...postList,
+      ...postList,
+      ...postList,
+      ...postList,
+      ...postList,
+      ...postList,
+      ...postList,
+      ...postList,
+      ...postList,
+      ...postList,
+      ...postList,
+      ...postList,
+      ...postList,
+      ...postList,
+      ...postList,
+      ...postList,
+      ...postList,
+      ...postList,
+      ...postList,
+    ];
+    return new PaginationContoller<SanityPost>(test);
   }, []);
 
   useEffect(() => {
@@ -39,10 +73,16 @@ const usePagination = ({ postList }: UsePaginationProps) => {
   }, [postList]);
 
   useEffect(() => {
+    console.log(
+      paginatioInstancenWithMemo.allItems.length === paginatioInstancenWithMemo.getItemsToShow(startIndex).length,
+    );
+    setIsLastPost(
+      paginatioInstancenWithMemo.allItems.length === paginatioInstancenWithMemo.getItemsToShow(startIndex).length,
+    );
     setPostListToShow(paginatioInstancenWithMemo.getItemsToShow(startIndex));
   }, [startIndex]);
 
-  return { pageCount, postListToShow, handlePageClick };
+  return { pageCount, postListToShow, handlePageClick, isLastPost };
 };
 
 export default usePagination;

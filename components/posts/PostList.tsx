@@ -11,18 +11,18 @@ import PostItem from './postItem/PostItem';
 import styles from './PostList.module.scss';
 
 interface PostListProps {
-  postList: SanityPost[];
+  postListToShow: SanityPost[];
   handlePageClick: () => void;
-  allPostListLength: number;
+  isLastPost: boolean;
 }
 
-const PostList = ({ postList, handlePageClick, allPostListLength }: PostListProps) => {
+const PostList = ({ postListToShow, handlePageClick, isLastPost }: PostListProps) => {
   const ref = useRef<HTMLDivElement | null>(null);
   const entry = useIntersectionObserver(ref, {});
   const [firstUpdate, setFirstUpdate] = useState(true);
 
   useEffect(() => {
-    if (postList.length === 0) {
+    if (postListToShow.length === 0) {
       return;
     }
     if (entry?.isIntersecting) {
@@ -31,13 +31,13 @@ const PostList = ({ postList, handlePageClick, allPostListLength }: PostListProp
         handlePageClick();
       }
     }
-  }, [postList, entry?.isIntersecting]);
+  }, [postListToShow, entry?.isIntersecting]);
 
   return (
     <section className={styles.container}>
-      {postList.map(({ title, _createdAt, mainImage, body, slug, author, category, _id }) => (
+      {postListToShow.map(({ title, _createdAt, mainImage, body, slug, author, category, _id }, index) => (
         <PostItem
-          key={_id}
+          key={index}
           title={title}
           createAt={_createdAt}
           mainImage={mainImage}
@@ -49,12 +49,19 @@ const PostList = ({ postList, handlePageClick, allPostListLength }: PostListProp
         />
       ))}
 
-      {postList.length < allPostListLength && (
+      {!isLastPost && (
         <Box className={styles.skeleton_box} padding="30" bg="white" ref={ref}>
           <Skeleton height="25rem" />
           <SkeletonText mt="4" noOfLines={4} spacing="4" />
         </Box>
       )}
+
+      {/* {postListToShow.length < allPostListLength && (
+        <Box className={styles.skeleton_box} padding="30" bg="white" ref={ref}>
+          <Skeleton height="25rem" />
+          <SkeletonText mt="4" noOfLines={4} spacing="4" />
+        </Box>
+      )} */}
     </section>
   );
 };
