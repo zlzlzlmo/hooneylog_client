@@ -7,6 +7,7 @@ import useIntersectionObserver from 'hooks/useIntersection';
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { SanityPost } from 'ts/interface/post';
 import { Box, Skeleton, SkeletonText } from '@chakra-ui/react';
+import usePostList from 'hooks/usePostList';
 import PostItem from './postItem/PostItem';
 import styles from './PostList.module.scss';
 
@@ -18,20 +19,7 @@ interface PostListProps {
 
 const PostList = ({ postListToShow, handlePageClick, isLastPost }: PostListProps) => {
   const ref = useRef<HTMLDivElement | null>(null);
-  const entry = useIntersectionObserver(ref, {});
-  const [firstUpdate, setFirstUpdate] = useState(true);
-
-  useEffect(() => {
-    if (postListToShow.length === 0) {
-      return;
-    }
-    if (entry?.isIntersecting) {
-      setFirstUpdate(false);
-      if (!firstUpdate) {
-        handlePageClick();
-      }
-    }
-  }, [postListToShow, entry?.isIntersecting]);
+  usePostList({ ref, postListToShow, handlePageClick });
 
   return (
     <section className={styles.container}>
@@ -55,13 +43,6 @@ const PostList = ({ postListToShow, handlePageClick, isLastPost }: PostListProps
           <SkeletonText mt="4" noOfLines={4} spacing="4" />
         </Box>
       )}
-
-      {/* {postListToShow.length < allPostListLength && (
-        <Box className={styles.skeleton_box} padding="30" bg="white" ref={ref}>
-          <Skeleton height="25rem" />
-          <SkeletonText mt="4" noOfLines={4} spacing="4" />
-        </Box>
-      )} */}
     </section>
   );
 };

@@ -73,16 +73,14 @@ const usePagination = ({ postList }: UsePaginationProps) => {
   }, [postList]);
 
   useEffect(() => {
-    console.log(
-      paginatioInstancenWithMemo.allItems.length === paginatioInstancenWithMemo.getItemsToShow(startIndex).length,
-    );
-    setIsLastPost(
-      paginatioInstancenWithMemo.allItems.length === paginatioInstancenWithMemo.getItemsToShow(startIndex).length,
-    );
+    const isLastPostNow =
+      paginatioInstancenWithMemo.allItems.length === paginatioInstancenWithMemo.getItemsToShow(startIndex).length;
+
+    setIsLastPost(isLastPostNow);
     setPostListToShow(paginatioInstancenWithMemo.getItemsToShow(startIndex));
   }, [startIndex]);
 
-  return { pageCount, postListToShow, handlePageClick, isLastPost };
+  return { pageCount, postListToShow, isLastPost, handlePageClick };
 };
 
 export default usePagination;
