@@ -32,8 +32,11 @@ const search = () => {
         } | order(_createdAt desc)
 
       `;
-    const result = await sanityClient.fetch<SanityPost[]>(query);
-    setPostList(result);
+
+    const instance = new ApiManager<SanityPost[]>(query);
+    const response = await instance.sanityFetch();
+    // const result = await sanityClient.fetch<SanityPost[]>(query);
+    setPostList(response);
   }, 300);
 
   return (
