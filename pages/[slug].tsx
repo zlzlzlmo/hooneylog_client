@@ -25,7 +25,7 @@ const PostDetailPage = ({ post }: PostDetailPageProps) => {
       <Head>
         <title>Hooney Blog - {post.title}</title>
       </Head>
-      <Introduce mainImage={post.mainImage} title={post.title} />
+      <Introduce mainImage={post.mainImage} />
       <Content>
         <PostDetail
           body={post.body}

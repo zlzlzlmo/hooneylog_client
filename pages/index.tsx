@@ -8,6 +8,7 @@ import { GetStaticProps } from 'next';
 import { sanityClient } from 'sanity/config';
 import Head from 'next/head';
 import PostList from 'components/posts/PostList';
+import PostLength from 'components/common/PostLength/PostLength';
 
 interface HomePageProps {
   postList: SanityPost[];
@@ -23,6 +24,7 @@ const HomePage = ({ postList }: HomePageProps) => {
       <Layout>
         <Introduce mainImage="/images/background.jpg" />
         <Content>
+          <PostLength length={postList.length} />
           <PostList postListToShow={postListToShow} handlePageClick={handlePageClick} isLastPost={isLastPost} />
           <Pagination pageCount={pageCount} handlePageClick={handlePageClick} />
         </Content>

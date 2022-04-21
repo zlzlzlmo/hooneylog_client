@@ -1,50 +1,38 @@
 @import "styles/variable";
 @import "styles/mixin";
+@import "styles/function";
 
 .container {
    font-size: 4rem;
    color:$white-color;
+   font-family: 'Ubuntu', sans-serif;
+   font-weight: bold;
    @include flexCenter;
 
-   .text {
-    width: 75rem;
-    animation: typing 2s steps(22), blink .5s step-end infinite alternate;
-    white-space: nowrap;
-    overflow: hidden;
-    border-right: 0.3rem solid;
-   }
-
-   .slug_text {
+   .text_top {
+    border-right: none;
+    width: auto;
+    white-space: normal;
     animation-name: moveInLeft;
     animation-duration: 1s;
     animation-timing-function: ease-out;
    }
 
-   @media (max-width:$tablet-max-width) {
-    font-size: 1.8rem;
-    .text {
-      border-right: none;
-      width: auto;
-      white-space: normal;
-      animation-name: moveInLeft;
-      animation-duration: 1s;
-      animation-timing-function: ease-out;
+   .text_bottom {
+    display: block;
+    animation: moveInRight 1s ease-out;
+    
+    strong {
+      color:$base-color2;
     }
+   }
+
+   @media (max-width:$mobile-max-width) {
+    font-size: 2rem;
   }
 }
 
 
-@keyframes typing {
-    from {
-      width: 0
-    }
-  }
-      
-  @keyframes blink {
-    50% {
-      border-color: transparent
-    }
-  }
 
   @keyframes moveInLeft {
     0% {
@@ -60,4 +48,20 @@
         opacity: 1;
         transform: translate(0);
     }
+}
+
+@keyframes moveInRight {
+  0% {
+      opacity: 0;
+      transform: translateX(10rem);
+  }
+
+  80% {
+      transform: translateX(-1rem);
+  }
+
+  100% {
+      opacity: 1;
+      transform: translate(0);
+  }
 }
