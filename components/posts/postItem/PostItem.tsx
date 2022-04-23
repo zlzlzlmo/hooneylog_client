@@ -5,9 +5,10 @@
 import usePostItem from 'hooks/usePostItem';
 import React from 'react';
 import { SanityImage, SanityPostBody } from 'ts/interface/post';
-import { dateFormat } from 'util/common';
+import { dateFormat, makeCategoryColor, makeCategoryLetter } from 'util/common';
 import Link from 'next/link';
 import { urlFor } from 'sanity/config';
+import { categries } from 'ts/type';
 import styles from './PostItem.module.scss';
 
 interface PostItemProps {
@@ -17,13 +18,12 @@ interface PostItemProps {
   body: SanityPostBody[];
   slug: string;
   authorName: string;
-  authorImage: any;
+  authorImage: object;
   category: string;
 }
 
 const PostItem = ({ title, createAt, mainImage, body, slug, authorName, authorImage, category }: PostItemProps) => {
   const { imageUrl, desc } = usePostItem({ mainImage, body });
-
   return (
     <Link href={slug}>
       <article className={styles.container}>
@@ -39,7 +39,11 @@ const PostItem = ({ title, createAt, mainImage, body, slug, authorName, authorIm
               </span>
               <span className={styles.name}> By {authorName}</span>
             </div>
-            <div className={styles.category}>{category}</div>
+            {makeCategoryColor(category) != null && (
+              <div className={styles.category} style={{ backgroundColor: makeCategoryColor(category) }}>
+                {makeCategoryLetter(category)}
+              </div>
+            )}
           </section>
           <p className={styles.desc}>{desc}</p>
           <section className={styles.reg_date}>{dateFormat(createAt)}</section>

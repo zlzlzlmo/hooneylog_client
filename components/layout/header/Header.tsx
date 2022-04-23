@@ -8,9 +8,11 @@ const Header = () => {
   return (
     <header className={styles.container}>
       <div className={styles.inner_header}>
-        <Link href="/">
-          <h1 className={styles.logo}>HooneyLog :</h1>
-        </Link>
+        <h1 className={styles.logo}>
+          <Link href="/">
+            <span>HooneyLog :</span>
+          </Link>
+        </h1>
       </div>
     </header>
   );

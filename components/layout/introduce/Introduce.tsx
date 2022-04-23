@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/default-props-match-prop-types */
 import useIntroduce from 'hooks/useIntroduce';
-import React from 'react';
+import React, { useEffect, useLayoutEffect } from 'react';
 import { SanityImage } from 'ts/interface/post';
 import styles from './Introduce.module.scss';
 
@@ -15,8 +15,9 @@ const Introduce = ({ mainImage }: IntroduceProps) => {
     backgroundImage: `url(${imageUrl})`,
     height: `${isHome ? '40vh' : '20rem'}`,
   };
+
   return (
-    <section className={styles.container} style={introduceStyle} onLoad={(e) => console.log('Dd', e)}>
+    <section className={styles.container} style={introduceStyle}>
       {isHome && (
         <div className={styles.intro_box}>
           <span className={styles.text_top}>Welcome!</span>
