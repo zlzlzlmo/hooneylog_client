@@ -22,7 +22,11 @@ interface PostDetailProps {
 const PostDetail = ({ body, title, createdAt, authorName, category, authorImage }: PostDetailProps) => {
   const components = {
     types: {
-      image: (props: any) => <img src={urlFor(props.value).url()} alt={`${title}의 이미지`} />,
+      image: (props: any) => (
+        <div className={styles.img_box}>
+          <img src={urlFor(props.value).url()} alt={`${title}의 이미지`} />
+        </div>
+      ),
       code: ({ value }: any) => <SyntaxHighlighter language="typescript">{value.code}</SyntaxHighlighter>,
     },
   };
