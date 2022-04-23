@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/default-props-match-prop-types */
 import useIntroduce from 'hooks/useIntroduce';
-import React, { useEffect, useLayoutEffect } from 'react';
+import React from 'react';
 import { SanityImage } from 'ts/interface/post';
 import styles from './Introduce.module.scss';
 
