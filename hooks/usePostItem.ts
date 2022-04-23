@@ -20,7 +20,7 @@ const usePostItem = ({ mainImage, body }: usePostItemProps) => {
       return children[0].text;
     });
 
-    setDesc(paragraph.join(' ').slice(0, 150));
+    setDesc(paragraph.join(' ').slice(0, 120));
   }, [body]);
 
   useEffect(() => {

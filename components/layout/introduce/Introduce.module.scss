@@ -13,23 +13,24 @@
    
    @include flexCenter;
 
-   .text_top {
-    border-right: none;
-    width: auto;
-    white-space: normal;
-    animation-name: moveInLeft;
-    animation-duration: 1s;
-    animation-timing-function: ease-out;
+   .intro_box {
+      display:flex;
+      flex-direction: column;
+      .text_top {
+        border-right: none;
+        width: auto;
+        white-space: normal;
+        animation: moveInDown 1s ease-out;
+      }
+    
+      .text_bottom {
+        animation: moveInTop 1s ease-out;
+        strong {
+          color:$base-color2;
+        }
+      }
    }
 
-   .text_bottom {
-    display: block;
-    animation: moveInRight 1s ease-out;
-    
-    strong {
-      color:$base-color2;
-    }
-   }
 
    @media (max-width:$mobile-max-width) {
     font-size: 2rem;
@@ -38,14 +39,14 @@
 
 
 
-  @keyframes moveInLeft {
+  @keyframes moveInDown {
     0% {
         opacity: 0;
-        transform: translateX(-10rem);
+        transform: translateY(-10rem);
     }
 
     80% {
-        transform: translateX(1rem);
+        transform: translateY(1rem);
     }
 
     100% {
@@ -54,14 +55,14 @@
     }
 }
 
-@keyframes moveInRight {
+@keyframes moveInTop {
   0% {
       opacity: 0;
-      transform: translateX(10rem);
+      transform: translateY(10rem);
   }
 
   80% {
-      transform: translateX(-1rem);
+      transform: translateY(-1rem);
   }
 
   100% {

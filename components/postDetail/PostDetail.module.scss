@@ -16,7 +16,6 @@
     
     .sub_info {
         span {
-    
             color:gray;
             margin-right: 2rem;
         }
@@ -83,10 +82,9 @@
     }
 
     pre {
-        background-color: #FAF5FD;
-        code {
-            font-family: monospace;
-        }
+        box-sizing: border;
+        width:100vw;
+        max-width: 100%;
     }
 }
 

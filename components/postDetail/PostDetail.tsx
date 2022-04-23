@@ -23,6 +23,10 @@ const PostDetail = ({ body, title, createdAt, authorName, category }: PostDetail
     },
   };
 
+  if (typeof window !== 'undefined') {
+    console.log(window.innerWidth || document.body.clientWidth);
+  }
+
   return (
     <article className={styles.container}>
       <span className={styles.category}>{category}</span>
