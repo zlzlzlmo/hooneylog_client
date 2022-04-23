@@ -3,7 +3,6 @@ import Layout from 'components/layout/Layout';
 import Search from 'components/search/Search';
 import Head from 'next/head';
 import React, { ChangeEvent, useState } from 'react';
-import { sanityClient } from 'sanity/config';
 import ApiManager from 'util/api';
 import { debounce } from 'lodash';
 import PostLength from 'components/common/PostLength/PostLength';
@@ -13,29 +12,30 @@ import { SanityPost } from 'ts/interface/post';
 
 const search = () => {
   const [postList, setPostList] = useState<SanityPost[]>([]);
+  const [hasInputValue, setHasInputValue] = useState<string>('');
 
   const handleChange = debounce(async (e: ChangeEvent<HTMLInputElement>) => {
     const query = `
-      *[_type=="post" && (title match "${e.target.value}" || body[].children[].text match "${e.target.value}")]
-      {
-          _id,
-          title,
-          author->{
-          name,
-          image
-          },
-          mainImage,
-          slug,
-          body,
-          category,
-          _createdAt
-        } | order(_createdAt desc)
+    *[_type=="post" && (title match "*${e.target.value}*" || body[].children[].text match "*${e.target.value}*")]
+    {
+        _id,
+        title,
+        author->{
+        name,
+        image
+        },
+        mainImage,
+        slug,
+        body,
+        category,
+        _createdAt
+      } | order(_createdAt desc)
 
       `;
 
     const instance = new ApiManager<SanityPost[]>(query);
     const response = await instance.sanityFetch();
-    // const result = await sanityClient.fetch<SanityPost[]>(query);
+    setHasInputValue(e.target.value);
     setPostList(response);
   }, 300);
 
@@ -48,8 +48,12 @@ const search = () => {
         <div>
           <Search handleChange={handleChange} />
           <Content>
-            <PostLength length={postList.length} />
-            <PostList postListToShow={postList} />
+            {hasInputValue.length > 0 && (
+              <>
+                <PostLength length={postList.length} />
+                <PostList postListToShow={postList} />
+              </>
+            )}
           </Content>
         </div>
       </Layout>

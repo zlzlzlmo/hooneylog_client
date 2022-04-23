@@ -11,13 +11,27 @@
     padding-left:5%;
     display: flex;
     gap: 2rem;
-    svg {
+    .search_icon {
         display: inline-block;
         height: 4rem;
+    }
+
+    .spinner {
+        height: 50% !important;
+        width:4rem !important;
+        position: relative;
+        top:25%;
+        right:5%;
+
+        svg {
+            width:100%;
+            height: 100%;
+        }
     }
 }
 
 .input {
     outline: none;
     width:100%;
+    border: none;
 }
