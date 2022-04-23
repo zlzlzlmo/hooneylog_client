@@ -6,7 +6,7 @@ import PostDetail from 'components/postDetail/PostDetail';
 import Head from 'next/head';
 import { GetStaticProps } from 'next/types';
 import React from 'react';
-import { sanityClient } from 'sanity/config';
+import { sanityClient, urlFor } from 'sanity/config';
 import { SanityPost } from 'ts/interface/post';
 import ApiManager from 'util/api';
 
@@ -17,6 +17,7 @@ const PostDetailPage = ({ post }: PostDetailPageProps) => {
   return (
     <Layout>
       <Head>
+        <meta property="og:image" content={urlFor(post.author.name).url()} />
         <title>Hooney Blog - {post.title}</title>
       </Head>
       <div>
