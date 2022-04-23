@@ -17,7 +17,7 @@ const PostDetailPage = ({ post }: PostDetailPageProps) => {
   return (
     <Layout>
       <Head>
-        <meta property="og:image" content={urlFor(post.author.name).url()} />
+        <meta property="og:image" content={urlFor(post.author.image).url()} />
         <title>Hooney Blog - {post.title}</title>
       </Head>
       <div>
