@@ -8,7 +8,7 @@ interface SearchProps {
 const Search = ({ handleChange }: SearchProps) => {
   return (
     <div className={styles.container}>
-      <BsSearch />
+      <BsSearch className={styles.search_icon} />
       <input
         className={styles.input}
         type="text"
