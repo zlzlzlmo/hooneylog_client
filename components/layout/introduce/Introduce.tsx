@@ -16,13 +16,13 @@ const Introduce = ({ mainImage }: IntroduceProps) => {
     height: `${isHome ? '40vh' : '20rem'}`,
   };
   return (
-    <section className={styles.container} style={introduceStyle}>
+    <section className={styles.container} style={introduceStyle} onLoad={(e) => console.log('Dd', e)}>
       {isHome && (
         <div className={styles.intro_box}>
-          <div className={styles.text_top}>Welcome!</div>
-          <div className={styles.text_bottom}>
+          <span className={styles.text_top}>Welcome!</span>
+          <span className={styles.text_bottom}>
             This is <strong>Hooney's</strong> Tech Blog
-          </div>
+          </span>
         </div>
       )}
     </section>

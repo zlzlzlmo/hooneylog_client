@@ -8,27 +8,27 @@ import Head from 'next/head';
 import PostList from 'components/posts/PostList';
 import PostLength from 'components/common/PostLength/PostLength';
 import ApiManager from 'util/api';
+import { useState } from 'react';
 
 interface HomePageProps {
   postList: SanityPost[];
 }
 const HomePage = ({ postList }: HomePageProps) => {
   const { pageCount, postListToShow, isLastPost, handlePageClick } = usePagination({ postList });
-
+  const [loaded, setIsLoaded] = useState(false);
   return (
     <>
       <Head>
         <title>Hooney Blog</title>
       </Head>
       <Layout>
-        <div>
+        <section onLoad={() => setIsLoaded(true)}>
           <Introduce mainImage="/images/background.jpg" />
           <Content>
             <PostLength length={postList.length} />
             <PostList postListToShow={postList} />
-            {/* <Pagination pageCount={pageCount} handlePageClick={handlePageClick} /> */}
           </Content>
-        </div>
+        </section>
       </Layout>
     </>
   );

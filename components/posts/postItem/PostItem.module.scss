@@ -24,6 +24,8 @@
             color:$base-color;
             font-weight: 600;
             font-size: 2.3rem;
+            height: 3.5rem;
+            overflow: hidden;
         }
 
         .sub {
@@ -70,7 +72,7 @@
         }
 
         .desc {
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
         }
 
         .reg_date {
