@@ -3,10 +3,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable jsx-a11y/heading-has-content */
 import React from 'react';
+import dynamic from 'next/dynamic';
+
 import { SanityPostBody } from 'ts/interface/post';
 import { dateFormat } from 'util/common';
 import { PortableText } from '@portabletext/react';
-import SyntaxHighlighter from 'react-syntax-highlighter';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import styles from './PostDetail.module.scss';
 
 interface PostDetailProps {
@@ -16,16 +18,13 @@ interface PostDetailProps {
   authorName: string;
   category: string;
 }
+
 const PostDetail = ({ body, title, createdAt, authorName, category }: PostDetailProps) => {
   const components = {
     types: {
       code: ({ value }: any) => <SyntaxHighlighter language="typescript">{value.code}</SyntaxHighlighter>,
     },
   };
-
-  if (typeof window !== 'undefined') {
-    console.log(window.innerWidth || document.body.clientWidth);
-  }
 
   return (
     <article className={styles.container}>
