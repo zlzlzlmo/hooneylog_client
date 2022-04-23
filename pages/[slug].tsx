@@ -28,6 +28,7 @@ const PostDetailPage = ({ post }: PostDetailPageProps) => {
             createdAt={post._createdAt}
             authorName={post.author.name}
             category={post.category}
+            authorImage={post.author.image}
           />
         </Content>
       </div>
