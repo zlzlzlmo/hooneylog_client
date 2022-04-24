@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/default-props-match-prop-types */
 import useIntroduce from 'hooks/useIntroduce';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { SanityImage } from 'ts/interface/post';
 import styles from './Introduce.module.scss';
 
@@ -10,19 +10,6 @@ interface IntroduceProps {
 }
 const Introduce = ({ mainImage }: IntroduceProps) => {
   const { imageUrl, isHome } = useIntroduce({ mainImage });
-
-  const loadImage = () => {
-    const img = new Image();
-    img.src = imageUrl;
-    console.log('Dasfasdfadsfdsafasd');
-    img.onload = () => {
-      console.log('loaded');
-    };
-  };
-
-  useEffect(() => {
-    loadImage();
-  }, []);
 
   const introduceStyle = {
     backgroundImage: `url(${imageUrl})`,

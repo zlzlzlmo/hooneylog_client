@@ -5,3 +5,10 @@ export enum Device {
   Tablet = 'Tablet',
   Mobile = 'Mobile',
 }
+
+export enum CategoryBackgroundColor {
+  Typescript = '#2661B9',
+  React = '#50C9EF',
+  Javascript = '#EBD217',
+  NextJs = '#171D21',
+}

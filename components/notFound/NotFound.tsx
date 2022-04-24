@@ -1,5 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
-/* eslint-disable jsx-a11y/img-redundant-alt */
 import Image from 'next/image';
 import React from 'react';
 import styles from './NotFound.module.scss';

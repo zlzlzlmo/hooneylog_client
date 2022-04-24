@@ -1,15 +1,16 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/no-unstable-nested-components */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable jsx-a11y/heading-has-content */
 import React from 'react';
 import { SanityPostBody } from 'ts/interface/post';
-import { dateFormat, makeCategoryColor } from 'util/common';
+import { dateFormat } from 'util/common';
 import { PortableText } from '@portabletext/react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { urlFor } from 'sanity/config';
 import CategoryManager from 'util/category';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import styles from './PostDetail.module.scss';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 interface PostDetailProps {
   body: SanityPostBody[];
@@ -26,7 +27,7 @@ const PostDetail = ({ body, title, createdAt, authorName, category, authorImage 
     types: {
       image: (props: any) => (
         <div className={styles.img_box}>
-          <img src={urlFor(props.value).url()} alt={`${title}의 이미지`} />
+          <LazyLoadImage effect="blur" src={urlFor(props.value).url()} alt={`${title}의 이미지`} />
         </div>
       ),
       code: ({ value }: any) => <SyntaxHighlighter language="typescript">{value.code}</SyntaxHighlighter>,
@@ -36,7 +37,7 @@ const PostDetail = ({ body, title, createdAt, authorName, category, authorImage 
   return (
     <article className={styles.container}>
       {categoryInstance.categoryColorToShow && (
-        <span className={styles.category} style={{ backgroundColor: makeCategoryColor(category) }}>
+        <span className={styles.category} style={{ backgroundColor: categoryInstance.categoryColorToShow }}>
           {categoryInstance.categoryLetterToShow}
         </span>
       )}
