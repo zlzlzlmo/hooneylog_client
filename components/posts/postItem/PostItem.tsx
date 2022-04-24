@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/link-passhref */
 /* eslint-disable import/no-cycle */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
@@ -25,7 +24,7 @@ interface PostItemProps {
 const PostItem = ({ title, createAt, mainImage, body, slug, authorName, authorImage, category }: PostItemProps) => {
   const { imageUrl, desc } = usePostItem({ mainImage, body });
   return (
-    <Link href={slug}>
+    <Link href={slug} passHref>
       <article className={styles.container}>
         <div className={styles.img_box}>
           <img src={imageUrl !== '' ? imageUrl : ''} alt="메인 이미지" />
