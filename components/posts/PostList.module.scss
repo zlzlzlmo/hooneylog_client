@@ -6,10 +6,6 @@
     grid-template-columns: repeat(3,33.3%);
     grid-gap: 3rem;
 
-    .skeleton_box {
-        display: none;
-    }
-
     @media (max-width:$tablet-max-width) {
         grid-template-columns: repeat(2,50%);
     }

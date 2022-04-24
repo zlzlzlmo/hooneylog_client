@@ -6,10 +6,9 @@
 import useIntersectionObserver from 'hooks/useIntersection';
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { SanityPost } from 'ts/interface/post';
-import { Box, Skeleton, SkeletonText } from '@chakra-ui/react';
-import usePostList from 'hooks/usePostList';
 import PostItem from './postItem/PostItem';
 import styles from './PostList.module.scss';
+import SkeletonItem from './postItem/skeleton/SkeletonItem';
 
 interface PostListProps {
   postListToShow: SanityPost[];
@@ -17,7 +16,6 @@ interface PostListProps {
 
 const PostList = ({ postListToShow }: PostListProps) => {
   const ref = useRef<HTMLDivElement | null>(null);
-  usePostList({ ref, postListToShow });
 
   return (
     <section className={styles.container}>
@@ -41,6 +39,7 @@ const PostList = ({ postListToShow }: PostListProps) => {
           <SkeletonText mt="4" noOfLines={4} spacing="4" />
         </Box>
       )} */}
+      {/* <SkeletonItem /> */}
     </section>
   );
 };
