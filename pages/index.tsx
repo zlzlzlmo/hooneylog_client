@@ -2,25 +2,24 @@ import Layout from 'components/layout/Layout';
 import { SanityPost } from 'ts/interface/post';
 import Content from 'components/layout/content/Content';
 import Introduce from 'components/layout/introduce/Introduce';
-import usePagination from 'hooks/usePagination';
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import PostList from 'components/posts/PostList';
 import PostLength from 'components/common/PostLength/PostLength';
 import ApiManager from 'util/api';
-import { useEffect, useState } from 'react';
 
 interface HomePageProps {
   postList: SanityPost[];
 }
 const HomePage = ({ postList }: HomePageProps) => {
-  const { pageCount, postListToShow, isLastPost, handlePageClick } = usePagination({ postList });
-  const [loaded, setIsLoaded] = useState(false);
+  // const { pageCount, postListToShow, isLastPost, handlePageClick } = usePagination({ postList });
+  // const [loaded, setIsLoaded] = useState(false);
 
   return (
     <>
       <Head>
         <title>Hooney Blog</title>
+        <meta property="og:image" content="/images/background.jpg" />
       </Head>
       <Layout>
         <section>
