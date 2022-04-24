@@ -1,4 +1,5 @@
 @import "styles/variable";
+@import "styles/mixin";
 
 .skeleton_box {
     padding:1rem;
@@ -8,9 +9,7 @@
     .sub {
         margin:1.5rem 0;
         height: 5.2rem;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+        @include flexSb;
         border-top:0.1rem solid $sub-color-1;
         border-bottom:0.1rem solid $sub-color-1;
 

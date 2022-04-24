@@ -3,7 +3,6 @@
 /* eslint-disable no-plusplus */
 /* eslint-disable no-use-before-define */
 
-import { startAnimation } from 'framer-motion/types/animation/utils/transitions';
 import { Device } from 'ts/enum';
 import { getDeviceType } from './common';
 

@@ -1,7 +1,6 @@
 /* eslint-disable consistent-return */
 import { DateTimeFormatOptions } from 'ts/interface/date';
 import { Device } from 'ts/enum';
-import { categries } from 'ts/type';
 
 export const dateFormat = (dateString: string) => {
   // * 2022년 4월 18일 22:22
@@ -32,16 +31,4 @@ export const getDeviceType = (): Device | undefined => {
   }
 
   return Device.Mobile;
-};
-
-export const makeCategoryLetter = (category: string) => {
-  const str = category.toLowerCase();
-  const result = str.charAt(0).toUpperCase() + str.slice(1);
-  return result;
-};
-
-export const makeCategoryColor = (category: string) => {
-  const categoryColor = categries.find(({ language }) => language.toLowerCase() === category.toLowerCase())?.color;
-  console.log('category : ', category, categoryColor);
-  return categoryColor;
 };

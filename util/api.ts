@@ -1,4 +1,8 @@
-class ApiManager<T> {
+interface Api<T> {
+  sanityFetch(): Promise<T>;
+}
+
+class ApiManager<T> implements Api<T> {
   private encodeURIQuery: string | null = null;
 
   constructor(query: string) {

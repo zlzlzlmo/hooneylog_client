@@ -1,4 +1,4 @@
-import { categries } from 'ts/type';
+import { categries } from 'ts/constant';
 
 class CategoryManager {
   private category = '';
