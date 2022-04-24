@@ -1,11 +1,14 @@
 @import "styles/variable";
 .container {
-    width:100%;
+    width:100vw;
     height:6rem;
     color:#fff;
     background-color:$base-color;
 
     .inner_header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         line-height: 6rem;
         max-width: $desktop-max-width;
         margin:0 auto;
@@ -15,7 +18,7 @@
             font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
             user-select: none;
             font-weight: bold;
-            font-size: min(max(2.5rem,3vw),3rem);
+            font-size: min(max(2.5rem,3vw),2rem);
             cursor: pointer;
         }
     }

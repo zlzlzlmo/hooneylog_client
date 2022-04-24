@@ -2,6 +2,7 @@
 /* eslint-disable @next/next/link-passhref */
 import React from 'react';
 import Link from 'next/link';
+import SearchHeader from 'components/search/SearchHeader';
 import styles from './Header.module.scss';
 
 const Header = () => {
@@ -13,6 +14,7 @@ const Header = () => {
             <span>HooneyLog :</span>
           </Link>
         </h1>
+        <SearchHeader />
       </div>
     </header>
   );
