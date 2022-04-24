@@ -2,15 +2,20 @@
 import { useCallback, useEffect, useState } from 'react';
 import { urlFor } from 'sanity/config';
 import { SanityImage, SanityPostBody } from 'ts/interface/post';
+import useIntersectionObserver from './useIntersection';
 
 interface usePostItemProps {
   mainImage: SanityImage;
   body: SanityPostBody[];
+  containerRef: React.RefObject<HTMLDivElement>;
 }
 
-const usePostItem = ({ mainImage, body }: usePostItemProps) => {
+const usePostItem = ({ mainImage, body, containerRef }: usePostItemProps) => {
   const [desc, setDesc] = useState<string>('');
   const [imageUrl, setImageUrl] = useState<string>('');
+  const [timeToShow, setIsTimeToShow] = useState<boolean>(false);
+
+  const entry = useIntersectionObserver(containerRef, {});
 
   const getNormalAndBlockTypeText = useCallback(() => {
     const blockAndNormal = body.filter(({ _type, style }) => {
@@ -28,7 +33,13 @@ const usePostItem = ({ mainImage, body }: usePostItemProps) => {
     setImageUrl(urlFor(mainImage).url());
   }, [body, mainImage]);
 
-  return { imageUrl, desc };
+  useEffect(() => {
+    if (entry?.isIntersecting) {
+      setIsTimeToShow(true);
+    }
+  }, [entry?.isIntersecting]);
+
+  return { imageUrl, desc, timeToShow };
 };
 
 export default usePostItem;

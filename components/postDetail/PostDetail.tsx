@@ -4,10 +4,11 @@
 /* eslint-disable jsx-a11y/heading-has-content */
 import React from 'react';
 import { SanityPostBody } from 'ts/interface/post';
-import { dateFormat, makeCategoryColor, makeCategoryLetter } from 'util/common';
+import { dateFormat, makeCategoryColor } from 'util/common';
 import { PortableText } from '@portabletext/react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { urlFor } from 'sanity/config';
+import CategoryManager from 'util/category';
 import styles from './PostDetail.module.scss';
 
 interface PostDetailProps {
@@ -20,6 +21,7 @@ interface PostDetailProps {
 }
 
 const PostDetail = ({ body, title, createdAt, authorName, category, authorImage }: PostDetailProps) => {
+  const categoryInstance = new CategoryManager(category);
   const components = {
     types: {
       image: (props: any) => (
@@ -33,9 +35,9 @@ const PostDetail = ({ body, title, createdAt, authorName, category, authorImage 
 
   return (
     <article className={styles.container}>
-      {makeCategoryColor(category) && (
+      {categoryInstance.categoryColorToShow && (
         <span className={styles.category} style={{ backgroundColor: makeCategoryColor(category) }}>
-          {makeCategoryLetter(category)}
+          {categoryInstance.categoryLetterToShow}
         </span>
       )}
       <h1 className={styles.title}>{title}</h1>

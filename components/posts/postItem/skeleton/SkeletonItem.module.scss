@@ -1,0 +1,22 @@
+@import "styles/variable";
+
+.skeleton_box {
+    padding:1rem;
+    border :0.1rem solid $sub-color-1;
+    height: 48rem;
+
+    .sub {
+        margin:1.5rem 0;
+        height: 5.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-top:0.1rem solid $sub-color-1;
+        border-bottom:0.1rem solid $sub-color-1;
+
+        .author {
+            display: flex;
+            align-items: center;
+        }
+    }
+}

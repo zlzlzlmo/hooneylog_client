@@ -42,6 +42,6 @@ export const makeCategoryLetter = (category: string) => {
 
 export const makeCategoryColor = (category: string) => {
   const categoryColor = categries.find(({ language }) => language.toLowerCase() === category.toLowerCase())?.color;
-
+  console.log('category : ', category, categoryColor);
   return categoryColor;
 };

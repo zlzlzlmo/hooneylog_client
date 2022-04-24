@@ -1,14 +1,14 @@
-/* eslint-disable import/no-cycle */
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable @next/next/no-img-element */
 import usePostItem from 'hooks/usePostItem';
-import React from 'react';
+import React, { useRef } from 'react';
 import { SanityImage, SanityPostBody } from 'ts/interface/post';
-import { dateFormat, makeCategoryColor, makeCategoryLetter } from 'util/common';
+import { dateFormat } from 'util/common';
 import Link from 'next/link';
 import { urlFor } from 'sanity/config';
-import { categries } from 'ts/type';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
+import CategoryManager from 'util/category';
 import styles from './PostItem.module.scss';
+import SkeletonItem from './skeleton/SkeletonItem';
 
 interface PostItemProps {
   title: string;
@@ -22,25 +22,35 @@ interface PostItemProps {
 }
 
 const PostItem = ({ title, createAt, mainImage, body, slug, authorName, authorImage, category }: PostItemProps) => {
-  const { imageUrl, desc } = usePostItem({ mainImage, body });
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { imageUrl, desc, timeToShow } = usePostItem({ mainImage, body, containerRef });
+  const categoryInstance = new CategoryManager(category);
+  if (!timeToShow) {
+    return (
+      <div ref={containerRef}>
+        <SkeletonItem />
+      </div>
+    );
+  }
+
   return (
     <Link href={slug} passHref>
       <article className={styles.container}>
         <div className={styles.img_box}>
-          <img src={imageUrl !== '' ? imageUrl : ''} alt="메인 이미지" />
+          <LazyLoadImage effect="blur" src={imageUrl} alt={`${title}의 썸네일 이미지`} />
         </div>
         <div className={styles.content_box}>
           <section className={styles.title}>{title}</section>
           <section className={styles.sub}>
             <div className={styles.author}>
               <span className={styles.profile_img}>
-                <img src={urlFor(authorImage).url()} alt="프로필 이미지" />
+                <LazyLoadImage effect="blur" src={urlFor(authorImage).url()} alt="프로필 이미지" />
               </span>
               <span className={styles.name}> By {authorName}</span>
             </div>
-            {makeCategoryColor(category) != null && (
-              <div className={styles.category} style={{ backgroundColor: makeCategoryColor(category) }}>
-                {makeCategoryLetter(category)}
+            {categoryInstance.categoryColorToShow != null && (
+              <div className={styles.category} style={{ backgroundColor: categoryInstance.categoryColorToShow }}>
+                {categoryInstance.categoryLetterToShow}
               </div>
             )}
           </section>
