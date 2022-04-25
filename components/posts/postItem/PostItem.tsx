@@ -40,7 +40,9 @@ const PostItem = ({ title, createAt, mainImage, body, slug, authorName, authorIm
           <LazyLoadImage effect="blur" src={imageUrl} alt={`${title}의 썸네일 이미지`} />
         </div>
         <div className={styles.content_box}>
-          <section className={styles.title}>{title}</section>
+          <section className={styles.title} title={title}>
+            {title}
+          </section>
           <section className={styles.sub}>
             <div className={styles.author}>
               <span className={styles.profile_img}>
