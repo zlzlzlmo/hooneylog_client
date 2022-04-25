@@ -24,7 +24,12 @@ const FbComment = () => {
         nonce="bzUdGJRA"
       />
       <div id="fb-root" />
-      <div className="fb-comments" data-href="http://localhost:3000/" data-width="100" data-numposts="5" />{' '}
+      <div
+        className="fb-comments"
+        data-href="https://hoonie-blog.vercel.app/react-testing-library-simple-code/"
+        data-width="200"
+        data-numposts="5"
+      />{' '}
     </>
   );
 };
