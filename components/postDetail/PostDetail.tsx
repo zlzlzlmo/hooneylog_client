@@ -45,7 +45,7 @@ const PostDetail = ({ body, title, createdAt, authorName, category, authorImage 
       <section className={styles.sub_info}>
         <span className={styles.author}>
           <span className={styles.profile_img}>
-            <img src={urlFor(authorImage).url()} alt="프로필 이미지" />
+            <LazyLoadImage src={urlFor(authorImage).url()} alt="프로필 이미지" />
           </span>
           <span className={styles.name}> By {authorName}</span>
         </span>
