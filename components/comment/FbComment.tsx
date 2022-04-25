@@ -8,21 +8,15 @@ interface FbCommentProps {
 const FbComment = ({ slug }: FbCommentProps) => {
   return (
     <>
+      <div className="fb-comments" data-href={`https://www.hooneylog.com/${slug}`} data-width="100%" />
       <Script
-        src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v13.0"
+        id="facebook-jssdk"
+        src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v13.0&appId=540132141049632&autoLogAppEvents=1"
         async
         defer
         crossOrigin="anonymous"
-        nonce="bzUdGJRA"
       />
       <div id="fb-root" />
-      <div
-        className="fb-comments"
-        data-href={`https://hoonie-blog.vercel.app/${slug}`}
-        data-numposts="5"
-        data-width="100%"
-        data-lazy="true"
-      />{' '}
     </>
   );
 };
