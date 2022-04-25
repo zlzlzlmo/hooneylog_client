@@ -23,6 +23,7 @@ const PostDetailPage = ({ post }: PostDetailPageProps) => {
     <Layout>
       <Head>
         <meta property="og:image" content={urlFor(post.mainImage).url()} />
+        <meta property="og:description" content={post.title} />
         <meta property="fb:app_id" content="540132141049632" />
         <title>Hooney Blog - {post.title}</title>
       </Head>
