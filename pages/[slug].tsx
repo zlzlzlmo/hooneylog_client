@@ -1,4 +1,5 @@
 /* eslint-disable no-underscore-dangle */
+import FbComment from 'components/comment/FbComment';
 import Content from 'components/layout/content/Content';
 import Introduce from 'components/layout/introduce/Introduce';
 import Layout from 'components/layout/Layout';
@@ -18,6 +19,7 @@ const PostDetailPage = ({ post }: PostDetailPageProps) => {
     <Layout>
       <Head>
         <meta property="og:image" content={urlFor(post.mainImage).url()} />
+        <meta property="fb:app_id" content="540132141049632" />
         <title>Hooney Blog - {post.title}</title>
       </Head>
       <div>
@@ -32,6 +34,7 @@ const PostDetailPage = ({ post }: PostDetailPageProps) => {
             authorImage={post.author.image}
           />
         </Content>
+        <FbComment />
       </div>
     </Layout>
   );
