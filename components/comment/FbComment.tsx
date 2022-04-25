@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Script from 'next/script';
 
 interface FbCommentProps {
@@ -6,6 +6,12 @@ interface FbCommentProps {
 }
 
 const FbComment = ({ slug }: FbCommentProps) => {
+  useEffect(() => {
+    if ((window as any).FB) {
+      (window as any).FB.XFBML.parse();
+    }
+  }, []);
+
   return (
     <>
       <div className="fb-comments" data-href={`https://www.hooneylog.com/${slug}`} data-width="100%" />
