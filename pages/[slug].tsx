@@ -5,6 +5,7 @@ import Introduce from 'components/layout/introduce/Introduce';
 import Layout from 'components/layout/Layout';
 import PostDetail from 'components/postDetail/PostDetail';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import { GetStaticProps } from 'next/types';
 import React from 'react';
 import { sanityClient, urlFor } from 'sanity/config';
@@ -15,6 +16,8 @@ interface PostDetailPageProps {
   post: SanityPost;
 }
 const PostDetailPage = ({ post }: PostDetailPageProps) => {
+  const router = useRouter();
+  const slug = router.query.slug as string;
   return (
     <Layout>
       <Head>
@@ -33,8 +36,8 @@ const PostDetailPage = ({ post }: PostDetailPageProps) => {
             category={post.category}
             authorImage={post.author.image}
           />
+          <FbComment slug={slug} />
         </Content>
-        <FbComment />
       </div>
     </Layout>
   );

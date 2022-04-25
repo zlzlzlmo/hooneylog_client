@@ -1,19 +1,11 @@
-import React, { useEffect, useRef } from 'react';
-// import { has } from 'lodash/object';
-import { SingletonRouter } from 'next/router';
+import React from 'react';
 import Script from 'next/script';
 
-interface IProps {
-  router: SingletonRouter;
+interface FbCommentProps {
+  slug: string;
 }
 
-const FbComment = () => {
-  const fbRef = useRef(null);
-  //   useEffect(() => {
-  //     if (global.document && has(global.window, 'FB')) {
-  //       global.FB.XFBML.parse(fbRef.current);
-  //     }
-  //   }, []);
+const FbComment = ({ slug }: FbCommentProps) => {
   return (
     <>
       <Script
@@ -26,9 +18,10 @@ const FbComment = () => {
       <div id="fb-root" />
       <div
         className="fb-comments"
-        data-href="https://hoonie-blog.vercel.app/react-testing-library-simple-code/"
-        data-width="200"
+        data-href={`https://hoonie-blog.vercel.app/${slug}`}
         data-numposts="5"
+        data-width="100%"
+        data-lazy="true"
       />{' '}
     </>
   );
