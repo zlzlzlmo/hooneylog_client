@@ -6,9 +6,8 @@ import Layout from 'components/layout/Layout';
 import PostDetail from 'components/postDetail/PostDetail';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import Script from 'next/script';
 import { GetStaticProps } from 'next/types';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { sanityClient, urlFor } from 'sanity/config';
 import { SanityPost } from 'ts/interface/post';
 import ApiManager from 'util/api';
@@ -17,16 +16,9 @@ interface PostDetailPageProps {
   post: SanityPost;
 }
 const PostDetailPage = ({ post }: PostDetailPageProps) => {
-  const [showComment, setShowCommet] = useState(false);
   const router = useRouter();
   const slug = router.query.slug as string;
 
-  useEffect(() => {
-    if (slug != null) {
-      console.log('들옴');
-      setShowCommet(true);
-    }
-  }, [slug]);
   return (
     <Layout>
       <Head>
@@ -45,7 +37,7 @@ const PostDetailPage = ({ post }: PostDetailPageProps) => {
             category={post.category}
             authorImage={post.author.image}
           />
-          {showComment && <FbComment slug={slug} />}
+          <FbComment slug={slug} />
         </Content>
       </div>
     </Layout>
