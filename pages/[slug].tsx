@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-underscore-dangle */
 import FbComment from 'components/comment/FbComment';
 import Content from 'components/layout/content/Content';
@@ -11,17 +12,18 @@ import React from 'react';
 import { sanityClient, urlFor } from 'sanity/config';
 import { SanityPost } from 'ts/interface/post';
 import ApiManager from 'util/api';
+import NotionService from 'util/notion';
 
 interface PostDetailPageProps {
   post: SanityPost;
 }
-const PostDetailPage = ({ post }: PostDetailPageProps) => {
+const PostDetailPage = ({ postSlug }: any) => {
   const router = useRouter();
   const slug = router.query.slug as string;
-
+  console.log('slug : ', slug);
   return (
     <Layout>
-      <Head>
+      {/* <Head>
         <meta property="og:image" content={urlFor(post.mainImage).url()} />
         <meta property="og:description" content={post.title} />
         <meta property="fb:app_id" content="540132141049632" />
@@ -40,24 +42,18 @@ const PostDetailPage = ({ post }: PostDetailPageProps) => {
           />
           <FbComment slug={slug} />
         </Content>
-      </div>
+      </div> */}
     </Layout>
   );
 };
 
 export const getStaticPaths = async () => {
-  const query = `
-    *[_type=="post"]{
-      _id,
-      slug {
-      current
-    } 
-  }
-  `;
+  const notionInstance = new NotionService();
+  const database = await notionInstance.getDatabase();
 
-  const postList = await sanityClient.fetch<Pick<SanityPost, '_id' | 'slug'>[]>(query);
-
-  const slugs = postList.map(({ slug }) => ({ params: { slug: slug.current } }));
+  const slugs = database.map(({ id }) => ({
+    params: { slug: id },
+  }));
 
   return {
     paths: slugs,
@@ -74,29 +70,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   const { slug } = params;
 
-  const query = `
-  *[_type=="post" && slug.current == "${slug}"]{
-    _createdAt,
-    _id,
-    author-> {
-    name,image
-  },
-  body,
-  mainImage,
-  slug,
-  title,
-  category
-  }
-  `;
-
-  const instance = new ApiManager<SanityPost[]>(query);
-  const response = await instance.sanityFetch();
-  const post = response[0];
   return {
     props: {
-      post,
+      postSlug: slug,
     },
-    revalidate: 10,
+    revalidate: 1,
   };
 };
 

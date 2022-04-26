@@ -14,15 +14,16 @@ interface PostItemProps {
   title: string;
   createdAt: string;
   imageUrl: string | null;
-  slug: string;
+  id: string;
   category: string;
   description: string;
 }
 
-const PostItem = ({ title, createdAt, imageUrl, slug, category, description }: PostItemProps) => {
+const PostItem = ({ title, createdAt, imageUrl, id, category, description }: PostItemProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const { timeToShow } = usePostItem({ containerRef });
   const categoryInstance = new CategoryManager(category);
+
   if (!timeToShow) {
     return (
       <div ref={containerRef}>
@@ -32,10 +33,10 @@ const PostItem = ({ title, createdAt, imageUrl, slug, category, description }: P
   }
 
   return (
-    <Link href={slug} passHref>
+    <Link href={id} passHref>
       <article className={styles.container}>
         <div className={styles.img_box}>
-          <LazyLoadImage effect="blur" src={imageUrl} alt={`${title}의 썸네일 이미지`} />
+          <LazyLoadImage effect="blur" src={imageUrl ?? ''} alt={`${title}의 썸네일 이미지`} />
         </div>
         <div className={styles.content_box}>
           <section className={styles.title} title={title}>
