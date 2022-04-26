@@ -1,30 +1,27 @@
-import React from 'react';
-import { SanityPost } from 'ts/interface/post';
+import React, { Fragment } from 'react';
+import { INotionPost } from 'ts/interface/notion';
 import PostItem from './postItem/PostItem';
 import styles from './PostList.module.scss';
-import SkeletonItem from './postItem/skeleton/SkeletonItem';
 
 interface PostListProps {
-  postListToShow: SanityPost[];
+  notionList: INotionPost[];
 }
 
-const PostList = ({ postListToShow }: PostListProps) => {
+const PostList = ({ notionList }: PostListProps) => {
   return (
     <section className={styles.container}>
-      {postListToShow.map(({ title, _createdAt, mainImage, body, slug, author, category, _id }) => (
-        <PostItem
-          key={_id}
-          title={title}
-          createAt={_createdAt}
-          mainImage={mainImage}
-          body={body}
-          slug={slug.current}
-          authorName={author.name}
-          authorImage={author.image}
-          category={category}
-        />
+      {notionList.map(({ id, properties }) => (
+        <Fragment key={id}>
+          <PostItem
+            title={properties.이름.title[0].plain_text}
+            slug={properties.slug.rich_text[0].plain_text}
+            imageUrl={properties.image.files.length > 0 ? properties.image.files[0].file.url : null}
+            createdAt={properties.created_date.date.start}
+            description={properties.description.rich_text[0].plain_text}
+            category={properties.category.multi_select[0].name}
+          />
+        </Fragment>
       ))}
-      {/* <SkeletonItem /> */}
     </section>
   );
 };

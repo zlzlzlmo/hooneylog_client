@@ -7,11 +7,15 @@ import Head from 'next/head';
 import PostList from 'components/posts/PostList';
 import PostLength from 'components/common/PostLength/PostLength';
 import ApiManager from 'util/api';
+import NotionService from 'util/notion';
+import { INotionPost } from 'ts/interface/notion';
 
 interface HomePageProps {
   postList: SanityPost[];
+  notionList: INotionPost[];
 }
-const HomePage = ({ postList }: HomePageProps) => {
+const HomePage = ({ postList, notionList }: HomePageProps) => {
+  console.log('notionList : ', notionList);
   // const { pageCount, postListToShow, isLastPost, handlePageClick } = usePagination({ postList });
   // const [loaded, setIsLoaded] = useState(false);
 
@@ -27,7 +31,10 @@ const HomePage = ({ postList }: HomePageProps) => {
           <Introduce mainImage="/images/background.jpg" />
           <Content>
             <PostLength length={postList.length} />
-            <PostList postListToShow={postList} />
+
+            <PostList notionList={notionList} />
+
+            {/* <PostList postListToShow={postList} /> */}
           </Content>
         </section>
       </Layout>
@@ -55,9 +62,13 @@ export const getStaticProps: GetStaticProps = async () => {
   const instance = new ApiManager<SanityPost[]>(query);
   const postList = await instance.sanityFetch();
 
+  const notionInstance = new NotionService();
+  const notionList = await notionInstance.getDatabase();
+
   return {
     props: {
       postList,
+      notionList,
     },
     revalidate: 10,
   };

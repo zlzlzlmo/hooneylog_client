@@ -12,18 +12,16 @@ import SkeletonItem from './skeleton/SkeletonItem';
 
 interface PostItemProps {
   title: string;
-  createAt: string;
-  mainImage: SanityImage;
-  body: SanityPostBody[];
+  createdAt: string;
+  imageUrl: string | null;
   slug: string;
-  authorName: string;
-  authorImage: object;
   category: string;
+  description: string;
 }
 
-const PostItem = ({ title, createAt, mainImage, body, slug, authorName, authorImage, category }: PostItemProps) => {
+const PostItem = ({ title, createdAt, imageUrl, slug, category, description }: PostItemProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { imageUrl, desc, timeToShow } = usePostItem({ mainImage, body, containerRef });
+  const { timeToShow } = usePostItem({ containerRef });
   const categoryInstance = new CategoryManager(category);
   if (!timeToShow) {
     return (
@@ -46,9 +44,9 @@ const PostItem = ({ title, createAt, mainImage, body, slug, authorName, authorIm
           <section className={styles.sub}>
             <div className={styles.author}>
               <span className={styles.profile_img}>
-                <LazyLoadImage effect="blur" src={urlFor(authorImage).url()} alt="프로필 이미지" />
+                <LazyLoadImage effect="blur" src="/images/profile.jpeg" alt="프로필 이미지" />
               </span>
-              <span className={styles.name}> By {authorName}</span>
+              <span className={styles.name}> By Seunghoon</span>
             </div>
             {categoryInstance.categoryColorToShow != null && (
               <div className={styles.category} style={{ backgroundColor: categoryInstance.categoryColorToShow }}>
@@ -56,8 +54,8 @@ const PostItem = ({ title, createAt, mainImage, body, slug, authorName, authorIm
               </div>
             )}
           </section>
-          <p className={styles.desc}>{desc}</p>
-          <section className={styles.reg_date}>{dateFormat(createAt)}</section>
+          <p className={styles.desc}>{description}</p>
+          <section className={styles.reg_date}>{dateFormat(createdAt)}</section>
         </div>
       </article>
     </Link>
