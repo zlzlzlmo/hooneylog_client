@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable no-constant-condition */
 /* eslint-disable camelcase */
 /* eslint-disable no-await-in-loop */
 import { Client } from '@notionhq/client';
@@ -33,11 +35,23 @@ class NotionService {
   }
 
   async getBlocks(blockId: string) {
-    const response = await this.notion.blocks.children.list({
-      block_id: blockId,
-    });
+    const blocks = [];
+    let cursor: any;
 
-    return response;
+    while (true) {
+      const { results, next_cursor } = await this.notion.blocks.children.list({
+        block_id: blockId,
+        start_cursor: cursor,
+      });
+      blocks.push(...results);
+      if (!next_cursor) {
+        break;
+      }
+
+      cursor = next_cursor;
+    }
+
+    return blocks;
   }
 }
 

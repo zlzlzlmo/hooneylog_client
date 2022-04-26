@@ -1,29 +1,29 @@
+/* eslint-disable import/order */
+/* eslint-disable camelcase */
+/* eslint-disable no-case-declarations */
+/* eslint-disable no-use-before-define */
+/* eslint-disable no-shadow */
 /* eslint-disable react/jsx-key */
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/no-unstable-nested-components */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from 'react';
-import { SanityPostBody } from 'ts/interface/post';
+import React, { Fragment } from 'react';
 import { dateFormat } from 'util/common';
-import { PortableText } from '@portabletext/react';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { urlFor } from 'sanity/config';
 import CategoryManager from 'util/category';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import styles from './PostDetail.module.scss';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import RenderBlock from 'components/notion/RenderBlock';
+import RenderBlock from 'components/notionSerializer/blockContent/RenderBlock';
 
 interface PostDetailProps {
   title: string;
   createdAt: string;
   category: string;
-  body: any[];
+  blocks: any[];
 }
 
-const PostDetail = ({ title, createdAt, category, body }: PostDetailProps) => {
+const PostDetail = ({ title, createdAt, category, blocks }: PostDetailProps) => {
   const categoryInstance = new CategoryManager(category);
-  console.log('body : ', body);
   return (
     <article className={styles.container}>
       {categoryInstance.categoryColorToShow && (
@@ -42,8 +42,8 @@ const PostDetail = ({ title, createdAt, category, body }: PostDetailProps) => {
         <span className={styles.reg_date}>- {dateFormat(createdAt)}</span>
       </section>
       <main className={styles.main_content}>
-        {body.map((block) => (
-          <RenderBlock block={block} />
+        {blocks.map((block) => (
+          <Fragment key={block.id}>{RenderBlock(block)}</Fragment>
         ))}
       </main>
     </article>

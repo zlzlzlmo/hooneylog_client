@@ -47,7 +47,7 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       notionList,
     },
-    revalidate: 10,
+    revalidate: 1,
   };
 };
 

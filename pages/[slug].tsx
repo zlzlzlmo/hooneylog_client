@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-underscore-dangle */
 import FbComment from 'components/comment/FbComment';
@@ -16,28 +17,28 @@ import ApiManager from 'util/api';
 import NotionService from 'util/notion';
 
 interface PostDetailPageProps {
-  post: INotionPost;
+  page: INotionPost;
+  blocks: any;
 }
-const PostDetailPage = ({ post }: PostDetailPageProps) => {
+const PostDetailPage = ({ blocks, page }: PostDetailPageProps) => {
   const router = useRouter();
   const slug = router.query.slug as string;
-  console.log('post : ', post);
   return (
     <Layout>
       <Head>
-        <meta property="og:image" content={post.properties.image.files[0].file.url} />
-        <meta property="og:description" content={post.properties.이름.title[0].plain_text} />
+        <meta property="og:image" content={page.properties.image.files[0].file.url} />
+        <meta property="og:description" content={page.properties.이름.title[0].plain_text} />
         <meta property="fb:app_id" content="540132141049632" />
-        <title>Hooney Blog - {post.properties.이름.title[0].plain_text}</title>
+        <title>Hooney Blog - {page.properties.이름.title[0].plain_text}</title>
       </Head>
       <div>
-        <Introduce mainImage={post.properties.image.files[0].file.url} />
+        <Introduce mainImage={page.properties.image.files[0].file.url} />
         <Content>
           <PostDetail
-            title={post.properties.이름.title[0].plain_text}
-            createdAt={post.properties.created_date.date.start}
-            category={post.properties.category.multi_select[0].name}
-            body={post.results}
+            title={page.properties.이름.title[0].plain_text}
+            createdAt={page.properties.created_date.date.start}
+            category={page.properties.category.multi_select[0].name}
+            blocks={blocks}
           />
 
           <FbComment slug={slug} />
@@ -71,10 +72,31 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug } = params;
   const notionInstance = new NotionService();
   const page = await notionInstance.getPage(slug as string);
-  const block = await notionInstance.getBlocks(slug as string);
+  const blocks = await notionInstance.getBlocks(slug as string);
+
+  const childBlocks = await Promise.all(
+    blocks
+      .filter((block: any) => block.has_children)
+      .map(async (block) => {
+        return {
+          id: block.id,
+          children: await notionInstance.getBlocks(block.id),
+        };
+      }),
+  );
+
+  const blocksWithChildren = blocks.map((block: any) => {
+    // Add child blocks if the block should contain children but none exists
+    if (block.has_children && !block[block.type].children) {
+      block[block.type].children = childBlocks.find((x) => x.id === block.id)?.children;
+    }
+    return block;
+  });
+
   return {
     props: {
-      post: { ...page, ...block },
+      page,
+      blocks: blocksWithChildren,
     },
     revalidate: 1,
   };
