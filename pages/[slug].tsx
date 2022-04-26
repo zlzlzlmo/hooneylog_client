@@ -10,39 +10,39 @@ import { useRouter } from 'next/router';
 import { GetStaticProps } from 'next/types';
 import React from 'react';
 import { sanityClient, urlFor } from 'sanity/config';
+import { INotionPost, INotionProperties } from 'ts/interface/notion';
 import { SanityPost } from 'ts/interface/post';
 import ApiManager from 'util/api';
 import NotionService from 'util/notion';
 
 interface PostDetailPageProps {
-  post: SanityPost;
+  post: INotionPost;
 }
-const PostDetailPage = ({ postSlug }: any) => {
+const PostDetailPage = ({ post }: PostDetailPageProps) => {
   const router = useRouter();
   const slug = router.query.slug as string;
-  console.log('slug : ', slug);
+  console.log('post : ', post);
   return (
     <Layout>
-      {/* <Head>
-        <meta property="og:image" content={urlFor(post.mainImage).url()} />
-        <meta property="og:description" content={post.title} />
+      <Head>
+        <meta property="og:image" content={post.properties.image.files[0].file.url} />
+        <meta property="og:description" content={post.properties.이름.title[0].plain_text} />
         <meta property="fb:app_id" content="540132141049632" />
-        <title>Hooney Blog - {post.title}</title>
+        <title>Hooney Blog - {post.properties.이름.title[0].plain_text}</title>
       </Head>
       <div>
-        <Introduce mainImage={post.mainImage} />
+        <Introduce mainImage={post.properties.image.files[0].file.url} />
         <Content>
           <PostDetail
-            body={post.body}
-            title={post.title}
-            createdAt={post._createdAt}
-            authorName={post.author.name}
-            category={post.category}
-            authorImage={post.author.image}
+            title={post.properties.이름.title[0].plain_text}
+            createdAt={post.properties.created_date.date.start}
+            category={post.properties.category.multi_select[0].name}
+            body={post.results}
           />
+
           <FbComment slug={slug} />
         </Content>
-      </div> */}
+      </div>
     </Layout>
   );
 };
@@ -69,10 +69,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 
   const { slug } = params;
-
+  const notionInstance = new NotionService();
+  const page = await notionInstance.getPage(slug as string);
+  const block = await notionInstance.getBlocks(slug as string);
   return {
     props: {
-      postSlug: slug,
+      post: { ...page, ...block },
     },
     revalidate: 1,
   };

@@ -31,4 +31,5 @@ export interface INotionProperties {
 export interface INotionPost {
   id: string;
   properties: INotionProperties;
+  results: any[];
 }

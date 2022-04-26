@@ -1,7 +1,6 @@
 /* eslint-disable camelcase */
 /* eslint-disable no-await-in-loop */
 import { Client } from '@notionhq/client';
-import { INotionPost } from 'ts/interface/notion';
 
 class NotionService {
   private notion: Client;
@@ -33,11 +32,13 @@ class NotionService {
     return response;
   }
 
-  // async getBlocks(blockId:string) {
-  //   const response = await this.notion.blocks.children.list({
+  async getBlocks(blockId: string) {
+    const response = await this.notion.blocks.children.list({
+      block_id: blockId,
+    });
 
-  //   })
-  // }
+    return response;
+  }
 }
 
 export default NotionService;
