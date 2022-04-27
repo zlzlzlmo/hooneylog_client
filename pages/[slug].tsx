@@ -21,7 +21,6 @@ const PostDetailPage = ({ blocks, page }: PostDetailPageProps) => {
   const router = useRouter();
   const slug = router.query.slug as string;
   const { properties } = page;
-  console.log(properties);
   return (
     <Layout>
       <Head>
@@ -58,7 +57,7 @@ export const getStaticPaths = async () => {
 
   return {
     paths: slugs,
-    fallback: false,
+    fallback: true,
   };
 };
 
