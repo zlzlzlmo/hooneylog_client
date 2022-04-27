@@ -34,7 +34,15 @@
     @include flexCenter;
     flex-direction: column;
     color:#508CEB;
-    
+    width:100vw;
+    max-width: 100%;
+    margin: 5rem 0 !important;
+    span {
+        width:100%
+    }
+    img {
+        width: 100%;
+    }
 }
 
 .blockquote {

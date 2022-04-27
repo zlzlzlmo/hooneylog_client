@@ -23,23 +23,11 @@ const RenderBlock = (block: any) => {
         </p>
       );
     case 'heading_1':
-      return (
-        <h1 className={styles.headingOne}>
-          <Text richText={value.rich_text} />
-        </h1>
-      );
+      return <h1 className={styles.headingOne}>{value.rich_text[0].plain_text} </h1>;
     case 'heading_2':
-      return (
-        <h2 className={styles.headingTwo}>
-          <Text richText={value.rich_text} />
-        </h2>
-      );
+      return <h2 className={styles.headingTwo}>{value.rich_text[0].plain_text} </h2>;
     case 'heading_3':
-      return (
-        <h3 className={styles.headingThree}>
-          <Text richText={value.rich_text} />
-        </h3>
-      );
+      return <h3 className={styles.headingThree}>{value.rich_text[0].plain_text} </h3>;
     case 'bulleted_list_item':
     case 'numbered_list_item':
       return (

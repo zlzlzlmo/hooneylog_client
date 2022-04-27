@@ -1,5 +1,4 @@
 import Layout from 'components/layout/Layout';
-import { SanityPost } from 'ts/interface/post';
 import Content from 'components/layout/content/Content';
 import Introduce from 'components/layout/introduce/Introduce';
 import { GetStaticProps } from 'next';
@@ -13,9 +12,6 @@ interface HomePageProps {
   notionList: INotionPost[];
 }
 const HomePage = ({ notionList }: HomePageProps) => {
-  // const { pageCount, postListToShow, isLastPost, handlePageClick } = usePagination({ postList });
-  // const [loaded, setIsLoaded] = useState(false);
-
   return (
     <>
       <Head>
@@ -28,10 +24,7 @@ const HomePage = ({ notionList }: HomePageProps) => {
           <Introduce mainImage="/images/background.jpg" />
           <Content>
             <PostLength length={notionList.length} />
-
             <PostList notionList={notionList} />
-
-            {/* <PostList postListToShow={postList} /> */}
           </Content>
         </section>
       </Layout>

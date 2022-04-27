@@ -1,7 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useCallback, useEffect, useState } from 'react';
-import { urlFor } from 'sanity/config';
-import { SanityImage, SanityPostBody } from 'ts/interface/post';
+import { useEffect, useState } from 'react';
 import useIntersectionObserver from './useIntersection';
 
 interface usePostItemProps {

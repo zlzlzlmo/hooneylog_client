@@ -3,9 +3,7 @@ export interface INotionProperties {
     multi_select: [{ name: string }];
   };
   created_date: {
-    date: {
-      start: string;
-    };
+    created_time: string;
   };
   description: {
     rich_text: [
@@ -16,7 +14,7 @@ export interface INotionProperties {
   };
 
   image: {
-    files: [{ name: string; file: { url: string } }];
+    files: [{ name: string; file?: { url: string }; external?: { url: string } }];
   };
 
   slug: {

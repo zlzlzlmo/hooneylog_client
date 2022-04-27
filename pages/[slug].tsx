@@ -1,6 +1,6 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-param-reassign */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable no-underscore-dangle */
 import FbComment from 'components/comment/FbComment';
 import Content from 'components/layout/content/Content';
 import Introduce from 'components/layout/introduce/Introduce';
@@ -9,11 +9,8 @@ import PostDetail from 'components/postDetail/PostDetail';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { GetStaticProps } from 'next/types';
-import React from 'react';
-import { sanityClient, urlFor } from 'sanity/config';
-import { INotionPost, INotionProperties } from 'ts/interface/notion';
-import { SanityPost } from 'ts/interface/post';
-import ApiManager from 'util/api';
+import React, { useMemo } from 'react';
+import { INotionPost } from 'ts/interface/notion';
 import NotionService from 'util/notion';
 
 interface PostDetailPageProps {
@@ -23,20 +20,22 @@ interface PostDetailPageProps {
 const PostDetailPage = ({ blocks, page }: PostDetailPageProps) => {
   const router = useRouter();
   const slug = router.query.slug as string;
+  const { properties } = page;
+
   return (
     <Layout>
       <Head>
-        <meta property="og:image" content={page.properties.image.files[0].file.url} />
+        <meta property="og:image" content={NotionService.getImageUrl(properties)} />
         <meta property="og:description" content={page.properties.이름.title[0].plain_text} />
         <meta property="fb:app_id" content="540132141049632" />
         <title>Hooney Blog - {page.properties.이름.title[0].plain_text}</title>
       </Head>
       <div>
-        <Introduce mainImage={page.properties.image.files[0].file.url} />
+        <Introduce mainImage={NotionService.getImageUrl(properties)} />
         <Content>
           <PostDetail
             title={page.properties.이름.title[0].plain_text}
-            createdAt={page.properties.created_date.date.start}
+            createdAt={page.properties.created_date.created_time}
             category={page.properties.category.multi_select[0].name}
             blocks={blocks}
           />
@@ -86,7 +85,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   );
 
   const blocksWithChildren = blocks.map((block: any) => {
-    // Add child blocks if the block should contain children but none exists
     if (block.has_children && !block[block.type].children) {
       block[block.type].children = childBlocks.find((x) => x.id === block.id)?.children;
     }

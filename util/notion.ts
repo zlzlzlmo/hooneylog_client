@@ -53,6 +53,21 @@ class NotionService {
 
     return blocks;
   }
+
+  static getImageUrl(properties: any) {
+    if (properties.image == null) {
+      return '';
+    }
+    if (properties.image.files.length < 1) {
+      return '';
+    }
+    const { external, file } = properties.image.files[0];
+    if (external == null) {
+      return file?.url;
+    }
+
+    return external.url;
+  }
 }
 
 export default NotionService;
