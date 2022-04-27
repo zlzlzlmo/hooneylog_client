@@ -1,4 +1,4 @@
-import React, { Fragment, useMemo } from 'react';
+import React, { Fragment } from 'react';
 import { INotionPost } from 'ts/interface/notion';
 import NotionService from 'util/notion';
 import PostItem from './postItem/PostItem';
