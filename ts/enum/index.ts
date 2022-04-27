@@ -11,4 +11,5 @@ export enum CategoryBackgroundColor {
   React = '#50C9EF',
   Javascript = '#EBD217',
   NextJs = '#171D21',
+  CMS = '#E63644',
 }

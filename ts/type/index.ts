@@ -1,5 +1,5 @@
 /* eslint-disable no-shadow */
-export type Category = 'typescript' | 'react' | 'javascript' | 'next.js';
+export type Category = 'typescript' | 'react' | 'javascript' | 'next.js' | 'cms';
 
 // typescript - #2661B9
 // react - #50C9EF

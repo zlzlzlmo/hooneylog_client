@@ -7,4 +7,5 @@ export const categries: ICategory[] = [
   { language: 'react', color: CategoryBackgroundColor.React },
   { language: 'javascript', color: CategoryBackgroundColor.Javascript },
   { language: 'next.js', color: CategoryBackgroundColor.NextJs },
+  { language: 'cms', color: CategoryBackgroundColor.CMS },
 ];
