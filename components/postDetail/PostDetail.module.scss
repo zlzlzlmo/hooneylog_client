@@ -15,8 +15,6 @@
     }
     
     .sub_info {
-        color:gray;
-
         @media (min-width:$mobile-max-width) {
             display: flex;
             align-items: center;
@@ -46,6 +44,16 @@
                 line-height: 3rem;
                 margin-left: 1rem;
             }
+        }
+    }
+
+    .tag_box {
+        display: flex;
+        flex-wrap: wrap;
+        gap:1rem;
+        margin:1rem 0;
+        .tag {
+            color:$tag-color;
         }
     }
     .img_box {

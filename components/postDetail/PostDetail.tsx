@@ -20,9 +20,10 @@ interface PostDetailProps {
   createdAt: string;
   category: string;
   blocks: [{ id: string }];
+  tag: [{ id: string; name: string }];
 }
 
-const PostDetail = ({ title, createdAt, category, blocks }: PostDetailProps) => {
+const PostDetail = ({ title, createdAt, category, blocks, tag }: PostDetailProps) => {
   const categoryInstance = new CategoryManager(category);
   return (
     <article className={styles.container}>
@@ -40,6 +41,13 @@ const PostDetail = ({ title, createdAt, category, blocks }: PostDetailProps) => 
           <span className={styles.name}> By Seunghoon</span>
         </span>
         <span className={styles.reg_date}>- {dateFormat(createdAt)}</span>
+      </section>
+      <section className={styles.tag_box}>
+        {tag.map(({ id, name }) => (
+          <Fragment key={id}>
+            <div className={styles.tag}>#{name}</div>
+          </Fragment>
+        ))}
       </section>
       <main className={styles.main_content}>
         {blocks.map((block) => (

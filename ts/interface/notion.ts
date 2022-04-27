@@ -5,6 +5,9 @@ export interface INotionProperties {
   category: {
     multi_select: [{ name: string }];
   };
+  tag: {
+    multi_select: [{ id: string; name: string }];
+  };
   created_date: {
     created_time: string;
   };

@@ -21,22 +21,23 @@ const PostDetailPage = ({ blocks, page }: PostDetailPageProps) => {
   const router = useRouter();
   const slug = router.query.slug as string;
   const { properties } = page;
-
+  console.log(properties);
   return (
     <Layout>
       <Head>
         <meta property="og:image" content={NotionService.getImageUrl(properties)} />
-        <meta property="og:description" content={page.properties.이름.title[0].plain_text} />
+        <meta property="og:description" content={properties.이름.title[0].plain_text} />
         <meta property="fb:app_id" content="540132141049632" />
-        <title>Hooney Blog - {page.properties.이름.title[0].plain_text}</title>
+        <title>Hooney Blog - {properties.이름.title[0].plain_text}</title>
       </Head>
       <div>
         <Introduce mainImage={NotionService.getImageUrl(properties)} />
         <Content>
           <PostDetail
-            title={page.properties.이름.title[0].plain_text}
-            createdAt={page.properties.created_date.created_time}
-            category={page.properties.category.multi_select[0].name}
+            title={properties.이름.title[0].plain_text}
+            createdAt={properties.created_date.created_time}
+            category={properties.category.multi_select[0].name}
+            tag={properties.tag.multi_select}
             blocks={blocks}
           />
 
