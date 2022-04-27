@@ -1,20 +1,17 @@
 import Layout from 'components/layout/Layout';
-import { SanityPost } from 'ts/interface/post';
 import Content from 'components/layout/content/Content';
 import Introduce from 'components/layout/introduce/Introduce';
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import PostList from 'components/posts/PostList';
 import PostLength from 'components/common/PostLength/PostLength';
-import ApiManager from 'util/api';
+import NotionService from 'util/notion';
+import { INotionPost } from 'ts/interface/notion';
 
 interface HomePageProps {
-  postList: SanityPost[];
+  notionList: INotionPost[];
 }
-const HomePage = ({ postList }: HomePageProps) => {
-  // const { pageCount, postListToShow, isLastPost, handlePageClick } = usePagination({ postList });
-  // const [loaded, setIsLoaded] = useState(false);
-
+const HomePage = ({ notionList }: HomePageProps) => {
   return (
     <>
       <Head>
@@ -26,8 +23,8 @@ const HomePage = ({ postList }: HomePageProps) => {
         <section>
           <Introduce mainImage="/images/background.jpg" />
           <Content>
-            <PostLength length={postList.length} />
-            <PostList postListToShow={postList} />
+            <PostLength length={notionList.length} />
+            <PostList notionList={notionList} />
           </Content>
         </section>
       </Layout>
@@ -36,30 +33,14 @@ const HomePage = ({ postList }: HomePageProps) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const query = `
-  *[_type=="post"][0...6]{
-    _id,
-    title,
-    author->{
-    name,
-    image
-    },
-    mainImage,
-    slug,
-    body,
-    category,
-    _createdAt
-  } | order(_createdAt desc)
-  `;
-
-  const instance = new ApiManager<SanityPost[]>(query);
-  const postList = await instance.sanityFetch();
+  const notionInstance = new NotionService();
+  const notionList = await notionInstance.getDatabase();
 
   return {
     props: {
-      postList,
+      notionList,
     },
-    revalidate: 10,
+    revalidate: 1,
   };
 };
 

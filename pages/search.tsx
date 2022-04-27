@@ -1,43 +1,36 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable react-hooks/rules-of-hooks */
 import Layout from 'components/layout/Layout';
 import Search from 'components/search/Search';
 import Head from 'next/head';
 import React, { ChangeEvent, useState } from 'react';
-import ApiManager from 'util/api';
 import { debounce } from 'lodash';
 import PostLength from 'components/common/PostLength/PostLength';
 import Content from 'components/layout/content/Content';
 import PostList from 'components/posts/PostList';
-import { SanityPost } from 'ts/interface/post';
+import { GetStaticProps } from 'next';
+import NotionService from 'util/notion';
+import { INotionPost } from 'ts/interface/notion';
 
-const search = () => {
-  const [postList, setPostList] = useState<SanityPost[]>([]);
-  const [hasInputValue, setHasInputValue] = useState<string>('');
+interface SearchPageProps {
+  notionList: INotionPost[];
+}
 
-  const handleChange = debounce(async (e: ChangeEvent<HTMLInputElement>) => {
-    const query = `
-    *[_type=="post" && (title match "*${e.target.value}*" || body[].children[].text match "*${e.target.value}*")]
-    {
-        _id,
-        title,
-        author->{
-        name,
-        image
-        },
-        mainImage,
-        slug,
-        body,
-        category,
-        _createdAt
-      } | order(_createdAt desc)
+const search = ({ notionList }: SearchPageProps) => {
+  const [postList, setPostList] = useState<INotionPost[]>([]);
+  const [isTyping, setIsTyping] = useState<boolean>(false);
 
-      `;
+  const handleChange = debounce((e: ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.toLocaleLowerCase();
 
-    const instance = new ApiManager<SanityPost[]>(query);
-    const response = await instance.sanityFetch();
-    setHasInputValue(e.target.value);
-    setPostList(response);
-  }, 300);
+    const post = notionList.filter(({ properties }) => {
+      const text = properties.이름.title[0].plain_text.replaceAll(' ', '').toLocaleLowerCase();
+      const description = properties.description.rich_text[0].plain_text.toLocaleLowerCase();
+      return text.indexOf(value) !== -1 || description.indexOf(value) !== -1;
+    });
+    value.length > 0 ? setIsTyping(true) : setIsTyping(false);
+    setPostList(post);
+  }, 200);
 
   return (
     <>
@@ -48,10 +41,10 @@ const search = () => {
         <div>
           <Search handleChange={handleChange} />
           <Content>
-            {hasInputValue.length > 0 && (
+            {isTyping && (
               <>
                 <PostLength length={postList.length} />
-                <PostList postListToShow={postList} />
+                <PostList notionList={postList} />
               </>
             )}
           </Content>
@@ -61,17 +54,15 @@ const search = () => {
   );
 };
 
-// *[_type=="post" && (title match "ㅇㅇㅇ" || body[].children[].text match "SIT")][0...6]{
-//     _createdAt,
-//     _id,
-//     author-> {
-//     name,image
-//    },
-//   body,
-//   mainImage,
-//   slug,
-//   title,
-//   category
-//   }
+export const getStaticProps: GetStaticProps = async () => {
+  const notionInstance = new NotionService();
+  const notionList = await notionInstance.getDatabase();
 
+  return {
+    props: {
+      notionList,
+    },
+    revalidate: 1,
+  };
+};
 export default search;

@@ -2,11 +2,10 @@
 /* eslint-disable react/default-props-match-prop-types */
 import useIntroduce from 'hooks/useIntroduce';
 import React from 'react';
-import { SanityImage } from 'ts/interface/post';
 import styles from './Introduce.module.scss';
 
 interface IntroduceProps {
-  mainImage: SanityImage | string;
+  mainImage: string;
 }
 const Introduce = ({ mainImage }: IntroduceProps) => {
   const { imageUrl, isHome } = useIntroduce({ mainImage });

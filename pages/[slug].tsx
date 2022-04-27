@@ -1,4 +1,6 @@
-/* eslint-disable no-underscore-dangle */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable no-param-reassign */
 import FbComment from 'components/comment/FbComment';
 import Content from 'components/layout/content/Content';
 import Introduce from 'components/layout/introduce/Introduce';
@@ -7,37 +9,37 @@ import PostDetail from 'components/postDetail/PostDetail';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { GetStaticProps } from 'next/types';
-import React from 'react';
-import { sanityClient, urlFor } from 'sanity/config';
-import { SanityPost } from 'ts/interface/post';
-import ApiManager from 'util/api';
+import React, { useMemo } from 'react';
+import { INotionPost } from 'ts/interface/notion';
+import NotionService from 'util/notion';
 
 interface PostDetailPageProps {
-  post: SanityPost;
+  page: INotionPost;
+  blocks: any;
 }
-const PostDetailPage = ({ post }: PostDetailPageProps) => {
+const PostDetailPage = ({ blocks, page }: PostDetailPageProps) => {
   const router = useRouter();
   const slug = router.query.slug as string;
+  const { properties } = page;
 
   return (
     <Layout>
       <Head>
-        <meta property="og:image" content={urlFor(post.mainImage).url()} />
-        <meta property="og:description" content={post.title} />
+        <meta property="og:image" content={NotionService.getImageUrl(properties)} />
+        <meta property="og:description" content={page.properties.이름.title[0].plain_text} />
         <meta property="fb:app_id" content="540132141049632" />
-        <title>Hooney Blog - {post.title}</title>
+        <title>Hooney Blog - {page.properties.이름.title[0].plain_text}</title>
       </Head>
       <div>
-        <Introduce mainImage={post.mainImage} />
+        <Introduce mainImage={NotionService.getImageUrl(properties)} />
         <Content>
           <PostDetail
-            body={post.body}
-            title={post.title}
-            createdAt={post._createdAt}
-            authorName={post.author.name}
-            category={post.category}
-            authorImage={post.author.image}
+            title={page.properties.이름.title[0].plain_text}
+            createdAt={page.properties.created_date.created_time}
+            category={page.properties.category.multi_select[0].name}
+            blocks={blocks}
           />
+
           <FbComment slug={slug} />
         </Content>
       </div>
@@ -46,18 +48,12 @@ const PostDetailPage = ({ post }: PostDetailPageProps) => {
 };
 
 export const getStaticPaths = async () => {
-  const query = `
-    *[_type=="post"]{
-      _id,
-      slug {
-      current
-    } 
-  }
-  `;
+  const notionInstance = new NotionService();
+  const database = await notionInstance.getDatabase();
 
-  const postList = await sanityClient.fetch<Pick<SanityPost, '_id' | 'slug'>[]>(query);
-
-  const slugs = postList.map(({ slug }) => ({ params: { slug: slug.current } }));
+  const slugs = database.map(({ id }) => ({
+    params: { slug: id },
+  }));
 
   return {
     paths: slugs,
@@ -73,30 +69,34 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 
   const { slug } = params;
+  const notionInstance = new NotionService();
+  const page = await notionInstance.getPage(slug as string);
+  const blocks = await notionInstance.getBlocks(slug as string);
 
-  const query = `
-  *[_type=="post" && slug.current == "${slug}"]{
-    _createdAt,
-    _id,
-    author-> {
-    name,image
-  },
-  body,
-  mainImage,
-  slug,
-  title,
-  category
-  }
-  `;
+  const childBlocks = await Promise.all(
+    blocks
+      .filter((block: any) => block.has_children)
+      .map(async (block) => {
+        return {
+          id: block.id,
+          children: await notionInstance.getBlocks(block.id),
+        };
+      }),
+  );
 
-  const instance = new ApiManager<SanityPost[]>(query);
-  const response = await instance.sanityFetch();
-  const post = response[0];
+  const blocksWithChildren = blocks.map((block: any) => {
+    if (block.has_children && !block[block.type].children) {
+      block[block.type].children = childBlocks.find((x) => x.id === block.id)?.children;
+    }
+    return block;
+  });
+
   return {
     props: {
-      post,
+      page,
+      blocks: blocksWithChildren,
     },
-    revalidate: 10,
+    revalidate: 1,
   };
 };
 
