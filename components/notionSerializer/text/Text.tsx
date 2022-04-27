@@ -38,6 +38,7 @@ const Text = ({ richText }: TextProps) => {
           <span
             key={index}
             className={[
+              styles.span,
               bold ? styles.bold : '',
               code ? styles.code : '',
               italic ? styles.italic : '',

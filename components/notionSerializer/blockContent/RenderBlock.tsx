@@ -67,7 +67,7 @@ const RenderBlock = (block: any) => {
         </figure>
       );
     case 'divider':
-      return <hr key={id} />;
+      return <hr className={styles.hr} key={id} />;
     case 'quote':
       return (
         <blockquote className={styles.blockquote} key={id}>
