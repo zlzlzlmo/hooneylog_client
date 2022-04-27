@@ -33,7 +33,7 @@ export const getDeviceType = (): Device | undefined => {
   return Device.Mobile;
 };
 
-export const makeTextToFilter = (text: string | undefined) => {
+export const makeTextToFilter = (text: string | undefined): string => {
   if (text === undefined) {
     return '';
   }

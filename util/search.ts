@@ -1,7 +1,11 @@
 import { INotionPost, INotionProperties } from 'ts/interface/notion';
 import { makeTextToFilter } from './common';
 
-class SearchController {
+interface ISearchController {
+  getFilteredList(searchValue: string): INotionPost[];
+}
+
+class SearchController implements ISearchController {
   private notionList: INotionPost[];
 
   private properties: INotionProperties | undefined;
@@ -12,12 +16,12 @@ class SearchController {
     this.notionList = notionList;
   }
 
-  private get textForFilter() {
+  private get textForFilter(): string {
     const result = makeTextToFilter(this.properties?.이름.title[0].plain_text);
     return result;
   }
 
-  private get descriptionForFilter() {
+  private get descriptionForFilter(): string {
     const result = makeTextToFilter(this.properties?.description.rich_text[0].plain_text);
     return result;
   }
@@ -29,7 +33,7 @@ class SearchController {
     return result;
   }
 
-  getFilteredList(searchValue: string) {
+  getFilteredList(searchValue: string): INotionPost[] {
     const resultList = this.notionList.filter(({ properties }) => {
       this.properties = properties;
       this.searchValue = searchValue;
