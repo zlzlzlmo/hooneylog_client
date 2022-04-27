@@ -39,6 +39,10 @@
     span {
         width:100%;
         @include flexCenter; 
+
+        img {
+            max-width: 100%;
+        }
     }
 }
 
