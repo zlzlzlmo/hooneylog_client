@@ -32,3 +32,10 @@ export const getDeviceType = (): Device | undefined => {
 
   return Device.Mobile;
 };
+
+export const makeTextToFilter = (text: string | undefined) => {
+  if (text === undefined) {
+    return '';
+  }
+  return text.replaceAll(' ', '').toLowerCase();
+};
