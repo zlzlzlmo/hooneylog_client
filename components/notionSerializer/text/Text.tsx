@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/jsx-key */
 import React from 'react';
@@ -7,13 +8,14 @@ const Text = ({ richText }: any) => {
   if (!richText) {
     return null;
   }
-  return richText.map((value: any) => {
+  return richText.map((value: any, index: number) => {
     const {
       annotations: { bold, code, color, italic, strikethrough, underline },
       text,
     } = value;
     return (
       <span
+        key={index}
         className={[
           bold ? styles.bold : '',
           code ? styles.code : '',
