@@ -11,6 +11,7 @@ import PostList from 'components/posts/PostList';
 import { GetStaticProps } from 'next';
 import NotionService from 'util/notion';
 import { INotionPost } from 'ts/interface/notion';
+import SearchController from 'util/search';
 
 interface SearchPageProps {
   notionList: INotionPost[];
@@ -21,15 +22,23 @@ const search = ({ notionList }: SearchPageProps) => {
   const [isTyping, setIsTyping] = useState<boolean>(false);
 
   const handleChange = debounce((e: ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.toLocaleLowerCase();
+    const value = e.target.value.toLowerCase();
 
-    const post = notionList.filter(({ properties }) => {
-      const text = properties.이름.title[0].plain_text.replaceAll(' ', '').toLocaleLowerCase();
-      const description = properties.description.rich_text[0].plain_text.toLocaleLowerCase();
-      return text.indexOf(value) !== -1 || description.indexOf(value) !== -1;
-    });
+    const searchInstance = new SearchController(notionList);
+    const filteredList = searchInstance.getFilteredList(value);
+
+    // const post = notionList.filter(({ properties }) => {
+    //   const text = properties.이름.title[0].plain_text.replaceAll(' ', '').toLowerCase();
+    //   const description = properties.description.rich_text[0].plain_text.toLowerCase();
+
+    //   const tagList = properties.tag.multi_select.find((tag) => {
+    //     return tag.name.replaceAll(' ', '').toLowerCase().indexOf(value) !== -1;
+    //   });
+
+    //   return text.indexOf(value) !== -1 || description.indexOf(value) !== -1 || tagList != null;
+    // });
     value.length > 0 ? setIsTyping(true) : setIsTyping(false);
-    setPostList(post);
+    setPostList(filteredList);
   }, 200);
 
   return (
