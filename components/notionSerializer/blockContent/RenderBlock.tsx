@@ -36,14 +36,14 @@ const RenderBlock = (block: any) => {
           {!!value.children && RenderNestedList(block)}
         </li>
       );
-    case 'to_do':
-      return (
-        <div>
-          <label htmlFor={id}>
-            <input type="checkbox" id={id} defaultChecked={value.checked} /> <Text text={value.text} />
-          </label>
-        </div>
-      );
+    // case 'to_do':
+    //   return (
+    //     <div>
+    //       <label htmlFor={id}>
+    //         <input type="checkbox" id={id} defaultChecked={value.checked} /> <Text text={value.text} />
+    //       </label>
+    //     </div>
+    //   );
     case 'toggle':
       return (
         <details>

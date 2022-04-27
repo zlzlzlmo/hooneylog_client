@@ -9,7 +9,7 @@ import PostDetail from 'components/postDetail/PostDetail';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { GetStaticProps } from 'next/types';
-import React, { useMemo } from 'react';
+import React from 'react';
 import { INotionPost } from 'ts/interface/notion';
 import NotionService from 'util/notion';
 

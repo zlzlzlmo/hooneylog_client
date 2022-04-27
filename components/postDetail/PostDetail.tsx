@@ -19,7 +19,7 @@ interface PostDetailProps {
   title: string;
   createdAt: string;
   category: string;
-  blocks: any[];
+  blocks: [{ id: string }];
 }
 
 const PostDetail = ({ title, createdAt, category, blocks }: PostDetailProps) => {

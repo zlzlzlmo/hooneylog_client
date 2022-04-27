@@ -1,8 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable no-constant-condition */
 /* eslint-disable camelcase */
 /* eslint-disable no-await-in-loop */
 import { Client } from '@notionhq/client';
+import { INotionProperties } from 'ts/interface/notion';
 
 class NotionService {
   private notion: Client;
@@ -60,7 +62,7 @@ class NotionService {
     return blocks;
   }
 
-  static getImageUrl(properties: any) {
+  static getImageUrl(properties: INotionProperties) {
     if (properties.image == null) {
       return '';
     }
@@ -69,10 +71,14 @@ class NotionService {
     }
     const { external, file } = properties.image.files[0];
     if (external == null) {
-      return file?.url;
+      return file!.url;
     }
 
-    return external.url;
+    if (file == null) {
+      return external.url;
+    }
+
+    return '';
   }
 }
 
