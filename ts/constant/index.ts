@@ -8,4 +8,5 @@ export const categries: ICategory[] = [
   { language: 'javascript', color: CategoryBackgroundColor.Javascript },
   { language: 'next.js', color: CategoryBackgroundColor.NextJs },
   { language: 'cms', color: CategoryBackgroundColor.CMS },
+  { language: 'esbuild', color: CategoryBackgroundColor.ESBUILD },
 ];

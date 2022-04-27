@@ -12,4 +12,5 @@ export enum CategoryBackgroundColor {
   Javascript = '#EBD217',
   NextJs = '#171D21',
   CMS = '#E63644',
+  ESBUILD = '#F9C60A',
 }
