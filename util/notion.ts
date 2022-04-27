@@ -24,6 +24,12 @@ class NotionService {
           equals: 'published',
         },
       },
+      sorts: [
+        {
+          timestamp: 'created_time',
+          direction: 'descending',
+        },
+      ],
     });
 
     return response.results;
