@@ -1,3 +1,6 @@
+export interface INotionImage {
+  files: [{ name: string; file?: { url: string }; external?: { url: string } }];
+}
 export interface INotionProperties {
   category: {
     multi_select: [{ name: string }];
@@ -13,9 +16,7 @@ export interface INotionProperties {
     ];
   };
 
-  image: {
-    files: [{ name: string; file?: { url: string }; external?: { url: string } }];
-  };
+  image: INotionImage;
 
   slug: {
     rich_text: [{ plain_text: string }];
@@ -29,5 +30,5 @@ export interface INotionProperties {
 export interface INotionPost {
   id: string;
   properties: INotionProperties;
-  results: any[];
+  results: object[];
 }
