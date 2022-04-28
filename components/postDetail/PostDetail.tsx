@@ -14,6 +14,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import styles from './PostDetail.module.scss';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import RenderBlock from 'components/notionSerializer/blockContent/RenderBlock';
+import ProfileImage from 'components/common/profileImage/ProfileImage';
 
 interface PostDetailProps {
   title: string;
@@ -35,9 +36,7 @@ const PostDetail = ({ title, createdAt, category, blocks, tag }: PostDetailProps
       <h1 className={styles.title}>{title}</h1>
       <section className={styles.sub_info}>
         <span className={styles.author}>
-          <span className={styles.profile_img}>
-            <LazyLoadImage effect="blur" src="/images/profile.jpeg" alt="프로필 이미지" />
-          </span>
+          <ProfileImage />
           <span className={styles.name}> By Seunghoon</span>
         </span>
         <span className={styles.reg_date}>- {dateFormat(createdAt)}</span>

@@ -35,7 +35,7 @@ const PostDetailPage = ({ blocks, page }: PostDetailPageProps) => {
           <PostDetail
             title={properties.이름.title[0].plain_text}
             createdAt={properties.created_date.created_time}
-            category={properties.category.multi_select[0].name}
+            category={properties.category.multi_select[0]?.name || ''}
             tag={properties.tag.multi_select}
             blocks={blocks}
           />

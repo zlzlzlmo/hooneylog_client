@@ -18,8 +18,8 @@ const PostList = ({ notionList }: PostListProps) => {
             id={id}
             imageUrl={NotionService.getImageUrl(properties)}
             createdAt={properties.created_date.created_time}
-            description={properties.description.rich_text[0].plain_text}
-            category={properties.category.multi_select[0].name}
+            description={properties.description.rich_text[0]?.plain_text || ''}
+            category={properties.category.multi_select[0]?.name || ''}
           />
         </Fragment>
       ))}

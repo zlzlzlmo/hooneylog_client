@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import CategoryManager from 'util/category';
+import ProfileImage from 'components/common/profileImage/ProfileImage';
+import PostItemImage from 'components/common/postItemImage/PostItemImage';
 import styles from './PostItem.module.scss';
 import SkeletonItem from './skeleton/SkeletonItem';
 
@@ -33,18 +35,15 @@ const PostItem = ({ title, createdAt, imageUrl, id, category, description }: Pos
   return (
     <Link href={id} passHref>
       <article className={styles.container}>
-        <div className={styles.img_box}>
-          <LazyLoadImage effect="blur" src={imageUrl ?? ''} alt={`${title}의 썸네일 이미지`} />
-        </div>
+        <PostItemImage imageUrl={imageUrl ?? ''} title={title} />
+
         <div className={styles.content_box}>
           <section className={styles.title} title={title}>
             {title}
           </section>
           <section className={styles.sub}>
             <div className={styles.author}>
-              <span className={styles.profile_img}>
-                <LazyLoadImage effect="blur" src="/images/profile.jpeg" alt="프로필 이미지" />
-              </span>
+              <ProfileImage />
               <span className={styles.name}> By Seunghoon</span>
             </div>
             {categoryInstance.categoryColorToShow != null && (
