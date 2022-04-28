@@ -4,9 +4,9 @@ import Introduce from 'components/layout/introduce/Introduce';
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import PostList from 'components/posts/PostList';
-import PostLength from 'components/common/postLength/PostLength';
 import NotionService from 'util/notion';
 import { INotionPost } from 'ts/interface/notion';
+import PostLength from 'components/common/PostLength/PostLength';
 
 interface HomePageProps {
   notionList: INotionPost[];

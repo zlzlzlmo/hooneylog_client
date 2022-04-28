@@ -5,7 +5,7 @@ import Search from 'components/search/Search';
 import Head from 'next/head';
 import React, { ChangeEvent, useState } from 'react';
 import { debounce } from 'lodash';
-import PostLength from 'components/common/postLength/PostLength';
+import PostLength from 'components/common/PostLength/PostLength';
 import Content from 'components/layout/content/Content';
 import PostList from 'components/posts/PostList';
 import { GetStaticProps } from 'next';
