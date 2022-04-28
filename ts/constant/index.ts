@@ -10,3 +10,5 @@ export const categries: ICategory[] = [
   { language: 'cms', color: CategoryBackgroundColor.CMS },
   { language: 'esbuild', color: CategoryBackgroundColor.ESBUILD },
 ];
+
+export const BACKGROUND_MAIN_IMAGE = '/images/background.webp';

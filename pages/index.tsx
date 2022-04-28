@@ -7,6 +7,7 @@ import PostList from 'components/posts/PostList';
 import NotionService from 'util/notion';
 import { INotionPost } from 'ts/interface/notion';
 import PostLength from 'components/common/PostLength/PostLength';
+import { BACKGROUND_MAIN_IMAGE } from 'ts/constant';
 
 interface HomePageProps {
   notionList: INotionPost[];
@@ -16,12 +17,12 @@ const HomePage = ({ notionList }: HomePageProps) => {
     <>
       <Head>
         <title>Hooney Blog</title>
-        <meta property="og:image" content="/images/background.jpg" />
+        <meta property="og:image" content={BACKGROUND_MAIN_IMAGE} />
         <meta property="og:description" content="프론트엔드 개발자 신승훈이 직접 개발한 개인 기술 블로그입니다." />
       </Head>
       <Layout>
         <section>
-          <Introduce mainImage="/images/background.jpg" />
+          <Introduce mainImage={BACKGROUND_MAIN_IMAGE} />
           <Content>
             <PostLength length={notionList.length} />
             <PostList notionList={notionList} />
