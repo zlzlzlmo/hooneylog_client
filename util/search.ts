@@ -17,12 +17,12 @@ class SearchController implements ISearchController {
   }
 
   private get textForFilter(): string {
-    const result = makeTextToFilter(this.properties?.이름.title[0].plain_text);
+    const result = makeTextToFilter(this.properties?.이름.title[0]?.plain_text);
     return result;
   }
 
   private get descriptionForFilter(): string {
-    const result = makeTextToFilter(this.properties?.description.rich_text[0].plain_text);
+    const result = makeTextToFilter(this.properties?.description.rich_text[0]?.plain_text);
     return result;
   }
 

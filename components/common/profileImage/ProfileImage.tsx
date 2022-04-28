@@ -5,7 +5,7 @@ import styles from './ProfileImage.module.scss';
 const ProfileImage = () => {
   return (
     <span className={styles.container}>
-      <Image src="/images/profile.jpeg" alt="프로필 이미지" layout="fill" />
+      <Image src="/images/profile.jpg" alt="프로필 이미지" layout="fill" />
     </span>
   );
 };
