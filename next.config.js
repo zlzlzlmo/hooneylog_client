@@ -7,6 +7,9 @@ const nextConfig = {
     locales: ['ko'],
     defaultLocale: 'ko',
   },
+  images: {
+    domains: ['cdn.sanity.io', 'res.cloudinary.com', 's3.us-west-2.amazonaws.com'],
+  },
 };
 
 module.exports = nextConfig;
