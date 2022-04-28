@@ -2,7 +2,6 @@ import usePostItem from 'hooks/usePostItem';
 import React, { useRef } from 'react';
 import { dateFormat } from 'util/common';
 import Link from 'next/link';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import CategoryManager from 'util/category';
 import ProfileImage from 'components/common/profileImage/ProfileImage';

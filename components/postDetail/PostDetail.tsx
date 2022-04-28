@@ -1,20 +1,10 @@
-/* eslint-disable import/order */
-/* eslint-disable camelcase */
-/* eslint-disable no-case-declarations */
-/* eslint-disable no-use-before-define */
-/* eslint-disable no-shadow */
-/* eslint-disable react/jsx-key */
-/* eslint-disable @next/next/no-img-element */
-/* eslint-disable react/no-unstable-nested-components */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { Fragment } from 'react';
 import { dateFormat } from 'util/common';
 import CategoryManager from 'util/category';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import styles from './PostDetail.module.scss';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import RenderBlock from 'components/notionSerializer/blockContent/RenderBlock';
 import ProfileImage from 'components/common/profileImage/ProfileImage';
+import styles from './PostDetail.module.scss';
 
 interface PostDetailProps {
   title: string;

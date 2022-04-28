@@ -1,5 +1,4 @@
 /* eslint-disable react/no-unescaped-entities */
-/* eslint-disable react/default-props-match-prop-types */
 import useIntroduce from 'hooks/useIntroduce';
 import React from 'react';
 import styles from './Introduce.module.scss';
