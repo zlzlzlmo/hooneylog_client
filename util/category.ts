@@ -15,6 +15,10 @@ class CategoryManager {
       ({ language }) => language.toLowerCase() === this.category.toLowerCase(),
     )?.color;
 
+    if (categoryColor === undefined) {
+      return CategoryBackgroundColor.DEFAULT;
+    }
+
     return categoryColor;
   }
 
