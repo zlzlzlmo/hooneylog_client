@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-no-useless-fragment */
+/* eslint-disable react/jsx-fragments */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-param-reassign */
@@ -9,7 +11,7 @@ import PostDetail from 'components/postDetail/PostDetail';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { GetStaticProps } from 'next/types';
-import React from 'react';
+import React, { Fragment } from 'react';
 import { INotionPost } from 'ts/interface/notion';
 import NotionService from 'util/notion';
 
@@ -20,7 +22,13 @@ interface PostDetailPageProps {
 const PostDetailPage = ({ blocks, page }: PostDetailPageProps) => {
   const router = useRouter();
   const slug = router.query.slug as string;
+
+  if (router.isFallback) {
+    return <Fragment />;
+  }
+
   const { properties } = page;
+
   return (
     <Layout>
       <Head>
@@ -57,7 +65,7 @@ export const getStaticPaths = async () => {
 
   return {
     paths: slugs,
-    fallback: false,
+    fallback: true,
   };
 };
 
