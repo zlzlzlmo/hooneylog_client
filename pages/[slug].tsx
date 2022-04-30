@@ -23,9 +23,9 @@ const PostDetailPage = ({ blocks, page }: PostDetailPageProps) => {
   const router = useRouter();
   const slug = router.query.slug as string;
 
-  if (router.isFallback) {
-    return <Fragment />;
-  }
+  // if (router.isFallback) {
+  //   return <Fragment />;
+  // }
 
   const { properties } = page;
 
@@ -65,7 +65,7 @@ export const getStaticPaths = async () => {
 
   return {
     paths: slugs,
-    fallback: true,
+    fallback: false,
   };
 };
 

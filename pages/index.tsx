@@ -21,13 +21,13 @@ const HomePage = ({ notionList }: HomePageProps) => {
         <meta property="og:description" content="프론트엔드 개발자 신승훈이 직접 개발한 개인 기술 블로그입니다." />
       </Head>
       <Layout>
-        <section>
+        <div>
           <Introduce mainImage={BACKGROUND_MAIN_IMAGE} />
           <Content>
             <PostLength length={notionList.length} />
             <PostList notionList={notionList} />
           </Content>
-        </section>
+        </div>
       </Layout>
     </>
   );

@@ -15,7 +15,7 @@ const Introduce = ({ mainImage }: IntroduceProps) => {
   };
 
   return (
-    <section className={styles.container} style={introduceStyle}>
+    <div className={styles.container} style={introduceStyle}>
       {isHome && (
         <div className={styles.intro_box}>
           <span className={styles.text_top}>Welcome!</span>
@@ -24,7 +24,7 @@ const Introduce = ({ mainImage }: IntroduceProps) => {
           </span>
         </div>
       )}
-    </section>
+    </div>
   );
 };
 
