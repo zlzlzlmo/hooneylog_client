@@ -14,7 +14,7 @@ const PostList = ({ notionList }: PostListProps) => {
       {notionList.map(({ id, properties }) => (
         <Fragment key={id}>
           <PostItem
-            title={properties.이름.title[0].plain_text}
+            title={properties.이름.title[0]?.plain_text || ''}
             id={id}
             imageUrl={NotionService.getImageUrl(properties)}
             createdAt={properties.created_date.created_time}
