@@ -8,12 +8,8 @@ import Head from 'next/head';
 import PostList from 'components/posts/PostList';
 import NotionService from 'util/notion';
 import { INotionPost } from 'ts/interface/notion';
-import PostLength from 'components/common/PostLength/PostLength';
 import { BACKGROUND_MAIN_IMAGE } from 'ts/constant';
 import PostCategoryList from 'components/posts/postCategoryList/PostCategoryList';
-import { useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from 'redux/configStore';
-import { getFilteredNotionList, getNotionList, setNotionList } from 'redux/modules/post';
 import useInitialDispatch from 'hooks/useInitialDispatch';
 
 interface HomePageProps {
