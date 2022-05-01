@@ -1,5 +1,5 @@
-import Image from 'next/image';
 import React from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import styles from './PostItemImage.module.scss';
 
 interface PostItemImageProps {
@@ -11,7 +11,9 @@ const PostItemImage = ({ imageUrl, title }: PostItemImageProps) => {
   const src = imageUrl === '' ? '/images/default.avif' : imageUrl;
   return (
     <div className={styles.container}>
-      <Image src={src} alt={`${title}의 이미지`} layout="fill" />
+      <LazyLoadImage effect="blur" src={src} alt={`${title}`} />
+
+      {/* <Image src={src} alt={`${title}`} layout="fill" /> */}
     </div>
   );
 };
