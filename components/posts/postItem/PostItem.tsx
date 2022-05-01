@@ -3,7 +3,7 @@ import React, { useRef } from 'react';
 import { dateFormat } from 'util/common';
 import Link from 'next/link';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import CategoryManager from 'util/category';
+import SingleCategoryManager from 'util/category/singleCategory';
 import ProfileImage from 'components/common/profileImage/ProfileImage';
 import PostItemImage from 'components/common/postItemImage/PostItemImage';
 import styles from './PostItem.module.scss';
@@ -21,7 +21,7 @@ interface PostItemProps {
 const PostItem = ({ title, createdAt, imageUrl, id, category, description }: PostItemProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const { timeToShow } = usePostItem({ containerRef });
-  const categoryInstance = new CategoryManager(category);
+  const categoryInstance = new SingleCategoryManager(category);
 
   if (!timeToShow) {
     return (

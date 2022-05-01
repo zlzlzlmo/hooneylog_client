@@ -18,7 +18,7 @@ class NotionService {
   }
 
   async getDatabase() {
-    const status = process.env.NODE_ENV === 'production' ? 'published' : 'writing';
+    const status = process.env.NODE_ENV === 'production' ? 'published' : 'ready';
     const response = await this.notion.databases.query({
       database_id: this.databaseId,
       filter: {

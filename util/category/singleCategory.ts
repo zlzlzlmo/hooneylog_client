@@ -1,7 +1,8 @@
 import { categries } from 'ts/constant';
 import { CategoryBackgroundColor } from 'ts/enum';
+import { INotionPost } from 'ts/interface/notion';
 
-class CategoryManager {
+class SingleCategoryManager {
   private category = '';
 
   get categoryLetterToShow(): string {
@@ -27,4 +28,4 @@ class CategoryManager {
   }
 }
 
-export default CategoryManager;
+export default SingleCategoryManager;

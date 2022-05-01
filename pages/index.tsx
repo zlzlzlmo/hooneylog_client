@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-console */
 import Layout from 'components/layout/Layout';
 import Content from 'components/layout/content/Content';
 import Introduce from 'components/layout/introduce/Introduce';
@@ -12,6 +14,7 @@ import { BACKGROUND_MAIN_IMAGE } from 'ts/constant';
 interface HomePageProps {
   notionList: INotionPost[];
 }
+
 const HomePage = ({ notionList }: HomePageProps) => {
   return (
     <>
