@@ -18,21 +18,26 @@ const PostCategoryList = ({ notionList, setFilteredListToBeShown }: PostCategory
   const categoryList = [['All', notionList.length], ...multipleCategoryInstance.sortedCountCategoryList];
   const [currentActive, setCurrentActive] = useState(categoryList[0][0]);
 
-  const handleClick = () => (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
-    const clickedCategory = e.currentTarget.dataset.category!;
-    setCurrentActive(clickedCategory);
-
+  const filterNotionListByCategory = (clickedCategory: string) => {
+    // * All 눌렀을때 전체보여주기
     if (clickedCategory === categoryList[0][0]) {
       setFilteredListToBeShown(notionList);
       return;
     }
 
+    // * 클릭한 카테고리 별 보여주기
     const newList = notionList.filter(({ properties }) => {
       const cate = properties.category.multi_select[0].name;
       return cate === clickedCategory.toLowerCase();
     });
 
     setFilteredListToBeShown(newList);
+  };
+
+  const handleClick = () => (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+    const clickedCategory = e.currentTarget.dataset.category!;
+    setCurrentActive(clickedCategory);
+    filterNotionListByCategory(clickedCategory);
   };
 
   return (
