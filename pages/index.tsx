@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-console */
 import Layout from 'components/layout/Layout';
 import Content from 'components/layout/content/Content';
 import Introduce from 'components/layout/introduce/Introduce';
@@ -8,11 +10,15 @@ import NotionService from 'util/notion';
 import { INotionPost } from 'ts/interface/notion';
 import PostLength from 'components/common/PostLength/PostLength';
 import { BACKGROUND_MAIN_IMAGE } from 'ts/constant';
+import PostCategoryList from 'components/posts/postCategoryList/PostCategoryList';
+import { useState } from 'react';
 
 interface HomePageProps {
   notionList: INotionPost[];
 }
+
 const HomePage = ({ notionList }: HomePageProps) => {
+  const [filteredListToBeShown, setFilteredListToBeShown] = useState<INotionPost[]>(notionList);
   return (
     <>
       <Head>
@@ -24,8 +30,9 @@ const HomePage = ({ notionList }: HomePageProps) => {
         <div>
           <Introduce mainImage={BACKGROUND_MAIN_IMAGE} />
           <Content>
-            <PostLength length={notionList.length} />
-            <PostList notionList={notionList} />
+            {/* <PostLength length={notionList.length} /> */}
+            <PostCategoryList notionList={notionList} setFilteredListToBeShown={setFilteredListToBeShown} />
+            <PostList notionList={filteredListToBeShown} />
           </Content>
         </div>
       </Layout>

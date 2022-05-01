@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { dateFormat } from 'util/common';
-import CategoryManager from 'util/category';
+import SingleCategoryManager from 'util/category/singleCategory';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import RenderBlock from 'components/notionSerializer/blockContent/RenderBlock';
 import ProfileImage from 'components/common/profileImage/ProfileImage';
@@ -15,7 +15,7 @@ interface PostDetailProps {
 }
 
 const PostDetail = ({ title, createdAt, category, blocks, tag }: PostDetailProps) => {
-  const categoryInstance = new CategoryManager(category);
+  const categoryInstance = new SingleCategoryManager(category);
   return (
     <article className={styles.container}>
       {categoryInstance.categoryColorToShow && (
