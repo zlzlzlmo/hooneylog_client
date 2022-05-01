@@ -11,14 +11,17 @@ import { INotionPost } from 'ts/interface/notion';
 import PostLength from 'components/common/PostLength/PostLength';
 import { BACKGROUND_MAIN_IMAGE } from 'ts/constant';
 import PostCategoryList from 'components/posts/postCategoryList/PostCategoryList';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useAppDispatch, useAppSelector } from 'redux/configStore';
+import { getFilteredNotionList, getNotionList, setNotionList } from 'redux/modules/post';
+import useInitialDispatch from 'hooks/useInitialDispatch';
 
 interface HomePageProps {
   notionList: INotionPost[];
 }
 
 const HomePage = ({ notionList }: HomePageProps) => {
-  const [filteredListToBeShown, setFilteredListToBeShown] = useState<INotionPost[]>(notionList);
+  useInitialDispatch({ notionList });
   return (
     <>
       <Head>
@@ -31,8 +34,8 @@ const HomePage = ({ notionList }: HomePageProps) => {
           <Introduce mainImage={BACKGROUND_MAIN_IMAGE} />
           <Content>
             {/* <PostLength length={notionList.length} /> */}
-            <PostCategoryList notionList={notionList} setFilteredListToBeShown={setFilteredListToBeShown} />
-            <PostList notionList={filteredListToBeShown} />
+            <PostCategoryList isMobile={false} />
+            <PostList />
           </Content>
         </div>
       </Layout>

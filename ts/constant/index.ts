@@ -11,3 +11,6 @@ export const categries = [
 ] as const;
 
 export const BACKGROUND_MAIN_IMAGE = '/images/background.webp';
+
+export const MAX_WIDTH_MOBILE = '(max-width: 480px)';
+export const SEARCH_PAGE_PATHNAME = '/search';

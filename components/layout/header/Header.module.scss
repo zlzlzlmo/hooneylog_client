@@ -20,6 +20,12 @@
             font-size: min(max(2.5rem,3vw),2rem);
             cursor: pointer;
         }
+
+        .search_box {
+            @media (max-width:$mobile-max-width) {
+                display: none;
+              }
+        }
     }
-    
+
 }

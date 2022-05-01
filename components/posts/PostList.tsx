@@ -1,17 +1,16 @@
 import React, { Fragment } from 'react';
-import { INotionPost } from 'ts/interface/notion';
+import { useAppSelector } from 'redux/configStore';
+import { getFilteredNotionList } from 'redux/modules/post';
 import NotionService from 'util/notion';
 import PostItem from './postItem/PostItem';
 import styles from './PostList.module.scss';
 
-interface PostListProps {
-  notionList: INotionPost[];
-}
+const PostList = () => {
+  const filteredNotionList = useAppSelector(getFilteredNotionList);
 
-const PostList = ({ notionList }: PostListProps) => {
   return (
     <section className={styles.container}>
-      {notionList.map(({ id, properties }) => (
+      {filteredNotionList.map(({ id, properties }) => (
         <Fragment key={id}>
           <PostItem
             title={properties.이름.title[0]?.plain_text || ''}

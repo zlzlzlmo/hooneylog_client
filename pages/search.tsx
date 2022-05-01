@@ -13,13 +13,18 @@ import NotionService from 'util/notion';
 import { INotionPost } from 'ts/interface/notion';
 import SearchController from 'util/search';
 import { makeTextToFilter } from 'util/common';
+import useInitialDispatch from 'hooks/useInitialDispatch';
+import { useAppDispatch, useAppSelector } from 'redux/configStore';
+import { getFilteredNotionList, setFilteredPostList } from 'redux/modules/post';
 
 interface SearchPageProps {
   notionList: INotionPost[];
 }
 
 const search = ({ notionList }: SearchPageProps) => {
-  const [postList, setPostList] = useState<INotionPost[]>([]);
+  useInitialDispatch({ notionList });
+  const dispatch = useAppDispatch();
+  const filteredNotionList = useAppSelector(getFilteredNotionList);
   const [isTyping, setIsTyping] = useState<boolean>(false);
 
   const handleChange = debounce((e: ChangeEvent<HTMLInputElement>) => {
@@ -28,7 +33,8 @@ const search = ({ notionList }: SearchPageProps) => {
 
     const searchInstance = new SearchController(notionList);
     const filteredList = searchInstance.getFilteredList(value);
-    setPostList(filteredList);
+
+    dispatch(setFilteredPostList(filteredList));
   }, 200);
 
   return (
@@ -42,8 +48,8 @@ const search = ({ notionList }: SearchPageProps) => {
           <Content>
             {isTyping && (
               <>
-                <PostLength length={postList.length} />
-                <PostList notionList={postList} />
+                <PostLength length={filteredNotionList.length} />
+                <PostList />
               </>
             )}
           </Content>
