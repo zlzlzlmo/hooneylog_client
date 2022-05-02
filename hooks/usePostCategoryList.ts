@@ -5,9 +5,10 @@ import { useLayoutEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'redux/configStore';
 import { getNotionList, setFilteredPostList } from 'redux/modules/post';
 import MultipleCategoryManager from 'util/category/multipleCategory';
-import SingleCategoryManager from 'util/category/singleCategory';
+import { getQuerySearchParam } from 'util/common';
 
 const usePostCategoryList = () => {
+  const currentQueryParam = getQuerySearchParam('category');
   const dispatch = useAppDispatch();
   const reduxNotionList = useAppSelector(getNotionList);
   const multipleCategoryInstance = new MultipleCategoryManager(reduxNotionList);
@@ -15,9 +16,6 @@ const usePostCategoryList = () => {
   const [currentActive, setCurrentActive] = useState(categoryList[0][0]);
   const [burger, setBurger] = useState(false);
   const router = useRouter();
-  const [firstRender, setFirstRender] = useState(true);
-  const { slug } = router.query;
-
   // * 필터링된 list로 업데이트
   const filterNotionListByCategory = (clickedCategory: string) => {
     // * All 눌렀을때 전체보여주기
@@ -37,12 +35,11 @@ const usePostCategoryList = () => {
   // * 카테고리 클릭했을때 호출
   const handleFilterClick = () => (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
     const clickedCategory = e.currentTarget.dataset.category!;
-    router.push(`/${clickedCategory.toLowerCase()}`);
-
     e.stopPropagation();
     setCurrentActive(clickedCategory);
     filterNotionListByCategory(clickedCategory);
     setBurger(false);
+    router.push(`/?category=${clickedCategory.toLowerCase()}`);
   };
 
   const handleBurgerControl = (state: boolean) => (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
@@ -51,20 +48,12 @@ const usePostCategoryList = () => {
   };
 
   useLayoutEffect(() => {
-    if (firstRender && categoryList.length > 1) {
-      const singleCateogryInstance = new SingleCategoryManager(slug as string);
-
-      if (slug === undefined || slug === 'all') {
-        dispatch(setFilteredPostList(reduxNotionList));
-        setCurrentActive(categoryList[0][0]);
-        return;
-      }
-
-      filterNotionListByCategory(slug as string);
-      setCurrentActive(singleCateogryInstance.categoryLetterToShow);
-      setFirstRender(false);
+    if (reduxNotionList.length === 0) {
+      return;
     }
-  }, [categoryList]);
+    setCurrentActive(currentQueryParam);
+    filterNotionListByCategory(currentQueryParam);
+  }, [reduxNotionList]);
   return { currentActive, categoryList, burger, handleFilterClick, handleBurgerControl };
 };
 
