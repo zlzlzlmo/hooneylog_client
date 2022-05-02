@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { useRouter } from 'next/router';
-import { useLayoutEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'redux/configStore';
 import { getNotionList, setFilteredPostList } from 'redux/modules/post';
 import MultipleCategoryManager from 'util/category/multipleCategory';
@@ -35,11 +35,9 @@ const usePostCategoryList = () => {
   // * 카테고리 클릭했을때 호출
   const handleFilterClick = () => (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
     const clickedCategory = e.currentTarget.dataset.category!;
-    e.stopPropagation();
-    setCurrentActive(clickedCategory);
-    filterNotionListByCategory(clickedCategory);
-    setBurger(false);
     router.push(`/?category=${clickedCategory.toLowerCase()}`);
+    e.stopPropagation();
+    setBurger(false);
   };
 
   const handleBurgerControl = (state: boolean) => (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
@@ -47,13 +45,13 @@ const usePostCategoryList = () => {
     setBurger(state);
   };
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (reduxNotionList.length === 0) {
       return;
     }
     setCurrentActive(currentQueryParam);
     filterNotionListByCategory(currentQueryParam);
-  }, [reduxNotionList]);
+  }, [reduxNotionList, currentQueryParam]);
   return { currentActive, categoryList, burger, handleFilterClick, handleBurgerControl };
 };
 
