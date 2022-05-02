@@ -32,7 +32,7 @@ const PostItem = ({ title, createdAt, imageUrl, id, category, description }: Pos
   }
 
   return (
-    <Link href={id} passHref>
+    <Link href={`post/${id}`} passHref>
       <article className={styles.container}>
         <PostItemImage imageUrl={imageUrl ?? ''} title={title} />
 

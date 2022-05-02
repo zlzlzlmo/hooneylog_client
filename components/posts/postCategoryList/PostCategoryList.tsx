@@ -34,26 +34,25 @@ const PostCategoryList = ({ isMobile }: PostCategoryListProps) => {
         <div className={`${styles.background} ${burger && styles.active}`}>
           <SearchHeader />
 
-          {router.pathname === '/' && (
-            <>
-              <div className={styles.list}>
-                {categoryList.map((value) => {
-                  const instance = new SingleCategoryManager(value[0] as string);
-                  return (
-                    <span
-                      key={value[0]}
-                      className={`${currentActive === instance.categoryLetterToShow && styles.active}`}
-                      data-category={instance.categoryLetterToShow}
-                      onClick={handleFilterClick()}
-                    >
-                      {instance.categoryLetterToShow}
-                      <span className={styles.count}>({value[1]})</span>
-                    </span>
-                  );
-                })}
-              </div>
-            </>
-          )}
+          <>
+            <div className={styles.list}>
+              {categoryList.map((value) => {
+                const instance = new SingleCategoryManager(value[0] as string);
+                return (
+                  <span
+                    key={value[0]}
+                    className={`${currentActive === instance.categoryLetterToShow && styles.active}`}
+                    data-category={instance.categoryLetterToShow}
+                    onClick={handleFilterClick()}
+                  >
+                    {instance.categoryLetterToShow}
+                    <span className={styles.count}>({value[1]})</span>
+                  </span>
+                );
+              })}
+            </div>
+          </>
+
           <div onClick={handleBurgerControl(false)}>
             <GrClose className={styles.close} />
           </div>
