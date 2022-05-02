@@ -1,111 +1,52 @@
-/* eslint-disable react/jsx-no-useless-fragment */
-/* eslint-disable react/jsx-fragments */
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable no-param-reassign */
-import FbComment from 'components/comment/FbComment';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-console */
+import Layout from 'components/layout/Layout';
 import Content from 'components/layout/content/Content';
 import Introduce from 'components/layout/introduce/Introduce';
-import Layout from 'components/layout/Layout';
-import PostDetail from 'components/postDetail/PostDetail';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
-import { GetStaticProps } from 'next/types';
-import React, { Fragment } from 'react';
-import { INotionPost } from 'ts/interface/notion';
+import PostList from 'components/posts/PostList';
 import NotionService from 'util/notion';
+import { INotionPost } from 'ts/interface/notion';
+import { BACKGROUND_MAIN_IMAGE } from 'ts/constant';
+import PostCategoryList from 'components/posts/postCategoryList/PostCategoryList';
+import useInitialDispatch from 'hooks/useInitialDispatch';
 
-interface PostDetailPageProps {
-  page: INotionPost;
-  blocks: any;
+interface HomePageProps {
+  notionList: INotionPost[];
 }
-const PostDetailPage = ({ blocks, page }: PostDetailPageProps) => {
-  const router = useRouter();
-  const slug = router.query.slug as string;
 
-  // if (router.isFallback) {
-  //   return <Fragment />;
-  // }
-
-  const { properties } = page;
-
+const HomePage = ({ notionList }: HomePageProps) => {
+  useInitialDispatch({ notionList });
   return (
-    <Layout>
+    <>
       <Head>
-        <meta property="og:image" content={NotionService.getImageUrl(properties)} />
-        <meta property="og:description" content={properties.이름.title[0].plain_text} />
-        <meta property="fb:app_id" content="540132141049632" />
-        <title>Hooney Blog - {properties.이름.title[0].plain_text}</title>
+        <title>Hooney Blog</title>
+        <meta property="og:image" content={BACKGROUND_MAIN_IMAGE} />
+        <meta property="og:description" content="프론트엔드 개발자 신승훈이 직접 개발한 개인 기술 블로그입니다." />
       </Head>
-      <div>
-        <Introduce mainImage={NotionService.getImageUrl(properties)} />
-        <Content>
-          <PostDetail
-            title={properties.이름.title[0].plain_text}
-            createdAt={properties.created_date.created_time}
-            category={properties.category.multi_select[0]?.name || ''}
-            tag={properties.tag.multi_select}
-            blocks={blocks}
-          />
-
-          <FbComment slug={slug} />
-        </Content>
-      </div>
-    </Layout>
+      <Layout>
+        <div>
+          <Introduce mainImage={BACKGROUND_MAIN_IMAGE} />
+          <Content>
+            {/* <PostLength length={notionList.length} /> */}
+            <PostCategoryList isMobile={false} />
+            <PostList />
+          </Content>
+        </div>
+      </Layout>
+    </>
   );
 };
 
-export const getStaticPaths = async () => {
+export const getServerSideProps = async () => {
   const notionInstance = new NotionService();
-  const database = await notionInstance.getDatabase();
-
-  const slugs = database.map(({ id }) => ({
-    params: { slug: id },
-  }));
-
-  return {
-    paths: slugs,
-    fallback: false,
-  };
-};
-
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  if (params == null) {
-    return {
-      notFound: true,
-    };
-  }
-
-  const { slug } = params;
-  const notionInstance = new NotionService();
-  const page = await notionInstance.getPage(slug as string);
-  const blocks = await notionInstance.getBlocks(slug as string);
-
-  const childBlocks = await Promise.all(
-    blocks
-      .filter((block: any) => block.has_children)
-      .map(async (block) => {
-        return {
-          id: block.id,
-          children: await notionInstance.getBlocks(block.id),
-        };
-      }),
-  );
-
-  const blocksWithChildren = blocks.map((block: any) => {
-    if (block.has_children && !block[block.type].children) {
-      block[block.type].children = childBlocks.find((x) => x.id === block.id)?.children;
-    }
-    return block;
-  });
+  const notionList = await notionInstance.getDatabase();
 
   return {
     props: {
-      page,
-      blocks: blocksWithChildren,
+      notionList,
     },
-    revalidate: 1,
   };
 };
 
-export default PostDetailPage;
+export default HomePage;

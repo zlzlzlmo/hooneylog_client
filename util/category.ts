@@ -1,14 +1,12 @@
-/* eslint-disable no-unsafe-optional-chaining */
 import { categries } from 'ts/constant';
 import { CategoryBackgroundColor } from 'ts/enum';
-import { INotionPost } from 'ts/interface/notion';
 
-class SingleCategoryManager {
+class CategoryManager {
   private category = '';
 
   get categoryLetterToShow(): string {
-    const str = this.category?.toLowerCase();
-    const result = str?.charAt(0).toUpperCase() + str?.slice(1);
+    const str = this.category.toLowerCase();
+    const result = str.charAt(0).toUpperCase() + str.slice(1);
     return result;
   }
 
@@ -16,10 +14,6 @@ class SingleCategoryManager {
     const categoryColor = categries.find(
       ({ language }) => language.toLowerCase() === this.category.toLowerCase(),
     )?.color;
-
-    if (categoryColor === undefined) {
-      return CategoryBackgroundColor.DEFAULT;
-    }
 
     return categoryColor;
   }
@@ -29,4 +23,4 @@ class SingleCategoryManager {
   }
 }
 
-export default SingleCategoryManager;
+export default CategoryManager;
