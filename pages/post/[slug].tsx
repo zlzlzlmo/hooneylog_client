@@ -8,6 +8,7 @@ import Content from 'components/layout/content/Content';
 import Introduce from 'components/layout/introduce/Introduce';
 import Layout from 'components/layout/Layout';
 import PostDetail from 'components/postDetail/PostDetail';
+import useInitialDispatch from 'hooks/useInitialDispatch';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { GetStaticProps } from 'next/types';
@@ -16,12 +17,14 @@ import { INotionPost } from 'ts/interface/notion';
 import NotionService from 'util/notion';
 
 interface PostDetailPageProps {
+  notionList: INotionPost[];
   page: INotionPost;
   blocks: any;
 }
-const PostDetailPage = ({ blocks, page }: PostDetailPageProps) => {
+const PostDetailPage = ({ notionList, blocks, page }: PostDetailPageProps) => {
   const router = useRouter();
   const slug = router.query.slug as string;
+  useInitialDispatch({ notionList });
 
   // if (router.isFallback) {
   //   return <Fragment />;
@@ -78,6 +81,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   const { slug } = params;
   const notionInstance = new NotionService();
+  const notionList = await notionInstance.getDatabase();
   const page = await notionInstance.getPage(slug as string);
   const blocks = await notionInstance.getBlocks(slug as string);
 
@@ -101,6 +105,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   return {
     props: {
+      notionList,
       page,
       blocks: blocksWithChildren,
     },
