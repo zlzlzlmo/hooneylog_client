@@ -26,9 +26,9 @@ const PostDetailPage = ({ notionList, blocks, page }: PostDetailPageProps) => {
   const slug = router.query.slug as string;
   useInitialDispatch({ notionList });
 
-  // if (router.isFallback) {
-  //   return <Fragment />;
-  // }
+  if (router.isFallback) {
+    return <Fragment />;
+  }
 
   const { properties } = page;
 
@@ -68,7 +68,7 @@ export const getStaticPaths = async () => {
 
   return {
     paths: slugs,
-    fallback: false,
+    fallback: true,
   };
 };
 
