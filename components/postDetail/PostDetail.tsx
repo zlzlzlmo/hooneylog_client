@@ -15,12 +15,12 @@ interface PostDetailProps {
 }
 
 const PostDetail = ({ title, createdAt, category, blocks, tag }: PostDetailProps) => {
-  const categoryInstance = new SingleCategoryManager(category);
+  const { categoryColorToShow, categoryLetterToShow } = new SingleCategoryManager(category);
   return (
     <article className={styles.container}>
-      {categoryInstance.categoryColorToShow && (
-        <span className={styles.category} style={{ backgroundColor: categoryInstance.categoryColorToShow }}>
-          {categoryInstance.categoryLetterToShow}
+      {categoryColorToShow && (
+        <span className={styles.category} style={{ backgroundColor: categoryColorToShow }}>
+          {categoryLetterToShow}
         </span>
       )}
       <h1 className={styles.title}>{title}</h1>

@@ -1,12 +1,11 @@
+import useReduxData from 'hooks/useReduxData';
 import React, { Fragment } from 'react';
-import { useAppSelector } from 'redux/configStore';
-import { getFilteredNotionList } from 'redux/modules/post';
 import NotionService from 'util/notion';
 import PostItem from './postItem/PostItem';
 import styles from './PostList.module.scss';
 
 const PostList = () => {
-  const filteredNotionList = useAppSelector(getFilteredNotionList);
+  const { filteredNotionList } = useReduxData();
 
   return (
     <section className={styles.container}>
