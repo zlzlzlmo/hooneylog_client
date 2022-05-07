@@ -11,6 +11,8 @@ import { INotionPost } from 'ts/interface/notion';
 import { BACKGROUND_MAIN_IMAGE } from 'ts/constant';
 import PostCategoryList from 'components/posts/postCategoryList/PostCategoryList';
 import useHandleReduxData from 'hooks/useHandleReduxData';
+import DesktopCategoryFilter from 'components/categoryFilter/desktop/DesktopCategoryFilter';
+import useIsMobile from 'hooks/useIsMobile';
 
 interface HomePageProps {
   notionList: INotionPost[];
@@ -18,6 +20,7 @@ interface HomePageProps {
 
 const HomePage = ({ notionList }: HomePageProps) => {
   const { dispatchOriginialNotionList } = useHandleReduxData();
+  const isMobile = useIsMobile();
   dispatchOriginialNotionList(notionList);
 
   return (
@@ -31,7 +34,7 @@ const HomePage = ({ notionList }: HomePageProps) => {
         <div>
           <Introduce mainImage={BACKGROUND_MAIN_IMAGE} />
           <Content>
-            <PostCategoryList isMobile={false} />
+            {!isMobile && <DesktopCategoryFilter />}
             <PostList />
           </Content>
         </div>

@@ -5,10 +5,13 @@ import PostCategoryList from 'components/posts/postCategoryList/PostCategoryList
 import SearchHeader from 'components/search/SearchHeader';
 import { useRouter } from 'next/router';
 import { SEARCH_PAGE_PATHNAME } from 'ts/constant';
+import MobileCategoryFilter from 'components/categoryFilter/mobile/MobileCategoryFilter';
+import useIsMobile from 'hooks/useIsMobile';
 import styles from './Header.module.scss';
 
 const Header = () => {
   const router = useRouter();
+  const isMobile = useIsMobile();
   return (
     <header className={styles.container}>
       <div className={styles.inner_header}>
@@ -22,7 +25,9 @@ const Header = () => {
             <SearchHeader />
           </div>
         )}
-        <PostCategoryList isMobile />
+
+        {isMobile && <MobileCategoryFilter />}
+        {/* <PostCategoryList isMobile /> */}
       </div>
     </header>
   );

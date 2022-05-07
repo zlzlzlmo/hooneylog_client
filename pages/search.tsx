@@ -13,8 +13,6 @@ import NotionService from 'util/notion';
 import { INotionPost } from 'ts/interface/notion';
 import SearchController from 'util/search';
 import { makeTextToFilter } from 'util/common';
-import { useAppDispatch, useAppSelector } from 'redux/configStore';
-import { getFilteredNotionList, setFilteredPostList } from 'redux/modules/post';
 import useHandleReduxData from 'hooks/useHandleReduxData';
 import useReduxData from 'hooks/useReduxData';
 

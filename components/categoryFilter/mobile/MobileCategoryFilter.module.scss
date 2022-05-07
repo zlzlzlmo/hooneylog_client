@@ -1,37 +1,8 @@
+
 @import "styles/variable";
 @import "styles/mixin";
 
-.container {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap:2rem;
-    padding-bottom: 2rem;
-    margin-bottom: 2rem;
-    border-bottom: 0.2rem solid $sub-color-3;
-
-    .active {
-        color:$base-color;
-        font-weight: 900;
-    }
-    li {
-        color:lightgray;
-        cursor: pointer;
-
-        .count {
-            font-weight: 900;
-        }
-    }
-
-    @media (max-width:$mobile-max-width) {
-        display: none;
-    }
-}
-
 .mobile_container {
-    @media (min-width:$mobile-max-width) {
-        display: none;
-    }
     .background {
         position: fixed;
         right:0;
@@ -45,7 +16,7 @@
         transform: translateX(100%);
         // transition: all 0.3s ease-in;
         @include flexCenter;
-    
+
         .list {
             height: 80vh;
             overflow-y:scroll;
@@ -59,7 +30,7 @@
         }
         &.active {
             transform: translateX(0);
-            transition: all 0.3s ease-in;
+            transition: transform 0.3s ease-in;
         }
     
         .close {
