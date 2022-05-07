@@ -17,8 +17,8 @@ interface HomePageProps {
 }
 
 const HomePage = ({ notionList }: HomePageProps) => {
-  const { originialNotionList } = useHandleReduxData();
-  originialNotionList(notionList);
+  const { dispatchOriginialNotionList } = useHandleReduxData();
+  dispatchOriginialNotionList(notionList);
 
   return (
     <>

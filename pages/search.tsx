@@ -16,16 +16,16 @@ import { makeTextToFilter } from 'util/common';
 import { useAppDispatch, useAppSelector } from 'redux/configStore';
 import { getFilteredNotionList, setFilteredPostList } from 'redux/modules/post';
 import useHandleReduxData from 'hooks/useHandleReduxData';
+import useReduxData from 'hooks/useReduxData';
 
 interface SearchPageProps {
   notionList: INotionPost[];
 }
 
 const search = ({ notionList }: SearchPageProps) => {
-  const { originialNotionList } = useHandleReduxData();
-  originialNotionList(notionList);
-  const dispatch = useAppDispatch();
-  const filteredNotionList = useAppSelector(getFilteredNotionList);
+  const { dispatchFilterNotionList, dispatchOriginialNotionList } = useHandleReduxData();
+  const { filterNotionList } = useReduxData();
+  dispatchOriginialNotionList(notionList);
   const [isTyping, setIsTyping] = useState<boolean>(false);
 
   const handleChange = debounce((e: ChangeEvent<HTMLInputElement>) => {
@@ -34,8 +34,7 @@ const search = ({ notionList }: SearchPageProps) => {
 
     const searchInstance = new SearchController(notionList);
     const filteredList = searchInstance.getFilteredList(value);
-
-    dispatch(setFilteredPostList(filteredList));
+    dispatchFilterNotionList(filteredList);
   }, 200);
 
   return (
@@ -49,7 +48,7 @@ const search = ({ notionList }: SearchPageProps) => {
           <Content>
             {isTyping && (
               <>
-                <PostLength length={filteredNotionList.length} />
+                <PostLength length={filterNotionList.length} />
                 <PostList />
               </>
             )}

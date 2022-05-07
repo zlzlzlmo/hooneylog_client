@@ -24,8 +24,8 @@ interface PostDetailPageProps {
 const PostDetailPage = ({ notionList, blocks, page }: PostDetailPageProps) => {
   const router = useRouter();
   const slug = router.query.slug as string;
-  const { originialNotionList } = useHandleReduxData();
-  originialNotionList(notionList);
+  const { dispatchOriginialNotionList } = useHandleReduxData();
+  dispatchOriginialNotionList(notionList);
   if (router.isFallback) {
     return <Fragment />;
   }

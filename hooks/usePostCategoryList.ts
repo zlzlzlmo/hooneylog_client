@@ -11,7 +11,7 @@ const usePostCategoryList = () => {
   const router = useRouter();
   const [burger, setBurger] = useState(false);
   const { originalNotionList } = useReduxData();
-  const { filterNotionList } = useHandleReduxData();
+  const { dispatchFilterNotionList } = useHandleReduxData();
 
   const categoryList = useMemo(() => {
     const multipleCategoryInstance = new MultipleCategoryManager(originalNotionList);
@@ -24,7 +24,7 @@ const usePostCategoryList = () => {
   const filterNotionListByCategory = (clickedCategory: string) => {
     // * All 눌렀을때 전체보여주기
     if (clickedCategory === categoryList[0][0]) {
-      filterNotionList(originalNotionList);
+      dispatchFilterNotionList(originalNotionList);
       return;
     }
 
@@ -33,7 +33,7 @@ const usePostCategoryList = () => {
       const cate = properties.category.multi_select[0].name;
       return cate === clickedCategory?.toLowerCase();
     });
-    filterNotionList(newList);
+    dispatchFilterNotionList(newList);
   };
 
   // * 카테고리 클릭했을때 호출

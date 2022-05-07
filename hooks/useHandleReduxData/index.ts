@@ -7,17 +7,17 @@ import { INotionPost } from 'ts/interface/notion';
 const useHandleReduxData = () => {
   const dispatch = useAppDispatch();
 
-  const filterNotionList = (data: INotionPost[]) => {
+  const dispatchFilterNotionList = (data: INotionPost[]) => {
     dispatch(setFilteredPostList(data));
   };
 
-  const originialNotionList = (data: INotionPost[]) => {
+  const dispatchOriginialNotionList = (data: INotionPost[]) => {
     useEffect(() => {
       dispatch(setNotionList(data));
     }, []);
   };
 
-  return { filterNotionList, originialNotionList };
+  return { dispatchFilterNotionList, dispatchOriginialNotionList };
 };
 
 export default useHandleReduxData;
