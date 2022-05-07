@@ -1,6 +1,7 @@
 /* eslint-disable no-multi-assign */
 import { renderHook } from '@testing-library/react-hooks';
 import { BACKGROUND_MAIN_IMAGE } from 'ts/constant';
+import { definePathNameProperty } from 'util/test';
 import useIntroduce from '.';
 
 describe('useIntroduce custom hook', () => {
@@ -10,22 +11,15 @@ describe('useIntroduce custom hook', () => {
   });
 
   test('인덱스 페이지일때 ', () => {
-    Object.defineProperty(window, 'location', {
-      get() {
-        return { pathname: '/' };
-      },
-    });
+    definePathNameProperty('/');
     const { result } = renderHook(() => useIntroduce({ mainImage: BACKGROUND_MAIN_IMAGE }));
 
     expect(result.current.isHome).toBe(true);
   });
 
   test('인덱스 페이지가 아닐때', () => {
-    Object.defineProperty(window, 'location', {
-      get() {
-        return { pathname: '/post/test' };
-      },
-    });
+    definePathNameProperty('/post/test');
+
     const { result } = renderHook(() => useIntroduce({ mainImage: BACKGROUND_MAIN_IMAGE }));
 
     expect(result.current.isHome).toBe(false);

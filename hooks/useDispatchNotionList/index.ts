@@ -3,10 +3,11 @@ import { useAppDispatch } from 'redux/configStore';
 import { setNotionList } from 'redux/modules/post';
 import { INotionPost } from 'ts/interface/notion';
 
-interface useInitialDispatchProps {
+interface useDispatchNotionListProps {
   notionList: INotionPost[];
 }
-const useInitialDispatch = ({ notionList }: useInitialDispatchProps) => {
+
+const useDispatchNotionList = ({ notionList }: useDispatchNotionListProps) => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -14,4 +15,4 @@ const useInitialDispatch = ({ notionList }: useInitialDispatchProps) => {
   }, []);
 };
 
-export default useInitialDispatch;
+export default useDispatchNotionList;

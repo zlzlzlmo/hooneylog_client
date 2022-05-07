@@ -13,16 +13,16 @@ import NotionService from 'util/notion';
 import { INotionPost } from 'ts/interface/notion';
 import SearchController from 'util/search';
 import { makeTextToFilter } from 'util/common';
-import useInitialDispatch from 'hooks/useInitialDispatch';
 import { useAppDispatch, useAppSelector } from 'redux/configStore';
 import { getFilteredNotionList, setFilteredPostList } from 'redux/modules/post';
+import useDispatchNotionList from 'hooks/useDispatchNotionList';
 
 interface SearchPageProps {
   notionList: INotionPost[];
 }
 
 const search = ({ notionList }: SearchPageProps) => {
-  useInitialDispatch({ notionList });
+  useDispatchNotionList({ notionList });
   const dispatch = useAppDispatch();
   const filteredNotionList = useAppSelector(getFilteredNotionList);
   const [isTyping, setIsTyping] = useState<boolean>(false);

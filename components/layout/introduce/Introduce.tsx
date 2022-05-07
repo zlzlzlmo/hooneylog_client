@@ -15,7 +15,7 @@ const Introduce = ({ mainImage }: IntroduceProps) => {
   };
 
   return (
-    <div className={styles.container} style={introduceStyle}>
+    <div className={styles.container} style={introduceStyle} role="introduce_background">
       {isHome && (
         <div className={styles.intro_box}>
           <span className={styles.text_top}>Welcome!</span>
