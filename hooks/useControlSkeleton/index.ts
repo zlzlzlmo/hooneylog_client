@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import useIntersectionObserver from 'hooks/useIntersection';
 import { useEffect, useState } from 'react';
-import useIntersectionObserver from './useIntersection';
 
 interface usePostItemProps {
   containerRef: React.RefObject<HTMLDivElement>;
 }
 
-const usePostItem = ({ containerRef }: usePostItemProps) => {
+const useControlSkeleton = ({ containerRef }: usePostItemProps) => {
   const [timeToShow, setIsTimeToShow] = useState<boolean>(false);
 
   const entry = useIntersectionObserver(containerRef, {});
@@ -20,4 +20,4 @@ const usePostItem = ({ containerRef }: usePostItemProps) => {
   return { timeToShow };
 };
 
-export default usePostItem;
+export default useControlSkeleton;
