@@ -4,9 +4,10 @@
 import SearchHeader from 'components/search/SearchHeader';
 import useReduxData from 'hooks/useReduxData';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { GrClose } from 'react-icons/gr';
+import { ALL } from 'ts/constant';
 import MultipleCategoryManager from 'util/category/multipleCategory';
 import styles from './MobileCategoryFilter.module.scss';
 
@@ -16,6 +17,13 @@ const MobileCategoryFilter = () => {
   const router = useRouter();
   const { originalNotionList } = useReduxData();
   const [clickedBurger, setClickedBurger] = useState<boolean>(false);
+
+  const categoryListToShow = useMemo((): [string, number][] => {
+    return [
+      [ALL, originalNotionList.length],
+      ...new MultipleCategoryManager(originalNotionList).sortedCountCategoryList,
+    ];
+  }, [originalNotionList]);
 
   const handleClickBurger = (status: BurgerStatus) => () => {
     if (status === 'open') {
@@ -39,7 +47,7 @@ const MobileCategoryFilter = () => {
         <SearchHeader />
 
         <div className={styles.list}>
-          {new MultipleCategoryManager(originalNotionList).sortedCountCategoryList.map(([category, count]) => (
+          {categoryListToShow.map(([category, count]) => (
             <span key={category} onClick={handleClickForLink(category)}>
               {category}
               <span className={styles.count}>({count})</span>

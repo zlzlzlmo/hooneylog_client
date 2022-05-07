@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 /* eslint-disable no-unsafe-optional-chaining */
 import { CategoryBackgroundColor } from 'ts/enum';
 
@@ -6,8 +7,8 @@ class SingleCategoryManager {
 
   private categories;
 
-  constructor(category: string) {
-    this.category = category;
+  constructor(category?: string) {
+    if (category) this.category = category;
     this.categories = [
       { language: 'typescript', color: CategoryBackgroundColor.Typescript },
       { language: 'react', color: CategoryBackgroundColor.React },
@@ -34,6 +35,15 @@ class SingleCategoryManager {
     }
 
     return result;
+  }
+
+  get categorySearchParam() {
+    if (typeof window !== 'undefined') {
+      this.category = new URLSearchParams(window.location.search).get('category') ?? 'All';
+      return this.categoryLetterToShow ?? 'All';
+    }
+
+    return 'All';
   }
 }
 
