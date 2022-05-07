@@ -39,12 +39,7 @@ const PostCategoryList = ({ isMobile }: PostCategoryListProps) => {
               {categoryList.map((value) => {
                 const instance = new SingleCategoryManager(value[0] as string);
                 return (
-                  <span
-                    key={value[0]}
-                    className={`${currentActive === instance.categoryLetterToShow && styles.active}`}
-                    data-category={instance.categoryLetterToShow}
-                    onClick={handleFilterClick()}
-                  >
+                  <span key={value[0]} data-category={instance.categoryLetterToShow} onClick={handleFilterClick()}>
                     {instance.categoryLetterToShow}
                     <span className={styles.count}>({value[1]})</span>
                   </span>

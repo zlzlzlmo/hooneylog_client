@@ -4,7 +4,7 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { createWrapper } from 'next-redux-wrapper';
 import post from './modules/post';
 
-const store = configureStore({
+export const store = configureStore({
   reducer: { post },
 });
 
