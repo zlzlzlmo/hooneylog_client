@@ -23,12 +23,3 @@ export const makeTextToFilter = (text: string | undefined): string => {
   }
   return text.replaceAll(' ', '').toLowerCase();
 };
-
-export const getQuerySearchParam = (param: string): string => {
-  if (typeof window !== 'undefined') {
-    const singleCategory = new SingleCategoryManager(new URLSearchParams(window.location.search).get(param) ?? 'All');
-    return singleCategory.categoryLetterToShow ?? 'All';
-  }
-
-  return 'All';
-};

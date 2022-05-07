@@ -3,7 +3,6 @@
 import { useRouter } from 'next/router';
 import { useEffect, useMemo, useState } from 'react';
 import MultipleCategoryManager from 'util/category/multipleCategory';
-import { getQuerySearchParam } from 'util/common';
 import useHandleReduxData from './useHandleReduxData';
 import useReduxData from './useReduxData';
 
@@ -49,13 +48,13 @@ const usePostCategoryList = () => {
     setBurger(state);
   };
 
-  useEffect(() => {
-    if (originalNotionList.length === 0) {
-      return;
-    }
-    setCurrentActive(getQuerySearchParam('category'));
-    filterNotionListByCategory(getQuerySearchParam('category'));
-  }, [originalNotionList, getQuerySearchParam('category')]);
+  // useEffect(() => {
+  //   if (originalNotionList.length === 0) {
+  //     return;
+  //   }
+  //   setCurrentActive(getQuerySearchParam('category'));
+  //   filterNotionListByCategory(getQuerySearchParam('category'));
+  // }, [originalNotionList, getQuerySearchParam('category')]);
   return { currentActive, categoryList, burger, handleFilterClick, handleBurgerControl };
 };
 

@@ -2,28 +2,17 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import SearchHeader from 'components/search/SearchHeader';
-import useReduxData from 'hooks/useReduxData';
-import { useRouter } from 'next/router';
-import React, { useMemo, useState } from 'react';
+import useCategoryFilter from 'hooks/useCategoryFilter';
+import React, { useState } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { GrClose } from 'react-icons/gr';
-import { ALL } from 'ts/constant';
-import MultipleCategoryManager from 'util/category/multipleCategory';
 import styles from './MobileCategoryFilter.module.scss';
 
 type BurgerStatus = 'open' | 'close';
 
 const MobileCategoryFilter = () => {
-  const router = useRouter();
-  const { originalNotionList } = useReduxData();
   const [clickedBurger, setClickedBurger] = useState<boolean>(false);
-
-  const categoryListToShow = useMemo((): [string, number][] => {
-    return [
-      [ALL, originalNotionList.length],
-      ...new MultipleCategoryManager(originalNotionList).sortedCountCategoryList,
-    ];
-  }, [originalNotionList]);
+  const { categoryListToShow, routerPushFor } = useCategoryFilter();
 
   const handleClickBurger = (status: BurgerStatus) => () => {
     if (status === 'open') {
@@ -33,9 +22,9 @@ const MobileCategoryFilter = () => {
     }
   };
 
-  const handleClickForLink = (category: string) => () => {
+  const handleClickCategory = (category: string) => () => {
     setClickedBurger(false);
-    router.push(`/?category=${category}`);
+    routerPushFor(category);
   };
 
   return (
@@ -48,7 +37,7 @@ const MobileCategoryFilter = () => {
 
         <div className={styles.list}>
           {categoryListToShow.map(([category, count]) => (
-            <span key={category} onClick={handleClickForLink(category)}>
+            <span key={category} onClick={handleClickCategory(category)}>
               {category}
               <span className={styles.count}>({count})</span>
             </span>
