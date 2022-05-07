@@ -81,4 +81,4 @@ const PostCategoryList = ({ isMobile }: PostCategoryListProps) => {
   );
 };
 
-export default PostCategoryList;
+export default React.memo(PostCategoryList);

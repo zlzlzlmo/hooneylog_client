@@ -8,7 +8,7 @@ import Content from 'components/layout/content/Content';
 import Introduce from 'components/layout/introduce/Introduce';
 import Layout from 'components/layout/Layout';
 import PostDetail from 'components/postDetail/PostDetail';
-import useDispatchNotionList from 'hooks/useDispatchNotionList';
+import useHandleReduxData from 'hooks/useHandleReduxData';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { GetStaticProps } from 'next/types';
@@ -24,7 +24,8 @@ interface PostDetailPageProps {
 const PostDetailPage = ({ notionList, blocks, page }: PostDetailPageProps) => {
   const router = useRouter();
   const slug = router.query.slug as string;
-  useDispatchNotionList({ notionList });
+  const { dispatchOriginialNotionList } = useHandleReduxData();
+  dispatchOriginialNotionList(notionList);
   if (router.isFallback) {
     return <Fragment />;
   }

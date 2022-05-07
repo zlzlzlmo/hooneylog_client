@@ -1,35 +1,39 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from 'redux/configStore';
-import { getNotionList, setFilteredPostList } from 'redux/modules/post';
+import { useEffect, useMemo, useState } from 'react';
 import MultipleCategoryManager from 'util/category/multipleCategory';
 import { getQuerySearchParam } from 'util/common';
+import useHandleReduxData from './useHandleReduxData';
+import useReduxData from './useReduxData';
 
 const usePostCategoryList = () => {
-  const currentQueryParam = getQuerySearchParam('category');
-  const dispatch = useAppDispatch();
-  const reduxNotionList = useAppSelector(getNotionList);
-  const multipleCategoryInstance = new MultipleCategoryManager(reduxNotionList);
-  const categoryList = [['All', reduxNotionList.length], ...multipleCategoryInstance.sortedCountCategoryList];
-  const [currentActive, setCurrentActive] = useState(categoryList[0][0]);
-  const [burger, setBurger] = useState(false);
   const router = useRouter();
+  const [burger, setBurger] = useState(false);
+  const { originalNotionList } = useReduxData();
+  const { dispatchFilterNotionList } = useHandleReduxData();
+
+  const categoryList = useMemo(() => {
+    const multipleCategoryInstance = new MultipleCategoryManager(originalNotionList);
+    return [['All', originalNotionList.length], ...multipleCategoryInstance.sortedCountCategoryList];
+  }, [originalNotionList]);
+
+  const [currentActive, setCurrentActive] = useState(categoryList[0][0]);
+
   // * 필터링된 list로 업데이트
   const filterNotionListByCategory = (clickedCategory: string) => {
     // * All 눌렀을때 전체보여주기
     if (clickedCategory === categoryList[0][0]) {
-      dispatch(setFilteredPostList(reduxNotionList));
+      dispatchFilterNotionList(originalNotionList);
       return;
     }
 
     // * 클릭한 카테고리 별 보여주기
-    const newList = reduxNotionList.filter(({ properties }) => {
+    const newList = originalNotionList.filter(({ properties }) => {
       const cate = properties.category.multi_select[0].name;
       return cate === clickedCategory?.toLowerCase();
     });
-    dispatch(setFilteredPostList(newList));
+    dispatchFilterNotionList(newList);
   };
 
   // * 카테고리 클릭했을때 호출
@@ -46,12 +50,12 @@ const usePostCategoryList = () => {
   };
 
   useEffect(() => {
-    if (reduxNotionList.length === 0) {
+    if (originalNotionList.length === 0) {
       return;
     }
-    setCurrentActive(currentQueryParam);
-    filterNotionListByCategory(currentQueryParam);
-  }, [reduxNotionList, currentQueryParam]);
+    setCurrentActive(getQuerySearchParam('category'));
+    filterNotionListByCategory(getQuerySearchParam('category'));
+  }, [originalNotionList, getQuerySearchParam('category')]);
   return { currentActive, categoryList, burger, handleFilterClick, handleBurgerControl };
 };
 

@@ -10,14 +10,15 @@ import NotionService from 'util/notion';
 import { INotionPost } from 'ts/interface/notion';
 import { BACKGROUND_MAIN_IMAGE } from 'ts/constant';
 import PostCategoryList from 'components/posts/postCategoryList/PostCategoryList';
-import useDispatchNotionList from 'hooks/useDispatchNotionList';
+import useHandleReduxData from 'hooks/useHandleReduxData';
 
 interface HomePageProps {
   notionList: INotionPost[];
 }
 
 const HomePage = ({ notionList }: HomePageProps) => {
-  useDispatchNotionList({ notionList });
+  const { dispatchOriginialNotionList } = useHandleReduxData();
+  dispatchOriginialNotionList(notionList);
 
   return (
     <>
@@ -30,7 +31,6 @@ const HomePage = ({ notionList }: HomePageProps) => {
         <div>
           <Introduce mainImage={BACKGROUND_MAIN_IMAGE} />
           <Content>
-            {/* <PostLength length={notionList.length} /> */}
             <PostCategoryList isMobile={false} />
             <PostList />
           </Content>
