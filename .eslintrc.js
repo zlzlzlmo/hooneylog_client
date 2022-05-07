@@ -17,6 +17,13 @@ module.exports = {
     'react/function-component-definition': 0,
     'import/extensions': 0,
     'react/jsx-props-no-spreading': 0,
+    'jsx-a11y/aria-role': [
+      0,
+      {
+        allowedInvalidRoles: ['text'],
+        ignoreNonDOM: true,
+      },
+    ],
   },
   settings: {
     'import/resolver': {

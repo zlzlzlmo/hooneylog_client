@@ -10,14 +10,21 @@ import NotionService from 'util/notion';
 import { INotionPost } from 'ts/interface/notion';
 import { BACKGROUND_MAIN_IMAGE } from 'ts/constant';
 import PostCategoryList from 'components/posts/postCategoryList/PostCategoryList';
-import useInitialDispatch from 'hooks/useInitialDispatch';
+import { useEffect } from 'react';
+import { useAppDispatch } from 'redux/configStore';
+import { setNotionList } from 'redux/modules/post';
 
 interface HomePageProps {
   notionList: INotionPost[];
 }
 
 const HomePage = ({ notionList }: HomePageProps) => {
-  useInitialDispatch({ notionList });
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(setNotionList(notionList));
+  }, []);
+
   return (
     <>
       <Head>
