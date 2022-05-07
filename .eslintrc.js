@@ -24,6 +24,7 @@ module.exports = {
         ignoreNonDOM: true,
       },
     ],
+    'import/no-extraneous-dependencies': 'off',
   },
   settings: {
     'import/resolver': {
