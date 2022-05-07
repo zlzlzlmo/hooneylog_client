@@ -9,7 +9,6 @@ import PostList from 'components/posts/PostList';
 import NotionService from 'util/notion';
 import { INotionPost } from 'ts/interface/notion';
 import { BACKGROUND_MAIN_IMAGE } from 'ts/constant';
-import PostCategoryList from 'components/posts/postCategoryList/PostCategoryList';
 import useHandleReduxData from 'hooks/useHandleReduxData';
 import DesktopCategoryFilter from 'components/categoryFilter/desktop/DesktopCategoryFilter';
 import useIsMobile from 'hooks/useIsMobile';

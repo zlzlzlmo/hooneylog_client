@@ -1,7 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from 'react';
 import Link from 'next/link';
-import PostCategoryList from 'components/posts/postCategoryList/PostCategoryList';
 import SearchHeader from 'components/search/SearchHeader';
 import { useRouter } from 'next/router';
 import { SEARCH_PAGE_PATHNAME } from 'ts/constant';
@@ -27,7 +26,6 @@ const Header = () => {
         )}
 
         {isMobile && <MobileCategoryFilter />}
-        {/* <PostCategoryList isMobile /> */}
       </div>
     </header>
   );
