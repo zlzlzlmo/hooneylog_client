@@ -3,9 +3,6 @@
 @import "styles/mixin";
 
 .mobile_container {
-    @media (min-width:$mobile-max-width) {
-        display: none;
-    }
     .background {
         position: fixed;
         right:0;

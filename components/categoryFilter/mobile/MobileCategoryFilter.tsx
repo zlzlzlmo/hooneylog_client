@@ -3,6 +3,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import SearchHeader from 'components/search/SearchHeader';
 import useReduxData from 'hooks/useReduxData';
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { GrClose } from 'react-icons/gr';
@@ -12,6 +13,7 @@ import styles from './MobileCategoryFilter.module.scss';
 type BurgerStatus = 'open' | 'close';
 
 const MobileCategoryFilter = () => {
+  const router = useRouter();
   const { originalNotionList } = useReduxData();
   const [clickedBurger, setClickedBurger] = useState<boolean>(false);
 
@@ -21,6 +23,11 @@ const MobileCategoryFilter = () => {
     } else if (status === 'close') {
       setClickedBurger(false);
     }
+  };
+
+  const handleClickForLink = (category: string) => () => {
+    setClickedBurger(false);
+    router.push(`/?category=${category}`);
   };
 
   return (
@@ -33,7 +40,7 @@ const MobileCategoryFilter = () => {
 
         <div className={styles.list}>
           {new MultipleCategoryManager(originalNotionList).sortedCountCategoryList.map(([category, count]) => (
-            <span key={category}>
+            <span key={category} onClick={handleClickForLink(category)}>
               {category}
               <span className={styles.count}>({count})</span>
             </span>
