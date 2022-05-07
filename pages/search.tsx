@@ -15,14 +15,15 @@ import SearchController from 'util/search';
 import { makeTextToFilter } from 'util/common';
 import { useAppDispatch, useAppSelector } from 'redux/configStore';
 import { getFilteredNotionList, setFilteredPostList } from 'redux/modules/post';
-import useDispatchNotionList from 'hooks/useDispatchNotionList';
+import useHandleReduxData from 'hooks/useHandleReduxData';
 
 interface SearchPageProps {
   notionList: INotionPost[];
 }
 
 const search = ({ notionList }: SearchPageProps) => {
-  useDispatchNotionList({ notionList });
+  const { originialNotionList } = useHandleReduxData();
+  originialNotionList(notionList);
   const dispatch = useAppDispatch();
   const filteredNotionList = useAppSelector(getFilteredNotionList);
   const [isTyping, setIsTyping] = useState<boolean>(false);

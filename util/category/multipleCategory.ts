@@ -5,6 +5,10 @@ type ReduceReturnType = Record<string, number>;
 class MultipleCategoryManager {
   private readonly notionList: INotionPost[] = [];
 
+  constructor(notionList: INotionPost[]) {
+    this.notionList = notionList;
+  }
+
   private get countEachCategory() {
     const result = this.notionList.reduce<ReduceReturnType>((acc, { properties }) => {
       const { name } = properties.category.multi_select[0];
@@ -20,10 +24,6 @@ class MultipleCategoryManager {
     });
 
     return result;
-  }
-
-  constructor(notionList: INotionPost[]) {
-    this.notionList = notionList;
   }
 }
 
