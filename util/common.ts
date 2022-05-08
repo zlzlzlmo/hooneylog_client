@@ -1,7 +1,7 @@
 /* eslint-disable consistent-return */
 import { DateTimeFormatOptions } from 'ts/interface/date';
 
-export const dateFormat = (dateString: string) => {
+export const dateFormat = (dateString: string): string => {
   // * 2022년 4월 18일 22:22
   const options: DateTimeFormatOptions = {
     year: 'numeric',

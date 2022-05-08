@@ -8,10 +8,10 @@ const useReduxData = () => {
     return useAppSelector(getNotionList);
   };
 
-  const filterNotionList = () => {
+  const filteredNotionList = () => {
     return useAppSelector(getFilteredNotionList);
   };
-  return { originalNotionList: originalNotionList(), filteredNotionList: filterNotionList() };
+  return { originalNotionList: originalNotionList(), filteredNotionList: filteredNotionList() };
 };
 
 export default useReduxData;

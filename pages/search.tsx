@@ -23,16 +23,20 @@ interface SearchPageProps {
 const search = ({ notionList }: SearchPageProps) => {
   const { dispatchFilterNotionList, dispatchOriginialNotionList } = useHandleReduxData();
   const { filteredNotionList } = useReduxData();
-  dispatchOriginialNotionList(notionList);
   const [isTyping, setIsTyping] = useState<boolean>(false);
 
-  const handleChange = debounce((e: ChangeEvent<HTMLInputElement>) => {
-    const value = makeTextToFilter(e.target.value);
-    value.length > 0 ? setIsTyping(true) : setIsTyping(false);
+  dispatchOriginialNotionList(notionList);
 
-    const searchInstance = new SearchController(notionList);
-    const filteredList = searchInstance.getFilteredList(value);
+  const filterNotionListFromSearchValue = (value: string) => {
+    const filteredList = new SearchController(notionList).getFilteredList(makeTextToFilter(value));
     dispatchFilterNotionList(filteredList);
+  };
+
+  const handleChangeSearchInput = debounce((e: ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    setIsTyping(value.length > 0);
+
+    filterNotionListFromSearchValue(value);
   }, 200);
 
   return (
@@ -42,7 +46,7 @@ const search = ({ notionList }: SearchPageProps) => {
       </Head>
       <Layout>
         <div>
-          <Search handleChange={handleChange} />
+          <Search handleChange={handleChangeSearchInput} />
           <Content>
             {isTyping && (
               <>

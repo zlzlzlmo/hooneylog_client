@@ -9,7 +9,7 @@ class MultipleCategoryManager {
     this.notionList = notionList;
   }
 
-  private get countEachCategory() {
+  private get countEachCategory(): ReduceReturnType {
     const result = this.notionList.reduce<ReduceReturnType>((acc, { properties }) => {
       const { name } = properties.category.multi_select[0];
       return { ...acc, [name]: acc[name] ? acc[name] + 1 : 1 };
@@ -18,12 +18,10 @@ class MultipleCategoryManager {
     return result;
   }
 
-  get sortedCountCategoryList() {
-    const result = Object.entries(this.countEachCategory).sort((a, b) => {
+  get sortedCountCategoryList(): [string, number][] {
+    return Object.entries(this.countEachCategory).sort((a, b) => {
       return b[1] - a[1] || a[0].localeCompare(b[0]);
     });
-
-    return result;
   }
 }
 

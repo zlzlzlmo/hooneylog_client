@@ -14,7 +14,7 @@
             color:$base-color;
             font-weight: 600;
             font-size: 2.3rem;
-            height: 3.5rem;
+            height: 3.0rem;
             overflow: hidden;
         }
 
@@ -53,8 +53,7 @@
         }
 
         .category {
-            padding:0 0.5rem;
-            padding-bottom: 0.2rem;
+            padding:$category-padding;
             color:#fff;
         }
 

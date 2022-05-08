@@ -3,14 +3,13 @@
 
 .container {
     .category {
-        padding:0 0.5rem;
-        padding-bottom: 0.2rem;
+        padding:$category-padding;
         color:$white-color;
     }
     
     .title {
         font-size: min(max(2.5rem,3vw),3.5rem);
-        font-weight: bold;
+        font-weight: $font-weight;
         margin:2rem 0;
     }
     

@@ -1,9 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-/* eslint-disable no-constant-condition */
 /* eslint-disable camelcase */
 /* eslint-disable no-await-in-loop */
 import { Client } from '@notionhq/client';
+import { GetPageResponse } from '@notionhq/client/build/src/api-endpoints';
 import { INotionProperties } from 'ts/interface/notion';
 
 class NotionService {
@@ -38,7 +36,7 @@ class NotionService {
     return response.results;
   }
 
-  async getPage(pageId: string) {
+  async getPage(pageId: string): Promise<GetPageResponse> {
     const response = await this.notion.pages.retrieve({ page_id: pageId });
     return response;
   }
@@ -63,7 +61,7 @@ class NotionService {
     return blocks;
   }
 
-  static getImageUrl(properties: INotionProperties) {
+  static getImageUrl(properties: INotionProperties): string {
     if (properties.image == null) {
       return '';
     }

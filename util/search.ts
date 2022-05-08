@@ -17,24 +17,21 @@ class SearchController implements ISearchController {
   }
 
   private get textForFilter(): string {
-    const result = makeTextToFilter(this.properties?.이름.title[0]?.plain_text);
-    return result;
+    return makeTextToFilter(this.properties?.이름.title[0]?.plain_text);
   }
 
   private get descriptionForFilter(): string {
-    const result = makeTextToFilter(this.properties?.description.rich_text[0]?.plain_text);
-    return result;
+    return makeTextToFilter(this.properties?.description.rich_text[0]?.plain_text);
   }
 
   private get tagListForFilter() {
-    const result = this.properties?.tag.multi_select.find((tag) => {
+    return this.properties?.tag.multi_select.find((tag) => {
       return makeTextToFilter(tag.name).indexOf(this.searchValue) !== -1;
     });
-    return result;
   }
 
   getFilteredList(searchValue: string): INotionPost[] {
-    const resultList = this.notionList.filter(({ properties }) => {
+    const result = this.notionList.filter(({ properties }) => {
       this.properties = properties;
       this.searchValue = searchValue;
 
@@ -45,7 +42,7 @@ class SearchController implements ISearchController {
       );
     });
 
-    return resultList;
+    return result;
   }
 }
 

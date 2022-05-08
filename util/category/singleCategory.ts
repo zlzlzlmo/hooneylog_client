@@ -21,9 +21,8 @@ class SingleCategoryManager {
   }
 
   get categoryLetterToShow(): string {
-    const str = this.category?.toLowerCase();
-    const result = str?.charAt(0).toUpperCase() + str?.slice(1);
-    return result;
+    const strLowerCase = this.category?.toLowerCase();
+    return strLowerCase?.charAt(0).toUpperCase() + strLowerCase?.slice(1);
   }
 
   get categoryColorToShow(): CategoryBackgroundColor {
@@ -38,7 +37,7 @@ class SingleCategoryManager {
     return result;
   }
 
-  get categorySearchParam() {
+  get categorySearchParam(): string {
     if (typeof window !== 'undefined') {
       return new URLSearchParams(window.location.search).get('category') ?? ALL_LOWER_CASE;
     }

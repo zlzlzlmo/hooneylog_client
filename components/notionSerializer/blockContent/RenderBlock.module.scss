@@ -7,19 +7,19 @@
 
 .headingOne {
     font-size: 3.2rem;
-    font-weight: 900;
+    font-weight: $font-weight;
     margin-bottom:$block-margin-bottom;
 }
 
 .headingTwo {
   font-size: 2.4rem;
-  font-weight: 900;
+  font-weight: $font-weight;
   margin-bottom:$block-margin-bottom
 }
 
 .headingThree {
     font-size: 1.87rem;
-    font-weight: 900;
+    font-weight: $font-weight;
     margin-bottom:$block-margin-bottom;
 }
 
@@ -44,6 +44,10 @@
         img {
             max-width: 100%;
         }
+    }
+
+    figcaption {
+        margin-top:1rem;
     }
 }
 
