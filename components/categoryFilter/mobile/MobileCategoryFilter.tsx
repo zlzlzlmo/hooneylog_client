@@ -6,6 +6,7 @@ import useCategoryFilter from 'hooks/useCategoryFilter';
 import React, { useState } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { GrClose } from 'react-icons/gr';
+import SingleCategoryManager from 'util/category/singleCategory';
 import styles from './MobileCategoryFilter.module.scss';
 
 type BurgerStatus = 'open' | 'close';
@@ -38,7 +39,7 @@ const MobileCategoryFilter = () => {
         <div className={styles.list}>
           {categoryListToShow.map(([category, count]) => (
             <span key={category} onClick={handleClickCategory(category)}>
-              {category}
+              {new SingleCategoryManager(category).categoryLetterToShow}
               <span className={styles.count}>({count})</span>
             </span>
           ))}
