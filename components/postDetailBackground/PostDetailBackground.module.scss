@@ -1,0 +1,10 @@
+@import "styles/variable";
+@import "styles/mixin";
+@import "styles/function";
+
+.container {
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+   background-size: cover;
+   height: 20vh;
+}

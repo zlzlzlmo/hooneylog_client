@@ -9,7 +9,9 @@
    background-repeat: no-repeat;
    background-attachment: fixed;
    background-size: cover;
-   
+   background-image: url("/images/background.webp");
+   height: 40vh;
+
    @include flexCenter;
 
    .intro_box {
@@ -31,8 +33,13 @@
    }
 
 
-   @media (max-width:$mobile-max-width) {
-    font-size: 2rem;
+    @media (max-width:$mobile-max-width) {
+    font-size: 2rem !important;
+  }
+
+  @media (max-width:$tablet-max-width) {
+    background-image: url("/images/tablet_background.webp");
+    font-size: 3rem;
   }
 }
 

@@ -1,8 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable no-console */
 import Layout from 'components/layout/Layout';
 import Content from 'components/layout/content/Content';
-import Introduce from 'components/layout/introduce/Introduce';
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import PostList from 'components/posts/PostList';
@@ -14,6 +11,7 @@ import DesktopCategoryFilter from 'components/categoryFilter/desktop/DesktopCate
 import useIsMobile from 'hooks/useIsMobile';
 import PostLength from 'components/common/PostLength/PostLength';
 import useReduxData from 'hooks/useReduxData';
+import HomeBackground from 'components/homeBackground/HomeBackground';
 
 interface HomePageProps {
   notionList: INotionPost[];
@@ -33,7 +31,7 @@ const HomePage = ({ notionList }: HomePageProps) => {
       </Head>
       <Layout>
         <div>
-          <Introduce mainImage={BACKGROUND_MAIN_IMAGE} />
+          <HomeBackground />
           <Content>
             {!isMobile ? <DesktopCategoryFilter /> : <PostLength length={filteredNotionList.length} />}
             <PostList />
