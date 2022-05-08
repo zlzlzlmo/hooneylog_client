@@ -7,11 +7,11 @@
     grid-gap: 3rem;
 
     @media (max-width:$tablet-max-width) {
-        grid-template-columns: repeat(2,1fr);
+        grid-template-columns: repeat(2,minmax(0, 1fr));
     }
 
     @media (max-width:$mobile-max-width) {
-        grid-template-columns: 100%;
+        grid-template-columns: minmax(0, 1fr);
         .skeleton_box {
             display: block;
         }
