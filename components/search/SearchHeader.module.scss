@@ -11,9 +11,8 @@
     font-size: 1.2rem;
     border-radius: 0.4rem;
     cursor: pointer;
-    font-family:'nunito',Helvetica,Arial,sans-serif;
     letter-spacing: 0.2rem;
-    font-weight: bolder;
+    font-weight: $font-weight;
     .input {
         display: flex;
         align-items: center;

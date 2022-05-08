@@ -5,8 +5,7 @@
 .container {
    font-size: 4rem;
    color:$white-color;
-   font-family: 'Ubuntu', sans-serif;
-   font-weight: bold;
+   font-weight: $font-weight;
    background-repeat: no-repeat;
    background-attachment: fixed;
    background-size: cover;

@@ -12,14 +12,14 @@
 
     .active {
         color:$base-color;
-        font-weight: 900;
+        font-weight: $font-weight;
     }
     li {
         color:lightgray;
         cursor: pointer;
 
         .count {
-            font-weight: 900;
+            font-weight: $font-weight;
         }
     }
 }

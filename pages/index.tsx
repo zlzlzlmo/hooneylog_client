@@ -12,6 +12,8 @@ import { BACKGROUND_MAIN_IMAGE } from 'ts/constant';
 import useHandleReduxData from 'hooks/useHandleReduxData';
 import DesktopCategoryFilter from 'components/categoryFilter/desktop/DesktopCategoryFilter';
 import useIsMobile from 'hooks/useIsMobile';
+import PostLength from 'components/common/PostLength/PostLength';
+import useReduxData from 'hooks/useReduxData';
 
 interface HomePageProps {
   notionList: INotionPost[];
@@ -19,6 +21,7 @@ interface HomePageProps {
 
 const HomePage = ({ notionList }: HomePageProps) => {
   const { dispatchOriginialNotionList } = useHandleReduxData();
+  const { filteredNotionList } = useReduxData();
   const isMobile = useIsMobile();
   dispatchOriginialNotionList(notionList);
 
@@ -27,13 +30,12 @@ const HomePage = ({ notionList }: HomePageProps) => {
       <Head>
         <title>Hooney Blog</title>
         <meta property="og:image" content={BACKGROUND_MAIN_IMAGE} />
-        <meta property="og:description" content="프론트엔드 개발자 신승훈이 직접 개발한 개인 기술 블로그입니다." />
       </Head>
       <Layout>
         <div>
           <Introduce mainImage={BACKGROUND_MAIN_IMAGE} />
           <Content>
-            {!isMobile && <DesktopCategoryFilter />}
+            {!isMobile ? <DesktopCategoryFilter /> : <PostLength length={filteredNotionList.length} />}
             <PostList />
           </Content>
         </div>
