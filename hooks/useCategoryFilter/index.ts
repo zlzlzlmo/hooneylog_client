@@ -37,7 +37,6 @@ const useCategoryFilter = () => {
   }, [originalNotionList]);
 
   const routerPushFor = (category: string) => {
-    console.log('??dpd');
     router.push(`/?category=${category}`);
   };
 

@@ -22,7 +22,7 @@ interface SearchPageProps {
 
 const search = ({ notionList }: SearchPageProps) => {
   const { dispatchFilterNotionList, dispatchOriginialNotionList } = useHandleReduxData();
-  const { filterNotionList } = useReduxData();
+  const { filteredNotionList } = useReduxData();
   dispatchOriginialNotionList(notionList);
   const [isTyping, setIsTyping] = useState<boolean>(false);
 
@@ -46,7 +46,7 @@ const search = ({ notionList }: SearchPageProps) => {
           <Content>
             {isTyping && (
               <>
-                <PostLength length={filterNotionList.length} />
+                <PostLength length={filteredNotionList.length} />
                 <PostList />
               </>
             )}
