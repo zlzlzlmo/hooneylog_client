@@ -1,6 +1,5 @@
 /* eslint-disable consistent-return */
 import { DateTimeFormatOptions } from 'ts/interface/date';
-import SingleCategoryManager from 'util/category/singleCategory';
 
 export const dateFormat = (dateString: string) => {
   // * 2022년 4월 18일 22:22
