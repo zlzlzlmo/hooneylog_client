@@ -1,18 +1,16 @@
-/* eslint-disable react/jsx-no-useless-fragment */
-/* eslint-disable react/jsx-fragments */
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-param-reassign */
+/* eslint-disable react/jsx-no-useless-fragment */
 import FbComment from 'components/comment/FbComment';
 import Content from 'components/layout/content/Content';
-import Introduce from 'components/layout/introduce/Introduce';
+import PostDetailBackground from 'components/postDetailBackground/PostDetailBackground';
 import Layout from 'components/layout/Layout';
 import PostDetail from 'components/postDetail/PostDetail';
 import useHandleReduxData from 'hooks/useHandleReduxData';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { GetStaticProps } from 'next/types';
-import React, { Fragment } from 'react';
+import React from 'react';
 import { INotionPost } from 'ts/interface/notion';
 import NotionService from 'util/notion';
 
@@ -27,7 +25,7 @@ const PostDetailPage = ({ notionList, blocks, page }: PostDetailPageProps) => {
   const { dispatchOriginialNotionList } = useHandleReduxData();
   dispatchOriginialNotionList(notionList);
   if (router.isFallback) {
-    return <Fragment />;
+    return <></>;
   }
 
   const { properties } = page;
@@ -41,7 +39,7 @@ const PostDetailPage = ({ notionList, blocks, page }: PostDetailPageProps) => {
         <title>Hooney Blog - {properties.이름.title[0].plain_text}</title>
       </Head>
       <div>
-        <Introduce mainImage={NotionService.getImageUrl(properties)} />
+        <PostDetailBackground imageUrl={NotionService.getImageUrl(properties)} />
         <Content>
           <PostDetail
             title={properties.이름.title[0].plain_text}
