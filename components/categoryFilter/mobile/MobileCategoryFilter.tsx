@@ -28,11 +28,11 @@ const MobileCategoryFilter = () => {
   };
 
   return (
-    <div className={styles.mobile_container} role="categoryFilter">
-      <div onClick={handleClickBurger('open')} role="hamburger">
+    <div className={styles.mobile_container} title="categoryFilter">
+      <div onClick={handleClickBurger('open')} title="hamburger">
         <GiHamburgerMenu />
       </div>
-      <div className={`${styles.background} ${clickedBurger && styles.active}`} role="popup">
+      <div className={`${styles.background} ${clickedBurger && styles.active}`} title="popup">
         <SearchHeader />
 
         <div className={styles.list}>
@@ -44,7 +44,7 @@ const MobileCategoryFilter = () => {
           ))}
         </div>
 
-        <div onClick={handleClickBurger('close')} role="closePopup">
+        <div onClick={handleClickBurger('close')} title="closePopup">
           <GrClose className={styles.close} />
         </div>
       </div>
