@@ -13,9 +13,10 @@
             margin-top:1rem;
             color:$base-color;
             font-weight: 600;
-            font-size: 2.3rem;
-            height: 2.3rem;
+            font-size: 2.1rem;
             overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
         }
 
         .sub {
@@ -58,9 +59,8 @@
         }
 
         .desc {
-            height: 9.6rem;
-            overflow: hidden;
             margin-bottom: 3rem;
+            @include ellipsis(5,2rem)
         }
 
         .reg_date {
