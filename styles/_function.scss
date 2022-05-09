@@ -1,5 +1,0 @@
-
-@function getFontSize($pixel) {
-    $result: calc($pixel / 1280 * 100);
-    @return #{$result}#{vw};
-  }
