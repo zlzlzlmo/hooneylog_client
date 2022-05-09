@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+/* eslint-disable no-constant-condition */
 /* eslint-disable camelcase */
 /* eslint-disable no-await-in-loop */
 import { Client } from '@notionhq/client';
@@ -5,9 +8,9 @@ import { GetPageResponse } from '@notionhq/client/build/src/api-endpoints';
 import { INotionProperties } from 'ts/interface/notion';
 
 class NotionService {
-  private notion: Client;
+  private readonly notion: Client;
 
-  private databaseId = process.env.NEXT_PUBLIC_NOTION_DATABASE ?? '';
+  private readonly databaseId = process.env.NEXT_PUBLIC_NOTION_DATABASE ?? '';
 
   constructor() {
     this.notion = new Client({

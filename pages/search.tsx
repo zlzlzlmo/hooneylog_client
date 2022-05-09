@@ -12,7 +12,6 @@ import { GetStaticProps } from 'next';
 import NotionService from 'util/notion';
 import { INotionPost } from 'ts/interface/notion';
 import SearchController from 'util/search';
-import { makeTextToFilter } from 'util/common';
 import useHandleReduxData from 'hooks/useHandleReduxData';
 import useReduxData from 'hooks/useReduxData';
 
@@ -27,8 +26,8 @@ const search = ({ notionList }: SearchPageProps) => {
 
   dispatchOriginialNotionList(notionList);
 
-  const filterNotionListFromSearchValue = (value: string) => {
-    const filteredList = new SearchController(notionList).getFilteredList(makeTextToFilter(value));
+  const filterNotionListBySearchValue = (value: string) => {
+    const filteredList = new SearchController(notionList).filteredListBySearchValue(value);
     dispatchFilterNotionList(filteredList);
   };
 
@@ -36,7 +35,7 @@ const search = ({ notionList }: SearchPageProps) => {
     const { value } = e.target;
     setIsTyping(value.length > 0);
 
-    filterNotionListFromSearchValue(value);
+    filterNotionListBySearchValue(value);
   }, 200);
 
   return (

@@ -1,4 +1,4 @@
-/* eslint-disable consistent-return */
+/* eslint-disable import/prefer-default-export */
 import { DateTimeFormatOptions } from 'ts/interface/date';
 
 export const dateFormat = (dateString: string): string => {
@@ -14,11 +14,4 @@ export const dateFormat = (dateString: string): string => {
   const date = new Date(dateString);
 
   return date.toLocaleDateString('ko-KR', options);
-};
-
-export const makeTextToFilter = (text: string | undefined): string => {
-  if (text === undefined) {
-    return '';
-  }
-  return text.replaceAll(' ', '').toLowerCase();
 };
