@@ -35,7 +35,8 @@ const PostDetailPage = ({ notionList, blocks, page }: PostDetailPageProps) => {
       <Head>
         <meta property="og:image" content={NotionService.getImageUrl(properties)} />
         <meta property="og:description" content={properties.이름.title[0].plain_text} />
-        <meta property="fb:app_id" content="540132141049632" />
+        <meta property="fb:app_id" content="&#123;540132141049632&#125;" />
+
         <title>Hooney Blog - {properties.이름.title[0].plain_text}</title>
       </Head>
       <div>
