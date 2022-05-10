@@ -10,7 +10,7 @@ beforeEach(() => {
   // cms 1
   // javascript 1
   // react 1
-  data = ['typescript', 'typescript', 'typescript', 'javascript', 'react', 'cms'];
+  data = ['typescript', 'typescript', 'typescript', 'javascript', '기타', 'react', 'cms', '기타', '기타'];
   instance = new MultipleCategoryManager(data);
 });
 
@@ -21,6 +21,7 @@ describe('multipleCategoryManager', () => {
       ['cms', 1],
       ['javascript', 1],
       ['react', 1],
+      ['기타', 3],
     ]);
   });
 });
