@@ -30,9 +30,10 @@ const useCategoryFilter = () => {
   }, [originalNotionList, new SingleCategoryManager().categorySearchParam]);
 
   const categoryListToShow = useMemo((): [string, number][] => {
+    const categoryNameList = originalNotionList.map(({ properties }) => properties.category.multi_select[0].name);
     return [
       [ALL_LOWER_CASE, originalNotionList.length],
-      ...new MultipleCategoryManager(originalNotionList).sortedCountCategoryList,
+      ...new MultipleCategoryManager(categoryNameList).sortedCountCategoryList,
     ];
   }, [originalNotionList]);
 

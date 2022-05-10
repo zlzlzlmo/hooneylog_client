@@ -1,17 +1,16 @@
-import { INotionPost } from 'ts/interface/notion';
+/* eslint-disable class-methods-use-this */
 
 type ReduceReturnType = Record<string, number>;
 
 class MultipleCategoryManager {
-  private readonly notionList: INotionPost[] = [];
+  private readonly categoryNameList: string[] = [];
 
-  constructor(notionList: INotionPost[]) {
-    this.notionList = notionList;
+  constructor(categoryNameList: string[]) {
+    this.categoryNameList = categoryNameList;
   }
 
   private get countEachCategory(): ReduceReturnType {
-    const result = this.notionList.reduce<ReduceReturnType>((acc, { properties }) => {
-      const { name } = properties.category.multi_select[0];
+    const result = this.categoryNameList.reduce<ReduceReturnType>((acc, name) => {
       return { ...acc, [name]: acc[name] ? acc[name] + 1 : 1 };
     }, {});
 
