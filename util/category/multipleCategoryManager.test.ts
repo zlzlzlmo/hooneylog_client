@@ -21,7 +21,7 @@ describe('multipleCategoryManager', () => {
       ['cms', 1],
       ['javascript', 1],
       ['react', 1],
-      ['기타', 3],
+      [instance.lowestPriorityWord, 3],
     ]);
   });
 });

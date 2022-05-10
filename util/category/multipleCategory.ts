@@ -9,6 +9,10 @@ class MultipleCategoryManager {
     this.categoryNameList = categoryNameList;
   }
 
+  get lowestPriorityWord() {
+    return '기타';
+  }
+
   private get countEachCategory(): ReduceReturnType {
     const result = this.categoryNameList.reduce<ReduceReturnType>((acc, name) => {
       return { ...acc, [name]: acc[name] ? acc[name] + 1 : 1 };
@@ -19,10 +23,10 @@ class MultipleCategoryManager {
 
   get sortedCountCategoryList(): [string, number][] {
     return Object.entries(this.countEachCategory).sort((a, b) => {
-      if (a[0] === '기타') {
+      if (a[0] === this.lowestPriorityWord) {
         return 1;
       }
-      if (b[0] === '기타') {
+      if (b[0] === this.lowestPriorityWord) {
         return -1;
       }
       return b[1] - a[1] || a[0].localeCompare(b[0]);
