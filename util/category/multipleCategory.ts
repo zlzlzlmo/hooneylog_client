@@ -19,6 +19,12 @@ class MultipleCategoryManager {
 
   get sortedCountCategoryList(): [string, number][] {
     return Object.entries(this.countEachCategory).sort((a, b) => {
+      if (a[0] === '기타') {
+        return 1;
+      }
+      if (b[0] === '기타') {
+        return -1;
+      }
       return b[1] - a[1] || a[0].localeCompare(b[0]);
     });
   }
