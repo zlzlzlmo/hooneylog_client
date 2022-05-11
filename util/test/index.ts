@@ -6,3 +6,11 @@ export const definePathNameProperty = (pathname: string) => {
     },
   });
 };
+
+export const defineSearchProperty = (queryString: string) => {
+  Object.defineProperty(window, 'location', {
+    get() {
+      return { search: queryString };
+    },
+  });
+};
