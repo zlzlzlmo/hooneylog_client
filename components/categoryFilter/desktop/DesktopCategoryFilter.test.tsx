@@ -1,6 +1,9 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { useRouter } from 'next/router';
 import { Provider } from 'react-redux';
 import { store } from 'redux/configStore';
+import { defineSearchProperty } from 'util/test';
 import DesktopCategoryFilter from './DesktopCategoryFilter';
 
 jest.mock(`hooks/useCategoryFilter`, () => {
@@ -12,6 +15,7 @@ jest.mock(`hooks/useCategoryFilter`, () => {
       ['react', 1],
       ['기타', 1],
     ],
+    routerPushFor: jest.fn((category) => defineSearchProperty(`/?category=${category}`)),
   }));
 });
 
@@ -24,7 +28,6 @@ describe('<DesktopCategoryFilter/>', () => {
     );
 
     const allCategory = screen.getByText(/all/i);
-    screen.debug();
     expect(allCategory).toBeInTheDocument();
     expect(allCategory).toHaveTextContent('All');
     expect(allCategory).toHaveClass('active');
@@ -39,5 +42,21 @@ describe('<DesktopCategoryFilter/>', () => {
 
     const list = container.querySelectorAll('li');
     expect(list.length).toBe(5);
+  });
+
+  test('카테고리 클릭시 active가 되고 routing이 제대로 되는지 테스트', async () => {
+    render(
+      <Provider store={store}>
+        <DesktopCategoryFilter />
+      </Provider>,
+    );
+
+    expect(screen.getByText(/typescript/i)).toBeInTheDocument();
+    userEvent.click(screen.getByText(/typescript/i));
+
+    await waitFor(() => {
+      expect(screen.getByText(/typescript/i)).toHaveClass('active');
+    });
+    expect(window.location.search).toBe('/?category=typescript');
   });
 });

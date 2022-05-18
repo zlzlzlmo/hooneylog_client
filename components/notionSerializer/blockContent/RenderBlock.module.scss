@@ -26,6 +26,9 @@
 .list {
     list-style-type: disc;
     margin-bottom:$block-margin-bottom;
+    span {
+        display: inline !important;
+    }
 }
 
 

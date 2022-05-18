@@ -50,7 +50,7 @@ const PostDetailPage = ({ notionList, blocks, page }: PostDetailPageProps) => {
             blocks={blocks}
           />
 
-          {/* <FbComment slug={slug} /> */}
+          <FbComment slug={slug} />
         </Content>
       </div>
     </Layout>
