@@ -1,12 +1,15 @@
+/* eslint-disable react/jsx-no-useless-fragment */
 /* eslint-disable no-use-before-define */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/no-unused-prop-types */
+import useControlSkeleton from 'hooks/useControlSkeleton';
 import useFilter from 'hooks/useFilter';
+import useIntersectionObserver from 'hooks/useIntersection';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import SingleCategoryManager from 'util/category/singleCategory';
 import { appendQueryString, dateFormat } from 'util/common';
 import styles from './PostItem.module.scss';
@@ -21,6 +24,8 @@ interface PostItemProps {
 }
 const PostItem = ({ title, createdAt, id, category, description, tag }: PostItemProps) => {
   const router = useRouter();
+  const articleRef = useRef<HTMLElement>(null);
+  const { timeToShow } = useControlSkeleton({ articleRef });
   const goToDetail = () => router.push(`post/${id}`);
   const { filterByQueryString } = useFilter();
 
@@ -30,7 +35,7 @@ const PostItem = ({ title, createdAt, id, category, description, tag }: PostItem
   };
 
   return (
-    <article className={styles.container}>
+    <article className={`${styles.container} ${timeToShow && styles.visible}`} ref={articleRef}>
       <section className={styles.img_box}>
         <img src={new SingleCategoryManager(category).categoryImageSrc} alt={category} />
       </section>

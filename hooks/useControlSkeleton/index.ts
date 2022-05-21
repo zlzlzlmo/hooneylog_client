@@ -3,13 +3,13 @@ import useIntersectionObserver from 'hooks/useIntersection';
 import { useEffect, useState } from 'react';
 
 interface usePostItemProps {
-  containerRef: React.RefObject<HTMLDivElement>;
+  articleRef: React.RefObject<HTMLElement>;
 }
 
-const useControlSkeleton = ({ containerRef }: usePostItemProps) => {
+const useControlSkeleton = ({ articleRef }: usePostItemProps) => {
   const [timeToShow, setIsTimeToShow] = useState<boolean>(false);
 
-  const entry = useIntersectionObserver(containerRef, {});
+  const entry = useIntersectionObserver(articleRef, {});
 
   useEffect(() => {
     if (entry?.isIntersecting) {
