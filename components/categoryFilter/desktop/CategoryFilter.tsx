@@ -45,7 +45,7 @@ const CategoryFilter = () => {
           onClick={handleClickCategory(category)}
           className={`${activeCategory === category && styles.active}`}
         >
-          {new SingleCategoryManager(category).categoryLetterToShow}
+          <span className={styles.text}>{new SingleCategoryManager(category).categoryLetterToShow}</span>
           <span className={styles.count}>({count})</span>
         </li>
       ))}

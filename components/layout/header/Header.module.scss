@@ -9,21 +9,18 @@
     .inner_header {
         @include flexSb;
         line-height: 6rem;
-        max-width: $desktop-max-width;
+        max-width: $max-width;
         margin:0 auto;
-        padding:0 5%;
+        
+        @media (max-width:$tablet-max-width) {
+            padding:0 5%;
+        }
 
         .logo {
             user-select: none;
             font-weight: $font-weight;
             font-size: min(max(2.5rem,3vw),2rem);
             cursor: pointer;
-        }
-
-        .search_box {
-            @media (max-width:$mobile-max-width) {
-                display: none;
-              }
         }
     }
 

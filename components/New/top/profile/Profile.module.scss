@@ -5,12 +5,26 @@
         margin:0 auto;
         @include flexCenter;
         gap:2rem;
-        height: 7rem;
+
+        @media (max-width:$mobile-max-width) {
+            @include flexColumnCenter;
+        }
+
+        // display:flex !important;
+        // justify-content: center;
+        // align-items: center;
+        // flex-direction: column;
+        // gap: 2rem;
+        
         .img_box {
             width: 7rem;
-            height: 100%;
+            height: 7rem;
             border-radius: 50%;
             position: relative;
+
+            @media (max-width:$mobile-max-width) {
+                margin:0 auto;
+            }
             img {
                 border-radius: 50%;
             }
@@ -18,7 +32,9 @@
 
         .intro_box {
             height: 100%;
+            text-align: center;
             @include flexColumnSb;
+            gap: 1rem;
             .name {
                 display: inline-block;
                 font-size: 1.7rem;

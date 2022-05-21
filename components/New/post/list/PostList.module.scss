@@ -9,7 +9,7 @@
     flex-direction: column;
     row-gap: 5rem;
 
-    @media (max-width:880px) {
+    @media (max-width:$tablet-max-width) {
         padding:5rem 5%;
       }
 }
