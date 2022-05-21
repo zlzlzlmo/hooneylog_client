@@ -10,6 +10,7 @@
         width:100%;
         img {
             width:100%;
+            height: 100%;
             object-fit: contain;
         }
     }
@@ -19,6 +20,9 @@
         gap:1rem;
         flex-direction: column;
 
+        .title {
+            font-size: 2rem;
+        }
         .title:hover {
             cursor: pointer;
             text-decoration: underline;
@@ -88,10 +92,9 @@
         }
 
         .go_to_detail {
-            color:$base-color;
+            color:$base-color2;
             cursor: pointer;
             &:hover {
-                color:$base-color2;
                 text-decoration: underline;
                 transition: all 0.1s ease-in-out;
             }

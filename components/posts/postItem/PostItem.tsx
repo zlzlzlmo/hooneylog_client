@@ -45,11 +45,11 @@ const PostItem = ({ title, createdAt, imageUrl, id, category, description }: Pos
               <ProfileImage />
               <span className={styles.name}> By Seunghoon</span>
             </div>
-            {categoryInstance.categoryColorToShow != null && (
+            {/* {categoryInstance.categoryColorToShow != null && (
               <div className={styles.category} style={{ backgroundColor: categoryInstance.categoryColorToShow }}>
                 {categoryInstance.categoryLetterToShow}
               </div>
-            )}
+            )} */}
           </section>
           <p className={styles.desc}>{description}</p>
           <section className={styles.reg_date}>{dateFormat(createdAt)}</section>

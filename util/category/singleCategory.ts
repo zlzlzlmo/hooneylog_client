@@ -6,35 +6,17 @@ import { CategoryBackgroundColor } from 'ts/enum';
 class SingleCategoryManager {
   private category = '';
 
-  private categories;
+  private readonly categories;
 
   constructor(category?: string) {
     if (category) this.category = category;
-    this.categories = [
-      { language: 'typescript', color: CategoryBackgroundColor.Typescript },
-      { language: 'react', color: CategoryBackgroundColor.React },
-      { language: 'javascript', color: CategoryBackgroundColor.Javascript },
-      { language: 'next.js', color: CategoryBackgroundColor.NextJs },
-      { language: 'cms', color: CategoryBackgroundColor.CMS },
-      { language: 'esbuild', color: CategoryBackgroundColor.ESBUILD },
-    ];
+
+    this.categories = ['알고리즘', 'nextjs', 'nestjs', 'react', 'javascript', 'typescript'];
   }
 
   get categoryLetterToShow(): string {
     const strLowerCase = this.category?.toLowerCase();
     return strLowerCase?.charAt(0).toUpperCase() + strLowerCase?.slice(1);
-  }
-
-  get categoryColorToShow(): CategoryBackgroundColor {
-    const result = this.categories.find(
-      ({ language }) => language.toLowerCase() === this.category.toLowerCase(),
-    )?.color;
-
-    if (result === undefined) {
-      return CategoryBackgroundColor.DEFAULT;
-    }
-
-    return result;
   }
 
   get categorySearchParam(): string {
@@ -43,6 +25,18 @@ class SingleCategoryManager {
     }
 
     return ALL_LOWER_CASE;
+  }
+
+  get categoryImageSrc() {
+    let category = this.category.toLowerCase().replaceAll('.', '');
+    if (!this.categories.includes(category)) {
+      category = 'default.avif';
+    } else {
+      category = `${category}.png`;
+    }
+
+    const result = `/images/${category}`;
+    return result;
   }
 }
 
