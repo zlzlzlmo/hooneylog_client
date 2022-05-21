@@ -7,9 +7,8 @@
 /* eslint-disable react/no-unused-prop-types */
 import useControlSkeleton from 'hooks/useControlSkeleton';
 import useFilter from 'hooks/useFilter';
-import useIntersectionObserver from 'hooks/useIntersection';
 import { useRouter } from 'next/router';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import SingleCategoryManager from 'util/category/singleCategory';
 import { appendQueryString, dateFormat } from 'util/common';
 import styles from './PostItem.module.scss';
@@ -34,8 +33,12 @@ const PostItem = ({ title, createdAt, id, category, description, tag }: PostItem
     filterByQueryString();
   };
 
+  if (!timeToShow) {
+    return <article className={styles.transparent} ref={articleRef} />;
+  }
+
   return (
-    <article className={`${styles.container} ${timeToShow && styles.visible}`} ref={articleRef}>
+    <article className={`${styles.container}`}>
       <section className={styles.img_box}>
         <img src={new SingleCategoryManager(category).categoryImageSrc} alt={category} />
       </section>
