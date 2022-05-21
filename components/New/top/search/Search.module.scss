@@ -1,0 +1,36 @@
+@import "styles/variable";
+@import "styles/mixin";
+
+.container {
+    max-width: $max-width;
+    margin: 0 auto;
+    padding:1.5rem;
+    width:100%;
+
+
+    form {
+        width:75%;
+        margin: 0 auto;
+        @include flexSb;
+    }
+    .input {
+        height: 4.5rem;
+        border: 0.1rem solid $blender-color;
+        border-radius: .5rem;
+        padding:0 2rem;
+        width:83%;
+        &::placeholder {
+            font-size: 1.6rem;
+            color:$blender-color;
+        }
+    }
+    .btn {
+        background-color: $base-color2;
+        height: 4.5rem;
+        width: 15%;
+        color:$white-color;
+        border: none;
+        border-radius: .5rem;
+        font-size: 1.7rem;
+    }
+}

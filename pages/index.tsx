@@ -1,8 +1,6 @@
 import Layout from 'components/layout/Layout';
-import Content from 'components/layout/content/Content';
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
-import PostList from 'components/posts/PostList';
 import NotionService from 'util/notion';
 import { INotionPost } from 'ts/interface/notion';
 import { BACKGROUND_MAIN_IMAGE } from 'ts/constant';
@@ -12,6 +10,9 @@ import useIsMobile from 'hooks/useIsMobile';
 import PostLength from 'components/common/PostLength/PostLength';
 import useReduxData from 'hooks/useReduxData';
 import HomeBackground from 'components/homeBackground/HomeBackground';
+import Content from 'components/New/content/Content';
+import Top from 'components/New/top/Top';
+import PostList from 'components/New/post/list/PostList';
 
 interface HomePageProps {
   notionList: INotionPost[];
@@ -22,7 +23,7 @@ const HomePage = ({ notionList }: HomePageProps) => {
   const { filteredNotionList } = useReduxData();
   const isMobile = useIsMobile();
   dispatchOriginialNotionList(notionList);
-
+  console.log('notionList : ', notionList);
   return (
     <>
       <Head>
@@ -31,9 +32,13 @@ const HomePage = ({ notionList }: HomePageProps) => {
       </Head>
       <Layout>
         <div>
-          <HomeBackground />
-          <Content>
+          {/* <HomeBackground /> */}
+          {/* <Content>
             {!isMobile ? <DesktopCategoryFilter /> : <PostLength length={filteredNotionList.length} />}
+            <PostList />
+          </Content> */}
+          <Content>
+            <Top />
             <PostList />
           </Content>
         </div>
