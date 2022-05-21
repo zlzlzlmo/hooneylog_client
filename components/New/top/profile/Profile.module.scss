@@ -1,0 +1,66 @@
+@import "styles/variable";
+@import "styles/mixin";
+    .container {
+        max-width: $max-width;
+        margin:0 auto;
+        @include flexCenter;
+        gap:2rem;
+        height: 7rem;
+        .img_box {
+            width: 7rem;
+            height: 100%;
+            border-radius: 50%;
+            position: relative;
+            img {
+                border-radius: 50%;
+            }
+        }
+
+        .intro_box {
+            height: 100%;
+            @include flexColumnSb;
+            .name {
+                display: inline-block;
+                font-size: 1.7rem;
+                color:$base-color;
+                font-weight: $font-weight;
+                border:0.1rem solid $base-color;
+                padding:0.7rem;
+                background-color: $white-color;
+                border-radius: 1rem;
+                animation: moveNameSpan 2s linear infinite;
+            }
+
+            .text {
+                display: inline-block;
+                font-size: 1.4rem;
+                color:$blender-color;
+            }
+        }
+    }
+
+
+@keyframes moveNameSpan {
+    0% {
+        transform: rotate(0);
+    }
+
+    35% {
+        transform: rotate(0deg);
+    }
+
+    40% {
+        transform: rotate(-5deg);
+    }
+
+    60% {
+        transform: rotate(5deg);
+    }
+
+    65% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(0);
+    }
+}

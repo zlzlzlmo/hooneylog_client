@@ -1,0 +1,122 @@
+@import "styles/variable";
+
+.container {
+    display:grid;
+    grid-template-columns: 1fr 4fr;
+    grid-column-gap: 3rem;
+
+    // background-color: blue;
+    .img_box {
+        width:100%;
+        img {
+            width:100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+
+    .content {
+        display:flex;
+        gap:1rem;
+        flex-direction: column;
+
+        .title {
+            font-size: 2rem;
+        }
+        .title:hover {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        .date {
+            font-size: 1.3rem;
+            color:$gray-color
+        }
+
+        .tag_box {
+            display: flex;
+            column-gap: 2rem;
+            row-gap:0.7rem;
+            width:100%;
+            flex-wrap: wrap;
+
+            .tag {
+                display: inline-block;
+                text-align: center;
+                font-size: 1.5rem;
+                background-color: $base-color2;
+                color:$white-color;
+                height: 2.6rem;
+                line-height: 2.6rem;
+                padding: 0 2rem 0 2.3rem;
+                cursor: pointer;
+                border-radius: 0.3rem 0 0 0.3rem;
+                position: relative;
+                &:hover {
+                    display: inline-block;
+                    background-color: $base-color;
+                    animation: moveTagSpan 1.5s linear infinite;
+
+                    &::after {  
+                        border-left: 1rem solid $base-color;
+                    }
+                }
+
+                &::before {
+                    content: "";
+                    top: 1rem;
+                    left: 1rem;
+                    position: absolute;
+                    width: 0.6rem;
+                    height: 0.6rem;
+                    border-radius: 1rem;
+                    background: $white-color;
+                    box-shadow: inset 0 0.1rem rgb(0 0 0 / 25%);
+                }
+
+                &::after {
+                    border-left: 1rem solid $base-color2;
+                    content: "";
+                    position: absolute;
+                    right: -1rem;
+                    top: 0;
+                    border-bottom: 1.3rem solid transparent;
+                    border-top: 1.3rem solid transparent;
+                    transition: background .3s,color .3s;
+                }
+            }
+        }
+
+        .description {
+            color:$blender-color;
+            font-size: 1.5rem;
+        }
+
+        .go_to_detail {
+            color:$base-color2;
+            cursor: pointer;
+            &:hover {
+                text-decoration: underline;
+                transition: all 0.1s ease-in-out;
+            }
+        }
+    }
+
+}
+
+@keyframes moveTagSpan {
+
+    40% {
+        transform: rotate(-5deg);
+    }
+
+    60% {
+        transform: rotate(5deg);
+    }
+
+    65% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(0);
+    }
+}

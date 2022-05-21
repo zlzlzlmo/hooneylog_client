@@ -6,11 +6,13 @@ import { CategoryBackgroundColor } from 'ts/enum';
 class SingleCategoryManager {
   private category = '';
 
-  private categories;
+  private categoriesColorSet;
+
+  private categoriesImageSet;
 
   constructor(category?: string) {
     if (category) this.category = category;
-    this.categories = [
+    this.categoriesColorSet = [
       { language: 'typescript', color: CategoryBackgroundColor.Typescript },
       { language: 'react', color: CategoryBackgroundColor.React },
       { language: 'javascript', color: CategoryBackgroundColor.Javascript },
@@ -18,6 +20,8 @@ class SingleCategoryManager {
       { language: 'cms', color: CategoryBackgroundColor.CMS },
       { language: 'esbuild', color: CategoryBackgroundColor.ESBUILD },
     ];
+
+    this.categoriesImageSet = ['알고리즘', 'nextjs', 'nestjs', 'react', 'javascript', 'typescript'];
   }
 
   get categoryLetterToShow(): string {
@@ -26,7 +30,7 @@ class SingleCategoryManager {
   }
 
   get categoryColorToShow(): CategoryBackgroundColor {
-    const result = this.categories.find(
+    const result = this.categoriesColorSet.find(
       ({ language }) => language.toLowerCase() === this.category.toLowerCase(),
     )?.color;
 
@@ -43,6 +47,18 @@ class SingleCategoryManager {
     }
 
     return ALL_LOWER_CASE;
+  }
+
+  get categoryImageSrc() {
+    let category = this.category.toLowerCase().replaceAll('.', '');
+    if (!this.categoriesImageSet.includes(category)) {
+      category = 'default.avif';
+    } else {
+      category = `${category}.png`;
+    }
+
+    const result = `/images/${category}`;
+    return result;
   }
 }
 

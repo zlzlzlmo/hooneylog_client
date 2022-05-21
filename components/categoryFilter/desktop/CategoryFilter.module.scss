@@ -1,0 +1,25 @@
+
+@import "styles/variable";
+@import "styles/mixin";
+.container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap:2rem;
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    border-bottom: 0.1rem solid $sub-color-3;
+
+    .active {
+        color:$base-color;
+        font-weight: $font-weight;
+    }
+    li {
+        color:lightgray;
+        cursor: pointer;
+
+        .count {
+            font-weight: $font-weight;
+        }
+    }
+}

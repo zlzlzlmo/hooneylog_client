@@ -10,6 +10,12 @@
     align-items: center;
 }
 
+@mixin flexColumnSb {
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 @mixin ellipsis($line-cnt, $line-height) { 
     overflow: hidden;
     text-overflow: ellipsis;
