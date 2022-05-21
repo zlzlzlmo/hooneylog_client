@@ -1,12 +1,14 @@
+/* eslint-disable no-use-before-define */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/no-unused-prop-types */
+import useFilter from 'hooks/useFilter';
 import { useRouter } from 'next/router';
 import React from 'react';
 import SingleCategoryManager from 'util/category/singleCategory';
-import { dateFormat } from 'util/common';
+import { appendQueryString, dateFormat } from 'util/common';
 import styles from './PostItem.module.scss';
 
 interface PostItemProps {
@@ -20,6 +22,12 @@ interface PostItemProps {
 const PostItem = ({ title, createdAt, id, category, description, tag }: PostItemProps) => {
   const router = useRouter();
   const goToDetail = () => router.push(`post/${id}`);
+  const { filterByQueryString } = useFilter();
+
+  const handleTagFilter = (tagForFilter: string) => {
+    appendQueryString('tag', tagForFilter);
+    filterByQueryString();
+  };
 
   return (
     <article className={styles.container}>
@@ -33,7 +41,7 @@ const PostItem = ({ title, createdAt, id, category, description, tag }: PostItem
         <div className={styles.date}>{dateFormat(createdAt)}</div>
         <section className={styles.tag_box}>
           {tag.map(({ name }) => (
-            <span className={styles.tag} key={name}>
+            <span className={styles.tag} key={name} onClick={handleTagFilter.bind(null, name)}>
               {name}
             </span>
           ))}

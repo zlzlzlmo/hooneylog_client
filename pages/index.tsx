@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import Layout from 'components/layout/Layout';
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
@@ -5,14 +6,12 @@ import NotionService from 'util/notion';
 import { INotionPost } from 'ts/interface/notion';
 import { BACKGROUND_MAIN_IMAGE } from 'ts/constant';
 import useHandleReduxData from 'hooks/useHandleReduxData';
-import DesktopCategoryFilter from 'components/categoryFilter/desktop/DesktopCategoryFilter';
-import useIsMobile from 'hooks/useIsMobile';
-import PostLength from 'components/common/PostLength/PostLength';
 import useReduxData from 'hooks/useReduxData';
-import HomeBackground from 'components/homeBackground/HomeBackground';
 import Content from 'components/New/content/Content';
 import Top from 'components/New/top/Top';
 import PostList from 'components/New/post/list/PostList';
+import { useEffect } from 'react';
+import useFilter from 'hooks/useFilter';
 
 interface HomePageProps {
   notionList: INotionPost[];
@@ -20,10 +19,12 @@ interface HomePageProps {
 
 const HomePage = ({ notionList }: HomePageProps) => {
   const { dispatchOriginialNotionList } = useHandleReduxData();
-  const { filteredNotionList } = useReduxData();
-  const isMobile = useIsMobile();
+  const { originalNotionList } = useReduxData();
   dispatchOriginialNotionList(notionList);
-  console.log('notionList : ', notionList);
+  const { filterByQueryString } = useFilter();
+  useEffect(() => {
+    filterByQueryString();
+  }, [originalNotionList]);
   return (
     <>
       <Head>
@@ -32,11 +33,6 @@ const HomePage = ({ notionList }: HomePageProps) => {
       </Head>
       <Layout>
         <div>
-          {/* <HomeBackground /> */}
-          {/* <Content>
-            {!isMobile ? <DesktopCategoryFilter /> : <PostLength length={filteredNotionList.length} />}
-            <PostList />
-          </Content> */}
           <Content>
             <Top />
             <PostList />

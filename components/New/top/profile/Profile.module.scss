@@ -9,8 +9,11 @@
         .img_box {
             width: 7rem;
             height: 100%;
-            background-color: blue;
             border-radius: 50%;
+            position: relative;
+            img {
+                border-radius: 50%;
+            }
         }
 
         .intro_box {

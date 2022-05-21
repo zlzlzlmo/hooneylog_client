@@ -1,4 +1,4 @@
-import DesktopCategoryFilter from 'components/categoryFilter/desktop/DesktopCategoryFilter';
+import CategoryFilter from 'components/categoryFilter/desktop/CategoryFilter';
 import PostLength from 'components/common/PostLength/PostLength';
 import useReduxData from 'hooks/useReduxData';
 import React, { Fragment } from 'react';
@@ -10,7 +10,7 @@ const PostList = () => {
   return (
     <main className={styles.container}>
       <div>
-        <DesktopCategoryFilter />
+        <CategoryFilter />
         <PostLength length={filteredNotionList.length} />
       </div>
       {filteredNotionList.map(({ id, properties }) => (

@@ -1,6 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable no-use-before-define */
 import useFilter from 'hooks/useFilter';
-import React, { ChangeEvent, FormEvent, useRef, useState } from 'react';
+import React, { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react';
+import { appendQueryString, queryParamFor } from 'util/common';
 import styles from './Search.module.scss';
 
 const Search = () => {
@@ -8,18 +11,13 @@ const Search = () => {
   const [searchValue, setSearchValue] = useState('');
   const { filterByQueryString } = useFilter();
 
-  const handleSearchValue = () => (e: ChangeEvent<HTMLInputElement>) => setSearchValue(e.target.value);
-
-  const handleFormSubmit = () => (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    appendQueryString();
-    filterByQueryString();
-    resetInputValue();
-
-    function appendQueryString() {
-      const searchParams = new URLSearchParams(window.location.search);
-      searchParams.set('search', searchValue);
-      window.history.pushState({}, '', `${window.location.origin}?${searchParams}`);
+  useEffect(() => {
+    if (queryParamFor('search') !== null) {
+      if (inputRef.current) {
+        inputRef.current.value = queryParamFor('search')!;
+      }
+    } else {
+      resetInputValue();
     }
 
     function resetInputValue() {
@@ -27,6 +25,14 @@ const Search = () => {
         inputRef.current.value = '';
       }
     }
+  }, [queryParamFor('search')]);
+
+  const handleSearchValue = () => (e: ChangeEvent<HTMLInputElement>) => setSearchValue(e.target.value);
+
+  const handleFormSubmit = () => (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    appendQueryString('search', searchValue);
+    filterByQueryString();
   };
   return (
     <section className={styles.container}>
@@ -36,7 +42,6 @@ const Search = () => {
           className={styles.input}
           placeholder="검색어를 입력하세요"
           onChange={handleSearchValue()}
-          value={searchValue}
           ref={inputRef}
         />
         <button type="submit" className={styles.btn}>
