@@ -4,14 +4,13 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 import FbComment from 'components/comment/FbComment';
 import Content from 'components/layout/content/Content';
-import PostDetailBackground from 'components/postDetailBackground/PostDetailBackground';
 import Layout from 'components/layout/Layout';
 import PostDetail from 'components/postDetail/PostDetail';
 import useHandleReduxData from 'hooks/useHandleReduxData';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { GetStaticProps } from 'next/types';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { INotionPost } from 'ts/interface/notion';
 import NotionService from 'util/notion';
 import NotionBlock from 'util/block';
@@ -48,7 +47,6 @@ const PostDetailPage = ({ notionList, blocks, page }: PostDetailPageProps) => {
         <title>Hooney Blog - {notionBlock.title}</title>
       </Head>
       <div>
-        <PostDetailBackground imageUrl={NotionService.getImageUrl(properties)} />
         <Content>
           <PostDetail
             title={notionBlock.title}
