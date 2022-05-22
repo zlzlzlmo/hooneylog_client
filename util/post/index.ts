@@ -7,11 +7,15 @@ class Post {
 
   private readonly currentPage;
 
-  private readonly currentIndex;
+  private currentIndex = 0;
 
   constructor(notionList: INotionPost[], currentPage: INotionPost) {
     this.notionList = notionList;
     this.currentPage = currentPage;
+
+    if (!this.notionList) {
+      return;
+    }
 
     this.currentIndex = this.notionList.findIndex(({ id }) => id === this.currentPage.id);
   }

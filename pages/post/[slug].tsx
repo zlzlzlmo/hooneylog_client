@@ -26,16 +26,16 @@ interface PostDetailPageProps {
 const PostDetailPage = ({ notionList, blocks, page }: PostDetailPageProps) => {
   const router = useRouter();
   const slug = router.query.slug as string;
-  const { previosPost, nextPost } = new Post(notionList, page);
   const { dispatchOriginialNotionList } = useHandleReduxData();
   dispatchOriginialNotionList(notionList);
-
-  const { properties } = page;
-  const notionBlock = new NotionBlock(properties);
 
   if (router.isFallback) {
     return <></>;
   }
+
+  const { previosPost, nextPost } = new Post(notionList, page);
+  const { properties } = page;
+  const notionBlock = new NotionBlock(properties);
 
   return (
     <Layout>

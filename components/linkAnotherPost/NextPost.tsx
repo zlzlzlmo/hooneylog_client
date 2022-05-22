@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import React from 'react';
 import { GrLinkNext } from 'react-icons/gr';
 import styles from './AnotherPost.module.scss';
