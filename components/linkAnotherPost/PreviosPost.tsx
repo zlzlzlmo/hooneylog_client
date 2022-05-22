@@ -13,16 +13,14 @@ interface PreviosPostProps {
 
 const PreviosPost = ({ previosPost }: PreviosPostProps) => {
   return (
-    <Link href={`/post/${previosPost.id}`} passHref>
-      <a>
-        <span className={`${styles.container} ${styles.previos}`}>
-          <span className={styles.arrow_icon}>
-            <GrLinkPrevious />
-          </span>
-          <span className={styles.title}>{previosPost.title}</span>
+    <a href={`/post/${previosPost.id}`}>
+      <span className={`${styles.container} ${styles.previos}`}>
+        <span className={styles.arrow_icon}>
+          <GrLinkPrevious />
         </span>
-      </a>
-    </Link>
+        <span className={styles.title}>{previosPost.title}</span>
+      </span>
+    </a>
   );
 };
 
