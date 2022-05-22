@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/jsx-no-useless-fragment */
 /* eslint-disable no-use-before-define */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
@@ -42,7 +43,9 @@ const PostItem = ({ title, createdAt, id, category, description, tag }: PostItem
       </section>
       <section className={styles.content}>
         <Link href={`post/${id}`} passHref>
-          <h2 className={styles.title}>{title}</h2>
+          <a>
+            <h2 className={styles.title}>{title}</h2>
+          </a>
         </Link>
         <div className={styles.date}>{dateFormat(createdAt)}</div>
         <section className={styles.tag_box}>
@@ -54,7 +57,9 @@ const PostItem = ({ title, createdAt, id, category, description, tag }: PostItem
         </section>
         <section className={styles.description}>{description}</section>
         <Link href={`post/${id}`} passHref>
-          <span className={styles.go_to_detail}>Read More</span>
+          <a>
+            <span className={styles.go_to_detail}>Read More</span>
+          </a>
         </Link>
       </section>
     </article>
