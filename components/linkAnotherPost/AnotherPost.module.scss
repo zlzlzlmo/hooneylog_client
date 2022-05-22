@@ -8,20 +8,19 @@
     font-size: 1.4rem;
     border-radius: .7rem;
     cursor: pointer;
+    text-align: right;
 
     .arrow_icon {
         vertical-align: text-top;
     }
 
     &.previos {
-        text-align: left;
         .arrow_icon {
             margin-right: 0.5rem;
         }
     }
 
     &.next {
-        text-align: left;
         .arrow_icon {
             margin-left: 0.5rem;
         }
