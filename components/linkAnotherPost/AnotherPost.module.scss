@@ -1,11 +1,11 @@
 @import "styles/variable";
 
 .container {
+    display:inline-flex;
     background-color: $base-color2;
     color: $white-color;
     padding:1rem 1rem;
     font-size: 1.4rem;
-    margin-bottom: 1.2rem;
     border-radius: .7rem;
     cursor: pointer;
 
@@ -21,7 +21,7 @@
     }
 
     &.next {
-        text-align: right;
+        text-align: left;
         .arrow_icon {
             margin-left: 0.5rem;
         }

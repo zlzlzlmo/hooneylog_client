@@ -60,9 +60,10 @@ const PostDetailPage = ({ notionList, blocks, page }: PostDetailPageProps) => {
             style={{
               display: 'flex',
               flexDirection: 'column',
-              height: '6.5rem',
               justifyContent: 'space-between',
               margin: '3rem 0',
+              gap: '2rem',
+              alignItems: 'flex-end',
             }}
           >
             {previosPost && <PreviosPost previosPost={previosPost} />}
