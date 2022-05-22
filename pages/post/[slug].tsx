@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-param-reassign */
 /* eslint-disable react/jsx-no-useless-fragment */
@@ -10,9 +11,13 @@ import useHandleReduxData from 'hooks/useHandleReduxData';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { GetStaticProps } from 'next/types';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { INotionPost } from 'ts/interface/notion';
 import NotionService from 'util/notion';
+import NotionBlock from 'util/block';
+import Post from 'util/post';
+import PreviosPost from 'components/linkAnotherPost/PreviosPost';
+import NextPost from 'components/linkAnotherPost/NextPost';
 
 interface PostDetailPageProps {
   notionList: INotionPost[];
@@ -22,34 +27,49 @@ interface PostDetailPageProps {
 const PostDetailPage = ({ notionList, blocks, page }: PostDetailPageProps) => {
   const router = useRouter();
   const slug = router.query.slug as string;
+  const { previosPost, nextPost } = new Post(notionList, page);
   const { dispatchOriginialNotionList } = useHandleReduxData();
   dispatchOriginialNotionList(notionList);
+
+  const { properties } = page;
+  const notionBlock = new NotionBlock(properties);
+
   if (router.isFallback) {
     return <></>;
   }
-
-  const { properties } = page;
 
   return (
     <Layout>
       <Head>
         <meta property="og:image" content={NotionService.getImageUrl(properties)} />
-        <meta property="og:description" content={properties.이름.title[0].plain_text} />
+        <meta property="og:description" content={notionBlock.title} />
         <meta property="fb:app_id" content="&#123;540132141049632&#125;" />
 
-        <title>Hooney Blog - {properties.이름.title[0].plain_text}</title>
+        <title>Hooney Blog - {notionBlock.title}</title>
       </Head>
       <div>
         <PostDetailBackground imageUrl={NotionService.getImageUrl(properties)} />
         <Content>
           <PostDetail
-            title={properties.이름.title[0].plain_text}
-            createdAt={properties.created_date.created_time}
-            category={properties.category.multi_select[0]?.name || ''}
-            tag={properties.tag.multi_select}
+            title={notionBlock.title}
+            createdAt={notionBlock.createdAt}
+            category={notionBlock.category}
+            tag={notionBlock.tag}
             blocks={blocks}
           />
 
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              height: '6.5rem',
+              justifyContent: 'space-between',
+              margin: '3rem 0',
+            }}
+          >
+            {previosPost && <PreviosPost previosPost={previosPost} />}
+            {nextPost && <NextPost nextPost={nextPost} />}
+          </div>
           <FbComment slug={slug} />
         </Content>
       </div>
