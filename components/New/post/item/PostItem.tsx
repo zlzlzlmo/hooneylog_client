@@ -7,7 +7,7 @@
 /* eslint-disable react/no-unused-prop-types */
 import useControlSkeleton from 'hooks/useControlSkeleton';
 import useFilter from 'hooks/useFilter';
-import { useRouter } from 'next/router';
+import Link from 'next/link';
 import React, { useRef } from 'react';
 import SingleCategoryManager from 'util/category/singleCategory';
 import { appendQueryString, dateFormat } from 'util/common';
@@ -22,10 +22,8 @@ interface PostItemProps {
   tag: { id: string; name: string }[];
 }
 const PostItem = ({ title, createdAt, id, category, description, tag }: PostItemProps) => {
-  const router = useRouter();
   const articleRef = useRef<HTMLElement>(null);
   const { timeToShow } = useControlSkeleton({ articleRef });
-  const goToDetail = () => router.push(`post/${id}`);
   const { filterByQueryString } = useFilter();
 
   const handleTagFilter = (tagForFilter: string) => {
@@ -43,9 +41,9 @@ const PostItem = ({ title, createdAt, id, category, description, tag }: PostItem
         <img src={new SingleCategoryManager(category).categoryImageSrc} alt={category} />
       </section>
       <section className={styles.content}>
-        <h2 className={styles.title} onClick={goToDetail}>
-          {title}
-        </h2>
+        <Link href={`post/${id}`} passHref>
+          <h2 className={styles.title}>{title}</h2>
+        </Link>
         <div className={styles.date}>{dateFormat(createdAt)}</div>
         <section className={styles.tag_box}>
           {tag.map(({ name }) => (
@@ -55,9 +53,9 @@ const PostItem = ({ title, createdAt, id, category, description, tag }: PostItem
           ))}
         </section>
         <section className={styles.description}>{description}</section>
-        <span className={styles.go_to_detail} onClick={goToDetail}>
-          Read More
-        </span>
+        <Link href={`post/${id}`} passHref>
+          <span className={styles.go_to_detail}>Read More</span>
+        </Link>
       </section>
     </article>
   );
