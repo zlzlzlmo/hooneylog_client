@@ -4,9 +4,10 @@
 /* eslint-disable no-shadow */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/destructuring-assignment */
-import { Fragment } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import useIntersectionObserver from 'hooks/useIntersection';
 import RenderNestedList from '../nestedList/RenderNestedList';
 import Text from '../text/Text';
 import styles from './RenderBlock.module.scss';
@@ -14,6 +15,16 @@ import styles from './RenderBlock.module.scss';
 const RenderBlock = (block: any) => {
   const { type, id } = block;
   const value = block[type];
+  const headingRef = useRef<HTMLHeadingElement>(null);
+  const entry = useIntersectionObserver(headingRef, {});
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    if (entry)
+      if (entry?.intersectionRatio > 0.5) {
+        setVisible(true);
+      }
+  }, [entry]);
 
   switch (type) {
     case 'paragraph':
@@ -23,11 +34,23 @@ const RenderBlock = (block: any) => {
         </p>
       );
     case 'heading_1':
-      return <h1 className={styles.headingOne}>{value.rich_text[0].plain_text} </h1>;
+      return (
+        <h1 className={`${styles.heading} ${styles.headingOne} ${visible && styles.visible}`} ref={headingRef}>
+          {value.rich_text[0].plain_text}{' '}
+        </h1>
+      );
     case 'heading_2':
-      return <h2 className={styles.headingTwo}>{value.rich_text[0].plain_text} </h2>;
+      return (
+        <h2 className={`${styles.heading} ${styles.headingTwo} ${visible && styles.visible}`} ref={headingRef}>
+          {value.rich_text[0].plain_text}{' '}
+        </h2>
+      );
     case 'heading_3':
-      return <h3 className={styles.headingThree}>{value.rich_text[0].plain_text} </h3>;
+      return (
+        <h3 className={`${styles.heading} ${styles.headingThree} ${visible && styles.visible}`} ref={headingRef}>
+          {value.rich_text[0].plain_text}{' '}
+        </h3>
+      );
     case 'bulleted_list_item':
     case 'numbered_list_item':
       return (
