@@ -17,7 +17,6 @@ const useFilter = () => {
     const searchValue = queryParamFor('search');
     const tag = queryParamFor('tag');
     let result = originalNotionList;
-    console.log(category === null && searchValue === null && tag === null);
     if (category === null && searchValue === null && tag === null) {
       dispatchFilterNotionList(result);
     }
