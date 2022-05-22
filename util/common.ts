@@ -34,11 +34,3 @@ export const appendQueryString = (queryParam: QueryParamType, type: string) => {
     window.history.pushState({}, '', `${window.location.origin}?${searchParams}`);
   }
 };
-
-export const queryParamFor = (queryParam: QueryParamType) => {
-  if (typeof window !== 'undefined') {
-    const searchParams = new URLSearchParams(window.location.search);
-    return searchParams.get(queryParam);
-  }
-  return '';
-};

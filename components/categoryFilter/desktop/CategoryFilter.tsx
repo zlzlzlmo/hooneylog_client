@@ -9,7 +9,8 @@ import useFilter from 'hooks/useFilter';
 import React, { useEffect, useState } from 'react';
 import { ALL_LOWER_CASE } from 'ts/constant';
 import SingleCategoryManager from 'util/category/singleCategory';
-import { appendQueryString, queryParamFor } from 'util/common';
+import { appendQueryString } from 'util/common';
+import QueryParam from 'util/query';
 import styles from './CategoryFilter.module.scss';
 
 const CategoryFilter = () => {
@@ -18,10 +19,10 @@ const CategoryFilter = () => {
   const { filterByQueryString, resetQueryString } = useFilter();
 
   useEffect(() => {
-    if (queryParamFor('category') === null) {
+    if (QueryParam.queryParamFor('category') === null) {
       setActiveCategory('all');
     }
-  }, [queryParamFor('category')]);
+  }, [QueryParam.queryParamFor('category')]);
 
   const handleClickCategory = (category: string) => () => {
     setActiveCategory(category);
