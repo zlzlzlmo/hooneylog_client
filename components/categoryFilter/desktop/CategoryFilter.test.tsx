@@ -1,6 +1,5 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { useRouter } from 'next/router';
 import { Provider } from 'react-redux';
 import { store } from 'redux/configStore';
 import { defineSearchProperty } from 'util/test';
