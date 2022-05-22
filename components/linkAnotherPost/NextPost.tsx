@@ -12,12 +12,12 @@ interface NextPostProps {
 const NextPost = ({ nextPost }: NextPostProps) => {
   return (
     <a href={`/post/${nextPost.id}`}>
-      <span className={`${styles.container} ${styles.next}`}>
-        {nextPost.title}
+      <div className={`${styles.container} ${styles.next}`}>
+        <span className={styles.title}>{nextPost.title}</span>
         <span className={styles.arrow_icon}>
           <GrLinkNext />
         </span>
-      </span>
+      </div>
     </a>
   );
 };

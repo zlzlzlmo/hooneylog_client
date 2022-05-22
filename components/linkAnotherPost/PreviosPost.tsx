@@ -16,7 +16,7 @@ const PreviosPost = ({ previosPost }: PreviosPostProps) => {
         <span className={styles.arrow_icon}>
           <GrLinkPrevious />
         </span>
-        {previosPost.title}
+        <span className={styles.title}>{previosPost.title}</span>
       </span>
     </a>
   );
