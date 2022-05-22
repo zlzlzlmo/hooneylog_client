@@ -3,7 +3,8 @@
 /* eslint-disable no-use-before-define */
 import useFilter from 'hooks/useFilter';
 import React, { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react';
-import { appendQueryString, queryParamFor } from 'util/common';
+import { appendQueryString } from 'util/common';
+import QueryParam from 'util/query';
 import styles from './Search.module.scss';
 
 const Search = () => {
@@ -12,9 +13,9 @@ const Search = () => {
   const { filterByQueryString } = useFilter();
 
   useEffect(() => {
-    if (queryParamFor('search') !== null) {
+    if (QueryParam.queryParamFor('search') !== null) {
       if (inputRef.current) {
-        inputRef.current.value = queryParamFor('search')!;
+        inputRef.current.value = QueryParam.queryParamFor('search')!;
       }
     } else {
       resetInputValue();
@@ -25,7 +26,7 @@ const Search = () => {
         inputRef.current.value = '';
       }
     }
-  }, [queryParamFor('search')]);
+  }, [QueryParam.queryParamFor('search')]);
 
   const handleSearchValue = () => (e: ChangeEvent<HTMLInputElement>) => setSearchValue(e.target.value);
 

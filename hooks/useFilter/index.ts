@@ -1,7 +1,6 @@
 import useHandleReduxData from 'hooks/useHandleReduxData';
 import useReduxData from 'hooks/useReduxData';
-import { ALL_LOWER_CASE } from 'ts/constant';
-import { queryParamFor } from 'util/common';
+import QueryParam from 'util/query';
 import SearchController from 'util/search';
 
 const useFilter = () => {
@@ -13,9 +12,9 @@ const useFilter = () => {
   };
 
   const filterByQueryString = () => {
-    const category = queryParamFor('category');
-    const searchValue = queryParamFor('search');
-    const tag = queryParamFor('tag');
+    const category = QueryParam.queryParamFor('category');
+    const searchValue = QueryParam.queryParamFor('search');
+    const tag = QueryParam.queryParamFor('tag');
     let result = originalNotionList;
     if (category === null && searchValue === null && tag === null) {
       dispatchFilterNotionList(result);

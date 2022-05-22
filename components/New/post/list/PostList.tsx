@@ -1,5 +1,6 @@
 import CategoryFilter from 'components/categoryFilter/desktop/CategoryFilter';
 import PostLength from 'components/common/PostLength/PostLength';
+import Filtered from 'components/filtered/Filtered';
 import useReduxData from 'hooks/useReduxData';
 import React, { Fragment } from 'react';
 import PostItem from '../item/PostItem';
@@ -12,6 +13,7 @@ const PostList = () => {
       <div>
         <CategoryFilter />
         <PostLength length={filteredNotionList.length} />
+        <Filtered />
       </div>
       {filteredNotionList.map(({ id, properties }) => (
         <Fragment key={id}>
