@@ -22,6 +22,10 @@ class NotionBlock {
   get tag() {
     return this.properties.tag.multi_select;
   }
+
+  get description() {
+    return this.properties.description.rich_text[0].plain_text;
+  }
 }
 
 export default NotionBlock;

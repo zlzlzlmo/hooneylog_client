@@ -2,12 +2,12 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
-import { INotionPost } from 'ts/interface/notion';
+import { NotionPost } from 'ts/interface/notion';
 import { RootState } from '../configStore';
 
 interface IinitialState {
-  notionList: INotionPost[];
-  filteredNotionList: INotionPost[];
+  notionList: NotionPost[];
+  filteredNotionList: NotionPost[];
 }
 
 const initialState: IinitialState = {
@@ -19,12 +19,11 @@ const postSlice = createSlice({
   name: 'post',
   initialState,
   reducers: {
-    setNotionList: (state, action: PayloadAction<INotionPost[]>) => {
+    setNotionList: (state, action: PayloadAction<NotionPost[]>) => {
       state.notionList = action.payload;
-      state.filteredNotionList = action.payload;
     },
 
-    setFilteredPostList: (state, action: PayloadAction<INotionPost[]>) => {
+    setFilteredPostList: (state, action: PayloadAction<NotionPost[]>) => {
       state.filteredNotionList = action.payload;
     },
   },

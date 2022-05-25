@@ -1,0 +1,26 @@
+@import "styles/mixin";
+@import "styles/variable";
+
+
+.container {
+    height: 3.5rem;
+    background: rgba(255,255,255,.15);
+    width:35vw;
+    max-width: 25rem;
+    padding:0 1rem;
+    font-size: 1.2rem;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    letter-spacing: 0.2rem;
+    font-weight: $font-weight;
+    .input {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+
+        border: none;
+        color:$white-color;
+    }
+
+}

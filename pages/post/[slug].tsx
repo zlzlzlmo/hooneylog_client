@@ -6,7 +6,7 @@ import FbComment from 'components/comment/FbComment';
 import Content from 'components/layout/content/Content';
 import Layout from 'components/layout/Layout';
 import PostDetail from 'components/postDetail/PostDetail';
-import useHandleReduxData from 'hooks/useHandleReduxData';
+import useHandleReduxData from 'hooks/useDispatchRedux';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { GetStaticProps } from 'next/types';
