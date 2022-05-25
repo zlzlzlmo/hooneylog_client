@@ -1,42 +1,45 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable consistent-return */
-import { INotionPost } from 'ts/interface/notion';
-import NotionBlock from 'util/block';
+import { NotionPost } from 'ts/interface/notion';
 
 class Post {
   private readonly notionList;
 
-  private readonly currentPage;
+  private readonly currentPost;
 
-  private currentIndex = 0;
+  private _currentIndex = 0;
 
-  constructor(notionList: INotionPost[], currentPage: INotionPost) {
+  get currentIndex() {
+    return this._currentIndex;
+  }
+
+  set currentIndex(index: number) {
+    this._currentIndex = index;
+  }
+
+  get previosPost() {
+    return this.notionList[this.currentIndex - 1];
+  }
+
+  get nextPost() {
+    return this.notionList[this.currentIndex + 1];
+  }
+
+  constructor(notionList: NotionPost[], currentPost: NotionPost) {
     this.notionList = notionList;
-    this.currentPage = currentPage;
+    this.currentPost = currentPost;
 
     if (!this.notionList) {
       return;
     }
 
-    this.currentIndex = this.notionList.findIndex(({ id }) => id === this.currentPage.id);
+    this.currentIndex = this.notionList.findIndex(({ id }) => id === this.currentPost.id);
   }
 
-  get previosPost() {
-    const post = this.notionList[this.currentIndex - 1];
-    return Post.getIdAndTitle(post);
-  }
-
-  get nextPost() {
-    const post = this.notionList[this.currentIndex + 1];
-    return Post.getIdAndTitle(post);
-  }
-
-  private static getIdAndTitle(post: INotionPost) {
-    if (post === undefined) {
-      return;
-    }
+  private static getIdAndTitle(post: NotionPost) {
     return {
       id: post.id,
-      title: new NotionBlock(post.properties).title,
+      title: post.title,
     };
   }
 }
