@@ -4,6 +4,7 @@ import SingleCategoryManager from 'util/category/singleCategory';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import RenderBlock from 'components/notionSerializer/blockContent/RenderBlock';
 import ProfileImage from 'components/common/profileImage/ProfileImage';
+import { Tag } from 'ts/interface/notion';
 import styles from './PostDetail.module.scss';
 
 interface PostDetailProps {
@@ -11,10 +12,10 @@ interface PostDetailProps {
   createdAt: string;
   category: string;
   blocks: [{ id: string }];
-  tag: [{ id: string; name: string }];
+  tags: Tag[];
 }
 
-const PostDetail = ({ title, createdAt, category, blocks, tag }: PostDetailProps) => {
+const PostDetail = ({ title, createdAt, category, blocks, tags }: PostDetailProps) => {
   const { categoryColorToShow, categoryLetterToShow } = new SingleCategoryManager(category);
   return (
     <article className={styles.container}>
@@ -32,7 +33,7 @@ const PostDetail = ({ title, createdAt, category, blocks, tag }: PostDetailProps
         <span className={styles.reg_date}>- {dateFormat(createdAt)}</span>
       </section>
       <section className={styles.tag_box}>
-        {tag.map(({ id, name }) => (
+        {tags.map(({ id, name }) => (
           <Fragment key={id}>
             <div className={styles.tag}>#{name}</div>
           </Fragment>

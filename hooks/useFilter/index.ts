@@ -1,15 +1,14 @@
 /* eslint-disable no-use-before-define */
-/* eslint-disable no-shadow */
-/* eslint-disable no-self-compare */
-import useDispatchRedux from 'hooks/useDispatchRedux';
 import useReduxData from 'hooks/useReduxData';
+import { useAppDispatch } from 'redux/configStore';
+import { setFilteredPostList } from 'redux/modules/post';
 import { NotionPost } from 'ts/interface/notion';
 import QueryParam from 'util/query';
 import SearchController from 'util/search';
 
 const useFilter = () => {
   const { originalNotionList } = useReduxData();
-  const { dispatchFilterNotionList } = useDispatchRedux();
+  const dispatch = useAppDispatch();
 
   const resetQueryString = () => {
     window.history.pushState({}, '', `${window.location.origin}`);
@@ -19,16 +18,17 @@ const useFilter = () => {
     const categoryParam = QueryParam.queryParamFor('category');
     const searchValueParam = QueryParam.queryParamFor('search');
     const tagParam = QueryParam.queryParamFor('tag');
+
     let result = originalNotionList;
 
     if (categoryParam === null && searchValueParam === null && tagParam === null) {
-      dispatchFilterNotionList(result);
+      dispatch(setFilteredPostList(result));
       return;
     }
 
     // 카테고리와 태그는 중복 필터 X
     if (categoryParam !== null) {
-      result = withCategoryFilter(categoryParam);
+      result = withCategoryFilter(result, categoryParam);
     } else if (tagParam !== null) {
       result = withTagsFilter(result, tagParam);
     }
@@ -37,11 +37,11 @@ const useFilter = () => {
       result = withSearchValueFilter(result, searchValueParam);
     }
 
-    dispatchFilterNotionList(result);
+    dispatch(setFilteredPostList(result));
   };
 
-  function withCategoryFilter(categoryParam: string) {
-    return originalNotionList.filter(({ category }) => {
+  function withCategoryFilter(notionList: NotionPost[], categoryParam: string) {
+    return notionList.filter(({ category }) => {
       return category === categoryParam;
     });
   }

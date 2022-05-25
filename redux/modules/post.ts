@@ -1,16 +1,16 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable import/no-cycle */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
+
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { NotionPost } from 'ts/interface/notion';
 import { RootState } from '../configStore';
 
-interface IinitialState {
+interface InitialState {
   notionList: NotionPost[];
   filteredNotionList: NotionPost[];
 }
 
-const initialState: IinitialState = {
+const initialState: InitialState = {
   notionList: [],
   filteredNotionList: [],
 };
