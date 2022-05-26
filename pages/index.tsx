@@ -34,6 +34,7 @@ const HomePage = ({ notionList }: HomePageProps) => {
     }
     filterByQueryString();
   }, [originalNotionList]);
+
   return (
     <>
       <Head>

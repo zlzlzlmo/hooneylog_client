@@ -41,7 +41,9 @@ const PostDetail = ({ title, createdAt, category, blocks, tags }: PostDetailProp
       </section>
       <main className={styles.main_content}>
         {blocks.map((block) => (
-          <Fragment key={block.id}>{RenderBlock(block)}</Fragment>
+          <Fragment key={block.id}>
+            <RenderBlock block={block} />
+          </Fragment>
         ))}
       </main>
     </article>

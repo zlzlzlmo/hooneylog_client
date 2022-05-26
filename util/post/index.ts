@@ -5,42 +5,27 @@ import { NotionPost } from 'ts/interface/notion';
 class Post {
   private readonly notionList;
 
-  private readonly currentPost;
+  private _currentPostIndex = 0;
 
-  private _currentIndex = 0;
-
-  get currentIndex() {
-    return this._currentIndex;
+  get currentPostIndex() {
+    return this._currentPostIndex;
   }
 
-  set currentIndex(index: number) {
-    this._currentIndex = index;
+  set currentPostIndex(index: number) {
+    this._currentPostIndex = index;
   }
 
   get previosPost() {
-    return this.notionList[this.currentIndex - 1];
+    return this.notionList[this.currentPostIndex - 1];
   }
 
   get nextPost() {
-    return this.notionList[this.currentIndex + 1];
+    return this.notionList[this.currentPostIndex + 1];
   }
 
   constructor(notionList: NotionPost[], currentPost: NotionPost) {
     this.notionList = notionList;
-    this.currentPost = currentPost;
-
-    if (!this.notionList) {
-      return;
-    }
-
-    this.currentIndex = this.notionList.findIndex(({ id }) => id === this.currentPost.id);
-  }
-
-  private static getIdAndTitle(post: NotionPost) {
-    return {
-      id: post.id,
-      title: post.title,
-    };
+    this.currentPostIndex = this.notionList.findIndex(({ id }) => id === currentPost.id);
   }
 }
 

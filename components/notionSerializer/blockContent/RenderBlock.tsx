@@ -12,7 +12,7 @@ import RenderNestedList from '../nestedList/RenderNestedList';
 import Text from '../text/Text';
 import styles from './RenderBlock.module.scss';
 
-const RenderBlock = (block: any) => {
+const RenderBlock = ({ block }: any) => {
   const { type, id } = block;
   const value = block[type];
   const headingRef = useRef<HTMLHeadingElement>(null);
@@ -127,7 +127,7 @@ const RenderBlock = (block: any) => {
         </a>
       );
     default:
-      return `❌ Unsupported block (${type === 'unsupported' ? 'unsupported by Notion API' : type})`;
+      return <span>`❌ Unsupported block (${type === 'unsupported' ? 'unsupported by Notion API' : type})`</span>;
   }
 };
 

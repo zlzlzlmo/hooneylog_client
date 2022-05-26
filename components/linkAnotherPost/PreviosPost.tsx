@@ -1,4 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+import Link from 'next/link';
 import React from 'react';
 import { GrLinkPrevious } from 'react-icons/gr';
 import styles from './AnotherPost.module.scss';
@@ -12,14 +13,16 @@ interface PreviosPostProps {
 
 const PreviosPost = ({ previosPost }: PreviosPostProps) => {
   return (
-    <a href={`/post/${previosPost.id}`}>
-      <span className={`${styles.container} ${styles.previos}`}>
-        <span className={styles.arrow_icon}>
-          <GrLinkPrevious />
+    <Link href={`/post/${previosPost.id}`}>
+      <a>
+        <span className={`${styles.container} ${styles.previos}`}>
+          <span className={styles.arrow_icon}>
+            <GrLinkPrevious />
+          </span>
+          <span className={styles.title}>{previosPost.title}</span>
         </span>
-        <span className={styles.title}>{previosPost.title}</span>
-      </span>
-    </a>
+      </a>
+    </Link>
   );
 };
 
