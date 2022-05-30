@@ -10,6 +10,7 @@ import useControlSkeleton from 'hooks/useControlSkeleton';
 import useFilter from 'hooks/useFilter';
 import Link from 'next/link';
 import React, { useRef } from 'react';
+import { Tag } from 'ts/interface/notion';
 import SingleCategoryManager from 'util/category/singleCategory';
 import { appendQueryString, dateFormat } from 'util/common';
 import styles from './PostItem.module.scss';
@@ -20,9 +21,9 @@ interface PostItemProps {
   id: string;
   category: string;
   description: string;
-  tag: { id: string; name: string }[];
+  tags: Tag[];
 }
-const PostItem = ({ title, createdAt, id, category, description, tag }: PostItemProps) => {
+const PostItem = ({ title, createdAt, id, category, description, tags }: PostItemProps) => {
   const articleRef = useRef<HTMLElement>(null);
   const { timeToShow } = useControlSkeleton({ articleRef });
   const { filterByQueryString } = useFilter();
@@ -49,7 +50,7 @@ const PostItem = ({ title, createdAt, id, category, description, tag }: PostItem
         </Link>
         <div className={styles.date}>{dateFormat(createdAt)}</div>
         <section className={styles.tag_box}>
-          {tag.map(({ name }) => (
+          {tags.map(({ name }) => (
             <span className={styles.tag} key={name} onClick={handleTagFilter.bind(null, name)}>
               {name}
             </span>

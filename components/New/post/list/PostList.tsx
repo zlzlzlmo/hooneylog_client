@@ -15,15 +15,15 @@ const PostList = () => {
         <PostLength length={filteredNotionList.length} />
         <Filtered />
       </div>
-      {filteredNotionList.map(({ id, properties }) => (
+      {filteredNotionList.map(({ id, title, createdAt, description, category, tags }) => (
         <Fragment key={id}>
           <PostItem
             id={id}
-            title={properties.이름.title[0]?.plain_text || ''}
-            createdAt={properties.created_date.created_time}
-            description={properties.description.rich_text[0]?.plain_text || ''}
-            category={properties.category.multi_select[0]?.name || ''}
-            tag={properties.tag.multi_select}
+            title={title}
+            createdAt={createdAt}
+            description={description}
+            category={category}
+            tags={tags}
           />
         </Fragment>
       ))}

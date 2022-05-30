@@ -13,14 +13,16 @@ interface NextPostProps {
 
 const NextPost = ({ nextPost }: NextPostProps) => {
   return (
-    <a href={`/post/${nextPost.id}`}>
-      <div className={`${styles.container} ${styles.next}`}>
-        <span className={styles.title}>{nextPost.title}</span>
-        <span className={styles.arrow_icon}>
-          <GrLinkNext />
-        </span>
-      </div>
-    </a>
+    <Link href={`/post/${nextPost.id}`}>
+      <a>
+        <div className={`${styles.container} ${styles.next}`}>
+          <span className={styles.title}>{nextPost.title}</span>
+          <span className={styles.arrow_icon}>
+            <GrLinkNext />
+          </span>
+        </div>
+      </a>
+    </Link>
   );
 };
 

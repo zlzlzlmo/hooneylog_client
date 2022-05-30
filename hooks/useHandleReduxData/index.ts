@@ -2,16 +2,16 @@
 import { useEffect } from 'react';
 import { useAppDispatch } from 'redux/configStore';
 import { setFilteredPostList, setNotionList } from 'redux/modules/post';
-import { INotionPost } from 'ts/interface/notion';
+import { NotionPost } from 'ts/interface/notion';
 
 const useHandleReduxData = () => {
   const dispatch = useAppDispatch();
 
-  const dispatchFilterNotionList = (data: INotionPost[]) => {
+  const dispatchFilterNotionList = (data: NotionPost[]) => {
     dispatch(setFilteredPostList(data));
   };
 
-  const dispatchOriginialNotionList = (data: INotionPost[]) => {
+  const dispatchOriginialNotionList = (data: NotionPost[]) => {
     useEffect(() => {
       dispatch(setNotionList(data));
     }, []);

@@ -1,43 +1,31 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable consistent-return */
-import { INotionPost } from 'ts/interface/notion';
-import NotionBlock from 'util/block';
+import { NotionPost } from 'ts/interface/notion';
 
 class Post {
   private readonly notionList;
 
-  private readonly currentPage;
+  private _currentPostIndex = 0;
 
-  private currentIndex = 0;
+  get currentPostIndex() {
+    return this._currentPostIndex;
+  }
 
-  constructor(notionList: INotionPost[], currentPage: INotionPost) {
-    this.notionList = notionList;
-    this.currentPage = currentPage;
-
-    if (!this.notionList) {
-      return;
-    }
-
-    this.currentIndex = this.notionList.findIndex(({ id }) => id === this.currentPage.id);
+  set currentPostIndex(index: number) {
+    this._currentPostIndex = index;
   }
 
   get previosPost() {
-    const post = this.notionList[this.currentIndex - 1];
-    return Post.getIdAndTitle(post);
+    return this.notionList[this.currentPostIndex - 1];
   }
 
   get nextPost() {
-    const post = this.notionList[this.currentIndex + 1];
-    return Post.getIdAndTitle(post);
+    return this.notionList[this.currentPostIndex + 1];
   }
 
-  private static getIdAndTitle(post: INotionPost) {
-    if (post === undefined) {
-      return;
-    }
-    return {
-      id: post.id,
-      title: new NotionBlock(post.properties).title,
-    };
+  constructor(notionList: NotionPost[], currentPost: NotionPost) {
+    this.notionList = notionList;
+    this.currentPostIndex = this.notionList.findIndex(({ id }) => id === currentPost.id);
   }
 }
 

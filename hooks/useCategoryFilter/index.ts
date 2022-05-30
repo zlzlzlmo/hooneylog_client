@@ -8,7 +8,7 @@ const useCategoryFilter = () => {
   const { originalNotionList } = useReduxData();
 
   const categoryListToShow = useMemo((): [string, number][] => {
-    const categoryNameList = originalNotionList.map(({ properties }) => properties.category.multi_select[0].name);
+    const categoryNameList = originalNotionList.map(({ category }) => category);
     return [
       [ALL_LOWER_CASE, originalNotionList.length],
       ...new MultipleCategoryManager(categoryNameList).sortedCountCategoryList,
