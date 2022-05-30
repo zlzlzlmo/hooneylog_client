@@ -32,6 +32,9 @@ const Search = () => {
 
   const handleFormSubmit = () => (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (searchValue === '') {
+      return;
+    }
     appendQueryString('search', searchValue);
     filterByQueryString();
   };
