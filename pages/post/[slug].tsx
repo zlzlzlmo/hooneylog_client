@@ -30,6 +30,7 @@ const PostDetailPage = ({ notionList, page, blocks }: PostDetailPageProps) => {
   const slug = router.query.slug as string;
 
   const dispatch = useAppDispatch();
+
   useEffect(() => {
     dispatch(setNotionList(notionList));
   }, []);
@@ -52,6 +53,7 @@ const PostDetailPage = ({ notionList, page, blocks }: PostDetailPageProps) => {
       <div>
         <Content>
           <PostDetail
+            postId={page.id}
             title={page.title}
             createdAt={page.createdAt}
             category={page.category}

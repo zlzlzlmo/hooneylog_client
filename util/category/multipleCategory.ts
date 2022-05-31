@@ -5,12 +5,10 @@ type ReduceReturnType = Record<string, number>;
 class MultipleCategoryManager {
   private readonly categoryNameList: string[] = [];
 
+  private readonly lowestPriorityWord = '기타';
+
   constructor(categoryNameList: string[]) {
     this.categoryNameList = categoryNameList;
-  }
-
-  get lowestPriorityWord() {
-    return '기타';
   }
 
   private get countEachCategory(): ReduceReturnType {

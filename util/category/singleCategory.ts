@@ -12,6 +12,7 @@ class SingleCategoryManager {
 
   constructor(category?: string) {
     if (category) this.category = category;
+
     this.categoriesColorSet = [
       { language: 'typescript', color: CategoryBackgroundColor.Typescript },
       { language: 'react', color: CategoryBackgroundColor.React },
