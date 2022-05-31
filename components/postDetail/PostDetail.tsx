@@ -1,13 +1,18 @@
-import React, { Fragment } from 'react';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React, { Fragment, useEffect, useLayoutEffect, useMemo, useState } from 'react';
 import { dateFormat } from 'util/common';
 import SingleCategoryManager from 'util/category/singleCategory';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import RenderBlock from 'components/notionSerializer/blockContent/RenderBlock';
 import ProfileImage from 'components/common/profileImage/ProfileImage';
 import { Tag } from 'ts/interface/notion';
+import PostView from 'util/postView';
+import API from 'util/api/api';
+import { useRouter } from 'next/router';
 import styles from './PostDetail.module.scss';
 
 interface PostDetailProps {
+  postId: string;
   title: string;
   createdAt: string;
   category: string;
@@ -15,8 +20,9 @@ interface PostDetailProps {
   tags: Tag[];
 }
 
-const PostDetail = ({ title, createdAt, category, blocks, tags }: PostDetailProps) => {
+const PostDetail = ({ postId, title, createdAt, category, blocks, tags }: PostDetailProps) => {
   const { categoryColorToShow, categoryLetterToShow } = new SingleCategoryManager(category);
+
   return (
     <article className={styles.container}>
       {categoryColorToShow && (

@@ -2,7 +2,7 @@
 /* eslint-disable import/no-unresolved */
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   i18n: {
     locales: ['ko'],
     defaultLocale: 'ko',

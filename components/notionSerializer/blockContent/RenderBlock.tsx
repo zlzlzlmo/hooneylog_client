@@ -46,11 +46,7 @@ const RenderBlock = ({ block }: any) => {
         </h2>
       );
     case 'heading_3':
-      return (
-        <h3 className={`${styles.heading} ${styles.headingThree} ${visible && styles.visible}`} ref={headingRef}>
-          {value.rich_text[0].plain_text}{' '}
-        </h3>
-      );
+      return <h3 className={`${styles.heading} ${styles.headingThree}`}>{value.rich_text[0].plain_text} </h3>;
     case 'bulleted_list_item':
     case 'numbered_list_item':
       return (

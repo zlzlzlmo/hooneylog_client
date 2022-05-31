@@ -9,7 +9,7 @@ import styles from './Search.module.scss';
 
 const Search = () => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [searchValue, setSearchValue] = useState('');
+  const [searchValue, setSearchValue] = useState<string>('');
   const { filterByQueryString } = useFilter();
 
   useEffect(() => {
