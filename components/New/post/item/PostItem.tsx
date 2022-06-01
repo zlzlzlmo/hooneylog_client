@@ -13,6 +13,7 @@ import React, { useRef } from 'react';
 import { Tag } from 'ts/interface/notion';
 import SingleCategoryManager from 'util/category/singleCategory';
 import { appendQueryString, dateFormat } from 'util/common';
+import AbstractFactory from 'util/factory/abstractFactory';
 import styles from './PostItem.module.scss';
 
 interface PostItemProps {
@@ -25,6 +26,7 @@ interface PostItemProps {
 }
 const PostItem = ({ title, createdAt, id, category, description, tags }: PostItemProps) => {
   const articleRef = useRef<HTMLElement>(null);
+  const singleCategory = AbstractFactory.createCategory('single', category) as SingleCategoryManager;
   const { timeToShow } = useControlSkeleton({ articleRef });
   const { filterByQueryString } = useFilter();
 
@@ -40,7 +42,7 @@ const PostItem = ({ title, createdAt, id, category, description, tags }: PostIte
   return (
     <article className={`${styles.container}`}>
       <section className={styles.img_box}>
-        <img src={new SingleCategoryManager(category).categoryImageSrc} alt={category} />
+        <img src={singleCategory.categoryImageSrc} alt={category} />
       </section>
       <section className={styles.content}>
         <Link href={`post/${id}`} passHref>
