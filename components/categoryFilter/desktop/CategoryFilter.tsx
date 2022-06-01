@@ -10,6 +10,7 @@ import React, { useEffect, useState } from 'react';
 import { ALL_LOWER_CASE } from 'ts/constant';
 import SingleCategoryManager from 'util/category/singleCategory';
 import { appendQueryString } from 'util/common';
+import AbstractFactory from 'util/factory/abstractFactory';
 import QueryParam from 'util/query';
 import styles from './CategoryFilter.module.scss';
 
@@ -40,16 +41,19 @@ const CategoryFilter = () => {
 
   return (
     <ul className={styles.container}>
-      {categoryListToShow.map(([category, count]) => (
-        <li
-          key={category}
-          onClick={handleClickCategory(category)}
-          className={`${activeCategory === category && styles.active}`}
-        >
-          <span className={styles.text}>{new SingleCategoryManager(category).categoryLetterToShow}</span>
-          <span className={styles.count}>({count})</span>
-        </li>
-      ))}
+      {categoryListToShow.map(([category, count]) => {
+        const singleCategory = AbstractFactory.createCategory('single', category) as SingleCategoryManager;
+        return (
+          <li
+            key={category}
+            onClick={handleClickCategory(category)}
+            className={`${activeCategory === category && styles.active}`}
+          >
+            <span className={styles.text}>{singleCategory.categoryLetterToShow}</span>
+            <span className={styles.count}>({count})</span>
+          </li>
+        );
+      })}
     </ul>
   );
 };

@@ -9,6 +9,7 @@ import { Tag } from 'ts/interface/notion';
 import PostView from 'util/postView';
 import API from 'util/api/api';
 import { useRouter } from 'next/router';
+import AbstractFactory from 'util/factory/abstractFactory';
 import styles from './PostDetail.module.scss';
 
 interface PostDetailProps {
@@ -21,8 +22,10 @@ interface PostDetailProps {
 }
 
 const PostDetail = ({ postId, title, createdAt, category, blocks, tags }: PostDetailProps) => {
-  const { categoryColorToShow, categoryLetterToShow } = new SingleCategoryManager(category);
-
+  const { categoryColorToShow, categoryLetterToShow } = AbstractFactory.createCategory(
+    'single',
+    category,
+  ) as SingleCategoryManager;
   return (
     <article className={styles.container}>
       {categoryColorToShow && (

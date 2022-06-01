@@ -16,12 +16,12 @@ class APIBuilder {
     this.url = url;
   }
 
-  setBody(body: object) {
+  public setBody(body: object): APIBuilder {
     this.body = JSON.stringify(body);
     return this;
   }
 
-  build() {
+  public build(): API {
     return new API(this);
   }
 }
