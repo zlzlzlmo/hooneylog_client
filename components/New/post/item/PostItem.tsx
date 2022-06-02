@@ -36,7 +36,13 @@ const PostItem = ({ title, createdAt, id, category, description, tags }: PostIte
   };
 
   if (!timeToShow) {
-    return <article className={styles.transparent} ref={articleRef} />;
+    return (
+      <Link href={`post/${id}`} passHref>
+        <a>
+          <article className={styles.transparent} ref={articleRef} />{' '}
+        </a>
+      </Link>
+    );
   }
 
   return (
