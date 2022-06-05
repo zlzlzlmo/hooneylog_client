@@ -34,3 +34,7 @@ export const appendQueryString = (queryParam: QueryParamType, value: string) => 
     window.history.pushState({}, '', `${window.location.origin}?${searchParams}`);
   }
 };
+
+export const resetQueryString = () => {
+  window.history.pushState({}, '', `${window.location.origin}`);
+};
