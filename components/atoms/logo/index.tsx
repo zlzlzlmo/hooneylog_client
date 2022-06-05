@@ -7,7 +7,7 @@ import React from 'react';
 import { useAppDispatch } from 'redux/configStore';
 import { setFilteredPostList } from 'redux/modules/post';
 import { resetQueryString } from 'util/common';
-import Filter from 'util/filterByQueryParam';
+import FilterByQueryParam from 'util/filterByQueryParam';
 import styles from './index.module.scss';
 
 const Logo = () => {
@@ -15,7 +15,7 @@ const Logo = () => {
   const dispatch = useAppDispatch();
 
   const handleFilter = () => {
-    const filter = new Filter(originalNotionList);
+    const filter = new FilterByQueryParam(originalNotionList);
     dispatch(setFilteredPostList(filter.filteredList()));
   };
 

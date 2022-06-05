@@ -9,7 +9,7 @@ import React, { useEffect } from 'react';
 import { useAppDispatch } from 'redux/configStore';
 import { setNotionList, setFilteredPostList } from 'redux/modules/post';
 import { NotionPost } from 'ts/interface/notion';
-import Filter from 'util/filterByQueryParam';
+import FilterByQueryParam from 'util/filterByQueryParam';
 
 interface Props {
   notionList: NotionPost[];
@@ -18,11 +18,6 @@ interface Props {
 const Home = ({ notionList }: Props) => {
   const { originalNotionList } = useReduxData();
   const dispatch = useAppDispatch();
-
-  const handleFilter = () => {
-    const filter = new Filter(originalNotionList);
-    dispatch(setFilteredPostList(filter.filteredList()));
-  };
 
   useEffect(() => {
     dispatch(setNotionList(notionList));
@@ -33,6 +28,11 @@ const Home = ({ notionList }: Props) => {
     if (originalNotionList.length < 1) {
       return;
     }
+
+    const handleFilter = () => {
+      const filter = new FilterByQueryParam(originalNotionList);
+      dispatch(setFilteredPostList(filter.filteredList()));
+    };
 
     handleFilter();
   }, [originalNotionList]);
