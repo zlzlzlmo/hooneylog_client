@@ -1,8 +1,7 @@
 import 'styles/global.scss';
-import type { AppProps } from 'next/app';
 import wrapper from '../redux/configStore';
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }: any) {
   return <Component {...pageProps} />;
 }
 

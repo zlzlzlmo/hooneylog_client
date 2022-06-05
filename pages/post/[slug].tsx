@@ -17,9 +17,9 @@ const PostDetailPage = ({ notionList, notionPost, blocks }: Props) => {
     <>
       <Head>
         <meta property="og:image" content={BACKGROUND_MAIN_IMAGE} />
-        <meta property="og:description" content={notionPost.title} />
-        <meta property="fb:app_id" content="&#123;540132141049632&#125;" />
-        <title>Hooney Blog - {notionPost.title}</title>
+        <meta property="og:description" content={notionPost?.title} />
+        {/* <meta property="fb:app_id" content="&#123;540132141049632&#125;" /> */}
+        <title>Hooney Blog - {notionPost?.title}</title>
       </Head>
       <PostDetail notionList={notionList} notionPost={notionPost} blocks={blocks} />
     </>
@@ -56,6 +56,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   const notionList = await NotionService.getAllPost();
   const notionPost = await NotionService.getPostById(slug);
+
+  if (!notionPost) {
+    return {
+      notFound: true,
+    };
+  }
   const blocks = await NotionService.getBlocksById(slug);
 
   return {

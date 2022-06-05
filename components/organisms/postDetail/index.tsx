@@ -1,17 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/jsx-no-useless-fragment */
 import Content from 'components/atoms/content';
-import FbComment from 'components/atoms/fbComment';
-import NextPost from 'components/atoms/nextPost';
-import PreviosPost from 'components/atoms/previosPost';
 import Layout from 'components/molecules/layout';
+import MoveToAnotherPost from 'components/molecules/moveToAnotherPost';
 import PostDetailedContents from 'components/molecules/postDetailedContents';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import { useAppDispatch } from 'redux/configStore';
 import { setNotionList } from 'redux/modules/post';
 import { NotionPost } from 'ts/interface/notion';
-import Post from 'util/post';
 
 interface Props {
   notionList: NotionPost[];
@@ -21,7 +18,6 @@ interface Props {
 
 const PostDetail = ({ notionList, notionPost, blocks }: Props) => {
   const router = useRouter();
-  const slug = router.query.slug as string;
 
   const dispatch = useAppDispatch();
 
@@ -32,8 +28,6 @@ const PostDetail = ({ notionList, notionPost, blocks }: Props) => {
   if (router.isFallback) {
     return <></>;
   }
-
-  const { previosPost, nextPost } = new Post(notionList, notionPost);
 
   return (
     <Layout>
@@ -48,20 +42,8 @@ const PostDetail = ({ notionList, notionPost, blocks }: Props) => {
             blocks={blocks}
           />
 
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-              margin: '3rem 0',
-              gap: '2rem',
-              alignItems: 'flex-end',
-            }}
-          >
-            {previosPost && <PreviosPost previosPost={previosPost} />}
-            {nextPost && <NextPost nextPost={nextPost} />}
-          </div>
-          <FbComment slug={slug} />
+          <MoveToAnotherPost notionList={notionList} notionPost={notionPost} />
+          {/* <FbComment slug={slug} /> */}
         </Content>
       </div>
     </Layout>
