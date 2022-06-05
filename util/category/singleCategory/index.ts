@@ -1,6 +1,4 @@
-/* eslint-disable class-methods-use-this */
 /* eslint-disable no-unsafe-optional-chaining */
-import { ALL_LOWER_CASE } from 'ts/constant';
 import { CategoryBackgroundColor } from 'ts/enum';
 
 class SingleCategoryManager {
@@ -40,14 +38,6 @@ class SingleCategoryManager {
     }
 
     return result;
-  }
-
-  get categorySearchParam(): string {
-    if (typeof window !== 'undefined') {
-      return new URLSearchParams(window.location.search).get('category') ?? ALL_LOWER_CASE;
-    }
-
-    return ALL_LOWER_CASE;
   }
 
   get categoryImageSrc() {
