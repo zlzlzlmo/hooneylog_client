@@ -1,0 +1,9 @@
+
+    .title {
+        font-size: 2rem;
+        &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+        }   
+    }
+    

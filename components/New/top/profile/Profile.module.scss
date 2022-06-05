@@ -10,73 +10,12 @@
             @include flexColumnCenter;
         }
 
-        // display:flex !important;
-        // justify-content: center;
-        // align-items: center;
-        // flex-direction: column;
-        // gap: 2rem;
-        
-        .img_box {
-            width: 7rem;
-            height: 7rem;
-            border-radius: 50%;
-            position: relative;
-
-            @media (max-width:$mobile-max-width) {
-                margin:0 auto;
-            }
-            img {
-                border-radius: 50%;
-            }
-        }
-
         .intro_box {
             height: 100%;
             text-align: center;
             @include flexColumnSb;
             gap: 1rem;
-            .name {
-                display: inline-block;
-                font-size: 1.7rem;
-                color:$base-color;
-                font-weight: $font-weight;
-                border:0.1rem solid $base-color;
-                padding:0.7rem;
-                background-color: $white-color;
-                border-radius: 1rem;
-                animation: moveNameSpan 2s linear infinite;
-            }
-
-            .text {
-                display: inline-block;
-                font-size: 1.4rem;
-                color:$blender-color;
-            }
         }
     }
 
 
-@keyframes moveNameSpan {
-    0% {
-        transform: rotate(0);
-    }
-
-    35% {
-        transform: rotate(0deg);
-    }
-
-    40% {
-        transform: rotate(-5deg);
-    }
-
-    60% {
-        transform: rotate(5deg);
-    }
-
-    65% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(0);
-    }
-}

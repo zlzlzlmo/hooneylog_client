@@ -1,34 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable no-use-before-define */
+import SearchBtn from 'components/atoms/searchBtn';
+import SearchInput from 'components/atoms/searchInput';
 import useFilter from 'hooks/useFilter';
-import React, { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react';
+import React, { ChangeEvent, FormEvent, useState } from 'react';
 import { appendQueryString } from 'util/common';
-import QueryParam from 'util/query';
 import styles from './Search.module.scss';
 
 const Search = () => {
-  const inputRef = useRef<HTMLInputElement>(null);
   const [searchValue, setSearchValue] = useState<string>('');
   const { filterByQueryString } = useFilter();
-
-  useEffect(() => {
-    if (QueryParam.queryParamFor('search') !== null) {
-      if (inputRef.current) {
-        inputRef.current.value = QueryParam.queryParamFor('search')!;
-      }
-    } else {
-      resetInputValue();
-    }
-
-    function resetInputValue() {
-      if (inputRef.current) {
-        inputRef.current.value = '';
-      }
-    }
-  }, [QueryParam.queryParamFor('search')]);
-
-  const handleSearchValue = () => (e: ChangeEvent<HTMLInputElement>) => setSearchValue(e.target.value);
 
   const handleFormSubmit = () => (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -38,19 +20,14 @@ const Search = () => {
     appendQueryString('search', searchValue);
     filterByQueryString();
   };
+
+  const handleSearchValue = () => (e: ChangeEvent<HTMLInputElement>) => setSearchValue(e.target.value);
+
   return (
     <section className={styles.container}>
       <form onSubmit={handleFormSubmit()}>
-        <input
-          type="text"
-          className={styles.input}
-          placeholder="검색어를 입력하세요"
-          onChange={handleSearchValue()}
-          ref={inputRef}
-        />
-        <button type="submit" className={styles.btn}>
-          검색
-        </button>
+        <SearchInput onChange={handleSearchValue()} />
+        <SearchBtn />
       </form>
     </section>
   );

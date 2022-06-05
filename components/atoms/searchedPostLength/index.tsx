@@ -1,11 +1,10 @@
 import React from 'react';
-import styles from './PostLength.module.scss';
+import styles from './index.module.scss';
 
-interface PostLengthProps {
+interface Props {
   length: number;
 }
-
-const PostLength = ({ length }: PostLengthProps) => {
+const SearchedPostLength = ({ length }: Props) => {
   return (
     <div className={styles.container}>
       총 <strong>{length}</strong>개의 포스트를 찾았습니다.
@@ -13,4 +12,4 @@ const PostLength = ({ length }: PostLengthProps) => {
   );
 };
 
-export default PostLength;
+export default SearchedPostLength;

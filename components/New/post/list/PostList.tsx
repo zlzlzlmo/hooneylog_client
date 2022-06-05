@@ -1,5 +1,5 @@
+import SearchedPostLength from 'components/atoms/searchedPostLength';
 import CategoryFilter from 'components/categoryFilter/desktop/CategoryFilter';
-import PostLength from 'components/common/PostLength/PostLength';
 import Filtered from 'components/filtered/Filtered';
 import useReduxData from 'hooks/useReduxData';
 import React, { Fragment } from 'react';
@@ -12,7 +12,7 @@ const PostList = () => {
     <main className={styles.container}>
       <div>
         <CategoryFilter />
-        <PostLength length={filteredNotionList.length} />
+        <SearchedPostLength length={filteredNotionList.length} />
         <Filtered />
       </div>
       {filteredNotionList.map(({ id, title, createdAt, description, category, tags }) => (

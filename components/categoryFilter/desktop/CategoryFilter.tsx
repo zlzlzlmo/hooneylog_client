@@ -1,58 +1,25 @@
+/* eslint-disable react/jsx-key */
 /* eslint-disable no-param-reassign */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-use-before-define */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 
+import Category from 'components/atoms/category';
 import useCategoryFilter from 'hooks/useCategoryFilter';
-import useFilter from 'hooks/useFilter';
-import React, { useEffect, useState } from 'react';
-import { ALL_LOWER_CASE } from 'ts/constant';
+import React from 'react';
 import SingleCategoryManager from 'util/category/singleCategory';
-import { appendQueryString } from 'util/common';
 import AbstractFactory from 'util/factory/abstractFactory';
-import QueryParam from 'util/query';
 import styles from './CategoryFilter.module.scss';
 
 const CategoryFilter = () => {
-  const [activeCategory, setActiveCategory] = useState(ALL_LOWER_CASE);
   const { categoryListToShow } = useCategoryFilter();
-  const { filterByQueryString, resetQueryString } = useFilter();
-
-  useEffect(() => {
-    if (QueryParam.queryParamFor('category') === null) {
-      setActiveCategory('all');
-    }
-  }, [QueryParam.queryParamFor('category')]);
-
-  const handleClickCategory = (category: string) => () => {
-    setActiveCategory(category);
-    controlQueryString();
-    filterByQueryString();
-
-    function controlQueryString() {
-      if (category === 'all') {
-        resetQueryString();
-      } else {
-        appendQueryString('category', category);
-      }
-    }
-  };
 
   return (
     <ul className={styles.container}>
       {categoryListToShow.map(([category, count]) => {
         const singleCategory = AbstractFactory.createCategory('single', category) as SingleCategoryManager;
-        return (
-          <li
-            key={category}
-            onClick={handleClickCategory(category)}
-            className={`${activeCategory === category && styles.active}`}
-          >
-            <span className={styles.text}>{singleCategory.categoryLetterToShow}</span>
-            <span className={styles.count}>({count})</span>
-          </li>
-        );
+        return <Category category={singleCategory.categoryLetterToShow} count={count} />;
       })}
     </ul>
   );
