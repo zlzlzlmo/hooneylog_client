@@ -1,18 +1,18 @@
 /* eslint-disable class-methods-use-this */
 import { NotionPost, Tag } from 'ts/interface/notion';
 
-interface ISearchController {
+interface ISearch {
   filteredListBySearchValue(searchValue: string): NotionPost[];
 }
 
-class SearchController implements ISearchController {
+class Search implements ISearch {
   private readonly notionList: NotionPost[];
 
   constructor(notionList: NotionPost[]) {
     this.notionList = notionList;
   }
 
-  private lowerCaseWithNoSpace(value: string) {
+  private lowerCaseWithNoSpace(value: string): string {
     return value.toLowerCase().replaceAll(' ', '');
   }
 
@@ -38,4 +38,4 @@ class SearchController implements ISearchController {
   }
 }
 
-export default SearchController;
+export default Search;

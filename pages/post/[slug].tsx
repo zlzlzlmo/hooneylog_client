@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { GetStaticProps } from 'next/types';
 import React from 'react';
 import { NotionPost } from 'ts/interface/notion';
-import NotionService from 'util/notion';
+import Notion from 'util/notion';
 import { BACKGROUND_MAIN_IMAGE } from 'ts/constant';
 import PostDetail from 'components/organisms/postDetail';
 
@@ -27,7 +27,7 @@ const PostDetailPage = ({ notionList, notionPost, blocks }: Props) => {
 };
 
 export const getStaticPaths = async () => {
-  const notionList = await NotionService.getAllPost();
+  const notionList = await Notion.getAllPost();
 
   const slugs = notionList.map(({ id }) => ({
     params: { slug: id },
@@ -54,15 +54,15 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     };
   }
 
-  const notionList = await NotionService.getAllPost();
-  const notionPost = await NotionService.getPostById(slug);
+  const notionList = await Notion.getAllPost();
+  const notionPost = await Notion.getPostById(slug);
 
   if (!notionPost) {
     return {
       notFound: true,
     };
   }
-  const blocks = await NotionService.getBlocksById(slug);
+  const blocks = await Notion.getBlocksById(slug);
 
   return {
     props: {

@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { NotionPost } from 'ts/interface/notion';
-import APIBuilder from './api/builder';
+import APIBuilder from '../api/builder';
 
-class NotionService {
+class Notion {
   static async getAllPost(): Promise<NotionPost[]> {
     const allPost = new APIBuilder('GET', `notion/all`).build();
     const result = await allPost.fetch();
@@ -22,4 +22,4 @@ class NotionService {
   }
 }
 
-export default NotionService;
+export default Notion;
