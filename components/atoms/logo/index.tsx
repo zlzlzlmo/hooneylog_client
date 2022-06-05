@@ -1,25 +1,16 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import useReduxData from 'hooks/useReduxData';
+import useFilterByQueryParam from 'hooks/useFilterByQueryParam';
 import Link from 'next/link';
 import React from 'react';
-import { useAppDispatch } from 'redux/configStore';
-import { setFilteredPostList } from 'redux/modules/post';
 import { resetQueryString } from 'util/common';
-import FilterByQueryParam from 'util/filterByQueryParam';
 import styles from './index.module.scss';
 
 const Logo = () => {
-  const { originalNotionList } = useReduxData();
-  const dispatch = useAppDispatch();
+  const { handleFilter } = useFilterByQueryParam();
 
-  const handleFilter = () => {
-    const filter = new FilterByQueryParam(originalNotionList);
-    dispatch(setFilteredPostList(filter.filteredList()));
-  };
-
-  const handleHomeClick = () => {
+  const handleClick = () => {
     resetQueryString();
     handleFilter();
   };
@@ -27,7 +18,7 @@ const Logo = () => {
   return (
     <Link href="/" passHref>
       <a style={{ color: '#fff' }}>
-        <h1 className={styles.logo} onClick={handleHomeClick}>
+        <h1 className={styles.logo} onClick={handleClick}>
           <span>HooneyLog :</span>
         </h1>
       </a>

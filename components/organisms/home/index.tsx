@@ -4,18 +4,19 @@ import Content from 'components/atoms/content';
 import HomeSub from 'components/molecules/homeSub';
 import Layout from 'components/molecules/layout';
 import PostItemList from 'components/molecules/postItemList';
+import useFilterByQueryParam from 'hooks/useFilterByQueryParam';
 import useReduxData from 'hooks/useReduxData';
 import React, { useEffect } from 'react';
 import { useAppDispatch } from 'redux/configStore';
 import { setNotionList, setFilteredPostList } from 'redux/modules/post';
 import { NotionPost } from 'ts/interface/notion';
-import FilterByQueryParam from 'util/filterByQueryParam';
 
 interface Props {
   notionList: NotionPost[];
 }
 
 const Home = ({ notionList }: Props) => {
+  const { handleFilter } = useFilterByQueryParam();
   const { originalNotionList } = useReduxData();
   const dispatch = useAppDispatch();
 
@@ -28,11 +29,6 @@ const Home = ({ notionList }: Props) => {
     if (originalNotionList.length < 1) {
       return;
     }
-
-    const handleFilter = () => {
-      const filter = new FilterByQueryParam(originalNotionList);
-      dispatch(setFilteredPostList(filter.filteredList()));
-    };
 
     handleFilter();
   }, [originalNotionList]);
