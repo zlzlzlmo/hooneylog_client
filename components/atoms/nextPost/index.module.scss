@@ -1,0 +1,21 @@
+@import "styles/variable";
+
+.container {
+    display:inline-flex;
+    background-color: $base-color2;
+    color: $white-color;
+    padding:1rem 1rem;
+    font-size: 1.4rem;
+    border-radius: .7rem;
+    cursor: pointer;
+    text-align: left;
+
+    .arrow_icon {
+        vertical-align: text-top;
+    }
+    &.next {
+        .arrow_icon {
+            margin-left: 0.5rem;
+        }
+    }
+}
