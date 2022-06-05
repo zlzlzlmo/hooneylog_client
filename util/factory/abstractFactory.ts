@@ -1,4 +1,6 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable consistent-return */
+
 import MultipleCategoryManager from 'util/category/multipleCategory';
 import SingleCategoryManager from 'util/category/singleCategory';
 

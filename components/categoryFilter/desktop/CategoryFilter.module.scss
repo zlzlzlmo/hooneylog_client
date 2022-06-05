@@ -12,17 +12,6 @@
     margin-bottom: 2rem;
     border-bottom: 0.1rem solid $sub-color-3;
 
-    .active {
-        color:$base-color;
-        font-weight: $font-weight;
-    }
-    li {
-        color:lightgray;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        .count {
-            font-weight: $font-weight;
-        }
-    }
+
+
 }

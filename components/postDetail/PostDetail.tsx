@@ -1,15 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { Fragment, useEffect, useLayoutEffect, useMemo, useState } from 'react';
+import React, { Fragment } from 'react';
 import { dateFormat } from 'util/common';
 import SingleCategoryManager from 'util/category/singleCategory';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import RenderBlock from 'components/notionSerializer/blockContent/RenderBlock';
-import ProfileImage from 'components/common/profileImage/ProfileImage';
 import { Tag } from 'ts/interface/notion';
-import PostView from 'util/postView';
-import API from 'util/api/api';
-import { useRouter } from 'next/router';
 import AbstractFactory from 'util/factory/abstractFactory';
+import ProfileImage from 'components/atoms/profileImg';
 import styles from './PostDetail.module.scss';
 
 interface PostDetailProps {
@@ -36,7 +33,7 @@ const PostDetail = ({ postId, title, createdAt, category, blocks, tags }: PostDe
       <h1 className={styles.title}>{title}</h1>
       <section className={styles.sub_info}>
         <span className={styles.author}>
-          <ProfileImage />
+          <ProfileImage width="3rem" height="3rem" />
           <span className={styles.name}> By Seunghoon</span>
         </span>
         <span className={styles.reg_date}>- {dateFormat(createdAt)}</span>

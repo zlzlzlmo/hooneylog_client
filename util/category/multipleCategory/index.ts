@@ -1,5 +1,3 @@
-/* eslint-disable class-methods-use-this */
-
 type ReduceReturnType = Record<string, number>;
 
 class MultipleCategoryManager {
