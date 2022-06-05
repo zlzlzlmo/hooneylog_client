@@ -2,7 +2,7 @@ import Category from 'components/atoms/category';
 import useCategoryFilter from 'hooks/useCategoryFilter';
 import React, { Fragment } from 'react';
 import SingleCategoryManager from 'util/category/singleCategory';
-import AbstractFactory from 'util/factory/abstractFactory';
+import AbstractFactory from 'util/abstracFactory';
 import styles from './index.module.scss';
 
 const CategoryList = () => {

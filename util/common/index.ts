@@ -17,7 +17,7 @@ export const dateFormat = (dateString: string): string => {
   return date.toLocaleDateString('ko-KR', options);
 };
 
-export const appendQueryString = (queryParam: QueryParamType, type: string) => {
+export const appendQueryString = (queryParam: QueryParamType, value: string) => {
   if (typeof window !== 'undefined') {
     const searchParams = new URLSearchParams(window.location.search);
 
@@ -30,7 +30,7 @@ export const appendQueryString = (queryParam: QueryParamType, type: string) => {
       searchParams.delete('category');
     }
 
-    searchParams.set(queryParam, type);
+    searchParams.set(queryParam, value);
     window.history.pushState({}, '', `${window.location.origin}?${searchParams}`);
   }
 };

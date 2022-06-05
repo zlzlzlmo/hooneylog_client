@@ -4,7 +4,7 @@ import { useAppDispatch } from 'redux/configStore';
 import { setFilteredPostList } from 'redux/modules/post';
 import { NotionPost } from 'ts/interface/notion';
 import QueryParam from 'util/query';
-import SearchController from 'util/search';
+import Search from 'util/search';
 
 const useFilter = () => {
   const { originalNotionList } = useReduxData();
@@ -47,7 +47,7 @@ const useFilter = () => {
   }
 
   function withSearchValueFilter(notionList: NotionPost[], searchValueParam: string) {
-    return new SearchController(notionList).filteredListBySearchValue(searchValueParam);
+    return new Search(notionList).filteredListBySearchValue(searchValueParam);
   }
 
   function withTagsFilter(notionList: NotionPost[], tag: string) {

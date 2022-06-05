@@ -4,7 +4,7 @@ import useReduxData from 'hooks/useReduxData';
 import { useMemo } from 'react';
 import { ALL_LOWER_CASE } from 'ts/constant';
 import MultipleCategoryManager from 'util/category/multipleCategory';
-import AbstractFactory from 'util/factory/abstractFactory';
+import AbstractFactory from 'util/abstracFactory';
 
 const useCategoryFilter = () => {
   const { originalNotionList } = useReduxData();

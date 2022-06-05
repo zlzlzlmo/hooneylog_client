@@ -1,9 +1,8 @@
-/* eslint-disable import/no-cycle */
-/* eslint-disable camelcase */
-/* eslint-disable no-case-declarations */
 /* eslint-disable no-shadow */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable react/destructuring-assignment */
+/* eslint-disable no-case-declarations */
+/* eslint-disable import/no-cycle */
+
 import { Fragment, useEffect, useRef, useState } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
@@ -17,13 +16,16 @@ const Block = ({ block }: any) => {
   const value = block[type];
   const headingRef = useRef<HTMLHeadingElement>(null);
   const entry = useIntersectionObserver(headingRef, {});
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState<boolean>(false);
 
   useEffect(() => {
-    if (entry)
-      if (entry?.intersectionRatio > 0.5) {
-        setVisible(true);
-      }
+    if (!entry) {
+      return;
+    }
+
+    if (entry?.intersectionRatio > 0.5) {
+      setVisible(true);
+    }
   }, [entry]);
 
   switch (type) {

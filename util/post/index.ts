@@ -5,14 +5,10 @@ import { NotionPost } from 'ts/interface/notion';
 class Post {
   private readonly notionList;
 
-  private _currentPostIndex = 0;
+  private readonly currentPost;
 
   get currentPostIndex() {
-    return this._currentPostIndex;
-  }
-
-  set currentPostIndex(index: number) {
-    this._currentPostIndex = index;
+    return this.notionList.findIndex(({ id }) => id === this.currentPost.id);
   }
 
   get previosPost() {
@@ -25,7 +21,7 @@ class Post {
 
   constructor(notionList: NotionPost[], currentPost: NotionPost) {
     this.notionList = notionList;
-    this.currentPostIndex = this.notionList.findIndex(({ id }) => id === currentPost.id);
+    this.currentPost = currentPost;
   }
 }
 

@@ -20,6 +20,7 @@ class QueryParam {
     }
     return '';
   }
+
   queryParamsArray(): [string, string][] {
     if (this.currentParams.category !== null) {
       this.paramObj = { ...this.paramObj, 카테고리: this.currentParams.category };

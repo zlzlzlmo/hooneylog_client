@@ -1,7 +1,7 @@
 /* eslint-disable no-shadow */
 import React from 'react';
 import SingleCategoryManager from 'util/category/singleCategory';
-import AbstractFactory from 'util/factory/abstractFactory';
+import AbstractFactory from 'util/abstracFactory';
 import styles from './index.module.scss';
 
 interface Props {

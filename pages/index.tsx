@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
-import NotionService from 'util/notion';
+import Notion from 'util/notion';
 import { BACKGROUND_MAIN_IMAGE } from 'ts/constant';
 import { NotionPost } from 'ts/interface/notion';
 import Home from 'components/organisms/home';
@@ -23,7 +23,7 @@ const HomePage = ({ notionList }: Props) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const notionList = await NotionService.getAllPost();
+  const notionList = await Notion.getAllPost();
   return {
     props: {
       notionList,
