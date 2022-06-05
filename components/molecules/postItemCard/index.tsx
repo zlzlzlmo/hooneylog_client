@@ -44,7 +44,7 @@ const PostItem = ({ title, createdAt, id, category, description, tags }: PostIte
         <CreatedDate createdAt={createdAt} />
         <PostTagList tags={tags} />
         <PostDescription description={description} />
-        <LinkToDetail postId={id} text="Read More!" />
+        <LinkToDetail postId={id} text="Read More" />
       </section>
     </article>
   );
