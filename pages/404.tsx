@@ -1,13 +1,8 @@
-import Layout from 'components/layout/Layout';
-import NotFound from 'components/notFound/NotFound';
+import NotFound from 'components/organisms/notFound';
 import React from 'react';
 
 const NotFoundPage = () => {
-  return (
-    <Layout>
-      <NotFound />
-    </Layout>
-  );
+  return <NotFound />;
 };
 
 export default NotFoundPage;

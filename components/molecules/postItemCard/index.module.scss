@@ -1,0 +1,37 @@
+@import "styles/variable";
+
+.transparent {
+    height: 5vh;
+}
+.container {
+    display:grid;
+    grid-template-columns: 1fr 4fr;
+    grid-column-gap: 3rem;
+
+    animation: showArticle 0.6s;
+
+
+    .content {
+        display:flex;
+        gap:1rem;
+        flex-direction: column;
+    }
+
+}
+
+
+@keyframes showArticle {
+    from {
+        opacity: 0;
+        transform: translateY(20vh);
+        visibility: hidden;
+        transition: opacity 0.3s ease-out, transform 0.6s ease-out;
+        will-change: opacity, visibility;
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+        visibility: visible;
+    }
+}

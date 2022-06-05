@@ -1,0 +1,34 @@
+@import "styles/variable";
+
+.sub_info {
+    @media (min-width:$mobile-max-width) {
+        display: flex;
+        align-items: center;
+        gap:2rem;
+      }
+
+
+    .author {
+        display: flex;
+        align-items: center;
+        .profile_img {
+            display: inline-block;
+            width:3rem;
+            height: 3rem;
+            border-radius: 50%;
+            overflow: hidden;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        .name {
+            display: inline-block;
+            line-height: 3rem;
+            margin-left: 1rem;
+        }
+    }
+}

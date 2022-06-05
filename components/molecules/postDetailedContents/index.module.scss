@@ -1,0 +1,20 @@
+
+@import "styles/variable";
+
+.container {
+    .title {
+        font-size: min(max(2.5rem,3vw),3.5rem);
+        font-weight: $font-weight;
+        margin:2rem 0;
+    }
+
+    .img_box {
+        width: 100vw;
+        max-width: 100%;
+        img {
+            margin: 0 auto;
+            display: inherit;
+            max-width: 100%;
+        }
+    }
+}
