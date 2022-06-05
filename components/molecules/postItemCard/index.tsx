@@ -10,7 +10,7 @@ import Link from 'next/link';
 import React, { useRef } from 'react';
 import { Tag } from 'ts/interface/notion';
 import SingleCategoryManager from 'util/category/singleCategory';
-import AbstractFactory from 'util/factory/abstractFactory';
+import AbstractFactory from 'util/abstracFactory';
 import styles from './index.module.scss';
 
 interface PostItemProps {
