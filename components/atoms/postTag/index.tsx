@@ -1,12 +1,9 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import useReduxData from 'hooks/useReduxData';
+import useFilterByQueryParam from 'hooks/useFilterByQueryParam';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { useAppDispatch } from 'redux/configStore';
-import { setFilteredPostList } from 'redux/modules/post';
 import { appendQueryString } from 'util/common';
-import FilterByQueryParam from 'util/filterByQueryParam';
 import styles from './index.module.scss';
 
 interface Props {
@@ -14,14 +11,8 @@ interface Props {
 }
 
 const PostTag = ({ tagName }: Props) => {
-  const { originalNotionList } = useReduxData();
-  const dispatch = useAppDispatch();
+  const { handleFilter } = useFilterByQueryParam();
   const router = useRouter();
-
-  const handleFilter = () => {
-    const filter = new FilterByQueryParam(originalNotionList);
-    dispatch(setFilteredPostList(filter.filteredList()));
-  };
 
   const handleClick = (tag: string) => () => {
     if (router.pathname !== '/') {
