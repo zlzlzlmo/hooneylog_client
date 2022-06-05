@@ -1,9 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import useFilter from 'hooks/useFilter';
+import useReduxData from 'hooks/useReduxData';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { appendQueryString } from 'util/common';
+import { useAppDispatch } from 'redux/configStore';
+import { setFilteredPostList } from 'redux/modules/post';
+import { appendQueryString, resetQueryString } from 'util/common';
+import Filter from 'util/filterByQueryParam';
 import QueryParam from 'util/query';
 import styles from './index.module.scss';
 
@@ -12,7 +15,8 @@ interface Props {
   count: number;
 }
 const Category = ({ category, count }: Props) => {
-  const { filterByQueryString, resetQueryString } = useFilter();
+  const { originalNotionList } = useReduxData();
+  const dispatch = useAppDispatch();
   const [active, setActive] = useState<boolean>(false);
 
   const lowwerCaseCategory = useMemo(() => {
@@ -41,9 +45,14 @@ const Category = ({ category, count }: Props) => {
     appendQueryString('category', lowwerCaseCategory);
   }, []);
 
+  const handleFilter = () => {
+    const filter = new Filter(originalNotionList);
+    dispatch(setFilteredPostList(filter.filteredList()));
+  };
+
   const handleClick = () => {
     controlQueryString();
-    filterByQueryString();
+    handleFilter();
   };
 
   return (

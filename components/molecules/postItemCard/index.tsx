@@ -5,7 +5,7 @@ import PostDescription from 'components/atoms/postDescription';
 import PostImage from 'components/atoms/postImage';
 import PostTitle from 'components/atoms/postTitle';
 import PostTagList from 'components/molecules/postTagList';
-import useControlSkeleton from 'hooks/useControlSkeleton';
+import useElementVisible from 'hooks/useElementVisible';
 import Link from 'next/link';
 import React, { useRef } from 'react';
 import { Tag } from 'ts/interface/notion';
@@ -13,7 +13,7 @@ import SingleCategoryManager from 'util/category/singleCategory';
 import AbstractFactory from 'util/abstracFactory';
 import styles from './index.module.scss';
 
-interface PostItemProps {
+interface Props {
   title: string;
   createdAt: string;
   id: string;
@@ -21,10 +21,11 @@ interface PostItemProps {
   description: string;
   tags: Tag[];
 }
-const PostItem = ({ title, createdAt, id, category, description, tags }: PostItemProps) => {
+
+const PostItem = ({ title, createdAt, id, category, description, tags }: Props) => {
   const articleRef = useRef<HTMLElement>(null);
   const singleCategory = AbstractFactory.createCategory('single', category) as SingleCategoryManager;
-  const { timeToShow } = useControlSkeleton({ articleRef });
+  const { timeToShow } = useElementVisible({ articleRef });
 
   if (!timeToShow) {
     return (

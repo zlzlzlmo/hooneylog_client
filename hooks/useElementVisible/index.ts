@@ -2,11 +2,11 @@
 import useIntersectionObserver from 'hooks/useIntersection';
 import { useEffect, useState } from 'react';
 
-interface usePostItemProps {
+interface Props {
   articleRef: React.RefObject<HTMLElement>;
 }
 
-const useControlSkeleton = ({ articleRef }: usePostItemProps) => {
+const useElementVisible = ({ articleRef }: Props) => {
   const [timeToShow, setIsTimeToShow] = useState<boolean>(false);
 
   const entry = useIntersectionObserver(articleRef, {});
@@ -20,4 +20,4 @@ const useControlSkeleton = ({ articleRef }: usePostItemProps) => {
   return { timeToShow };
 };
 
-export default useControlSkeleton;
+export default useElementVisible;

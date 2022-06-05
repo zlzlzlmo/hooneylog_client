@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import MultipleCategoryManager from 'util/category/multipleCategory';
 import SingleCategoryManager from 'util/category/singleCategory';
 import AbstractFactory from '.';
