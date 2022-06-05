@@ -20,6 +20,10 @@ const Category = ({ category, count }: Props) => {
   }, []);
 
   useEffect(() => {
+    if (lowwerCaseCategory === 'all' && !QueryParam.queryParamFor('category')) {
+      setActive(true);
+      return;
+    }
     if (QueryParam.queryParamFor('category') !== lowwerCaseCategory) {
       setActive(false);
       return;
@@ -37,10 +41,10 @@ const Category = ({ category, count }: Props) => {
     appendQueryString('category', lowwerCaseCategory);
   }, []);
 
-  const handleClick = useCallback(() => {
+  const handleClick = () => {
     controlQueryString();
     filterByQueryString();
-  }, []);
+  };
 
   return (
     <li key={category} className={`${styles.category} ${active && styles.active}`} onClick={handleClick}>
