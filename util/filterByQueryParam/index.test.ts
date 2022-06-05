@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { NotionPost } from 'ts/interface/notion';
 import { defineSearchProperty } from 'util/test';
-import Filter from '.';
+import FilterByQueryParam from '.';
 
 describe('filteredByQueryParam', () => {
-  let instance: Filter;
+  let instance: FilterByQueryParam;
 
   const dummyList: NotionPost[] = [
     {
@@ -42,7 +42,7 @@ describe('filteredByQueryParam', () => {
   ];
 
   beforeEach(() => {
-    instance = new Filter(dummyList);
+    instance = new FilterByQueryParam(dummyList);
   });
   test('search 하나만 입력했을때 정상적으로 필터 작동하는지', () => {
     const searchValue = '재미있는';

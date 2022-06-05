@@ -6,7 +6,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useAppDispatch } from 'redux/configStore';
 import { setFilteredPostList } from 'redux/modules/post';
 import { appendQueryString, resetQueryString } from 'util/common';
-import Filter from 'util/filterByQueryParam';
+import FilterByQueryParam from 'util/filterByQueryParam';
 import QueryParam from 'util/query';
 import styles from './index.module.scss';
 
@@ -46,7 +46,7 @@ const Category = ({ category, count }: Props) => {
   }, []);
 
   const handleFilter = () => {
-    const filter = new Filter(originalNotionList);
+    const filter = new FilterByQueryParam(originalNotionList);
     dispatch(setFilteredPostList(filter.filteredList()));
   };
 

@@ -5,7 +5,7 @@ import { NotionPost } from 'ts/interface/notion';
 import QueryParam from 'util/query';
 import Search from 'util/search';
 
-class Filter {
+class FilterByQueryParam {
   constructor(private notionList: NotionPost[]) {}
 
   private byCategory() {
@@ -47,4 +47,4 @@ class Filter {
     return this.notionList;
   }
 }
-export default Filter;
+export default FilterByQueryParam;

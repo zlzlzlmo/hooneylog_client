@@ -6,7 +6,7 @@ import React from 'react';
 import { useAppDispatch } from 'redux/configStore';
 import { setFilteredPostList } from 'redux/modules/post';
 import { appendQueryString } from 'util/common';
-import Filter from 'util/filterByQueryParam';
+import FilterByQueryParam from 'util/filterByQueryParam';
 import styles from './index.module.scss';
 
 interface Props {
@@ -19,7 +19,7 @@ const PostTag = ({ tagName }: Props) => {
   const router = useRouter();
 
   const handleFilter = () => {
-    const filter = new Filter(originalNotionList);
+    const filter = new FilterByQueryParam(originalNotionList);
     dispatch(setFilteredPostList(filter.filteredList()));
   };
 
