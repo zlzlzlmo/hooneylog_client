@@ -3,7 +3,8 @@
 .container {
     max-width:$max-width;
     margin:0 auto;
-
+    position: relative;
+    height: 100%;
     @media (max-width:$mobile-max-width) {
         padding:5rem 5% !important;
     }
