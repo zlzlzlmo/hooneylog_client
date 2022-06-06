@@ -13,16 +13,16 @@ interface Props {
 
 const PreviosPost = ({ previosPost }: Props) => {
   return (
-    // <Link href={`/post/${previosPost.id}`}>
-    <a href={`/post/${previosPost.id}`}>
-      <span className={`${styles.container} ${styles.previos}`}>
-        <span className={styles.arrow_icon}>
-          <GrLinkPrevious />
+    <Link href={`/post/${previosPost.id}`}>
+      <a>
+        <span className={`${styles.container} ${styles.previos}`}>
+          <span className={styles.arrow_icon}>
+            <GrLinkPrevious />
+          </span>
+          <span className={styles.title}>{previosPost.title}</span>
         </span>
-        <span className={styles.title}>{previosPost.title}</span>
-      </span>
-    </a>
-    // </Link>
+      </a>
+    </Link>
   );
 };
 
