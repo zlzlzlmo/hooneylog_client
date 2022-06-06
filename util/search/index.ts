@@ -13,7 +13,7 @@ class Search implements ISearch {
   }
 
   private lowerCaseWithNoSpace(value: string): string {
-    return value.toLowerCase().replaceAll(' ', '');
+    return value.toLowerCase().replace(/ /gi, '');
   }
 
   private hasTag(tags: Tag[], searchedValue: string): boolean {

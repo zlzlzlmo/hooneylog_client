@@ -41,7 +41,7 @@ class SingleCategoryManager {
   }
 
   get categoryImageSrc() {
-    let category = this.category.toLowerCase().replaceAll('.', '');
+    let category = this.category.toLowerCase().replace(/ /gi, '');
     if (!this.categoriesImageSet.includes(category)) {
       category = 'default.avif';
     } else {
