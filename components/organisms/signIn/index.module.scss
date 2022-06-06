@@ -16,24 +16,6 @@
         display:flex;
         flex-direction: column;
         gap:2rem;
-        input {
-            border-radius: .5rem;
-            border:0.15rem solid lightblue;
-            width: 20rem;
-            display: block;
-            height: 4.3rem;
-            padding:0 1rem;
-            width: 100%;
-        }
-
-        .login_btn {
-            cursor: pointer;
-            border: none;
-            color:$white-color;
-            font-size: 1.8rem;
-            border-radius: 0.5rem;
-            padding:1rem 0;
-            background-color: $base-color2;
-        }
+        margin:3rem 0;
     }
 }
