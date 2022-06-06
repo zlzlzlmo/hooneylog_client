@@ -17,7 +17,7 @@ const PostSubInfo = ({ createdAt, postId }: Props) => {
         <span className={styles.name}> By Seunghoon</span>
       </span>
       <CreatedDate createdAt={createdAt} />
-      <PostView postId={postId} />
+      {/* <PostView postId={postId} /> */}
     </section>
   );
 };
