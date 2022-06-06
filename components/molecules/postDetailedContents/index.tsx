@@ -24,7 +24,7 @@ const PostDetailedContents = ({ postId, title, createdAt, category, blocks, tags
     <article className={styles.container}>
       <PostCategory category={category} />
       <PostTitle postId={postId} title={title} fontSize="3.5rem" margin="2rem 0" />
-      <PostSubInfo createdAt={createdAt} />
+      <PostSubInfo createdAt={createdAt} postId={postId} />
       <PostTagList tags={tags} margin="2rem 0 0 0" />
       <PostBlocks blocks={blocks} />
     </article>

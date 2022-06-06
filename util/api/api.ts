@@ -19,11 +19,12 @@ class API {
 
   async fetch() {
     const server = `${process.env.NEXT_PUBLIC_BASE_URL}`;
+    // const server = `http://localhost:3000`;
     try {
       const res = await fetch(`${server}/${this.url}`, {
         method: this.method,
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json; charset=utf-8',
         },
         ...(this.body && { body: this.body }),
       });

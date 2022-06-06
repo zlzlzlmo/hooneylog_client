@@ -1,13 +1,15 @@
 import CreatedDate from 'components/atoms/createdDate';
+import PostView from 'components/atoms/postView';
 import ProfileImage from 'components/atoms/profileImg';
 import React from 'react';
 import styles from './index.module.scss';
 
 interface Props {
+  postId: string;
   createdAt: string;
 }
 
-const PostSubInfo = ({ createdAt }: Props) => {
+const PostSubInfo = ({ createdAt, postId }: Props) => {
   return (
     <section className={styles.sub_info}>
       <span className={styles.author}>
@@ -15,6 +17,7 @@ const PostSubInfo = ({ createdAt }: Props) => {
         <span className={styles.name}> By Seunghoon</span>
       </span>
       <CreatedDate createdAt={createdAt} />
+      <PostView postId={postId} />
     </section>
   );
 };
