@@ -6,17 +6,12 @@ import styles from './index.module.scss';
 
 interface Props {
   text: string;
+  onClick: () => void;
 }
 
-const HeaderText = ({ text }: Props) => {
-  const router = useRouter();
-
-  const handleClick = useCallback(() => {
-    router.push('/signin');
-  }, []);
-
+const HeaderText = ({ text, onClick }: Props) => {
   return (
-    <span className={styles.text} onClick={handleClick}>
+    <span className={styles.text} onClick={onClick}>
       {text}
     </span>
   );

@@ -8,12 +8,11 @@ const useApi = <T>(url: string, body?: object) => {
   const router = useRouter();
 
   useEffect(() => {
-    console.log('useApi');
-    let api: API;
+    let api: API<T>;
     if (!body) {
-      api = new APIBuilder('GET', url).build();
+      api = new APIBuilder<T>('GET', url).build();
     } else {
-      api = new APIBuilder('POST', url).setBody(body).build();
+      api = new APIBuilder<T>('POST', url).setBody(body).build();
     }
 
     api.fetch().then((res) => {

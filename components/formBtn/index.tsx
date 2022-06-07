@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './index.module.scss';
 
 interface Props {
-  children: string;
+  children: string | JSX.Element;
 }
 
 const FormBtn = ({ children }: Props) => {

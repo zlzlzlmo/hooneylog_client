@@ -16,25 +16,27 @@ interface SignInResponse {
   token: string;
 }
 
-interface ISignIn {
+interface ISignUp {
   id: string;
+  nickName: string;
   password: string;
 }
 
-const SignIn = () => {
+const SignUp = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
-  const [signIn, setSignIn] = useState<ISignIn>({
+  const [signUp, setSignUp] = useState<ISignUp>({
     id: '',
+    nickName: '',
     password: '',
   });
 
   const handleChange = () => (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSignIn({ ...signIn, [e.target.name]: e.target.value });
+    setSignUp({ ...signUp, [e.target.name]: e.target.value });
   };
 
   const token = async () => {
-    const sigInBuilder = new APIBuilder<SignInResponse>('POST', 'auth/signin').setBody(signIn).build();
+    const sigInBuilder = new APIBuilder<SignInResponse>('POST', 'auth/signin').setBody(signUp).build();
     const result = await sigInBuilder.fetch();
     return result.token;
   };
@@ -56,9 +58,10 @@ const SignIn = () => {
       <div>
         <Content padding="2rem 0">
           <div className={styles.container}>
-            <h2>로그인</h2>
+            <h2>회원가입</h2>
             <form className={styles.signin_form} onSubmit={handleSubmit}>
               <FormInput type="text" name="id" placeholder="아이디를 입력해주세요." onChange={handleChange} />
+              <FormInput type="text" name="nickName" placeholder="닉네임을 입력해주세요." onChange={handleChange} />
               <FormInput
                 type="password"
                 name="password"
@@ -74,4 +77,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignUp;
