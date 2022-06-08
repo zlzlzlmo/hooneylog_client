@@ -4,7 +4,7 @@ import API from './api';
 
 type Method = 'GET' | 'POST' | 'DELETE' | 'PUT';
 
-class APIBuilder {
+class APIBuilder<T> {
   public method: Method;
 
   public url: string;
@@ -16,12 +16,12 @@ class APIBuilder {
     this.url = url;
   }
 
-  public setBody(body: object): APIBuilder {
+  public setBody(body: object): APIBuilder<T> {
     this.body = JSON.stringify(body);
     return this;
   }
 
-  public build(): API {
+  public build(): API<T> {
     return new API(this);
   }
 }

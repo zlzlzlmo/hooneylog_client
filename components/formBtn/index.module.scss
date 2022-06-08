@@ -1,0 +1,11 @@
+@import "styles/variable";
+
+.btn {
+    cursor: pointer;
+    border: none;
+    color:$white-color;
+    font-size: 1.8rem;
+    border-radius: 0.5rem;
+    padding:1rem 0;
+    background-color: $base-color2;
+}
