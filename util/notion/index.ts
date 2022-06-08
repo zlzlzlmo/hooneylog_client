@@ -4,13 +4,13 @@ import APIBuilder from '../api/builder';
 
 class Notion {
   static async getAllPost(): Promise<NotionPost[]> {
-    const allPost = new APIBuilder('GET', `notion/all`).build();
+    const allPost = new APIBuilder<NotionPost[]>('GET', `notion/all`).build();
     const result = await allPost.fetch();
     return result;
   }
 
   static async getPostById(id: string): Promise<NotionPost> {
-    const post = new APIBuilder('GET', `notion/${id}`).build();
+    const post = new APIBuilder<NotionPost>('GET', `notion/${id}`).build();
     const result = await post.fetch();
     return result;
   }
