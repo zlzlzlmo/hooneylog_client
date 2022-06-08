@@ -11,7 +11,7 @@ import APIBuilder from 'util/api/builder';
 import { setCookie } from 'util/cookie';
 import styles from './index.module.scss';
 
-interface SignInResponse {
+interface SignUpResponse {
   message: string;
   token: string;
 }
@@ -36,8 +36,9 @@ const SignUp = () => {
   };
 
   const token = async () => {
-    const sigInBuilder = new APIBuilder<SignInResponse>('POST', 'auth/signin').setBody(signUp).build();
-    const result = await sigInBuilder.fetch();
+    const sigUpBuilder = new APIBuilder<SignUpResponse>('POST', 'auth/signup').setBody(signUp).build();
+    const result = await sigUpBuilder.fetch();
+    console.log('result : ', result);
     return result.token;
   };
 
