@@ -1,24 +1,17 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import useFilterByQueryParam from 'hooks/useFilterByQueryParam';
 import Link from 'next/link';
 import React from 'react';
-import { resetQueryString } from 'util/common';
 import styles from './index.module.scss';
+import useLogo from './useLogo';
 
 const Logo = () => {
-  const { handleFilter } = useFilterByQueryParam();
-
-  const handleClick = () => {
-    resetQueryString();
-    handleFilter();
-  };
-
+  const { resetFilterPostList } = useLogo();
   return (
     <Link href="/" passHref>
       <a style={{ color: '#fff' }}>
-        <h1 className={styles.logo} onClick={handleClick}>
+        <h1 className={styles.logo} onClick={resetFilterPostList}>
           <span>HooneyLog :</span>
         </h1>
       </a>
