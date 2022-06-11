@@ -16,7 +16,7 @@ interface Props {
 }
 
 const Home = ({ notionList }: Props) => {
-  const { handleFilter } = useFilterByQueryParam();
+  const { handleFilterByQueryParam } = useFilterByQueryParam();
   const { originalNotionList } = useReduxData();
   const dispatch = useAppDispatch();
 
@@ -30,7 +30,7 @@ const Home = ({ notionList }: Props) => {
       return;
     }
 
-    handleFilter();
+    handleFilterByQueryParam();
   }, [originalNotionList]);
 
   return (

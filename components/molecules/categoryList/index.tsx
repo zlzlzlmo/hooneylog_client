@@ -1,4 +1,4 @@
-import Category from 'components/atoms/category';
+import Category from 'components/atoms/category/Category';
 import useCategoryFilter from 'hooks/useCategoryFilter';
 import React, { Fragment } from 'react';
 import SingleCategoryManager from 'util/category/singleCategory';

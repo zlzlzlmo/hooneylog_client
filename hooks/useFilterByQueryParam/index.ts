@@ -7,12 +7,12 @@ const useFilterByQueryParam = () => {
   const { originalNotionList } = useReduxData();
   const dispatch = useAppDispatch();
 
-  const handleFilter = () => {
+  const handleFilterByQueryParam = () => {
     const filter = new FilterByQueryParam(originalNotionList);
     dispatch(setFilteredPostList(filter.filteredList()));
   };
 
-  return { handleFilter };
+  return { handleFilterByQueryParam };
 };
 
 export default useFilterByQueryParam;
