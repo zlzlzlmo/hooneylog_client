@@ -12,6 +12,7 @@ import { Tag } from 'ts/interface/notion';
 import SingleCategoryManager from 'util/category/singleCategory';
 import AbstractFactory from 'util/abstracFactory';
 import styles from './index.module.scss';
+import usePostItem from './usePostItem';
 
 interface Props {
   title: string;
@@ -23,9 +24,7 @@ interface Props {
 }
 
 const PostItem = ({ title, createdAt, id, category, description, tags }: Props) => {
-  const articleRef = useRef<HTMLElement>(null);
-  const singleCategory = AbstractFactory.createCategory('single', category) as SingleCategoryManager;
-  const { timeToShow } = useElementVisible({ articleRef });
+  const { singleCategory, timeToShow, articleRef } = usePostItem(category);
 
   if (!timeToShow) {
     return (
