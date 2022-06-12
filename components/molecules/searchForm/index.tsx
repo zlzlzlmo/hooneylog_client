@@ -3,25 +3,12 @@
 /* eslint-disable no-use-before-define */
 import SearchBtn from 'components/atoms/searchBtn';
 import SearchInput from 'components/atoms/searchInput';
-import useFilterByQueryParam from 'hooks/useFilterByQueryParam';
-import React, { ChangeEvent, FormEvent, useState } from 'react';
-import { appendQueryString } from 'util/common';
+import React from 'react';
 import styles from './index.module.scss';
+import useSearchForm from './useSearchForm';
 
 const SearchForm = () => {
-  const { handleFilter } = useFilterByQueryParam();
-  const [searchValue, setSearchValue] = useState<string>('');
-
-  const handleFormSubmit = () => (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (searchValue === '') {
-      return;
-    }
-    appendQueryString('search', searchValue);
-    handleFilter();
-  };
-
-  const handleSearchValue = () => (e: ChangeEvent<HTMLInputElement>) => setSearchValue(e.target.value);
+  const { handleFormSubmit, handleSearchValue } = useSearchForm();
 
   return (
     <section className={styles.container}>
