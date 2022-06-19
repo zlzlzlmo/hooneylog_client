@@ -25,6 +25,14 @@ module.exports = {
       },
     ],
     'import/no-extraneous-dependencies': 'off',
+    'class-methods-use-this': 'off',
+    'consistent-return': 'off',
+    'react/no-unused-prop-types': 'off',
+    'no-console': 'off',
+    'import/prefer-default-export': 'off',
+    'react/destructuring-assignment': 'off',
+    'react/require-default-props': 'off',
+    '@typescript-eslint/ban-types': 'off',
   },
   settings: {
     'import/resolver': {

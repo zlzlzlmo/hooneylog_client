@@ -3,6 +3,7 @@
 /* eslint-disable no-use-before-define */
 import SearchBtn from 'components/atoms/searchBtn';
 import SearchInput from 'components/atoms/searchInput';
+import Input from 'components/elements/input';
 import React from 'react';
 import styles from './index.module.scss';
 import useSearchForm from './useSearchForm';
@@ -13,7 +14,8 @@ const SearchForm = () => {
   return (
     <section className={styles.container}>
       <form onSubmit={handleFormSubmit()}>
-        <SearchInput onChange={handleSearchValue()} />
+        {/* <SearchInput onChange={handleSearchValue()} /> */}
+        <Input inputType="BASIC" onChange={handleSearchValue()} />
         <SearchBtn />
       </form>
     </section>

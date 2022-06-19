@@ -2,8 +2,8 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import Content from 'components/atoms/content';
 import HomeSub from 'components/molecules/homeSub';
-import Layout from 'components/molecules/layout';
 import PostItemList from 'components/molecules/postItemList';
+import Layout from 'components/templates/layout/Layout';
 import useFilterByQueryParam from 'hooks/useFilterByQueryParam';
 import useReduxData from 'hooks/useReduxData';
 import React, { useEffect } from 'react';
