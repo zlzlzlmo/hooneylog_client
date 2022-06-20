@@ -33,6 +33,7 @@ module.exports = {
     'react/destructuring-assignment': 'off',
     'react/require-default-props': 'off',
     '@typescript-eslint/ban-types': 'off',
+    'react-hooks/exhaustive-deps': 'off',
   },
   settings: {
     'import/resolver': {

@@ -1,10 +1,10 @@
 /* eslint-disable prefer-destructuring */
 /* eslint-disable no-useless-return */
 import Layout from 'components/templates/layout/Layout';
-import { useRouter } from 'next/router';
-import React, { useEffect, useLayoutEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { widths } from 'styles/variables';
+import useSearchQuery from './useSearchQuery';
 
 const CategoryList = styled.ul`
   display: flex;
@@ -45,27 +45,21 @@ const Text = styled.div`
 `;
 
 const Search = () => {
-  const router = useRouter();
-  const [searchType, setSearchType] = useState('');
-  const [searchValue, setSearchValue] = useState('');
+  const { isOkaySearchKey, searchKeyValue } = useSearchQuery();
 
-  useEffect(() => {
-    const query = new URLSearchParams(window.location.search);
-    const key = query.keys().next().value;
-    const value = query.values().next().value;
-    setSearchType(key);
-    setSearchValue(value);
-    router.push(`/search?${key}=${value}`);
-  }, []);
   return (
     <Layout>
       <CategoryList>
         <Categoryitem>테스트</Categoryitem>
       </CategoryList>
       <SearchedBox>
-        <Text>
-          Searched by {searchType} for {searchValue}
-        </Text>
+        {isOkaySearchKey ? (
+          <Text>
+            Searched by {searchKeyValue?.key} for {searchKeyValue?.value}
+          </Text>
+        ) : (
+          <Text>잘못된 검색</Text>
+        )}
       </SearchedBox>
     </Layout>
   );
