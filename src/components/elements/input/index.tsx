@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import React, { Component } from 'react';
 import BasicInput from './BasicInput';
 
@@ -9,14 +10,16 @@ type InputType = typeof OInputType[keyof typeof OInputType];
 
 export interface InputProps {
   inputType: InputType;
-  onChange?: Function;
+  onChange?: React.ChangeEventHandler<HTMLInputElement> | undefined;
+  activeInput?: boolean;
+  placeholder?: string;
 }
 
 class Input extends Component<InputProps> {
   renderElement(props: InputProps) {
     switch (props.inputType) {
       case OInputType.basic:
-        return <BasicInput />;
+        return <BasicInput {...props} />;
       default:
         console.error('Input Props 확인');
     }

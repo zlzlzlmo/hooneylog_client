@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import InnerContainer from '../container/InnerContainer';
 import Footer from './footer/Footer';
 import Header from './header/Header';
 
@@ -19,7 +20,7 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <Container>
       <Header />
-      {children}
+      <InnerContainer>{children}</InnerContainer>
       <Footer />
     </Container>
   );

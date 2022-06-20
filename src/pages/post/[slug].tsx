@@ -5,7 +5,7 @@ import React from 'react';
 import { NotionPost } from 'ts/interface/notion';
 import Notion from 'util/notion';
 import { BACKGROUND_MAIN_IMAGE } from 'ts/constant';
-import PostDetail from 'components/organisms/postDetail';
+import PostDetail from 'components/completions/postDetail';
 
 interface Props {
   notionList: NotionPost[];

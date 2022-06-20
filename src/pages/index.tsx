@@ -4,7 +4,7 @@ import Head from 'next/head';
 import Notion from 'util/notion';
 import { BACKGROUND_MAIN_IMAGE } from 'ts/constant';
 import { NotionPost } from 'ts/interface/notion';
-import Home from 'components/organisms/home';
+import Home from 'components/completions/home/Home';
 
 interface Props {
   notionList: NotionPost[];

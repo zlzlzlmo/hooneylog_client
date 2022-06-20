@@ -3,10 +3,10 @@ export const colors = {
   subColor: '#5696FD',
   black26: '#262626',
   whiteColor: '#fff',
+  lightGreyColor: '#F8F8F8',
 };
 
 export const widths = {
   maxWidth: '85rem',
-  tableMax: '88rem',
-  mobileMax: '50rem',
+  mobileMax: '60rem',
 };

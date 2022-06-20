@@ -1,17 +1,28 @@
+/* eslint-disable import/no-cycle */
 import React from 'react';
 import styled from 'styled-components';
-import { colors } from 'styles/variables';
+import { InputProps } from '.';
 
-const Input = styled.input`
-  height: 4.5rem;
+const Input = styled.input<InputProps>`
+  border: none;
+  height: 3rem;
   border-radius: 0.5rem;
-  width: 83%;
-  padding: 0 2rem;
-  border: 0.1rem solid ${colors.subColor};
+  padding: 0;
+  width: 0;
+  visibility: hidden;
+  transition: all 0.3s ease-in-out;
+  ${({ activeInput }) =>
+    activeInput &&
+    `
+      padding: 0 2rem;
+      width: 20rem;
+      visibility: visible;
+      transition: all 0.3s ease-in-out;
+  `}
 `;
 
-const BasicInput = () => {
-  return <Input />;
+const BasicInput = (props: InputProps) => {
+  return <Input {...props} />;
 };
 
 export default BasicInput;

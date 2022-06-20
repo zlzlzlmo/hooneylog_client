@@ -6,15 +6,18 @@ interface FlexContainerProps {
   height?: string;
   justifyContent?: string;
   alignItems?: string;
-  flexDirection?: string;
+  display?: 'inline-flex' | 'flex';
+  flexDirection?: 'column' | 'row';
   gap?: string;
+  width?: string;
 }
 
 const Container = styled.div<FlexContainerProps>`
-  display: flex;
-  width: 100%;
+  display: ${({ display }) => display || 'flex'};
+  width: ${({ width }) => width || '100%'};
   height: ${({ height }) => height && height};
   justify-content: ${({ justifyContent }) => justifyContent && justifyContent};
+  align-items: ${({ alignItems }) => alignItems && alignItems};
   flex-direction: ${({ flexDirection }) => flexDirection || 'row'};
   gap: ${({ gap }) => gap && gap};
 `;
