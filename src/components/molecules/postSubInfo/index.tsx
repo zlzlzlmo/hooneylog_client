@@ -1,4 +1,3 @@
-import CreatedDate from 'components/atoms/createdDate';
 import ProfileImage from 'components/atoms/profileImg';
 import React from 'react';
 import styles from './index.module.scss';
@@ -15,7 +14,8 @@ const PostSubInfo = ({ createdAt, postId }: Props) => {
         <ProfileImage width="3rem" height="3rem" />
         <span className={styles.name}> By Seunghoon</span>
       </span>
-      <CreatedDate createdAt={createdAt} />
+
+      {/* <CreatedDate createdAt={createdAt} /> */}
       {/* <PostView postId={postId} /> */}
     </section>
   );

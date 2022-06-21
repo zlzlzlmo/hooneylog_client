@@ -5,6 +5,7 @@ import NextImage from 'next/image';
 
 const OImageType = {
   profile: 'PROFILE',
+  post: 'POST',
 } as const;
 
 type ImageType = typeof OImageType[keyof typeof OImageType];
