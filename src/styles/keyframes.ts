@@ -25,3 +25,19 @@ export const moveName = keyframes`
     }
 
 `;
+
+export const showArticle = keyframes`
+        from {
+        opacity: 0;
+        transform: translateY(20vh);
+        visibility: hidden;
+        transition: opacity 0.3s ease-out, transform 0.6s ease-out;
+        will-change: opacity, visibility;
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+        visibility: visible;
+    }
+`;

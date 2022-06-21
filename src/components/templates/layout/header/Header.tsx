@@ -1,5 +1,6 @@
 import FlexContainer from 'components/templates/container/FlexContainer';
 import InnerContainer from 'components/templates/container/InnerContainer';
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { colors, widths } from 'styles/variables';
@@ -26,11 +27,13 @@ const Logo = styled.div`
 `;
 
 const Header = () => {
+  const router = useRouter();
+
   return (
     <Container>
       <InnerContainer>
         <FlexContainer alignItems="center" height="100%" justifyContent="space-between">
-          <Logo>HooneyLog</Logo>
+          <Logo onClick={() => router.push('/')}>HooneyLog</Logo>
           <SearchForm />
         </FlexContainer>
       </InnerContainer>

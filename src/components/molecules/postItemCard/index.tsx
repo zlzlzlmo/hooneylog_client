@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-has-content */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import CreatedDate from 'components/atoms/createdDate';
 import LinkToDetail from 'components/atoms/linkToDetail';
@@ -5,16 +6,15 @@ import PostDescription from 'components/atoms/postDescription';
 import PostImage from 'components/atoms/postImage';
 import PostTitle from 'components/atoms/postTitle';
 import PostTagList from 'components/molecules/postTagList';
-import useElementVisible from 'hooks/useElementVisible';
 import Link from 'next/link';
-import React, { useRef } from 'react';
+import React from 'react';
 import { Tag } from 'ts/interface/notion';
-import SingleCategoryManager from 'util/category/singleCategory';
-import AbstractFactory from 'util/abstracFactory';
-import styles from './index.module.scss';
+import styled from 'styled-components';
+import { showArticle } from 'styles/keyframes';
 import usePostItem from './usePostItem';
+import Typography from 'components/elements/typography';
 
-interface Props {
+interface PostItemProps {
   title: string;
   createdAt: string;
   id: string;
@@ -23,30 +23,42 @@ interface Props {
   tags: Tag[];
 }
 
-const PostItem = ({ title, createdAt, id, category, description, tags }: Props) => {
+const Container = styled.article`
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-column-gap: 3rem;
+  animation: ${showArticle} 0.6s;
+`;
+
+const Content = styled.div`
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+`;
+
+const PostItem = ({ title, createdAt, id, category, description, tags }: PostItemProps) => {
   const { singleCategory, timeToShow, articleRef } = usePostItem(category);
 
   if (!timeToShow) {
     return (
       <Link href={`post/${id}`} passHref>
-        <a>
-          <article className={styles.transparent} ref={articleRef} />{' '}
-        </a>
+        <a ref={articleRef} />
       </Link>
     );
   }
 
   return (
-    <article className={`${styles.container}`}>
+    <Container>
       <PostImage width="100%" src={singleCategory.categoryImageSrc} alt={category} />
-      <section className={styles.content}>
-        <PostTitle postId={id} title={title} fontSize="2rem" />
+      <Content>
+        {/* <PostTitle postId={id} title={title} fontSize="2rem" /> */}
+        <Typography typoType="POST_TITLE">{title}</Typography>
         <CreatedDate createdAt={createdAt} />
         <PostTagList tags={tags} />
         <PostDescription description={description} />
         <LinkToDetail postId={id} text="Read More" />
-      </section>
-    </article>
+      </Content>
+    </Container>
   );
 };
 

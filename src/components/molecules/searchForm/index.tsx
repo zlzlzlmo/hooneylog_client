@@ -2,7 +2,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable no-use-before-define */
 import SearchBtn from 'components/atoms/searchBtn';
-import SearchInput from 'components/atoms/searchInput';
 import Input from 'components/elements/input';
 import React from 'react';
 import styles from './index.module.scss';

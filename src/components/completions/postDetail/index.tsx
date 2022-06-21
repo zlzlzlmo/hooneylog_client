@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/jsx-no-useless-fragment */
 import Content from 'components/atoms/content';
-import Layout from 'components/molecules/layout';
 import MoveToAnotherPost from 'components/molecules/moveToAnotherPost';
 import PostDetailedContents from 'components/molecules/postDetailedContents';
+import Layout from 'components/templates/layout/Layout';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import { useAppDispatch } from 'redux/configStore';

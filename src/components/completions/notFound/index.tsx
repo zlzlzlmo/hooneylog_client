@@ -1,4 +1,4 @@
-import Layout from 'components/molecules/layout';
+import Layout from 'components/templates/layout/Layout';
 import Image from 'next/image';
 import React from 'react';
 import styles from './index.module.scss';

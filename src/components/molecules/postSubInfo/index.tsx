@@ -1,5 +1,4 @@
 import CreatedDate from 'components/atoms/createdDate';
-import PostView from 'components/atoms/postView';
 import ProfileImage from 'components/atoms/profileImg';
 import React from 'react';
 import styles from './index.module.scss';

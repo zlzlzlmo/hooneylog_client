@@ -1,66 +1,50 @@
 /* eslint-disable prefer-destructuring */
 /* eslint-disable no-useless-return */
+import PostItemList from 'components/molecules/postItemList/PostItemList';
 import Layout from 'components/templates/layout/Layout';
 import React from 'react';
 import styled from 'styled-components';
-import { widths } from 'styles/variables';
+import { colors } from 'styles/variables';
+import CategoryList from './categoryList/CategoryList';
 import useSearchQuery from './useSearchQuery';
-
-const CategoryList = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  overflow-x: auto;
-  gap: 3rem;
-  max-width: ${widths.maxWidth};
-  width: 100vw;
-  box-sizing: border-box;
-  position: relative;
-  padding: 2rem;
-  border-bottom: 0.1rem solid lightgray;
-
-  ::-webkit-scrollbar {
-    display: none;
-  }
-
-  @media (max-width: ${widths.mobileMax}) {
-    flex-wrap: nowrap;
-  }
-`;
-
-const Categoryitem = styled.li`
-  font-size: 1.5rem;
-  white-space: nowrap;
-  color: grey;
-  cursor: pointer;
-`;
 
 const SearchedBox = styled.div`
   margin: 2rem 0;
 `;
 
-const Text = styled.div`
+const TextContainer = styled.div`
+  margin: 1rem 0;
+`;
+
+const Text = styled.span`
+  font-size: 3rem;
   font-weight: 700;
-  font-size: 2rem;
-  padding-left: 2rem;
+  color: ${colors.subColor};
+`;
+
+const GreyText = styled(Text)`
+  color: ${colors.mainColor};
 `;
 
 const Search = () => {
-  const { isOkaySearchKey, searchKeyValue } = useSearchQuery();
+  const { isValidSearchKey, searchKeyValue } = useSearchQuery();
 
   return (
     <Layout>
-      <CategoryList>
-        <Categoryitem>테스트</Categoryitem>
-      </CategoryList>
       <SearchedBox>
-        {isOkaySearchKey ? (
+        <TextContainer>
           <Text>
-            Searched by {searchKeyValue?.key} for {searchKeyValue?.value}
+            <GreyText> Searched By </GreyText>Category
           </Text>
-        ) : (
-          <Text>잘못된 검색</Text>
-        )}
+        </TextContainer>
+        <TextContainer>
+          <Text>
+            <GreyText> Results for</GreyText> search
+          </Text>
+        </TextContainer>
       </SearchedBox>
+      <CategoryList />
+      <PostItemList />
     </Layout>
   );
 };

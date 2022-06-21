@@ -1,20 +1,19 @@
-import SearchedPostLength from 'components/atoms/searchedPostLength';
 import PostItemCard from 'components/molecules/postItemCard';
 import useReduxData from 'hooks/useReduxData';
 import React, { Fragment } from 'react';
-import CategoryList from '../categoryList';
-import FilteredTypeList from '../filteredTypeList';
-import styles from './index.module.scss';
+import styled from 'styled-components';
+
+const Container = styled.main`
+  padding: 5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+`;
 
 const PostItemList = () => {
   const { filteredNotionList } = useReduxData();
   return (
-    <main className={styles.container}>
-      <div>
-        <CategoryList />
-        <SearchedPostLength length={filteredNotionList.length} />
-        <FilteredTypeList />
-      </div>
+    <Container>
       {filteredNotionList.map(({ id, title, createdAt, description, category, tags }) => (
         <Fragment key={id}>
           <PostItemCard
@@ -27,7 +26,7 @@ const PostItemList = () => {
           />
         </Fragment>
       ))}
-    </main>
+    </Container>
   );
 };
 

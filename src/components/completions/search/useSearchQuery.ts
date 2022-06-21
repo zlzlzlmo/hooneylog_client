@@ -11,14 +11,14 @@ interface ISearchQuery {
 const useSearchQuery = () => {
   const router = useRouter();
   const [searchKeyValue, setSearchKeyValue] = useState<ISearchQuery | null>(null);
-  const [isOkaySearchKey, setIsOkaySearchKey] = useState<boolean>(true);
+  const [isValidSearchKey, setIsValidSearchKey] = useState<boolean>(true);
 
   useEffect(() => {
     const queryParam = new QueryParam();
     const notAllowedSearchKey = !queryParam.firstKeyName;
 
     if (notAllowedSearchKey) {
-      setIsOkaySearchKey(false);
+      setIsValidSearchKey(false);
       return;
     }
 
@@ -35,7 +35,7 @@ const useSearchQuery = () => {
     router.push(`/search?${newKeyValue.key}=${newKeyValue.value}`);
   }
 
-  return { isOkaySearchKey, searchKeyValue };
+  return { isValidSearchKey, searchKeyValue };
 };
 
 export default useSearchQuery;

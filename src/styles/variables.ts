@@ -4,6 +4,7 @@ export const colors = {
   black26: '#262626',
   whiteColor: '#fff',
   lightGreyColor: '#F8F8F8',
+  greyColor: '#808080',
 };
 
 export const widths = {
