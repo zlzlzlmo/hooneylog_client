@@ -9,6 +9,7 @@ import styled from 'styled-components';
 import { showArticle } from 'styles/keyframes';
 import Typography from 'components/elements/typography';
 import TagGroup from 'components/blocks/tagGroup/TagGroup';
+import CategoryImage from 'util/categoryImage/categoryImage';
 
 interface PostItemProps {
   title: string;
@@ -42,11 +43,11 @@ const PostItem = ({ title, createdAt, id, category, description, tags }: PostIte
   //     </Link>
   //   );
   // }
+  console.log(new CategoryImage(category).src);
 
   return (
     <Container>
-      {/* <PostImage width="100%" src={''} alt={category} /> */}
-      <div>이미지 넣어야함</div>
+      <PostImage width="100%" src={new CategoryImage(category).src} alt={category} />
       <Content>
         <Link href={`post/${id}`} passHref>
           <a>

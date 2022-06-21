@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { widths, colors } from 'styles/variables';
-import Category from 'util/category/category';
+import Category, { ALL } from 'util/category/category';
 import CategoryItem from './categoryItem/CategoryItem';
 
 interface CategoryListProps {
@@ -31,7 +31,7 @@ const Container = styled.ul`
 `;
 
 const CategoryList = ({ categories }: CategoryListProps) => {
-  const [activeCategory, setActiveCategory] = useState<string>('');
+  const [activeCategory, setActiveCategory] = useState<string>(ALL);
 
   const handleActiveCategory = (category: string) => () => {
     setActiveCategory(category);
@@ -39,7 +39,7 @@ const CategoryList = ({ categories }: CategoryListProps) => {
 
   return (
     <Container>
-      {new Category(categories).orderedListByDescending.map(([category, count], index) => (
+      {new Category(categories).orderedListByDescendingCount.map(([category, count], index) => (
         <CategoryItem
           key={index}
           active={activeCategory === category}

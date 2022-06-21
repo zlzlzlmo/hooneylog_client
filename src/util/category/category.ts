@@ -1,17 +1,21 @@
 type ReduceReturnType = Record<string, number>;
 
+export const ALL = '전체';
+
 class Category {
   constructor(private readonly categoryList: string[]) {}
 
   get objectWithCount(): ReduceReturnType {
+    const defaultObjectWithAll = { [ALL]: this.categoryList.length };
+
     const result = this.categoryList.reduce<ReduceReturnType>((total, category) => {
       return { ...total, [category]: total[category] ? total[category] + 1 : 1 };
-    }, {});
+    }, defaultObjectWithAll);
 
     return result;
   }
 
-  get orderedListByDescending(): [string, number][] {
+  get orderedListByDescendingCount(): [string, number][] {
     const result = Object.entries(this.objectWithCount).sort((a, b) => {
       const countInDescending = b[1] - a[1];
       const textInAscending = a[0].localeCompare(b[0]);
