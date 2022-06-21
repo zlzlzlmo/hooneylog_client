@@ -9,7 +9,6 @@ import styled from 'styled-components';
 import { showArticle } from 'styles/keyframes';
 import Typography from 'components/elements/typography';
 import TagGroup from 'components/blocks/tagGroup/TagGroup';
-import usePostItem from './usePostItem';
 
 interface PostItemProps {
   title: string;
@@ -34,7 +33,7 @@ const Content = styled.div`
 `;
 
 const PostItem = ({ title, createdAt, id, category, description, tags }: PostItemProps) => {
-  const { singleCategory, timeToShow, articleRef } = usePostItem(category);
+  // const { singleCategory, timeToShow, articleRef } = usePostItem(category);
 
   // if (!timeToShow) {
   //   return (
@@ -46,7 +45,8 @@ const PostItem = ({ title, createdAt, id, category, description, tags }: PostIte
 
   return (
     <Container>
-      <PostImage width="100%" src={singleCategory.categoryImageSrc} alt={category} />
+      {/* <PostImage width="100%" src={''} alt={category} /> */}
+      <div>이미지 넣어야함</div>
       <Content>
         <Link href={`post/${id}`} passHref>
           <a>

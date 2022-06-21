@@ -11,16 +11,17 @@ import { setNotionList, setFilteredPostList } from 'redux/modules/post';
 import { NotionPost } from 'ts/interface/notion';
 import Introduction from './introduction/Introduction';
 
-interface Props {
+interface HomepageProps {
   notionList: NotionPost[];
 }
 
-const Home = ({ notionList }: Props) => {
+const Home = ({ notionList }: HomepageProps) => {
   const { handleFilterByQueryParam } = useFilterByQueryParam();
   const { originalNotionList } = useReduxData();
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+    console.log('notionList : ', notionList);
     dispatch(setNotionList(notionList));
     dispatch(setFilteredPostList(notionList));
   }, []);

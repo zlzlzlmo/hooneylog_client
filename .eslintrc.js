@@ -36,6 +36,7 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'off',
     'import/namespace': 'off',
     'import/no-cycle': 'off',
+    'no-useless-constructor': 'off',
   },
   settings: {
     'import/resolver': {
