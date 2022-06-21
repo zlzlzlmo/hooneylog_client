@@ -1,8 +1,6 @@
 /* eslint-disable import/named */
 /* eslint-disable jsx-a11y/anchor-has-content */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import LinkToDetail from 'components/atoms/linkToDetail';
-import PostDescription from 'components/atoms/postDescription';
 import PostImage from 'components/atoms/postImage';
 import Link from 'next/link';
 import React from 'react';
@@ -58,9 +56,12 @@ const PostItem = ({ title, createdAt, id, category, description, tags }: PostIte
 
         <Typography typoType="DATE">{createdAt}</Typography>
         <TagGroup tags={tags} />
-        {/* <PostTagList tags={tags} /> */}
         <Typography typoType="POST_DESC">{description}</Typography>
-        <LinkToDetail postId={id} text="Read More" />
+        <Link href={`post/${id}`} passHref>
+          <a>
+            <Typography typoType="READ_MORE">Read More</Typography>
+          </a>
+        </Link>
       </Content>
     </Container>
   );

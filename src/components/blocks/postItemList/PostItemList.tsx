@@ -1,7 +1,7 @@
-import PostItemCard from 'components/molecules/postItemCard';
 import useReduxData from 'hooks/useReduxData';
 import React, { Fragment } from 'react';
 import styled from 'styled-components';
+import PostItem from './postItemCard/PostItem';
 
 const Container = styled.main`
   padding: 5rem 0;
@@ -16,7 +16,7 @@ const PostItemList = () => {
     <Container>
       {filteredNotionList.map(({ id, title, createdAt, description, category, tags }) => (
         <Fragment key={id}>
-          <PostItemCard
+          <PostItem
             id={id}
             title={title}
             createdAt={createdAt}

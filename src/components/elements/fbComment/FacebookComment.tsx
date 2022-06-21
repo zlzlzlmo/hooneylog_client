@@ -6,7 +6,7 @@ interface FbCommentProps {
   slug: string;
 }
 
-const FbComment = ({ slug }: FbCommentProps) => {
+const FacebookComment = ({ slug }: FbCommentProps) => {
   useEffect(() => {
     if ((window as any).FB) {
       (window as any).FB.XFBML.parse();
@@ -28,4 +28,4 @@ const FbComment = ({ slug }: FbCommentProps) => {
   );
 };
 
-export default FbComment;
+export default FacebookComment;

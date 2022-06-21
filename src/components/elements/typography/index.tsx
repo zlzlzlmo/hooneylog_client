@@ -4,10 +4,12 @@ import React, { Component } from 'react';
 import DateFormatText from './Date';
 import PostDesc from './PostDesc';
 import PostTitle from './PostTitle';
+import ReadMore from './ReadMore';
 
 const OTypographyType = {
   postTitle: 'POST_TITLE',
   postDescription: 'POST_DESC',
+  readMore: 'READ_MORE',
   date: 'DATE',
 } as const;
 
@@ -25,6 +27,8 @@ class Typography extends Component<TypographyProps> {
         return <PostTitle {...props} />;
       case OTypographyType.postDescription:
         return <PostDesc {...props} />;
+      case OTypographyType.readMore:
+        return <ReadMore {...props} />;
       case OTypographyType.date:
         return <DateFormatText {...props} />;
       default:
