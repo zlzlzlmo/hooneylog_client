@@ -1,14 +1,6 @@
 import { keyframes } from 'styled-components';
 
-export const moveName = keyframes`
-     0% {
-        transform: rotate(0);
-    }
-
-    35% {
-        transform: rotate(0deg);
-    }
-
+export const moveTagName = keyframes`
     40% {
         transform: rotate(-5deg);
     }
@@ -23,7 +15,6 @@ export const moveName = keyframes`
     100% {
         transform: rotate(0);
     }
-
 `;
 
 export const showArticle = keyframes`

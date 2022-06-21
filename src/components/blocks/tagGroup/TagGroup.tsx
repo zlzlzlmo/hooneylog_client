@@ -1,10 +1,10 @@
-import PostTag from 'components/atoms/postTag';
+import Tag from 'components/elements/tag';
 import React, { Fragment } from 'react';
 import styled from 'styled-components';
-import { Tag } from 'ts/interface/notion';
+import { ITag } from 'ts/interface/notion';
 
 interface TagGroupProps {
-  tags: Tag[];
+  tags: ITag[];
 }
 
 const Container = styled.div`
@@ -20,7 +20,7 @@ const TagGroup = ({ tags }: TagGroupProps) => {
     <Container>
       {tags.map(({ name }) => (
         <Fragment key={name}>
-          <PostTag tagName={name} />
+          <Tag tagType="POST">{name}</Tag>
         </Fragment>
       ))}
     </Container>

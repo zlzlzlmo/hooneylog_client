@@ -1,4 +1,4 @@
-export interface Tag {
+export interface ITag {
   id: string;
   name: string;
 }
@@ -8,6 +8,6 @@ export interface NotionPost {
   category: string;
   createdAt: string;
   description: string;
-  tags: Tag[];
+  tags: ITag[];
   title: string;
 }

@@ -34,6 +34,8 @@ module.exports = {
     'react/require-default-props': 'off',
     '@typescript-eslint/ban-types': 'off',
     'react-hooks/exhaustive-deps': 'off',
+    'import/namespace': 'off',
+    'import/no-cycle': 'off',
   },
   settings: {
     'import/resolver': {

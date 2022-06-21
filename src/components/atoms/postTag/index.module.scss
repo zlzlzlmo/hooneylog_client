@@ -45,52 +45,6 @@
     }
 }
 
-.tag {
-    display: inline-block;
-    text-align: center;
-    font-size: 1.5rem;
-    background-color: $base-color2;
-    color:$white-color;
-    height: 2.6rem;
-    line-height: 2.6rem;
-    padding: 0 2rem 0 2.3rem;
-    cursor: pointer;
-    border-radius: 0.3rem 0 0 0.3rem;
-    position: relative;
-    &:hover {
-        display: inline-block;
-        background-color: $base-color;
-        animation: moveTagSpan 1.5s linear infinite;
-
-        &::after {  
-            border-left: 1rem solid $base-color;
-        }
-    }
-
-    &::before {
-        content: "";
-        top: 1rem;
-        left: 1rem;
-        position: absolute;
-        width: 0.6rem;
-        height: 0.6rem;
-        border-radius: 1rem;
-        background: $white-color;
-        box-shadow: inset 0 0.1rem rgb(0 0 0 / 25%);
-    }
-
-    &::after {
-        border-left: 1rem solid $base-color2;
-        content: "";
-        position: absolute;
-        right: -1rem;
-        top: 0;
-        border-bottom: 1.3rem solid transparent;
-        border-top: 1.3rem solid transparent;
-        transition: background .3s,color .3s;
-    }
-}
-
 
 @keyframes moveTagSpan {
 

@@ -1,5 +1,6 @@
+/* eslint-disable import/named */
 /* eslint-disable class-methods-use-this */
-import { NotionPost, Tag } from 'ts/interface/notion';
+import { NotionPost, ITag } from 'ts/interface/notion';
 
 interface ISearch {
   filteredListBySearchValue(searchValue: string): NotionPost[];
@@ -16,7 +17,7 @@ class Search implements ISearch {
     return value.toLowerCase().replace(/ /gi, '');
   }
 
-  private hasTag(tags: Tag[], searchedValue: string): boolean {
+  private hasTag(tags: ITag[], searchedValue: string): boolean {
     const result = tags.findIndex((tag) => this.lowerCaseWithNoSpace(tag.name).indexOf(searchedValue) !== -1);
     return result !== -1;
   }

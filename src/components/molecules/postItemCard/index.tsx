@@ -1,3 +1,4 @@
+/* eslint-disable import/named */
 /* eslint-disable jsx-a11y/anchor-has-content */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import LinkToDetail from 'components/atoms/linkToDetail';
@@ -5,7 +6,7 @@ import PostDescription from 'components/atoms/postDescription';
 import PostImage from 'components/atoms/postImage';
 import Link from 'next/link';
 import React from 'react';
-import { Tag } from 'ts/interface/notion';
+import { ITag } from 'ts/interface/notion';
 import styled from 'styled-components';
 import { showArticle } from 'styles/keyframes';
 import Typography from 'components/elements/typography';
@@ -18,7 +19,7 @@ interface PostItemProps {
   id: string;
   category: string;
   description: string;
-  tags: Tag[];
+  tags: ITag[];
 }
 
 const Container = styled.article`
