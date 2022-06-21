@@ -2,10 +2,12 @@
 /* eslint-disable lines-between-class-members */
 import React, { Component } from 'react';
 import DateFormatText from './Date';
+import PostDesc from './PostDesc';
 import PostTitle from './PostTitle';
 
 const OTypographyType = {
   postTitle: 'POST_TITLE',
+  postDescription: 'POST_DESC',
   date: 'DATE',
 } as const;
 
@@ -21,6 +23,8 @@ class Typography extends Component<TypographyProps> {
     switch (props.typoType) {
       case OTypographyType.postTitle:
         return <PostTitle {...props} />;
+      case OTypographyType.postDescription:
+        return <PostDesc {...props} />;
       case OTypographyType.date:
         return <DateFormatText {...props} />;
       default:

@@ -59,7 +59,7 @@ const PostItem = ({ title, createdAt, id, category, description, tags }: PostIte
         <Typography typoType="DATE">{createdAt}</Typography>
         <TagGroup tags={tags} />
         {/* <PostTagList tags={tags} /> */}
-        <PostDescription description={description} />
+        <Typography typoType="POST_DESC">{description}</Typography>
         <LinkToDetail postId={id} text="Read More" />
       </Content>
     </Container>
