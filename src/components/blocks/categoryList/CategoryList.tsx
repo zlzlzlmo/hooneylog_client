@@ -2,7 +2,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { widths, colors } from 'styles/variables';
+import Category from 'util/category/category';
 import CategoryItem from './categoryItem/CategoryItem';
+
+interface CategoryListProps {
+  categories: string[];
+}
 
 const Container = styled.ul`
   display: flex;
@@ -25,21 +30,22 @@ const Container = styled.ul`
   }
 `;
 
-const ItemList = [
-  { text: 'Typescript', count: 10 },
-  { text: 'Javascript', count: 4 },
-  { text: 'React', count: 3 },
-  { text: 'Next.js', count: 1 },
-];
-
-const CategoryList = () => {
+const CategoryList = ({ categories }: CategoryListProps) => {
   const [activeCategory, setActiveCategory] = useState<string>('');
+
+  const handleActiveCategory = (category: string) => () => {
+    setActiveCategory(category);
+  };
 
   return (
     <Container>
-      {ItemList.map(({ text }, index) => (
-        <CategoryItem key={index} active={activeCategory === text} setActiveCategory={setActiveCategory}>
-          {text}
+      {new Category(categories).orderedListByDescending.map(([category, count], index) => (
+        <CategoryItem
+          key={index}
+          active={activeCategory === category}
+          handleActiveCategory={handleActiveCategory(category)}
+        >
+          {category}({count})
         </CategoryItem>
       ))}
     </Container>

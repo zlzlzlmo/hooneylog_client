@@ -1,11 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-hooks/rules-of-hooks */
-import Content from 'components/atoms/content';
+import CategoryList from 'components/blocks/categoryList/CategoryList';
 import PostItemList from 'components/blocks/postItemList/PostItemList';
 import Layout from 'components/templates/layout/Layout';
 import useFilterByQueryParam from 'hooks/useFilterByQueryParam';
 import useReduxData from 'hooks/useReduxData';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAppDispatch } from 'redux/configStore';
 import { setNotionList, setFilteredPostList } from 'redux/modules/post';
 import { NotionPost } from 'ts/interface/notion';
@@ -16,12 +16,14 @@ interface HomepageProps {
 }
 
 const Home = ({ notionList }: HomepageProps) => {
+  const [categories, setCategories] = useState<string[]>([]);
   const { handleFilterByQueryParam } = useFilterByQueryParam();
   const { originalNotionList } = useReduxData();
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    console.log('notionList : ', notionList);
+    const categoryList = notionList.map(({ category }) => category);
+    setCategories(categoryList);
     dispatch(setNotionList(notionList));
     dispatch(setFilteredPostList(notionList));
   }, []);
@@ -38,9 +40,8 @@ const Home = ({ notionList }: HomepageProps) => {
     <Layout>
       <div>
         <Introduction />
-        <Content>
-          <PostItemList />
-        </Content>
+        <CategoryList categories={categories} />
+        <PostItemList />
       </div>
     </Layout>
   );

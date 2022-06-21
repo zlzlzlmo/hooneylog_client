@@ -1,5 +1,4 @@
 import Image from 'components/elements/image';
-import IntroName from 'components/elements/introName/IntroName';
 import FlexContainer from 'components/templates/container/FlexContainer';
 import InnerContainer from 'components/templates/container/InnerContainer';
 import React from 'react';

@@ -1,11 +1,11 @@
 /* eslint-disable prefer-destructuring */
 /* eslint-disable no-useless-return */
-import PostItemList from 'components/molecules/postItemList/PostItemList';
+import CategoryList from 'components/blocks/categoryList/CategoryList';
+import PostItemList from 'components/blocks/postItemList/PostItemList';
 import Layout from 'components/templates/layout/Layout';
 import React from 'react';
 import styled from 'styled-components';
 import { colors } from 'styles/variables';
-import CategoryList from './categoryList/CategoryList';
 import useSearchQuery from './useSearchQuery';
 
 const SearchedBox = styled.div`

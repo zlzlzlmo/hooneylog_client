@@ -8,9 +8,9 @@ type CategoryItemStyle = {
 };
 
 interface CategoryItemProps {
-  children: string;
+  children: React.ReactNode;
   active: boolean;
-  setActiveCategory: React.Dispatch<React.SetStateAction<string>>;
+  handleActiveCategory: () => void;
 }
 
 const Container = styled.li<CategoryItemStyle>`
@@ -20,9 +20,9 @@ const Container = styled.li<CategoryItemStyle>`
   font-weight: 700;
 `;
 
-const CategoryItem = ({ children, active, setActiveCategory }: CategoryItemProps) => {
+const CategoryItem = ({ children, active, handleActiveCategory }: CategoryItemProps) => {
   return (
-    <Container onClick={() => setActiveCategory(children)} active={active}>
+    <Container onClick={handleActiveCategory} active={active}>
       {children}
     </Container>
   );
