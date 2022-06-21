@@ -1,26 +1,30 @@
 import PostTag from 'components/atoms/postTag';
 import React, { Fragment } from 'react';
+import styled from 'styled-components';
 import { Tag } from 'ts/interface/notion';
-import styles from './index.module.scss';
 
-interface Props {
+interface TagGroupProps {
   tags: Tag[];
-  margin?: string;
 }
-const PostTagList = ({ tags, margin }: Props) => {
+
+const Container = styled.div`
+  display: flex;
+  column-gap: 2rem;
+  row-gap: 0.7rem;
+  width: 100%;
+  flex-wrap: wrap;
+`;
+
+const TagGroup = ({ tags }: TagGroupProps) => {
   return (
-    <section className={styles.tag_box} style={{ margin }}>
+    <Container>
       {tags.map(({ name }) => (
         <Fragment key={name}>
           <PostTag tagName={name} />
         </Fragment>
       ))}
-    </section>
+    </Container>
   );
 };
 
-export default PostTagList;
-
-PostTagList.defaultProps = {
-  margin: '0',
-};
+export default TagGroup;

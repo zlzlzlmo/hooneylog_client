@@ -3,13 +3,13 @@
 import LinkToDetail from 'components/atoms/linkToDetail';
 import PostDescription from 'components/atoms/postDescription';
 import PostImage from 'components/atoms/postImage';
-import PostTagList from 'components/molecules/postTagList';
 import Link from 'next/link';
 import React from 'react';
 import { Tag } from 'ts/interface/notion';
 import styled from 'styled-components';
 import { showArticle } from 'styles/keyframes';
 import Typography from 'components/elements/typography';
+import TagGroup from 'components/blocks/tagGroup/TagGroup';
 import usePostItem from './usePostItem';
 
 interface PostItemProps {
@@ -56,7 +56,8 @@ const PostItem = ({ title, createdAt, id, category, description, tags }: PostIte
         </Link>
 
         <Typography typoType="DATE">{createdAt}</Typography>
-        <PostTagList tags={tags} />
+        <TagGroup tags={tags} />
+        {/* <PostTagList tags={tags} /> */}
         <PostDescription description={description} />
         <LinkToDetail postId={id} text="Read More" />
       </Content>
