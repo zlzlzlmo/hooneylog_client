@@ -5,7 +5,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { Fragment } from 'react';
-import Block from '../../atoms/block';
+import NotionBlock from '../../elements/notionBlock/notionBlock';
 import styles from './index.module.scss';
 
 const BlockNestedList = (block: any) => {
@@ -20,7 +20,7 @@ const BlockNestedList = (block: any) => {
       <ol className={styles.order_list}>
         {value.children.map((block: any, index: number) => (
           <Fragment key={index}>
-            <Block block={block} />
+            <NotionBlock block={block} />
           </Fragment>
         ))}
       </ol>
@@ -30,7 +30,7 @@ const BlockNestedList = (block: any) => {
     <ul className={styles.unorder_list}>
       {value.children.map((block: any, index: number) => (
         <Fragment key={index}>
-          <Block block={block} />
+          <NotionBlock block={block} />
         </Fragment>
       ))}
     </ul>

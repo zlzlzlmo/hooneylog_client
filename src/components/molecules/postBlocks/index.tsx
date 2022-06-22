@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import Block from 'components/atoms/block';
+import NotionBlock from 'components/elements/notionBlock/notionBlock';
 import React, { Fragment } from 'react';
 import styles from './index.module.scss';
 
@@ -12,7 +12,7 @@ const PostBlocks = ({ blocks }: Props) => {
     <main className={styles.main_content}>
       {blocks.map((block: any) => (
         <Fragment key={block.id}>
-          <Block block={block} />
+          <NotionBlock block={block} />
         </Fragment>
       ))}
     </main>

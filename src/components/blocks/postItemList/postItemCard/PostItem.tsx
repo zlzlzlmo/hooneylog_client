@@ -1,7 +1,6 @@
 /* eslint-disable import/named */
 /* eslint-disable jsx-a11y/anchor-has-content */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import PostImage from 'components/atoms/postImage';
 import Link from 'next/link';
 import React from 'react';
 import { ITag } from 'ts/interface/notion';
@@ -10,6 +9,7 @@ import { showArticle } from 'styles/keyframes';
 import Typography from 'components/elements/typography';
 import TagGroup from 'components/blocks/tagGroup/TagGroup';
 import CategoryImage from 'util/categoryImage/categoryImage';
+import PostImage from 'components/blocks/postItemList/postItemCard/PostImage';
 
 interface PostItemProps {
   title: string;
@@ -43,7 +43,6 @@ const PostItem = ({ title, createdAt, id, category, description, tags }: PostIte
   //     </Link>
   //   );
   // }
-  console.log(new CategoryImage(category).src);
 
   return (
     <Container>

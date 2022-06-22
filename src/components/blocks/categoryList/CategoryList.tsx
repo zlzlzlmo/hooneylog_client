@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { widths, colors } from 'styles/variables';
 import Category, { ALL } from 'util/category/category';
+import { useRouter } from 'next/router';
 import CategoryItem from './categoryItem/CategoryItem';
 
 interface CategoryListProps {
@@ -32,9 +33,11 @@ const Container = styled.ul`
 
 const CategoryList = ({ categories }: CategoryListProps) => {
   const [activeCategory, setActiveCategory] = useState<string>(ALL);
+  const router = useRouter();
 
   const handleActiveCategory = (category: string) => () => {
     setActiveCategory(category);
+    router.push(`/search?&category=${category}`);
   };
 
   return (

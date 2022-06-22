@@ -23,7 +23,7 @@ interface Props {
   ];
 }
 
-const BlockText = ({ richText }: Props) => {
+const NotionBlockText = ({ richText }: Props) => {
   if (!richText) {
     return <span />;
   }
@@ -61,4 +61,4 @@ const BlockText = ({ richText }: Props) => {
   );
 };
 
-export default BlockText;
+export default NotionBlockText;

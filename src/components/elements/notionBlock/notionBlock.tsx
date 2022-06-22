@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable no-shadow */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-case-declarations */
@@ -8,10 +9,10 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import useIntersectionObserver from 'hooks/useIntersection';
 import BlockNestedList from 'components/molecules/blockNestedList';
-import styles from './index.module.scss';
-import BlockText from '../blockText';
+import styles from './notionBlock.module.scss';
+import NotionBlockText from '../notionBlockText/NotionBlockText';
 
-const Block = ({ block }: any) => {
+const NotionBlock = ({ block }: any) => {
   const { type, id } = block;
   const value = block[type];
   const headingRef = useRef<HTMLHeadingElement>(null);
@@ -32,7 +33,7 @@ const Block = ({ block }: any) => {
     case 'paragraph':
       return (
         <p className={styles.paragraph}>
-          <BlockText richText={value.rich_text} />
+          <NotionBlockText richText={value.rich_text} />
         </p>
       );
     case 'heading_1':
@@ -53,7 +54,7 @@ const Block = ({ block }: any) => {
     case 'numbered_list_item':
       return (
         <li className={styles.list}>
-          <BlockText richText={value.rich_text} />
+          <NotionBlockText richText={value.rich_text} />
           {!!value.children && BlockNestedList(block)}
         </li>
       );
@@ -69,10 +70,10 @@ const Block = ({ block }: any) => {
       return (
         <details>
           <summary>
-            <BlockText richText={value.rich_text} />
+            <NotionBlockText richText={value.rich_text} />
           </summary>
           {value.children?.map((block: any) => (
-            <Fragment key={block.id}>{Block(block)}</Fragment>
+            <Fragment key={block.id}>{NotionBlock(block)}</Fragment>
           ))}
         </details>
       );
@@ -129,4 +130,4 @@ const Block = ({ block }: any) => {
   }
 };
 
-export default Block;
+export default NotionBlock;

@@ -43,7 +43,7 @@ const Search = () => {
           </Text>
         </TextContainer>
       </SearchedBox>
-      <CategoryList />
+      {/* <CategoryList /> */}
       <PostItemList />
     </Layout>
   );
