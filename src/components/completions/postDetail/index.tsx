@@ -1,14 +1,13 @@
+/* eslint-disable react/jsx-no-undef */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/jsx-no-useless-fragment */
-import Content from 'components/atoms/content';
+import { NotionPost } from 'api/notion/notionApi';
 import MoveToAnotherPost from 'components/molecules/moveToAnotherPost';
 import PostDetailedContents from 'components/molecules/postDetailedContents';
+import InnerContainer from 'components/templates/container/InnerContainer';
 import Layout from 'components/templates/layout/Layout';
 import { useRouter } from 'next/router';
-import React, { useEffect } from 'react';
-import { useAppDispatch } from 'redux/configStore';
-import { setNotionList } from 'redux/modules/post';
-import { NotionPost } from 'ts/interface/notion';
+import React from 'react';
 
 interface Props {
   notionList: NotionPost[];
@@ -19,12 +18,6 @@ interface Props {
 const PostDetail = ({ notionList, notionPost, blocks }: Props) => {
   const router = useRouter();
 
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(setNotionList(notionList));
-  }, []);
-
   if (router.isFallback) {
     return <></>;
   }
@@ -32,7 +25,7 @@ const PostDetail = ({ notionList, notionPost, blocks }: Props) => {
   return (
     <Layout>
       <div>
-        <Content padding="5rem 0">
+        <InnerContainer>
           <PostDetailedContents
             postId={notionPost.id}
             title={notionPost.title}
@@ -44,7 +37,7 @@ const PostDetail = ({ notionList, notionPost, blocks }: Props) => {
 
           <MoveToAnotherPost notionList={notionList} notionPost={notionPost} />
           {/* <FbComment slug={slug} /> */}
-        </Content>
+        </InnerContainer>
       </div>
     </Layout>
   );

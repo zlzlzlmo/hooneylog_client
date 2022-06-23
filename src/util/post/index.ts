@@ -1,6 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable consistent-return */
-import { NotionPost } from 'ts/interface/notion';
+
+import { NotionPost } from 'api/notion/notionApi';
 
 class Post {
   private readonly notionList;
