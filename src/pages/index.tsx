@@ -6,7 +6,6 @@ import CategoryList from 'components/blocks/categoryList/CategoryList';
 import PostItemList from 'components/blocks/postItemList/PostItemList';
 import Introduction from 'components/completions/home/introduction/Introduction';
 import Layout from 'components/templates/layout/Layout';
-import useFilterByQueryParam from 'hooks/useFilterByQueryParam';
 import useReduxData from 'hooks/useReduxData';
 import { useState, useEffect } from 'react';
 import { useAppDispatch } from 'redux/configStore';
@@ -18,7 +17,6 @@ interface HomepageProps {
 
 const HomePage = ({ notionList }: HomepageProps) => {
   const [categories, setCategories] = useState<string[]>([]);
-  const { handleFilterByQueryParam } = useFilterByQueryParam();
   const { originalNotionList } = useReduxData();
   const dispatch = useAppDispatch();
 
@@ -29,13 +27,6 @@ const HomePage = ({ notionList }: HomepageProps) => {
     dispatch(setFilteredPostList(notionList));
   }, []);
 
-  useEffect(() => {
-    if (originalNotionList.length < 1) {
-      return;
-    }
-
-    handleFilterByQueryParam();
-  }, [originalNotionList]);
   return (
     <>
       <Head>

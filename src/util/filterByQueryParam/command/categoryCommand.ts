@@ -1,4 +1,4 @@
-import { NotionPost } from 'ts/interface/notion';
+import { NotionPost } from 'api/notion/notionApi';
 import CategoryQuery from 'util/queryParam/categoryQuery';
 import { ICommand } from '../filterByQueryParam';
 

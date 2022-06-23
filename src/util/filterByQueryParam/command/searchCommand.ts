@@ -1,5 +1,5 @@
 /* eslint-disable import/no-unresolved */
-import { NotionPost } from 'ts/interface/notion';
+import { NotionPost } from 'api/notion/notionApi';
 import SearchQuery from 'util/queryParam/searchQuery';
 import { ICommand } from '../filterByQueryParam';
 

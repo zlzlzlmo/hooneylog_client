@@ -1,4 +1,4 @@
-import { NotionPost } from 'ts/interface/notion';
+import { NotionPost } from 'api/notion/notionApi';
 
 export interface ICommand {
   execute: (notionList: NotionPost[]) => NotionPost[];

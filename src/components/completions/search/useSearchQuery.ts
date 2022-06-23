@@ -30,7 +30,7 @@ const useSearchQuery = () => {
 
   function setSearchInfoFor(queryParam: QueryParam) {
     const newKeyValue: ISearchQuery = {
-      key: queryParam.firstKeyName,
+      key: queryParam.firstKeyName!,
       value: queryParam.firstValue,
     };
 
