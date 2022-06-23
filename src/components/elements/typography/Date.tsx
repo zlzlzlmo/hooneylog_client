@@ -2,7 +2,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { colors } from 'styles/variables';
-import { dateFormat } from 'util/common';
+import DateFormat from 'util/dateFormat/dateFormat';
 import { TypographyProps } from '.';
 
 const Container = styled.div`
@@ -11,7 +11,7 @@ const Container = styled.div`
 `;
 
 const DateFormatText = (props: TypographyProps) => {
-  return <Container>{dateFormat(props.children)}</Container>;
+  return <Container>{new DateFormat(props.children).getKoreaTime()}</Container>;
 };
 
 export default DateFormatText;
