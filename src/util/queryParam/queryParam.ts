@@ -24,7 +24,7 @@ class QueryParam {
   }
 
   protected getValue(key: SearchKeyType) {
-    return this.query.get(key);
+    return this.query.get(key) || '';
   }
 
   private isOkaySearchKey(key: any): key is SearchKeyType {
