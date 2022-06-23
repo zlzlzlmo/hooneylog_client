@@ -13,6 +13,9 @@ const useSearchQuery = () => {
   const [searchKeyValue, setSearchKeyValue] = useState<ISearchQuery | null>(null);
   const [isValidSearchKey, setIsValidSearchKey] = useState<boolean>(true);
 
+  const searchParamKey = searchKeyValue?.key;
+  const searchParamValue = searchKeyValue?.value;
+
   useEffect(() => {
     const queryParam = new QueryParam();
     const notAllowedSearchKey = !queryParam.firstKeyName;
@@ -35,7 +38,7 @@ const useSearchQuery = () => {
     router.push(`/search?${newKeyValue.key}=${newKeyValue.value}`);
   }
 
-  return { isValidSearchKey, searchKeyValue };
+  return { isValidSearchKey, searchParamKey, searchParamValue };
 };
 
 export default useSearchQuery;

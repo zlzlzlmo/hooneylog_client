@@ -37,6 +37,7 @@ module.exports = {
     'import/namespace': 'off',
     'import/no-cycle': 'off',
     'no-useless-constructor': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
   },
   settings: {
     'import/resolver': {
