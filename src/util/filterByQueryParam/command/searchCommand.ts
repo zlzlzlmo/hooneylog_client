@@ -1,6 +1,6 @@
 /* eslint-disable import/no-unresolved */
 import { NotionPost } from 'ts/interface/notion';
-import SearchQuery from 'util/queryParam/SearchQuery';
+import SearchQuery from 'util/queryParam/searchQuery';
 import { ICommand } from '../filterByQueryParam';
 
 class SearchCommand implements ICommand {

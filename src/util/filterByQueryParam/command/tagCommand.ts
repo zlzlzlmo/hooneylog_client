@@ -8,12 +8,12 @@ class TagCommand implements ICommand {
 
   execute(notionList: NotionPost[]) {
     const result = notionList.filter(({ tags }) => {
-      return this.isIncluded(tags);
+      return this.isIncludedTag(tags);
     });
     return result;
   }
 
-  private isIncluded(tags: ITag[]): boolean {
+  private isIncludedTag(tags: ITag[]): boolean {
     return tags.findIndex(({ name }) => name === this.tagQuery.getTagQueryValue()) !== -1;
   }
 }
