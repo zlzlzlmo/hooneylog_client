@@ -3,7 +3,6 @@ import Head from 'next/head';
 import { GetStaticProps } from 'next/types';
 import React from 'react';
 import { NotionPost } from 'ts/interface/notion';
-import Notion from 'util/notion';
 import { BACKGROUND_MAIN_IMAGE } from 'ts/constant';
 import PostDetail from 'components/completions/postDetail';
 import NotionApi from 'api/notion/notionApi';
@@ -28,7 +27,7 @@ const PostDetailPage = ({ notionList, notionPost, blocks }: Props) => {
 };
 
 export const getStaticPaths = async () => {
-  const notionList = await Notion.getAllPost();
+  const notionList = await new NotionApi().getAllPost();
 
   const slugs = notionList.map(({ id }) => ({
     params: { slug: id },
