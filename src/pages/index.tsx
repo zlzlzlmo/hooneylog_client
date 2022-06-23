@@ -5,6 +5,8 @@ import Notion from 'util/notion';
 import { BACKGROUND_MAIN_IMAGE } from 'ts/constant';
 import { NotionPost } from 'ts/interface/notion';
 import Home from 'components/completions/home/Home';
+import NotionApi from 'api/notion/notionApi';
+import { useEffect } from 'react';
 
 interface Props {
   notionList: NotionPost[];
@@ -23,7 +25,7 @@ const HomePage = ({ notionList }: Props) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const notionList = await Notion.getAllPost();
+  const notionList = await new NotionApi().getAllPost();
   return {
     props: {
       notionList,

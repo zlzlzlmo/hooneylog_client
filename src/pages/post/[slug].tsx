@@ -6,6 +6,7 @@ import { NotionPost } from 'ts/interface/notion';
 import Notion from 'util/notion';
 import { BACKGROUND_MAIN_IMAGE } from 'ts/constant';
 import PostDetail from 'components/completions/postDetail';
+import NotionApi from 'api/notion/notionApi';
 
 interface Props {
   notionList: NotionPost[];
@@ -40,7 +41,7 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  if (params == null) {
+  if (!params) {
     return {
       notFound: true,
     };
@@ -54,15 +55,17 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     };
   }
 
-  const notionList = await Notion.getAllPost();
-  const notionPost = await Notion.getPostById(slug);
+  const notionApi = new NotionApi();
+  const notionPost = await notionApi.getOnePostById(slug);
 
   if (!notionPost) {
     return {
       notFound: true,
     };
   }
-  const blocks = await Notion.getBlocksById(slug);
+
+  const notionList = await notionApi.getAllPost();
+  const blocks = await notionApi.getBlocksById(slug);
 
   return {
     props: {
