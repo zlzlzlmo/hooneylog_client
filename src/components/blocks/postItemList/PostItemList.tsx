@@ -1,7 +1,11 @@
-import useReduxData from 'hooks/useReduxData';
+import { NotionPost } from 'api/notion/notionApi';
 import React, { Fragment } from 'react';
 import styled from 'styled-components';
 import PostItem from './postItemCard/PostItem';
+
+interface PostItemListProps {
+  notionList: NotionPost[];
+}
 
 const Container = styled.main`
   padding: 5rem 0;
@@ -10,11 +14,10 @@ const Container = styled.main`
   gap: 5rem;
 `;
 
-const PostItemList = () => {
-  const { filteredNotionList } = useReduxData();
+const PostItemList = ({ notionList }: PostItemListProps) => {
   return (
     <Container>
-      {filteredNotionList.map(({ id, title, createdAt, description, category, tags }) => (
+      {notionList.map(({ id, title, createdAt, description, category, tags }) => (
         <Fragment key={id}>
           <PostItem
             id={id}

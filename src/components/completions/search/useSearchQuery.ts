@@ -25,12 +25,12 @@ const useSearchQuery = () => {
       return;
     }
 
-    setSearchInfoFor(queryParam);
+    setSearchKeyValueFor(queryParam);
   }, []);
 
-  function setSearchInfoFor(queryParam: QueryParam) {
+  function setSearchKeyValueFor(queryParam: QueryParam) {
     const newKeyValue: ISearchQuery = {
-      key: queryParam.firstKeyName!,
+      key: queryParam.firstKeyName,
       value: queryParam.firstValue,
     };
 

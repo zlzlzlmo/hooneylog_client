@@ -12,8 +12,7 @@ class QueryParam {
     let keyName = this.query.keys().next().value;
 
     if (!this.isOkaySearchKey(keyName)) {
-      console.error(`잘못된 검색 조건입니다. 현재 가능한 검색 조건은 ${this.possibleSearchKeys()}입니다.`);
-      return;
+      throw new Error(`잘못된 검색 조건입니다. 현재 가능한 검색 조건은 ${this.possibleSearchKeys()}입니다.`);
     }
 
     return keyName;

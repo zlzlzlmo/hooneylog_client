@@ -1,11 +1,13 @@
 import NotionApi, { NotionPost } from 'api/notion/notionApi';
-import PostItemList from 'components/blocks/postItemList/PostItemList';
 import useSearchQuery from 'components/completions/search/useSearchQuery';
 import Layout from 'components/templates/layout/Layout';
 import { GetStaticProps } from 'next';
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { colors } from 'styles/variables';
+import useFilterByQueryParam from 'hooks/useFilterByQueryParam/useFilterByQueryParam';
+import PostItem from 'components/blocks/postItemList/postItemCard/PostItem';
+import PostItemList from 'components/blocks/postItemList/PostItemList';
 
 interface SearchPageProps {
   notionList: NotionPost[];
@@ -30,6 +32,7 @@ const GreyText = styled(Text)`
 `;
 
 const SearchPage = ({ notionList }: SearchPageProps) => {
+  const { notionListToShow } = useFilterByQueryParam(notionList);
   const { isValidSearchKey, searchParamKey, searchParamValue } = useSearchQuery();
   useEffect(() => {
     console.log('notionList : ', notionList);
@@ -44,7 +47,7 @@ const SearchPage = ({ notionList }: SearchPageProps) => {
         </TextContainer>
       </SearchedBox>
       {/* <CategoryList /> */}
-      <PostItemList />
+      <PostItemList notionList={notionListToShow} />
     </Layout>
   );
 };
