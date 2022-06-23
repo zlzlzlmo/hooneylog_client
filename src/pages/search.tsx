@@ -1,4 +1,4 @@
-import NotionApi from 'api/notion/notionApi';
+import NotionApi, { NotionPost } from 'api/notion/notionApi';
 import PostItemList from 'components/blocks/postItemList/PostItemList';
 import useSearchQuery from 'components/completions/search/useSearchQuery';
 import Layout from 'components/templates/layout/Layout';
@@ -6,7 +6,6 @@ import { GetStaticProps } from 'next';
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { colors } from 'styles/variables';
-import { NotionPost } from 'ts/interface/notion';
 
 interface SearchPageProps {
   notionList: NotionPost[];

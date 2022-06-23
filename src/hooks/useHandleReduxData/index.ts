@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/rules-of-hooks */
+import { NotionPost } from 'api/notion/notionApi';
 import { useEffect } from 'react';
 import { useAppDispatch } from 'redux/configStore';
 import { setFilteredPostList, setNotionList } from 'redux/modules/post';
-import { NotionPost } from 'ts/interface/notion';
 
 const useHandleReduxData = () => {
   const dispatch = useAppDispatch();

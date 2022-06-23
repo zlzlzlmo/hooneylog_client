@@ -1,9 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
-import { BACKGROUND_MAIN_IMAGE } from 'ts/constant';
-import { NotionPost } from 'ts/interface/notion';
-import NotionApi from 'api/notion/notionApi';
+import NotionApi, { NotionPost } from 'api/notion/notionApi';
 import CategoryList from 'components/blocks/categoryList/CategoryList';
 import PostItemList from 'components/blocks/postItemList/PostItemList';
 import Introduction from 'components/completions/home/introduction/Introduction';
@@ -42,7 +40,6 @@ const HomePage = ({ notionList }: HomepageProps) => {
     <>
       <Head>
         <title>Hooney Blog</title>
-        <meta property="og:image" content={BACKGROUND_MAIN_IMAGE} />
       </Head>
       <Layout>
         <div>

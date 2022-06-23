@@ -2,10 +2,8 @@
 import Head from 'next/head';
 import { GetStaticProps } from 'next/types';
 import React from 'react';
-import { NotionPost } from 'ts/interface/notion';
-import { BACKGROUND_MAIN_IMAGE } from 'ts/constant';
 import PostDetail from 'components/completions/postDetail';
-import NotionApi from 'api/notion/notionApi';
+import NotionApi, { NotionPost } from 'api/notion/notionApi';
 
 interface Props {
   notionList: NotionPost[];
@@ -16,7 +14,7 @@ const PostDetailPage = ({ notionList, notionPost, blocks }: Props) => {
   return (
     <>
       <Head>
-        <meta property="og:image" content={BACKGROUND_MAIN_IMAGE} />
+        {/* <meta property="og:image" content={BACKGROUND_MAIN_IMAGE} /> */}
         <meta property="og:description" content={notionPost?.title} />
         {/* <meta property="fb:app_id" content="&#123;540132141049632&#125;" /> */}
         <title>Hooney Blog - {notionPost?.title}</title>

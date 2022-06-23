@@ -1,6 +1,19 @@
 import Api from 'api/api';
 import { OEndpoint } from 'api/endpoint';
-import { NotionPost } from 'ts/interface/notion';
+
+export interface ITag {
+  id: string;
+  name: string;
+}
+
+export interface NotionPost {
+  id: string;
+  category: string;
+  createdAt: string;
+  description: string;
+  tags: ITag[];
+  title: string;
+}
 
 class NotionApi extends Api {
   async getAllPost(): Promise<NotionPost[]> {
