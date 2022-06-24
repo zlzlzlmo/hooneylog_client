@@ -1,4 +1,4 @@
-import NotFound from 'components/completions/notFound';
+import NotFound from 'components/completions/notFound/NotFound';
 import React from 'react';
 
 const NotFoundPage = () => {
