@@ -29,14 +29,10 @@ const PostDetailPage = ({ notionList, notionPost, blocks }: Props) => {
         <title>Hooney Blog - {notionPost?.title}</title>
       </Head>
       <Layout>
-        <div>
-          <InnerContainer>
-            <PostDetailInfo title={notionPost.title} createdAt={notionPost.createdAt} tags={notionPost.tags} />
-            <PostBlocks blocks={blocks} />
-            <MoveToAnotherPost notionList={notionList} notionPost={notionPost} />
-            {/* <FbComment slug={slug} /> */}
-          </InnerContainer>
-        </div>
+        <PostDetailInfo title={notionPost.title} createdAt={notionPost.createdAt} tags={notionPost.tags} />
+        <PostBlocks blocks={blocks} />
+        <MoveToAnotherPost notionList={notionList} notionPost={notionPost} />
+        {/* <FbComment slug={slug} /> */}
       </Layout>
     </>
   );
