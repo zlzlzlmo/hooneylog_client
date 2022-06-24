@@ -8,7 +8,7 @@ import { Fragment, useEffect, useRef, useState } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import useIntersectionObserver from 'hooks/useIntersection/useIntersection';
-import BlockNestedList from 'components/molecules/blockNestedList';
+import BlockNestedList from 'components/blocks/blockNestedList';
 import NotionBlockText from '../notionBlockText/NotionBlockText';
 import styles from './NotionBlock.module.scss';
 

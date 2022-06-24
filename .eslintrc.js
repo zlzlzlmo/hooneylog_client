@@ -39,6 +39,7 @@ module.exports = {
     'no-useless-constructor': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     'react/jsx-no-useless-fragment': 'off',
+    'jsx-a11y/anchor-is-valid': 'off',
   },
   settings: {
     'import/resolver': {
