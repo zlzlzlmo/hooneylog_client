@@ -3,12 +3,13 @@ import styled from 'styled-components';
 import { widths } from 'styles/variables';
 
 interface InnerContainerProps {
+  width?: string;
   children: React.ReactNode;
 }
 
-const Container = styled.div`
+const Container = styled.div<InnerContainerProps>`
   max-width: ${widths.maxWidth};
-  width: 100%;
+  width: ${({ width }) => width || '100vw'};
   height: 100%;
   margin: 0 auto;
 
@@ -17,8 +18,8 @@ const Container = styled.div`
   }
 `;
 
-const InnerContainer = ({ children }: InnerContainerProps) => {
-  return <Container>{children}</Container>;
+const InnerContainer = (props: InnerContainerProps) => {
+  return <Container {...props}>{props.children}</Container>;
 };
 
 export default InnerContainer;

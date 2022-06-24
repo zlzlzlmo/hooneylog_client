@@ -31,7 +31,7 @@ const Header = () => {
 
   return (
     <Container>
-      <InnerContainer>
+      <InnerContainer width="100%">
         <FlexContainer alignItems="center" height="100%" justifyContent="space-between">
           <Logo onClick={() => router.push('/')}>HooneyLog</Logo>
           <SearchForm />
