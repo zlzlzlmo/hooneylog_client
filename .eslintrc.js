@@ -38,6 +38,7 @@ module.exports = {
     'import/no-cycle': 'off',
     'no-useless-constructor': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
+    'react/jsx-no-useless-fragment': 'off',
   },
   settings: {
     'import/resolver': {

@@ -2,11 +2,10 @@ import NotionApi, { NotionPost } from 'api/notion/notionApi';
 import useSearchQuery from 'components/completions/search/useSearchQuery';
 import Layout from 'components/templates/layout/Layout';
 import { GetStaticProps } from 'next';
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { colors } from 'styles/variables';
 import useFilterByQueryParam from 'hooks/useFilterByQueryParam/useFilterByQueryParam';
-import PostItem from 'components/blocks/postItemList/postItemCard/PostItem';
 import PostItemList from 'components/blocks/postItemList/PostItemList';
 import CategoryList from 'components/blocks/categoryList/CategoryList';
 

@@ -15,6 +15,7 @@ export interface ImageProps {
   borderRadius?: string;
   width?: string;
   height?: string;
+  alt?: string;
   layout?: 'fixed' | 'intrinsic' | 'fill' | 'responsive' | 'raw';
 }
 

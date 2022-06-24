@@ -1,8 +1,7 @@
-/* eslint-disable react/no-array-index-key */
 import React from 'react';
-import styles from './index.module.scss';
+import styles from './NotionBlockText.module.scss';
 
-interface Props {
+interface NotionBlockTextProps {
   richText: [
     {
       text: {
@@ -23,7 +22,7 @@ interface Props {
   ];
 }
 
-const NotionBlockText = ({ richText }: Props) => {
+const NotionBlockText = ({ richText }: NotionBlockTextProps) => {
   if (!richText) {
     return <span />;
   }
