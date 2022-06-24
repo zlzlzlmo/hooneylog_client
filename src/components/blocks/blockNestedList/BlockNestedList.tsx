@@ -7,7 +7,7 @@
 
 import NotionBlock from 'components/elements/notionBlock/NotionBlock';
 import { Fragment } from 'react';
-import styles from './index.module.scss';
+import styles from './BlockNestedList.module.scss';
 
 const BlockNestedList = (block: any) => {
   const { type } = block;

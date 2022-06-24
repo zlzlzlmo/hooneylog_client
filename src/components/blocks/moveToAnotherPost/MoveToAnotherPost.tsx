@@ -2,14 +2,14 @@ import { NotionPost } from 'api/notion/notionApi';
 import AnotherPost from 'components/elements/anotherPost';
 import React from 'react';
 import createAnotherPost from 'util/anotherPost/createAnotherPost';
-import styles from './index.module.scss';
+import styles from './MoveToAnotherPost.module.scss';
 
-interface Props {
+interface MoveToAnotherPostProps {
   notionList: NotionPost[];
   notionPost: NotionPost;
 }
 
-const MoveToAnotherPost = ({ notionList, notionPost }: Props) => {
+const MoveToAnotherPost = ({ notionList, notionPost }: MoveToAnotherPostProps) => {
   const previous = createAnotherPost({ type: 'previos', notionList, currentPost: notionPost });
   const next = createAnotherPost({ type: 'next', notionList, currentPost: notionPost });
 

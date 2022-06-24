@@ -3,12 +3,11 @@ import Head from 'next/head';
 import { GetStaticProps } from 'next/types';
 import React from 'react';
 import NotionApi, { NotionPost } from 'api/notion/notionApi';
-import MoveToAnotherPost from 'components/blocks/moveToAnotherPost';
-import InnerContainer from 'components/templates/container/InnerContainer';
+import MoveToAnotherPost from 'components/blocks/moveToAnotherPost/MoveToAnotherPost';
 import Layout from 'components/templates/layout/Layout';
 import { useRouter } from 'next/router';
 import PostDetailInfo from 'components/blocks/postDetail/info/PostDetailInfo';
-import PostBlocks from 'components/blocks/postBlocks';
+import PostBlocks from 'components/blocks/postBlocks/PostBlock';
 
 interface Props {
   notionList: NotionPost[];
