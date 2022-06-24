@@ -40,6 +40,7 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'off',
     'react/jsx-no-useless-fragment': 'off',
     'jsx-a11y/anchor-is-valid': 'off',
+    'react/no-array-index-key': 'off',
   },
   settings: {
     'import/resolver': {

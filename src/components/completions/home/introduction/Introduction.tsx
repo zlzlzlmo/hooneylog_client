@@ -34,7 +34,7 @@ const Introduction = () => {
     <Container>
       <InnerContainer>
         <DynamicContainer>
-          <Image imageType="PROFILE" borderRadius="50%" />
+          <Image imageType="PROFILE" borderRadius="50%" alt="프로필 이미지" />
           <FlexContainer flexDirection="column">
             <Title>신승훈 블로그</Title>
             <SubTitle>기록과 함께 성장해 나가는 한 프론트엔드개발자의 이야기</SubTitle>

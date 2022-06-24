@@ -12,8 +12,8 @@ const Container = styled.div`
   height: 100%;
   margin: 0 auto;
 
-  @media (max-width: ${widths.tableMax}) {
-    padding: 0 5%;
+  @media (max-width: ${widths.mobileMax}) {
+    padding: 0 3%;
   }
 `;
 

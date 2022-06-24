@@ -1,7 +1,7 @@
 import FlexContainer from 'components/templates/container/FlexContainer';
 import InnerContainer from 'components/templates/container/InnerContainer';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { colors, widths } from 'styles/variables';
 import SearchForm from './searchForm/SearchForm';
