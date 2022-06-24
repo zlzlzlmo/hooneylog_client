@@ -3,10 +3,9 @@ import FlexContainer from 'components/templates/container/FlexContainer';
 import InnerContainer from 'components/templates/container/InnerContainer';
 import React from 'react';
 import styled from 'styled-components';
-import { colors, widths } from 'styles/variables';
+import { widths } from 'styles/variables';
 
 const Container = styled.div`
-  /* background-color: ${colors.lightGreyColor}; */
   width: 100%;
   padding: 5rem 0;
 `;

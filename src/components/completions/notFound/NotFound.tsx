@@ -1,7 +1,7 @@
 import Layout from 'components/templates/layout/Layout';
 import Image from 'next/image';
 import React from 'react';
-import styles from './index.module.scss';
+import styles from './NotFound.module.scss';
 
 const NotFound = () => {
   return (

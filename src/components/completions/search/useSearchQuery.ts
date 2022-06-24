@@ -1,4 +1,3 @@
-/* eslint-disable no-use-before-define */
 import { useRouter } from 'next/router';
 import { useLayoutEffect, useMemo, useState } from 'react';
 import QueryParam, { SearchKeyType } from 'util/queryParam/queryParam';

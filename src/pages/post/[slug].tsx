@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import Head from 'next/head';
 import { GetStaticProps } from 'next/types';
 import React from 'react';
