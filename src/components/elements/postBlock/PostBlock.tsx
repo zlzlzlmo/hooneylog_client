@@ -4,9 +4,9 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import useIntersectionObserver from 'hooks/useIntersection/useIntersection';
 import BlockNestedList from 'components/blocks/blockNestedList/BlockNestedList';
 import NotionBlockText from '../notionBlockText/NotionBlockText';
-import styles from './NotionBlock.module.scss';
+import styles from './PostBlock.module.scss';
 
-const NotionBlock = ({ block }: any) => {
+const PostBlock = ({ block }: any) => {
   const { type, id } = block;
   const value = block[type];
   const headingRef = useRef<HTMLHeadingElement>(null);
@@ -67,7 +67,7 @@ const NotionBlock = ({ block }: any) => {
             <NotionBlockText richText={value.rich_text} />
           </summary>
           {value.children?.map((block: any) => (
-            <Fragment key={block.id}>{NotionBlock(block)}</Fragment>
+            <Fragment key={block.id}>{PostBlock(block)}</Fragment>
           ))}
         </details>
       );
@@ -124,4 +124,4 @@ const NotionBlock = ({ block }: any) => {
   }
 };
 
-export default NotionBlock;
+export default PostBlock;

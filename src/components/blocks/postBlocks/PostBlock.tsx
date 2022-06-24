@@ -1,4 +1,4 @@
-import NotionBlock from 'components/elements/notionBlock/NotionBlock';
+import PostBlock from 'components/elements/postBlock/PostBlock';
 import React, { Fragment } from 'react';
 import styles from './PostBlock.module.scss';
 
@@ -11,7 +11,7 @@ const PostBlocks = ({ blocks }: PostBlocksProps) => {
     <main className={styles.main_content}>
       {blocks.map((block: any) => (
         <Fragment key={block.id}>
-          <NotionBlock block={block} />
+          <PostBlock block={block} />
         </Fragment>
       ))}
     </main>
