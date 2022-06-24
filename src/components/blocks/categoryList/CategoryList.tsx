@@ -13,13 +13,17 @@ interface CategoryListProps {
   notionList: NotionPost[];
 }
 
+const HiddenContainer = styled.div`
+  overflow: hidden;
+  max-width: ${widths.maxWidth};
+  width: 100%;
+`;
+
 const Container = styled.ul`
   display: flex;
   flex-wrap: wrap;
   overflow-x: auto;
   gap: 3rem;
-  max-width: ${widths.maxWidth};
-  width: 100vw;
   box-sizing: border-box;
   position: relative;
   padding: 2rem;
@@ -50,17 +54,19 @@ const CategoryList = ({ notionList }: CategoryListProps) => {
   }, []);
 
   return (
-    <Container>
-      {new NotionCategory(notionList).orderedListByDescendingCount.map(([category, count], index) => (
-        <CategoryItem
-          key={index}
-          active={activeCategory === category}
-          handleActiveCategory={handleActiveCategory(category)}
-        >
-          {category}({count})
-        </CategoryItem>
-      ))}
-    </Container>
+    <HiddenContainer>
+      <Container>
+        {new NotionCategory(notionList).orderedListByDescendingCount.map(([category, count], index) => (
+          <CategoryItem
+            key={index}
+            active={activeCategory === category}
+            handleActiveCategory={handleActiveCategory(category)}
+          >
+            {category}({count})
+          </CategoryItem>
+        ))}
+      </Container>
+    </HiddenContainer>
   );
 };
 
