@@ -2,13 +2,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import NotionBlock from 'components/elements/notionBlock/NotionBlock';
 import React, { Fragment } from 'react';
-import styles from './index.module.scss';
+import styles from './PostBlock.module.scss';
 
-interface Props {
+interface PostBlocksProps {
   blocks: any;
 }
 
-const PostBlocks = ({ blocks }: Props) => {
+const PostBlocks = ({ blocks }: PostBlocksProps) => {
   return (
     <main className={styles.main_content}>
       {blocks.map((block: any) => (
