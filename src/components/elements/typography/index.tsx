@@ -1,5 +1,3 @@
-/* eslint-disable import/no-cycle */
-/* eslint-disable lines-between-class-members */
 import React, { Component } from 'react';
 import DateFormatText from './Date';
 import PostDesc from './PostDesc';

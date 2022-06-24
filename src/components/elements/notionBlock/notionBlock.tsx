@@ -1,9 +1,3 @@
-/* eslint-disable import/no-unresolved */
-/* eslint-disable no-shadow */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable no-case-declarations */
-/* eslint-disable import/no-cycle */
-
 import { Fragment, useEffect, useRef, useState } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';

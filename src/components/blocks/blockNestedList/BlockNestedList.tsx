@@ -1,10 +1,3 @@
-/* eslint-disable import/no-unresolved */
-/* eslint-disable react/no-array-index-key */
-/* eslint-disable no-shadow */
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable import/no-cycle */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import NotionBlock from 'components/elements/notionBlock/NotionBlock';
 import { Fragment } from 'react';
 import styles from './BlockNestedList.module.scss';

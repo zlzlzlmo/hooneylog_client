@@ -1,5 +1,3 @@
-/* eslint-disable import/no-unresolved */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import NotionBlock from 'components/elements/notionBlock/NotionBlock';
 import React, { Fragment } from 'react';
 import styles from './PostBlock.module.scss';

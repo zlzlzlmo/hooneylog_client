@@ -1,4 +1,3 @@
-/* eslint-disable lines-between-class-members */
 import { NotionPost } from 'api/notion/notionApi';
 import React, { Component } from 'react';
 import NextPost from './NextPost';

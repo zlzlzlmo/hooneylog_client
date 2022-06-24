@@ -41,6 +41,10 @@ module.exports = {
     'react/jsx-no-useless-fragment': 'off',
     'jsx-a11y/anchor-is-valid': 'off',
     'react/no-array-index-key': 'off',
+    'no-shadow': 'off',
+    'no-use-before-define': 'off',
+    'no-case-declarations': 'off',
+    'lines-between-class-members': 'off',
   },
   settings: {
     'import/resolver': {

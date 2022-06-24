@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key */
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { widths, colors } from 'styles/variables';

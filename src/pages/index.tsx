@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import NotionApi, { NotionPost } from 'api/notion/notionApi';
