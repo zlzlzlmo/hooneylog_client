@@ -1,4 +1,3 @@
-import NotionBlock from 'components/elements/notionBlock/NotionBlock';
 import { Fragment } from 'react';
 import styles from './BlockNestedList.module.scss';
 
@@ -13,9 +12,7 @@ const BlockNestedList = (block: any) => {
     return (
       <ol className={styles.order_list}>
         {value.children.map((block: any, index: number) => (
-          <Fragment key={index}>
-            <NotionBlock block={block} />
-          </Fragment>
+          <Fragment key={index}>{/* <NotionBlock block={block} /> */}</Fragment>
         ))}
       </ol>
     );
@@ -23,9 +20,7 @@ const BlockNestedList = (block: any) => {
   return (
     <ul className={styles.unorder_list}>
       {value.children.map((block: any, index: number) => (
-        <Fragment key={index}>
-          <NotionBlock block={block} />
-        </Fragment>
+        <Fragment key={index}>{/* <NotionBlock block={block} /> */}</Fragment>
       ))}
     </ul>
   );
