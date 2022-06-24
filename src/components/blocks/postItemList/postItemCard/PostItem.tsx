@@ -3,13 +3,13 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import Link from 'next/link';
 import React from 'react';
-import { ITag } from 'ts/interface/notion';
 import styled from 'styled-components';
 import { showArticle } from 'styles/keyframes';
 import Typography from 'components/elements/typography';
 import TagGroup from 'components/blocks/tagGroup/TagGroup';
 import CategoryImage from 'util/categoryImage/categoryImage';
 import PostImage from 'components/blocks/postItemList/postItemCard/PostImage';
+import { ITag } from 'api/notion/notionApi';
 
 interface PostItemProps {
   title: string;

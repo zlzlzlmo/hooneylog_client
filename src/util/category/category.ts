@@ -2,12 +2,11 @@ type ReduceReturnType = Record<string, number>;
 
 export const ALL = '전체';
 
-class Category {
+abstract class AbstractCategory {
   constructor(private readonly categoryList: string[]) {}
 
   get objectWithCount(): ReduceReturnType {
     const defaultObjectWithAll = { [ALL]: this.categoryList.length };
-
     const result = this.categoryList.reduce<ReduceReturnType>((total, category) => {
       return { ...total, [category]: total[category] ? total[category] + 1 : 1 };
     }, defaultObjectWithAll);
@@ -30,4 +29,4 @@ class Category {
   }
 }
 
-export default Category;
+export default AbstractCategory;

@@ -1,13 +1,16 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { widths, colors } from 'styles/variables';
-import Category, { ALL } from 'util/category/category';
+import { ALL } from 'util/category/category';
 import { useRouter } from 'next/router';
+import { NotionPost } from 'api/notion/notionApi';
+import NotionCategory from 'util/category/notionCategory/notionCategory';
+import CategoryQuery from 'util/queryParam/categoryQuery';
 import CategoryItem from './categoryItem/CategoryItem';
 
 interface CategoryListProps {
-  categories: string[];
+  notionList: NotionPost[];
 }
 
 const Container = styled.ul`
@@ -31,7 +34,7 @@ const Container = styled.ul`
   }
 `;
 
-const CategoryList = ({ categories }: CategoryListProps) => {
+const CategoryList = ({ notionList }: CategoryListProps) => {
   const [activeCategory, setActiveCategory] = useState<string>(ALL);
   const router = useRouter();
 
@@ -40,9 +43,15 @@ const CategoryList = ({ categories }: CategoryListProps) => {
     router.push(`/search?&category=${category}`);
   };
 
+  useEffect(() => {
+    const categoryQuery = new CategoryQuery();
+    if (!categoryQuery.hasCategoryQuery()) return;
+    setActiveCategory(categoryQuery.getCategoryQueryValue());
+  }, []);
+
   return (
     <Container>
-      {new Category(categories).orderedListByDescendingCount.map(([category, count], index) => (
+      {new NotionCategory(notionList).orderedListByDescendingCount.map(([category, count], index) => (
         <CategoryItem
           key={index}
           active={activeCategory === category}

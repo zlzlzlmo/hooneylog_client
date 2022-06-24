@@ -26,6 +26,10 @@ class QueryParam {
     return this.query.get(key) || '';
   }
 
+  protected has(key: SearchKeyType): boolean {
+    return this.query.has(key);
+  }
+
   private isOkaySearchKey(key: any): key is SearchKeyType {
     return searchKeys.includes(key);
   }

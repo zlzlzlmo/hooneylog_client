@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import useIntersectionObserver from 'hooks/useIntersection';
+import useIntersectionObserver from 'hooks/useIntersection/useIntersection';
 import { useEffect, useState } from 'react';
 
 interface Props {

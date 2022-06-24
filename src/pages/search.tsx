@@ -8,6 +8,7 @@ import { colors } from 'styles/variables';
 import useFilterByQueryParam from 'hooks/useFilterByQueryParam/useFilterByQueryParam';
 import PostItem from 'components/blocks/postItemList/postItemCard/PostItem';
 import PostItemList from 'components/blocks/postItemList/PostItemList';
+import CategoryList from 'components/blocks/categoryList/CategoryList';
 
 interface SearchPageProps {
   notionList: NotionPost[];
@@ -33,10 +34,8 @@ const GreyText = styled(Text)`
 
 const SearchPage = ({ notionList }: SearchPageProps) => {
   const { notionListToShow } = useFilterByQueryParam(notionList);
-  const { isValidSearchKey, searchParamKey, searchParamValue } = useSearchQuery();
-  useEffect(() => {
-    console.log('notionList : ', notionList);
-  }, []);
+  const { searchParamKey, searchParamValue } = useSearchQuery();
+
   return (
     <Layout>
       <SearchedBox>
@@ -46,7 +45,7 @@ const SearchPage = ({ notionList }: SearchPageProps) => {
           </Text>
         </TextContainer>
       </SearchedBox>
-      {/* <CategoryList /> */}
+      <CategoryList notionList={notionList} />
       <PostItemList notionList={notionListToShow} />
     </Layout>
   );

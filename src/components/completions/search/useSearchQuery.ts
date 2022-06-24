@@ -1,6 +1,6 @@
 /* eslint-disable no-use-before-define */
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import QueryParam, { SearchKeyType } from 'util/queryParam/queryParam';
 
 interface ISearchQuery {
@@ -11,22 +11,14 @@ interface ISearchQuery {
 const useSearchQuery = () => {
   const router = useRouter();
   const [searchKeyValue, setSearchKeyValue] = useState<ISearchQuery | null>(null);
-  const [isValidSearchKey, setIsValidSearchKey] = useState<boolean>(true);
 
-  const searchParamKey = searchKeyValue?.key;
-  const searchParamValue = searchKeyValue?.value;
+  const searchParamKey = useMemo(() => searchKeyValue?.key, [router.query]);
+  const searchParamValue = useMemo(() => searchKeyValue?.value, [router.query]);
 
   useEffect(() => {
     const queryParam = new QueryParam();
-    const notAllowedSearchKey = !queryParam.firstKeyName;
-
-    if (notAllowedSearchKey) {
-      setIsValidSearchKey(false);
-      return;
-    }
-
     setSearchKeyValueFor(queryParam);
-  }, []);
+  }, [router.query]);
 
   function setSearchKeyValueFor(queryParam: QueryParam) {
     const newKeyValue: ISearchQuery = {
@@ -38,7 +30,7 @@ const useSearchQuery = () => {
     router.push(`/search?${newKeyValue.key}=${newKeyValue.value}`);
   }
 
-  return { isValidSearchKey, searchParamKey, searchParamValue };
+  return { searchParamKey, searchParamValue };
 };
 
 export default useSearchQuery;

@@ -1,5 +1,6 @@
 /* eslint-disable prefer-const */
 import { NotionPost } from 'api/notion/notionApi';
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import CategoryCommand from 'util/filterByQueryParam/command/categoryCommand';
 import SearchCommand from 'util/filterByQueryParam/command/searchCommand';
@@ -9,6 +10,7 @@ import QueryParam from 'util/queryParam/queryParam';
 
 const useFilterByQueryParam = (notionList: NotionPost[]) => {
   const filter = new FilterByQueryParam(notionList);
+  const router = useRouter();
   const [notionListToShow, setNotionListToShow] = useState<NotionPost[]>(notionList);
 
   const filterByCategory = () => {
@@ -40,7 +42,7 @@ const useFilterByQueryParam = (notionList: NotionPost[]) => {
         newNotionList = notionListToShow;
     }
     setNotionListToShow(newNotionList);
-  }, []);
+  }, [router.query]);
 
   return { notionListToShow };
 };

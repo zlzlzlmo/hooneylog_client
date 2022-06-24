@@ -6,20 +6,12 @@ import CategoryList from 'components/blocks/categoryList/CategoryList';
 import PostItemList from 'components/blocks/postItemList/PostItemList';
 import Introduction from 'components/completions/home/introduction/Introduction';
 import Layout from 'components/templates/layout/Layout';
-import { useState, useEffect } from 'react';
 
 interface HomepageProps {
   notionList: NotionPost[];
 }
 
 const HomePage = ({ notionList }: HomepageProps) => {
-  const [categories, setCategories] = useState<string[]>([]);
-
-  useEffect(() => {
-    const categoryList = notionList.map(({ category }) => category);
-    setCategories(categoryList);
-  }, []);
-
   return (
     <>
       <Head>
@@ -28,7 +20,7 @@ const HomePage = ({ notionList }: HomepageProps) => {
       <Layout>
         <div>
           <Introduction />
-          <CategoryList categories={categories} />
+          <CategoryList notionList={notionList} />
           <PostItemList notionList={notionList} />
         </div>
       </Layout>

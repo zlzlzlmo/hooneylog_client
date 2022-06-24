@@ -2,10 +2,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import { ITag } from 'ts/interface/notion';
-import PostTitle from 'components/atoms/postTitle';
 import PostBlocks from 'components/molecules/postBlocks';
-import PostCategory from 'components/atoms/postCategory';
+import { ITag } from 'api/notion/notionApi';
+import PostTitle from 'components/elements/typography/PostTitle';
 import styles from './index.module.scss';
 
 interface PostDetailProps {
@@ -20,8 +19,8 @@ interface PostDetailProps {
 const PostDetailedContents = ({ postId, title, createdAt, category, blocks, tags }: PostDetailProps) => {
   return (
     <article className={styles.container}>
-      <PostCategory category={category} />
-      <PostTitle postId={postId} title={title} fontSize="3.5rem" margin="2rem 0" />
+      {/* <PostCategory category={category} />
+      <PostTitle postId={postId} title={title} fontSize="3.5rem" margin="2rem 0" /> */}
       {/* <PostSubInfo createdAt={createdAt} postId={postId} /> */}
       {/* <PostTagList tags={tags} margin="2rem 0 0 0" /> */}
       <PostBlocks blocks={blocks} />

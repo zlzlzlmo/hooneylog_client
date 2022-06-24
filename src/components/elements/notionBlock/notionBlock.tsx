@@ -7,10 +7,10 @@
 import { Fragment, useEffect, useRef, useState } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import useIntersectionObserver from 'hooks/useIntersection';
+import useIntersectionObserver from 'hooks/useIntersection/useIntersection';
 import BlockNestedList from 'components/molecules/blockNestedList';
-import styles from './notionBlock.module.scss';
 import NotionBlockText from '../notionBlockText/NotionBlockText';
+import styles from './NotionBlock.module.scss';
 
 const NotionBlock = ({ block }: any) => {
   const { type, id } = block;

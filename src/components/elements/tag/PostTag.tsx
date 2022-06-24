@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
 import { moveTagName } from 'styles/keyframes';
@@ -50,7 +52,13 @@ const Tag = styled.span`
 `;
 
 const PostTag = (props: TagProps) => {
-  return <Tag>{props.children}</Tag>;
+  return (
+    <Link href={`/search?tag=${props.children}`}>
+      <a>
+        <Tag>{props.children}</Tag>
+      </a>
+    </Link>
+  );
 };
 
 export default PostTag;

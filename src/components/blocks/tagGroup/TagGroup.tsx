@@ -1,7 +1,7 @@
+import { ITag } from 'api/notion/notionApi';
 import Tag from 'components/elements/tag';
 import React, { Fragment } from 'react';
 import styled from 'styled-components';
-import { ITag } from 'ts/interface/notion';
 
 interface TagGroupProps {
   tags: ITag[];
