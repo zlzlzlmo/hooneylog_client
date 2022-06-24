@@ -1,29 +1,35 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
-import Notion from 'util/notion';
-import { BACKGROUND_MAIN_IMAGE } from 'ts/constant';
-import { NotionPost } from 'ts/interface/notion';
-import Home from 'components/organisms/home';
+import NotionApi, { NotionPost } from 'api/notion/notionApi';
+import CategoryList from 'components/blocks/categoryList/CategoryList';
+import PostItemList from 'components/blocks/postItemList/PostItemList';
+import Introduction from 'components/completions/home/introduction/Introduction';
+import Layout from 'components/templates/layout/Layout';
 
-interface Props {
+interface HomepageProps {
   notionList: NotionPost[];
 }
 
-const HomePage = ({ notionList }: Props) => {
+const HomePage = ({ notionList }: HomepageProps) => {
   return (
     <>
       <Head>
         <title>Hooney Blog</title>
-        <meta property="og:image" content={BACKGROUND_MAIN_IMAGE} />
       </Head>
-      <Home notionList={notionList} />
+      <Layout>
+        <div>
+          <Introduction />
+          <CategoryList notionList={notionList} />
+          <PostItemList notionList={notionList} />
+        </div>
+      </Layout>
     </>
   );
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const notionList = await Notion.getAllPost();
+  const notionList = await new NotionApi().getAllPost();
   return {
     props: {
       notionList,

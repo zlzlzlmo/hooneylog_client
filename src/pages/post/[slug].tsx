@@ -2,10 +2,13 @@
 import Head from 'next/head';
 import { GetStaticProps } from 'next/types';
 import React from 'react';
-import { NotionPost } from 'ts/interface/notion';
-import Notion from 'util/notion';
-import { BACKGROUND_MAIN_IMAGE } from 'ts/constant';
-import PostDetail from 'components/organisms/postDetail';
+import NotionApi, { NotionPost } from 'api/notion/notionApi';
+import MoveToAnotherPost from 'components/blocks/moveToAnotherPost';
+import InnerContainer from 'components/templates/container/InnerContainer';
+import Layout from 'components/templates/layout/Layout';
+import { useRouter } from 'next/router';
+import PostDetailInfo from 'components/blocks/postDetail/info/PostDetailInfo';
+import PostBlocks from 'components/blocks/postBlocks';
 
 interface Props {
   notionList: NotionPost[];
@@ -13,21 +16,34 @@ interface Props {
   blocks: any;
 }
 const PostDetailPage = ({ notionList, notionPost, blocks }: Props) => {
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return <></>;
+  }
+
   return (
     <>
       <Head>
-        <meta property="og:image" content={BACKGROUND_MAIN_IMAGE} />
         <meta property="og:description" content={notionPost?.title} />
-        {/* <meta property="fb:app_id" content="&#123;540132141049632&#125;" /> */}
         <title>Hooney Blog - {notionPost?.title}</title>
       </Head>
-      <PostDetail notionList={notionList} notionPost={notionPost} blocks={blocks} />
+      <Layout>
+        <div>
+          <InnerContainer>
+            <PostDetailInfo title={notionPost.title} createdAt={notionPost.createdAt} tags={notionPost.tags} />
+            <PostBlocks blocks={blocks} />
+            <MoveToAnotherPost notionList={notionList} notionPost={notionPost} />
+            {/* <FbComment slug={slug} /> */}
+          </InnerContainer>
+        </div>
+      </Layout>
     </>
   );
 };
 
 export const getStaticPaths = async () => {
-  const notionList = await Notion.getAllPost();
+  const notionList = await new NotionApi().getAllPost();
 
   const slugs = notionList.map(({ id }) => ({
     params: { slug: id },
@@ -40,7 +56,7 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  if (params == null) {
+  if (!params) {
     return {
       notFound: true,
     };
@@ -54,15 +70,17 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     };
   }
 
-  const notionList = await Notion.getAllPost();
-  const notionPost = await Notion.getPostById(slug);
+  const notionApi = new NotionApi();
+  const notionPost = await notionApi.getOnePostById(slug);
 
   if (!notionPost) {
     return {
       notFound: true,
     };
   }
-  const blocks = await Notion.getBlocksById(slug);
+
+  const notionList = await notionApi.getAllPost();
+  const blocks = await notionApi.getBlocksById(slug);
 
   return {
     props: {
