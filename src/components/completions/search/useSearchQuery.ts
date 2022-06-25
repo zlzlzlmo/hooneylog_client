@@ -8,6 +8,7 @@ interface ISearchQuery {
 }
 
 const useSearchQuery = () => {
+  const queryParam = new QueryParam();
   const router = useRouter();
   const [searchKeyValue, setSearchKeyValue] = useState<ISearchQuery | null>(null);
 
@@ -15,11 +16,11 @@ const useSearchQuery = () => {
   const searchParamValue = useMemo(() => searchKeyValue?.value, [router.query]);
 
   useEffect(() => {
-    const queryParam = new QueryParam();
     setSearchKeyValueFor(queryParam);
-  }, [router.query]);
+  }, [queryParam.firstValue]);
 
   function setSearchKeyValueFor(queryParam: QueryParam) {
+    if (!queryParam.firstKeyName) return;
     const newKeyValue: ISearchQuery = {
       key: queryParam.firstKeyName,
       value: queryParam.firstValue,

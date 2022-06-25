@@ -6,9 +6,16 @@ const searchKeys = ['search', 'category', 'tag'] as const;
 export type SearchKeyType = typeof searchKeys[number];
 
 class QueryParam {
-  constructor(private readonly query: URLSearchParams = new URLSearchParams(window.location.search)) {}
+  private readonly query: URLSearchParams | undefined;
+
+  constructor() {
+    if (typeof window !== 'undefined') {
+      this.query = new URLSearchParams(window.location.search);
+    }
+  }
 
   get firstKeyName() {
+    if (!this.query) return;
     let keyName = this.query.keys().next().value;
 
     if (!this.isOkaySearchKey(keyName)) {
@@ -19,14 +26,17 @@ class QueryParam {
   }
 
   get firstValue() {
+    if (!this.query) return;
     return this.query.values().next().value;
   }
 
   protected getValue(key: SearchKeyType) {
+    if (!this.query) return;
     return this.query.get(key) || '';
   }
 
   protected has(key: SearchKeyType): boolean {
+    if (!this.query) return false;
     return this.query.has(key);
   }
 

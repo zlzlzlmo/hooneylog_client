@@ -10,7 +10,7 @@ import QueryParam from 'util/queryParam/queryParam';
 
 const useFilterByQueryParam = (notionList: NotionPost[]) => {
   const filter = new FilterByQueryParam(notionList);
-  const router = useRouter();
+  const query = new QueryParam();
   const [notionListToShow, setNotionListToShow] = useState<NotionPost[]>(notionList);
 
   const filterByCategory = () => {
@@ -27,7 +27,7 @@ const useFilterByQueryParam = (notionList: NotionPost[]) => {
 
   useEffect(() => {
     let newNotionList: NotionPost[] = [];
-    const query = new QueryParam();
+
     switch (query.firstKeyName) {
       case 'category':
         newNotionList = filterByCategory();
@@ -42,7 +42,7 @@ const useFilterByQueryParam = (notionList: NotionPost[]) => {
         newNotionList = notionListToShow;
     }
     setNotionListToShow(newNotionList);
-  }, [router.query]);
+  }, [query.firstValue]);
 
   return { notionListToShow };
 };

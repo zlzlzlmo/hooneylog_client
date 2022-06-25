@@ -49,7 +49,8 @@ const CategoryList = ({ notionList }: CategoryListProps) => {
   useEffect(() => {
     const categoryQuery = new CategoryQuery();
     if (!categoryQuery.hasCategoryQuery()) return;
-    setActiveCategory(categoryQuery.getCategoryQueryValue());
+    if (!categoryQuery.getCategoryQueryValue()) return;
+    setActiveCategory(categoryQuery.getCategoryQueryValue()!);
   }, []);
 
   return (

@@ -14,11 +14,15 @@ class SearchCommand implements ICommand {
   }
 
   private isIncludedTitle(title: string): boolean {
-    return title.toLowerCase().indexOf(this.searchQuery.getSearchQueryValue().toLowerCase()) !== -1;
+    const value = this.searchQuery.getSearchQueryValue();
+    if (!value) return false;
+    return title.toLowerCase().indexOf(value.toLowerCase()) !== -1;
   }
 
   private isIncludedDescription(description: string): boolean {
-    return description.toLowerCase().indexOf(this.searchQuery.getSearchQueryValue()) !== -1;
+    const value = this.searchQuery.getSearchQueryValue();
+    if (!value) return false;
+    return description.toLowerCase().indexOf(value) !== -1;
   }
 }
 
