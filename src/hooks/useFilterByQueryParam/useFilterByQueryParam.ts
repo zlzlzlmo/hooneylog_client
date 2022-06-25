@@ -1,6 +1,4 @@
-/* eslint-disable prefer-const */
 import { NotionPost } from 'api/notion/notionApi';
-import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import CategoryCommand from 'util/filterByQueryParam/command/categoryCommand';
 import SearchCommand from 'util/filterByQueryParam/command/searchCommand';

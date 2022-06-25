@@ -17,7 +17,7 @@ const useSearchQuery = () => {
 
   useEffect(() => {
     setSearchKeyValueFor(queryParam);
-  }, [queryParam.firstValue]);
+  }, []);
 
   function setSearchKeyValueFor(queryParam: QueryParam) {
     if (!queryParam.firstKeyName) return;
