@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useLayoutEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import QueryParam, { SearchKeyType } from 'util/queryParam/queryParam';
 
 interface ISearchQuery {
@@ -14,7 +14,7 @@ const useSearchQuery = () => {
   const searchParamKey = useMemo(() => searchKeyValue?.key, [router.query]);
   const searchParamValue = useMemo(() => searchKeyValue?.value, [router.query]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const queryParam = new QueryParam();
     setSearchKeyValueFor(queryParam);
   }, [router.query]);
