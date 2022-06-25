@@ -3,8 +3,8 @@ import Head from 'next/head';
 import NotionApi, { NotionPost } from 'api/notion/notionApi';
 import CategoryList from 'components/blocks/categoryList/CategoryList';
 import PostItemList from 'components/blocks/postItemList/PostItemList';
-import Introduction from 'components/completions/home/introduction/Introduction';
 import Layout from 'components/templates/layout/Layout';
+import Introduction from 'components/blocks/introduction/Introduction';
 
 interface HomepageProps {
   notionList: NotionPost[];

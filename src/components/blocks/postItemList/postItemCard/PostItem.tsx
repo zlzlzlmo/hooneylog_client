@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import Link from 'next/link';
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import { showArticle } from 'styles/keyframes';
 import Typography from 'components/elements/typography';
@@ -10,6 +10,7 @@ import TagGroup from 'components/blocks/tagGroup/TagGroup';
 import CategoryImage from 'util/categoryImage/categoryImage';
 import PostImage from 'components/blocks/postItemList/postItemCard/PostImage';
 import { ITag } from 'api/notion/notionApi';
+import useElementVisible from 'hooks/useElementVisible/useElementVisbile';
 
 interface PostItemProps {
   title: string;
@@ -34,15 +35,16 @@ const Content = styled.div`
 `;
 
 const PostItem = ({ title, createdAt, id, category, description, tags }: PostItemProps) => {
-  // const { singleCategory, timeToShow, articleRef } = usePostItem(category);
+  const articleRef = useRef(null);
+  const { timeToShow } = useElementVisible({ articleRef });
 
-  // if (!timeToShow) {
-  //   return (
-  //     <Link href={`post/${id}`} passHref>
-  //       <a ref={articleRef} />
-  //     </Link>
-  //   );
-  // }
+  if (!timeToShow) {
+    return (
+      <Link href={`post/${id}`} passHref>
+        <a ref={articleRef} />
+      </Link>
+    );
+  }
 
   return (
     <Container>
