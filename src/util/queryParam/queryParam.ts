@@ -30,6 +30,12 @@ class QueryParam {
     return this.query.values().next().value;
   }
 
+  hasOverTwoKey(): boolean {
+    let array = [];
+    this.query?.forEach((_value, key) => array.push(key));
+    return array.length === 1;
+  }
+
   protected getValue(key: SearchKeyType) {
     if (!this.query) return;
     return this.query.get(key) || '';

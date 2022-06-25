@@ -1,4 +1,4 @@
-import useSearchQuery from 'components/completions/search/useSearchQuery';
+import useSearchResultinfo from 'components/blocks/searchResultInfo/useSearchResultInfo';
 import React from 'react';
 import styled from 'styled-components';
 import { colors } from 'styles/variables';
@@ -22,7 +22,7 @@ const GreyText = styled(Text)`
 `;
 
 const SearchResultInfo = () => {
-  const { searchParamKey, searchParamValue } = useSearchQuery();
+  const { searchParamKey, searchParamValue } = useSearchResultinfo();
 
   return (
     <SearchedBox>
