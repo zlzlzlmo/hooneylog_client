@@ -45,6 +45,7 @@ module.exports = {
     'no-use-before-define': 'off',
     'no-case-declarations': 'off',
     'lines-between-class-members': 'off',
+    '@typescript-eslint/no-non-null-assertion': 'off',
   },
   settings: {
     'import/resolver': {

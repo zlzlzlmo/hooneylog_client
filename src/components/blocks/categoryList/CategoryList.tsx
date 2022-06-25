@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { widths, colors } from 'styles/variables';
 import { ALL } from 'util/category/category';
-import { useRouter } from 'next/router';
 import { NotionPost } from 'api/notion/notionApi';
 import NotionCategory from 'util/category/notionCategory/notionCategory';
 import CategoryQuery from 'util/queryParam/categoryQuery';
+import Link from 'next/link';
 import CategoryItem from './categoryItem/CategoryItem';
 
 interface CategoryListProps {
@@ -39,30 +39,29 @@ const Container = styled.ul`
 
 const CategoryList = ({ notionList }: CategoryListProps) => {
   const [activeCategory, setActiveCategory] = useState<string>(ALL);
-  const router = useRouter();
 
   const handleActiveCategory = (category: string) => () => {
     setActiveCategory(category);
-    router.push(`/search?&category=${category}`);
   };
 
   useEffect(() => {
     const categoryQuery = new CategoryQuery();
     if (!categoryQuery.hasCategoryQuery()) return;
-    setActiveCategory(categoryQuery.getCategoryQueryValue());
+    if (!categoryQuery.getCategoryQueryValue()) return;
+    setActiveCategory(categoryQuery.getCategoryQueryValue()!);
   }, []);
 
   return (
     <HiddenContainer>
       <Container>
         {new NotionCategory(notionList).orderedListByDescendingCount.map(([category, count], index) => (
-          <CategoryItem
-            key={index}
-            active={activeCategory === category}
-            handleActiveCategory={handleActiveCategory(category)}
-          >
-            {category}({count})
-          </CategoryItem>
+          <Link href={`/search?&category=${category}`} passHref key={index}>
+            <a>
+              <CategoryItem active={activeCategory === category} handleActiveCategory={handleActiveCategory(category)}>
+                {category}({count})
+              </CategoryItem>
+            </a>
+          </Link>
         ))}
       </Container>
     </HiddenContainer>
