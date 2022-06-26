@@ -1,4 +1,5 @@
 import { NotionPost } from 'api/notion/notionApi';
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import CategoryCommand from 'util/filterByQueryParam/command/categoryCommand';
 import SearchCommand from 'util/filterByQueryParam/command/searchCommand';
@@ -7,6 +8,7 @@ import FilterByQueryParam from 'util/filterByQueryParam/filterByQueryParam';
 import QueryParam from 'util/queryParam/queryParam';
 
 const useFilterByQueryParam = (notionList: NotionPost[]) => {
+  const router = useRouter();
   const filter = new FilterByQueryParam(notionList);
   const query = new QueryParam();
   const [notionListToShow, setNotionListToShow] = useState<NotionPost[]>(notionList);
@@ -38,6 +40,12 @@ const useFilterByQueryParam = (notionList: NotionPost[]) => {
         break;
       default:
         newNotionList = notionListToShow;
+    }
+
+    if (newNotionList.length < 1) {
+      alert('검색된 결과가 없습니다. 메인 화면으로 이동합니다.');
+      router.push('/');
+      return;
     }
     setNotionListToShow(newNotionList);
   }, [query.firstValue]);
