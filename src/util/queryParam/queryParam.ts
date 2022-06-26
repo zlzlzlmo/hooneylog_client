@@ -2,8 +2,8 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable no-useless-constructor */
 
-const searchKeys = ['search', 'category', 'tag'] as const;
-export type SearchKeyType = typeof searchKeys[number];
+const ASearchKeysType = ['search', 'category', 'tag'] as const;
+export type SearchKeyType = typeof ASearchKeysType[number];
 
 class QueryParam {
   private readonly query: URLSearchParams | undefined;
@@ -33,7 +33,7 @@ class QueryParam {
   hasOverTwoKey(): boolean {
     let array = [];
     this.query?.forEach((_value, key) => array.push(key));
-    return array.length === 1;
+    return array.length > 1;
   }
 
   protected getValue(key: SearchKeyType) {
@@ -47,11 +47,12 @@ class QueryParam {
   }
 
   private isOkaySearchKey(key: any): key is SearchKeyType {
-    return searchKeys.includes(key);
+    console.log('key : ', key);
+    return ASearchKeysType.includes(key);
   }
 
   private possibleSearchKeys() {
-    return searchKeys.join(', ');
+    return ASearchKeysType.join(', ');
   }
 }
 
