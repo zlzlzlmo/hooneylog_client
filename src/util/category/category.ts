@@ -19,8 +19,8 @@ abstract class AbstractCategory {
       const countInDescending = b[1] - a[1];
       const textInAscending = a[0].localeCompare(b[0]);
 
-      if (a[0] === '기타') return 1;
-      if (b[0] === '기타') return -1;
+      // if (a[0] === '기타') return 1;
+      // if (b[0] === '기타') return -1;
 
       return countInDescending || textInAscending;
     });

@@ -1,5 +1,3 @@
-/* eslint-disable consistent-return */
-/* eslint-disable no-shadow */
 import { RefObject, useEffect, useState } from 'react';
 
 interface Args extends IntersectionObserverInit {
@@ -19,7 +17,7 @@ function useIntersectionObserver(
   };
 
   useEffect(() => {
-    const node = elementRef?.current; // DOM Ref
+    const node = elementRef?.current;
     const hasIOSupport = !!window.IntersectionObserver;
 
     if (!hasIOSupport || frozen || !node) return;
@@ -30,8 +28,6 @@ function useIntersectionObserver(
     observer.observe(node);
 
     return () => observer.disconnect();
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [elementRef, JSON.stringify(threshold), root, rootMargin, frozen]);
 
   return entry;

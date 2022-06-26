@@ -46,6 +46,7 @@ module.exports = {
     'no-case-declarations': 'off',
     'lines-between-class-members': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
+    'jsx-a11y/anchor-has-content': 'off',
   },
   settings: {
     'import/resolver': {
