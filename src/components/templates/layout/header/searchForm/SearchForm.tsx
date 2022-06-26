@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import OutsideClickHandler from 'react-outside-click-handler';
 import { BsSearch } from 'react-icons/bs';
 import Input from 'components/elements/input';
-import { useRouter } from 'next/router';
 import useSearchInput from './useSearchInput';
 
 const SearchIcon = styled(BsSearch)`
@@ -29,7 +28,7 @@ const SearchForm = () => {
   return (
     <OutsideClickHandler onOutsideClick={makeActiveInputToBeFalse}>
       <Form onSubmit={handleSearchRoutePushFor(inputValue)}>
-        <SearchIcon onClick={makeActiveInputToBeTrue} />
+        <SearchIcon onClick={makeActiveInputToBeTrue} data-testid="search-icon" />
         <Input
           inputType="BASIC"
           activeInput={activeInput}
