@@ -18,7 +18,7 @@ const useSearchResultinfo = () => {
   useEffect(() => {
     if (!queryParam.firstKeyName) return;
 
-    if (!queryParam.hasOverTwoKey()) router.push(`/search?${queryParam.firstKeyName}=${queryParam.firstValue}`);
+    if (queryParam.hasOverTwoKey()) router.push(`/search?${queryParam.firstKeyName}=${queryParam.firstValue}`);
 
     setSearchKeyValueFor({ key: queryParam.firstKeyName, value: queryParam.firstValue });
   }, [queryParam.firstValue]);

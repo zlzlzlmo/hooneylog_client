@@ -1,6 +1,3 @@
-/* eslint-disable import/named */
-/* eslint-disable jsx-a11y/anchor-has-content */
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import Link from 'next/link';
 import React, { useRef } from 'react';
 import styled from 'styled-components';
