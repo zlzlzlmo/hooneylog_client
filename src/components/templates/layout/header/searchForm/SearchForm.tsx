@@ -4,6 +4,7 @@ import OutsideClickHandler from 'react-outside-click-handler';
 import { BsSearch } from 'react-icons/bs';
 import Input from 'components/elements/input';
 import { useRouter } from 'next/router';
+import useSearchInput from './useSearchInput';
 
 const SearchIcon = styled(BsSearch)`
   cursor: pointer;
@@ -16,19 +17,19 @@ const Form = styled.form`
 `;
 
 const SearchForm = () => {
-  const [activeInput, setActiveInput] = useState<boolean>(false);
-  const [inputValue, setInputValue] = useState<string>('');
-  const router = useRouter();
+  const {
+    handleSearchRoutePushFor,
+    makeActiveInputToBeFalse,
+    makeActiveInputToBeTrue,
+    inputValue,
+    activeInput,
+    setInputValue,
+  } = useSearchInput();
 
   return (
-    <OutsideClickHandler onOutsideClick={() => setActiveInput(false)}>
-      <Form
-        onSubmit={(e) => {
-          e.preventDefault();
-          router.push(`/search?search=${inputValue}`);
-        }}
-      >
-        <SearchIcon onClick={() => setActiveInput(true)} />
+    <OutsideClickHandler onOutsideClick={makeActiveInputToBeFalse}>
+      <Form onSubmit={handleSearchRoutePushFor(inputValue)}>
+        <SearchIcon onClick={makeActiveInputToBeTrue} />
         <Input
           inputType="BASIC"
           activeInput={activeInput}
