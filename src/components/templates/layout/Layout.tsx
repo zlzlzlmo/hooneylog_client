@@ -8,14 +8,6 @@ interface LayoutProps {
   children: React.ReactNode;
 }
 
-const Container = styled.div`
-  display: grid;
-  grid-template-rows: 6rem 1fr 10rem;
-  position: relative;
-  width: 100vw;
-  min-height: 100vh;
-`;
-
 const Layout = ({ children }: LayoutProps) => {
   return (
     <Container>
@@ -27,3 +19,11 @@ const Layout = ({ children }: LayoutProps) => {
 };
 
 export default Layout;
+
+const Container = styled.div`
+  display: grid;
+  grid-template-rows: 6rem 1fr 10rem;
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+`;

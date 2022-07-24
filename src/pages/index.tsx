@@ -1,7 +1,7 @@
 /* eslint-disable prefer-const */
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
-import NotionApi, { NotionPost } from 'api/notion/notionApi';
+import NotionService, { NotionPost } from 'services/notion/notionApi';
 import PostItemList from 'components/blocks/postItemList/PostItemList';
 import Layout from 'components/templates/layout/Layout';
 import Introduction from 'components/blocks/introduction/Introduction';
@@ -40,7 +40,7 @@ const HomePage = ({ notionList }: HomepageProps) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const notionList = await new NotionApi().getAllPost();
+  const notionList = await new NotionService().getAllPost();
   return {
     props: {
       notionList,

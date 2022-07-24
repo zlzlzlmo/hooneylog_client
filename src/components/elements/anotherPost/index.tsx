@@ -1,4 +1,4 @@
-import { NotionPost } from 'api/notion/notionApi';
+import { NotionPost } from 'services/notion/notionApi';
 import React, { Component } from 'react';
 import NextPost from './NextPost';
 import PreviosPost from './PreviosPost';

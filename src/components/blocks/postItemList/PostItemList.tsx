@@ -1,4 +1,4 @@
-import { NotionPost } from 'api/notion/notionApi';
+import { NotionPost } from 'services/notion/notionApi';
 import React, { Fragment } from 'react';
 import styled from 'styled-components';
 import PostItem from './postItemCard/PostItem';
@@ -6,13 +6,6 @@ import PostItem from './postItemCard/PostItem';
 interface PostItemListProps {
   notionList: NotionPost[];
 }
-
-const Container = styled.main`
-  padding: 5rem 0;
-  display: flex;
-  flex-direction: column;
-  gap: 5rem;
-`;
 
 const PostItemList = ({ notionList }: PostItemListProps) => {
   return (
@@ -34,3 +27,10 @@ const PostItemList = ({ notionList }: PostItemListProps) => {
 };
 
 export default PostItemList;
+
+const Container = styled.main`
+  padding: 5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+`;

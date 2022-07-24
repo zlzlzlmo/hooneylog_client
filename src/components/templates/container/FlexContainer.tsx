@@ -12,6 +12,12 @@ interface FlexContainerProps {
   width?: string;
 }
 
+const FlexContainer = (props: FlexContainerProps) => {
+  return <Container {...props}>{props.children}</Container>;
+};
+
+export default FlexContainer;
+
 const Container = styled.div<FlexContainerProps>`
   display: ${({ display }) => display || 'flex'};
   width: ${({ width }) => width || '100%'};
@@ -21,9 +27,3 @@ const Container = styled.div<FlexContainerProps>`
   flex-direction: ${({ flexDirection }) => flexDirection || 'row'};
   gap: ${({ gap }) => gap && gap};
 `;
-
-const FlexContainer = (props: FlexContainerProps) => {
-  return <Container {...props}>{props.children}</Container>;
-};
-
-export default FlexContainer;

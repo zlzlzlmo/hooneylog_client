@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { GetStaticProps } from 'next/types';
 import React from 'react';
-import NotionApi, { NotionPost } from 'api/notion/notionApi';
+import NotionService, { NotionPost } from 'services/notion/notionApi';
 import MoveToAnotherPost from 'components/blocks/moveToAnotherPost/MoveToAnotherPost';
 import Layout from 'components/templates/layout/Layout';
 import { useRouter } from 'next/router';
@@ -37,7 +37,7 @@ const PostDetailPage = ({ notionList, notionPost, blocks }: Props) => {
 };
 
 export const getStaticPaths = async () => {
-  const notionList = await new NotionApi().getAllPost();
+  const notionList = await new NotionService().getAllPost();
 
   const slugs = notionList.map(({ id }) => ({
     params: { slug: id },
@@ -64,7 +64,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     };
   }
 
-  const notionApi = new NotionApi();
+  const notionApi = new NotionService();
   const notionPost = await notionApi.getOnePostById(slug);
 
   if (!notionPost) {

@@ -6,7 +6,7 @@ import Typography from 'components/elements/typography';
 import TagGroup from 'components/blocks/tagGroup/TagGroup';
 import CategoryImage from 'util/categoryImage/categoryImage';
 import PostImage from 'components/blocks/postItemList/postItemCard/PostImage';
-import { ITag } from 'api/notion/notionApi';
+import { ITag } from 'services/notion/notionApi';
 import useElementVisible from 'hooks/useElementVisible/useElementVisbile';
 
 interface PostItemProps {
@@ -17,19 +17,6 @@ interface PostItemProps {
   description: string;
   tags: ITag[];
 }
-
-const Container = styled.article`
-  display: grid;
-  grid-template-columns: 1fr 4fr;
-  grid-column-gap: 3rem;
-  animation: ${showArticle} 0.6s;
-`;
-
-const Content = styled.div`
-  display: flex;
-  gap: 1rem;
-  flex-direction: column;
-`;
 
 const PostItem = ({ title, createdAt, id, category, description, tags }: PostItemProps) => {
   const articleRef = useRef(null);
@@ -67,3 +54,16 @@ const PostItem = ({ title, createdAt, id, category, description, tags }: PostIte
 };
 
 export default PostItem;
+
+const Container = styled.article`
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-column-gap: 3rem;
+  animation: ${showArticle} 0.6s;
+`;
+
+const Content = styled.div`
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+`;

@@ -1,6 +1,6 @@
 /* eslint-disable max-classes-per-file */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { NotionPost } from 'api/notion/notionApi';
+import { NotionPost } from 'services/notion/notionApi';
 
 export interface AnotherPost {
   getPost: () => void;

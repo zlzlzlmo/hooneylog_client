@@ -5,22 +5,6 @@ import { GrLinkPrevious } from 'react-icons/gr';
 import Link from 'next/link';
 import { AnotherPostProps } from '.';
 
-const Container = styled.span`
-  display: inline-flex;
-  background-color: ${Colors.subColor};
-  color: ${Colors.whiteColor};
-  padding: 1rem 1rem;
-  font-size: 1.4rem;
-  border-radius: 0.7rem;
-  cursor: pointer;
-  text-align: left;
-  gap: 1rem;
-  align-items: center;
-  span {
-    vertical-align: text-top;
-  }
-`;
-
 const PreviosPost = (props: AnotherPostProps) => {
   return (
     <Link href={`/post/${props.postItem?.id}`}>
@@ -37,3 +21,19 @@ const PreviosPost = (props: AnotherPostProps) => {
 };
 
 export default PreviosPost;
+
+const Container = styled.span`
+  display: inline-flex;
+  background-color: ${Colors.subColor};
+  color: ${Colors.whiteColor};
+  padding: 1rem 1rem;
+  font-size: 1.4rem;
+  border-radius: 0.7rem;
+  cursor: pointer;
+  text-align: left;
+  gap: 1rem;
+  align-items: center;
+  span {
+    vertical-align: text-top;
+  }
+`;

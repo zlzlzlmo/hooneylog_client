@@ -1,6 +1,6 @@
 import React from 'react';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import { ITag } from 'api/notion/notionApi';
+import { ITag } from 'services/notion/notionApi';
 import styled from 'styled-components';
 import Typography from 'components/elements/typography';
 import TagGroup from 'components/blocks/tagGroup/TagGroup';

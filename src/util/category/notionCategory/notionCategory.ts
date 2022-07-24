@@ -1,5 +1,5 @@
 /* eslint-disable no-use-before-define */
-import { NotionPost } from 'api/notion/notionApi';
+import { NotionPost } from 'services/notion/notionApi';
 import AbstractCategory from '../category';
 
 class NotionCategory extends AbstractCategory {

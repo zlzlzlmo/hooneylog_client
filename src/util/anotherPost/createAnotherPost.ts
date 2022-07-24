@@ -1,4 +1,4 @@
-import { NotionPost } from 'api/notion/notionApi';
+import { NotionPost } from 'services/notion/notionApi';
 import NextPost from './nextPost';
 import PreviousPost from './previosPost';
 

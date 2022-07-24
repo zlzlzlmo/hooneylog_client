@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-expressions */
-import { NotionPost, ITag } from 'api/notion/notionApi';
+import { NotionPost, ITag } from 'services/notion/notionApi';
 import TagQuery from 'util/queryParam/tagQuery';
 import { ICommand } from '../filterCommand';
 

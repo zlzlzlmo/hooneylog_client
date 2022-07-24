@@ -8,6 +8,12 @@ interface InnerContainerProps {
   children: React.ReactNode;
 }
 
+const InnerContainer = (props: InnerContainerProps) => {
+  return <Container {...props}>{props.children}</Container>;
+};
+
+export default InnerContainer;
+
 const Container = styled.div<InnerContainerProps>`
   max-width: ${Width.maxWidth};
   width: ${({ width }) => width || '100vw'};
@@ -18,9 +24,3 @@ const Container = styled.div<InnerContainerProps>`
     padding: 0 3%;
   }
 `;
-
-const InnerContainer = (props: InnerContainerProps) => {
-  return <Container {...props}>{props.children}</Container>;
-};
-
-export default InnerContainer;

@@ -8,16 +8,6 @@ interface PostImageProps {
   alt: string;
 }
 
-const Container = styled.div`
-  position: relative;
-  width: 100%;
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
-`;
-
 const PostImage = ({ src, alt }: PostImageProps) => {
   return (
     <Container>
@@ -27,3 +17,13 @@ const PostImage = ({ src, alt }: PostImageProps) => {
 };
 
 export default PostImage;
+
+const Container = styled.div`
+  position: relative;
+  width: 100%;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+`;

@@ -1,4 +1,4 @@
-import { NotionPost } from 'api/notion/notionApi';
+import { NotionPost } from 'services/notion/notionApi';
 import { useMemo, useState } from 'react';
 import { ALL } from 'util/category/category';
 import CategoryCommand from 'util/filterByQueryParam/command/categoryCommand';

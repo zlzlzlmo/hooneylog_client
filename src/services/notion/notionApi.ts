@@ -1,5 +1,5 @@
-import Api from 'api/api';
-import { OEndpoint } from 'api/endpoint';
+import AbstractAxiosService from 'lib/axios/api';
+import { OEndpoint } from 'services/endpoint';
 
 export interface ITag {
   id: string;
@@ -15,7 +15,7 @@ export interface NotionPost {
   title: string;
 }
 
-class NotionApi extends Api {
+class NotionService extends AbstractAxiosService {
   async getAllPost(): Promise<NotionPost[]> {
     const result = await this.get(OEndpoint.allNotion);
     return result;
@@ -32,4 +32,4 @@ class NotionApi extends Api {
   }
 }
 
-export default NotionApi;
+export default NotionService;

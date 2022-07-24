@@ -1,4 +1,4 @@
-import { NotionPost } from 'api/notion/notionApi';
+import { NotionPost } from 'services/notion/notionApi';
 
 export interface ICommand {
   execute: (notionList: NotionPost[]) => NotionPost[];

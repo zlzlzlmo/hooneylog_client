@@ -1,4 +1,4 @@
-import { notionMockData } from 'mock/notionData';
+import { notionMockData } from 'mocks/notionData';
 import createAnotherPost from './createAnotherPost';
 
 describe('show another post', () => {

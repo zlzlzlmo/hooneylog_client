@@ -1,4 +1,4 @@
-import { ITag } from 'api/notion/notionApi';
+import { ITag } from 'services/notion/notionApi';
 import Tag from 'components/elements/tag';
 import React, { Fragment } from 'react';
 import styled from 'styled-components';
@@ -6,14 +6,6 @@ import styled from 'styled-components';
 interface TagGroupProps {
   tags: ITag[];
 }
-
-const Container = styled.div`
-  display: flex;
-  column-gap: 2rem;
-  row-gap: 0.7rem;
-  width: 100%;
-  flex-wrap: wrap;
-`;
 
 const TagGroup = ({ tags }: TagGroupProps) => {
   return (
@@ -28,3 +20,11 @@ const TagGroup = ({ tags }: TagGroupProps) => {
 };
 
 export default TagGroup;
+
+const Container = styled.div`
+  display: flex;
+  column-gap: 2rem;
+  row-gap: 0.7rem;
+  width: 100%;
+  flex-wrap: wrap;
+`;
