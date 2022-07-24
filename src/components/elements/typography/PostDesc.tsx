@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { colors } from 'styles/variables';
+import { Colors } from 'styles/variables';
 import { TypographyProps } from '.';
 
 const Container = styled.div`
-  color: ${colors.greyColor};
+  color: ${Colors.greyColor};
   font-size: 1.5rem;
 `;
 

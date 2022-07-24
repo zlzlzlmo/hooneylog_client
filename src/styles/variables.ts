@@ -1,4 +1,4 @@
-export const colors = {
+export const Colors = {
   mainColor: '#3F6393',
   subColor: '#5696FD',
   black26: '#262626',
@@ -7,7 +7,7 @@ export const colors = {
   greyColor: '#808080',
 };
 
-export const widths = {
+export const Width = {
   maxWidth: '85rem',
   mobileMax: '60rem',
 };

@@ -3,7 +3,7 @@ import FlexContainer from 'components/templates/container/FlexContainer';
 import InnerContainer from 'components/templates/container/InnerContainer';
 import React from 'react';
 import styled from 'styled-components';
-import { widths } from 'styles/variables';
+import { Width } from 'styles/variables';
 
 const Container = styled.div`
   width: 100%;
@@ -22,7 +22,7 @@ const DynamicContainer = styled.div`
   align-items: center;
   gap: 3rem;
 
-  @media (max-width: ${widths.mobileMax}) {
+  @media (max-width: ${Width.mobileMax}) {
     flex-direction: column;
     align-items: flex-start;
   }

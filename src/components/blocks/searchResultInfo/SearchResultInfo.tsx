@@ -1,7 +1,7 @@
 import useSearchResultinfo from 'components/blocks/searchResultInfo/useSearchResultInfo';
 import React from 'react';
 import styled from 'styled-components';
-import { colors } from 'styles/variables';
+import { Colors } from 'styles/variables';
 
 const SearchedBox = styled.div`
   margin: 2rem 0;
@@ -14,11 +14,11 @@ const TextContainer = styled.div`
 const Text = styled.span`
   font-size: 3rem;
   font-weight: 700;
-  color: ${colors.subColor};
+  color: ${Colors.subColor};
 `;
 
 const GreyText = styled(Text)`
-  color: ${colors.mainColor};
+  color: ${Colors.mainColor};
 `;
 
 const SearchResultInfo = () => {

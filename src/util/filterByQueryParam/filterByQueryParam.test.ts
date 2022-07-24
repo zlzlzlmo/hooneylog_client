@@ -2,12 +2,12 @@ import { notionMockData } from 'mock/notionData';
 import CategoryCommand from './command/categoryCommand';
 import SearchCommand from './command/searchCommand';
 import TagCommand from './command/tagCommand';
-import FilterByQueryParam from './filterByQueryParam';
+import FilterCommand from './filterCommand';
 
-let filterByQueryParam: FilterByQueryParam;
+let filterByQueryParam: FilterCommand;
 
 beforeEach(() => {
-  filterByQueryParam = new FilterByQueryParam(notionMockData);
+  filterByQueryParam = new FilterCommand(notionMockData);
 });
 
 describe('filterByQueryParam', () => {

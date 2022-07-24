@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-expressions */
 import { NotionPost, ITag } from 'api/notion/notionApi';
 import TagQuery from 'util/queryParam/tagQuery';
-import { ICommand } from '../filterByQueryParam';
+import { ICommand } from '../filterCommand';
 
 class TagCommand implements ICommand {
   constructor(private readonly tagQuery: TagQuery = new TagQuery()) {}

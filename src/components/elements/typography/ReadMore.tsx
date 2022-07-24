@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { colors } from 'styles/variables';
+import { Colors } from 'styles/variables';
 import { TypographyProps } from '.';
 
 const Container = styled.span`
-  color: ${colors.subColor};
+  color: ${Colors.subColor};
   cursor: pointer;
   &:hover {
     text-decoration: underline;

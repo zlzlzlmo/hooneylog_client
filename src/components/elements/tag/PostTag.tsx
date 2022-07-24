@@ -1,28 +1,32 @@
-import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
 import { moveTagName } from 'styles/keyframes';
-import { colors } from 'styles/variables';
+import { Colors } from 'styles/variables';
 import { TagProps } from '.';
+
+const PostTag = (props: TagProps) => {
+  return <Tag>{props.children}</Tag>;
+};
+
+export default PostTag;
 
 const Tag = styled.span`
   display: inline-block;
   text-align: center;
   font-size: 1.5rem;
-  background-color: ${colors.subColor};
-  color: ${colors.whiteColor};
+  background-color: ${Colors.subColor};
+  color: ${Colors.whiteColor};
   height: 2.6rem;
   line-height: 2.6rem;
   padding: 0 2rem 0 2.3rem;
-  cursor: pointer;
   border-radius: 0.3rem 0 0 0.3rem;
   position: relative;
   &:hover {
     display: inline-block;
-    background-color: ${colors.mainColor};
+    background-color: ${Colors.mainColor};
     animation: ${moveTagName} 1.5s linear infinite;
     &::after {
-      border-left: 1rem solid ${colors.mainColor};
+      border-left: 1rem solid ${Colors.mainColor};
     }
   }
 
@@ -34,12 +38,12 @@ const Tag = styled.span`
     width: 0.6rem;
     height: 0.6rem;
     border-radius: 1rem;
-    background: ${colors.whiteColor};
+    background: ${Colors.whiteColor};
     box-shadow: inset 0 0.1rem rgb(0 0 0 / 25%);
   }
 
   &::after {
-    border-left: 1rem solid ${colors.subColor};
+    border-left: 1rem solid ${Colors.subColor};
     content: '';
     position: absolute;
     right: -1rem;
@@ -49,15 +53,3 @@ const Tag = styled.span`
     transition: background 0.3s, color 0.3s;
   }
 `;
-
-const PostTag = (props: TagProps) => {
-  return (
-    <Link href={`/search?tag=${props.children}`}>
-      <a>
-        <Tag>{props.children}</Tag>
-      </a>
-    </Link>
-  );
-};
-
-export default PostTag;

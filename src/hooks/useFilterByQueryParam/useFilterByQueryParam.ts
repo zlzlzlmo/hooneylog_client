@@ -4,12 +4,12 @@ import { useEffect, useState } from 'react';
 import CategoryCommand from 'util/filterByQueryParam/command/categoryCommand';
 import SearchCommand from 'util/filterByQueryParam/command/searchCommand';
 import TagCommand from 'util/filterByQueryParam/command/tagCommand';
-import FilterByQueryParam from 'util/filterByQueryParam/filterByQueryParam';
+import FilterCommand from 'util/filterByQueryParam/filterCommand';
 import QueryParam from 'util/queryParam/queryParam';
 
 const useFilterByQueryParam = (notionList: NotionPost[]) => {
   const router = useRouter();
-  const filter = new FilterByQueryParam(notionList);
+  const filter = new FilterCommand(notionList);
   const query = new QueryParam();
   const [notionListToShow, setNotionListToShow] = useState<NotionPost[]>(notionList);
 

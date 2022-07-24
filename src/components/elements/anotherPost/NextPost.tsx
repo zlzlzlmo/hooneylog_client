@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-import { colors } from 'styles/variables';
+import { Colors } from 'styles/variables';
 import { GrLinkNext } from 'react-icons/gr';
 import Link from 'next/link';
 import { AnotherPostProps } from '.';
 
 const Container = styled.span`
   display: inline-flex;
-  background-color: ${colors.subColor};
-  color: ${colors.whiteColor};
+  background-color: ${Colors.subColor};
+  color: ${Colors.whiteColor};
   padding: 1rem 1rem;
   font-size: 1.4rem;
   border-radius: 0.7rem;

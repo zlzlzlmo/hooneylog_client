@@ -1,16 +1,23 @@
+/* eslint-disable prefer-const */
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import NotionApi, { NotionPost } from 'api/notion/notionApi';
-import CategoryList from 'components/blocks/categoryList/CategoryList';
 import PostItemList from 'components/blocks/postItemList/PostItemList';
 import Layout from 'components/templates/layout/Layout';
 import Introduction from 'components/blocks/introduction/Introduction';
+import Search from 'components/features/filter/search/Search';
+import Category from 'components/features/filter/category/Category';
+import NotionCategory from 'util/category/notionCategory/notionCategory';
+import useFilterPost from 'components/features/filter/hooks/useFilterPost';
 
 interface HomepageProps {
   notionList: NotionPost[];
 }
 
 const HomePage = ({ notionList }: HomepageProps) => {
+  const { filteredNotionList, searchValue, currentActiveCategory, handleSearchValue, handleCurrentActiveCategory } =
+    useFilterPost({ notionList });
+
   return (
     <>
       <Head>
@@ -19,8 +26,13 @@ const HomePage = ({ notionList }: HomepageProps) => {
       <Layout>
         <div>
           <Introduction />
-          <CategoryList notionList={notionList} />
-          <PostItemList notionList={notionList} />
+          <Search searchValue={searchValue} handleSearchValue={handleSearchValue} />
+          <Category
+            categories={new NotionCategory(notionList).orderedListByDescendingCount}
+            handleCurrentActiveCategory={handleCurrentActiveCategory}
+            currentActiveCategory={currentActiveCategory}
+          />
+          <PostItemList notionList={filteredNotionList} />
         </div>
       </Layout>
     </>

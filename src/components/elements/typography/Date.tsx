@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { colors } from 'styles/variables';
+import { Colors } from 'styles/variables';
 import DateFormat from 'util/dateFormat/dateFormat';
 import { TypographyProps } from '.';
 
 const Container = styled.div<TypographyProps>`
   font-size: 1.3rem;
-  color: ${colors.greyColor};
+  color: ${Colors.greyColor};
   margin: ${({ margin }) => margin && margin};
 `;
 

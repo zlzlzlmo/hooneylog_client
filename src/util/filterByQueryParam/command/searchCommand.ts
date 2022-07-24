@@ -1,12 +1,13 @@
 /* eslint-disable import/no-unresolved */
 import { NotionPost } from 'api/notion/notionApi';
 import SearchQuery from 'util/queryParam/searchQuery';
-import { ICommand } from '../filterByQueryParam';
+import { ICommand } from '../filterCommand';
 
 class SearchCommand implements ICommand {
-  constructor(private readonly searchQuery: SearchQuery = new SearchQuery()) {}
+  constructor(private readonly searchValue: string) {}
 
   execute(notionList: NotionPost[]) {
+    if (this.searchValue.length < 1) return notionList;
     const result = notionList.filter(({ title, description }) => {
       return this.isIncludedTitle(title) || this.isIncludedDescription(description);
     });
@@ -14,13 +15,13 @@ class SearchCommand implements ICommand {
   }
 
   private isIncludedTitle(title: string): boolean {
-    const value = this.searchQuery.getSearchQueryValue();
+    const value = this.searchValue;
     if (!value) return false;
     return title.toLowerCase().indexOf(value.toLowerCase()) !== -1;
   }
 
   private isIncludedDescription(description: string): boolean {
-    const value = this.searchQuery.getSearchQueryValue();
+    const value = this.searchValue;
     if (!value) return false;
     return description.toLowerCase().indexOf(value) !== -1;
   }

@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { colors } from 'styles/variables';
+import { Colors } from 'styles/variables';
 
 const Container = styled.footer`
   width: 100%;
-  background-color: ${colors.black26};
-  color: ${colors.whiteColor};
+  background-color: ${Colors.black26};
+  color: ${Colors.whiteColor};
   display: flex;
   justify-content: center;
   align-items: center;
