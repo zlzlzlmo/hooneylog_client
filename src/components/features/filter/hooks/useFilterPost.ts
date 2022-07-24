@@ -23,7 +23,7 @@ const useFilterPost = ({ notionList }: Props) => {
 
   const filteredNotionList = useMemo(() => {
     let result = [...notionList];
-    const filter = new FilterCommand(result);
+    const filter = new FilterCommand(notionList);
     result = filter.excuteCommand(new SearchCommand(searchValue));
     result = filter.excuteCommand(new CategoryCommand(currentActiveCategory));
     return result;

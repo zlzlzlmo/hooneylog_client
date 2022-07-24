@@ -21,7 +21,10 @@ const HomePage = ({ notionList }: HomepageProps) => {
   return (
     <>
       <Head>
-        <title>Hooney Blog</title>
+        <title>FrontEnd Developer - Hooney Blog</title>
+        <meta name="description" content="FrontEnd Developer Hooney Blog" />
+        <meta name="robots" content="index,follow" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Layout>
         <div>
