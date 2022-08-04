@@ -1,9 +1,9 @@
 import { NotionPost } from 'services/notion/notionApi';
 import { useMemo, useState } from 'react';
 import { ALL } from 'util/category/category';
-import CategoryCommand from 'util/filterByQueryParam/command/categoryCommand';
-import SearchCommand from 'util/filterByQueryParam/command/searchCommand';
-import FilterCommand from 'util/filterByQueryParam/filterCommand';
+import CategoryCommand from 'util/postFilter/command/categoryCommand';
+import SearchCommand from 'util/postFilter/command/searchCommand';
+import FilterCommand from 'util/postFilter/filterCommand';
 
 interface Props {
   notionList: NotionPost[];

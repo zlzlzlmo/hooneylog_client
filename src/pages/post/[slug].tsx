@@ -7,6 +7,7 @@ import Layout from 'components/templates/layout/Layout';
 import { useRouter } from 'next/router';
 import PostDetailInfo from 'components/blocks/postDetail/info/PostDetailInfo';
 import PostBlocks from 'components/blocks/postBlocks/PostBlock';
+import FacebookComment from 'components/elements/fbComment/FacebookComment';
 
 interface Props {
   notionList: NotionPost[];
@@ -23,14 +24,19 @@ const PostDetailPage = ({ notionList, notionPost, blocks }: Props) => {
   return (
     <>
       <Head>
+        <title>Hooneylog - {notionPost?.title}</title>
         <meta property="og:description" content={notionPost?.title} />
-        <title>Hooney Blog - {notionPost?.title}</title>
+        <meta name="description" content={notionPost.description} />
+        <meta property="og:title" content={notionPost.title} />
+        <meta property="og:description" content={notionPost.description} />
+        <meta property="og:url" content={`https://www.hooneylog.com/post/${notionPost.id}`} />
+        <meta property="og:type" content="website" />
       </Head>
       <Layout>
         <PostDetailInfo title={notionPost.title} createdAt={notionPost.createdAt} tags={notionPost.tags} />
         <PostBlocks blocks={blocks} />
         <MoveToAnotherPost notionList={notionList} notionPost={notionPost} />
-        {/* <FbComment slug={slug} /> */}
+        <FacebookComment slug={notionPost.id} />
       </Layout>
     </>
   );
