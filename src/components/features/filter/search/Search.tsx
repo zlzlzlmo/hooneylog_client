@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved */
 import React from 'react';
 import styled from 'styled-components';
 import { Colors } from 'styles/variables';

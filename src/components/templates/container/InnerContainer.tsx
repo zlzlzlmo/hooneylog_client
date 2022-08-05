@@ -1,4 +1,3 @@
-/* eslint-disable import/named */
 import React from 'react';
 import styled from 'styled-components';
 import { Width } from 'styles/variables';

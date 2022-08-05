@@ -1,4 +1,3 @@
-/* eslint-disable prefer-const */
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import NotionService, { NotionPost } from 'services/notion/notionApi';
