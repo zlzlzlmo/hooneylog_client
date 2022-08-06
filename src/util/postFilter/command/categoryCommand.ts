@@ -1,6 +1,5 @@
 import { NotionPost } from 'services/notion/notionApi';
 import { ALL } from 'util/category/category';
-import CategoryQuery from 'util/queryParam/categoryQuery';
 import { ICommand } from '../filterCommand';
 
 class CategoryCommand implements ICommand {
