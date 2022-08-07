@@ -1,4 +1,4 @@
-import DateFormat from './dateFormat';
+import DateFormat from '../../dateFormat/dateFormat';
 
 describe('dateFormat', () => {
   test('get Korean Time from a date string', () => {

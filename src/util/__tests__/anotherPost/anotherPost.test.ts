@@ -1,5 +1,5 @@
 import { notionMockData } from 'mocks/notionData';
-import createAnotherPost from './createAnotherPost';
+import createAnotherPost from '../../anotherPost/createAnotherPost';
 
 describe('show another post', () => {
   test('show a proper previos post', () => {

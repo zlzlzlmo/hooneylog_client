@@ -1,4 +1,4 @@
-import CategoryImage from './categoryImage';
+import CategoryImage from '../../categoryImage/categoryImage';
 
 describe('category image', () => {
   test('get proper image src for category', () => {

@@ -1,5 +1,5 @@
 import { notionMockData } from 'mocks/notionData';
-import NotionCategory from './notionCategory/notionCategory';
+import NotionCategory from '../../category/notionCategory/notionCategory';
 
 describe('category list', () => {
   test('get notion category list list for getting proper orderedListByDescendingCount', () => {
