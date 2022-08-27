@@ -28,14 +28,16 @@ const Container = styled.div`
   padding: 5rem 0;
 `;
 
-const Title = styled.h1``;
+const Title = styled.h2`
+  font-size: 3rem;
+`;
 
 const SubTitle = styled.p`
   font-size: 2rem;
   color: rgba(0, 0, 0, 0.54);
 `;
 
-const DynamicContainer = styled.div`
+const DynamicContainer = styled.section`
   display: flex;
   align-items: center;
   gap: 3rem;

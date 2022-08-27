@@ -11,25 +11,23 @@ interface CategoryProps {
 const Category = ({ categories, currentActiveCategory, handleCurrentActiveCategory }: CategoryProps) => {
   return (
     <Container>
-      <Container>
-        {categories.map(([name, count], index) => (
-          <Fragment key={index}>
-            <CategoryItem
-              name={name}
-              count={count}
-              isActive={name === currentActiveCategory}
-              onClick={handleCurrentActiveCategory}
-            />
-          </Fragment>
-        ))}
-      </Container>
+      {categories.map(([name, count], index) => (
+        <Fragment key={index}>
+          <CategoryItem
+            name={name}
+            count={count}
+            isActive={name === currentActiveCategory}
+            onClick={handleCurrentActiveCategory}
+          />
+        </Fragment>
+      ))}
     </Container>
   );
 };
 
 export default Category;
 
-const Container = styled.div`
+const Container = styled.ul`
   display: flex;
   gap: 1rem;
   align-items: center;

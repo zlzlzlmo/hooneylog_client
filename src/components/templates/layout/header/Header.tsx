@@ -32,7 +32,7 @@ const Container = styled.header`
   }
 `;
 
-const Logo = styled.div`
+const Logo = styled.h1`
   display: flex;
   justify-content: flex-end;
   user-select: none;

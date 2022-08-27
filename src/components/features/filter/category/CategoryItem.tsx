@@ -21,7 +21,7 @@ const CategoryItem = ({ name, count, isActive, onClick }: CategoryItemProps) => 
 
 export default CategoryItem;
 
-const Container = styled.div`
+const Container = styled.li`
   border-radius: 0.5rem;
   border: 0.1rem solid ${Colors.black26};
   display: flex;
@@ -29,7 +29,7 @@ const Container = styled.div`
   cursor: pointer;
 `;
 
-const CategoryTitle = styled.div<{ isActive: boolean }>`
+const CategoryTitle = styled.span<{ isActive: boolean }>`
   color: ${Colors.black26};
   font-size: 1.7rem;
   text-align: center;
@@ -45,7 +45,7 @@ const CategoryTitle = styled.div<{ isActive: boolean }>`
   }}
 `;
 
-const CategoryCount = styled.div`
+const CategoryCount = styled.span`
   color: ${Colors.whiteColor};
   text-align: center;
   font-size: 1.7rem;

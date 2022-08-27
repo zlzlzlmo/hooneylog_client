@@ -10,7 +10,7 @@ const PostTag = (props: TagProps) => {
 
 export default PostTag;
 
-const Tag = styled.span`
+const Tag = styled.li`
   display: inline-block;
   text-align: center;
   font-size: 1.5rem;

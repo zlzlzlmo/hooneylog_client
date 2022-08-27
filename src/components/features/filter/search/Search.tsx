@@ -23,7 +23,7 @@ const Search = ({ searchValue, handleSearchValue }: SearchProps) => {
 
 export default Search;
 
-const Container = styled.div`
+const Container = styled.section`
   width: 100%;
   height: 4rem;
   border: 0.2rem solid ${Colors.subColor};

@@ -10,7 +10,7 @@ const DateFormatText = (props: TypographyProps) => {
 
 export default DateFormatText;
 
-const Container = styled.div<TypographyProps>`
+const Container = styled.span<TypographyProps>`
   font-size: 1.3rem;
   color: ${Colors.greyColor};
   margin: ${({ margin }) => margin && margin};

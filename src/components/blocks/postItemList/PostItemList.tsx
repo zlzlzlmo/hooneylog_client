@@ -28,7 +28,7 @@ const PostItemList = ({ notionList }: PostItemListProps) => {
 
 export default PostItemList;
 
-const Container = styled.main`
+const Container = styled.section`
   padding: 5rem 0;
   display: flex;
   flex-direction: column;

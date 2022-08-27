@@ -62,7 +62,7 @@ const Container = styled.article`
   animation: ${showArticle} 0.6s;
 `;
 
-const Content = styled.div`
+const Content = styled.section`
   display: flex;
   gap: 1rem;
   flex-direction: column;

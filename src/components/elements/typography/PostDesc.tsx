@@ -9,7 +9,7 @@ const PostDesc = (props: TypographyProps) => {
 
 export default PostDesc;
 
-const Container = styled.div`
+const Container = styled.p`
   color: ${Colors.greyColor};
   font-size: 1.5rem;
 `;

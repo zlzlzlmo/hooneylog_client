@@ -21,7 +21,7 @@ const TagGroup = ({ tags }: TagGroupProps) => {
 
 export default TagGroup;
 
-const Container = styled.div`
+const Container = styled.ul`
   display: flex;
   column-gap: 2rem;
   row-gap: 0.7rem;
