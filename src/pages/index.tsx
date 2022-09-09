@@ -30,7 +30,7 @@ const HomePage = ({ notionList }: HomepageProps) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Layout>
-        <main>
+        <div>
           <Introduction />
           <Search searchValue={searchValue} handleSearchValue={handleSearchValue} />
           <Category
@@ -39,7 +39,7 @@ const HomePage = ({ notionList }: HomepageProps) => {
             currentActiveCategory={currentActiveCategory}
           />
           <PostItemList notionList={filteredNotionList} />
-        </main>
+        </div>
       </Layout>
     </>
   );
