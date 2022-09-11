@@ -1,6 +1,9 @@
+/* eslint-disable func-names */
 import Image from 'next/image';
 import React from 'react';
 import styled from 'styled-components';
+import { Colors } from 'styles/variables';
+import styles from './PostImage.module.scss';
 
 interface PostImageProps {
   width: string;
@@ -16,8 +19,7 @@ const PostImage = ({ src, alt }: PostImageProps) => {
         alt={alt}
         layout="fill"
         onError={(e) => {
-          const imageElement = e.target as HTMLImageElement;
-          imageElement.src = '/images/default.png';
+          replaceErrorImageWith(e)(alt);
         }}
       />
     </Container>
@@ -35,3 +37,13 @@ const Container = styled.div`
     object-fit: contain;
   }
 `;
+
+function replaceErrorImageWith(e: React.SyntheticEvent<HTMLImageElement, Event>) {
+  return function (alt: string) {
+    const imageElement = e.target as HTMLImageElement;
+    const newElement = document.createElement('div');
+    newElement.classList.add(styles.replacedImage);
+    newElement.textContent = alt;
+    imageElement.parentElement?.replaceWith(newElement);
+  };
+}
