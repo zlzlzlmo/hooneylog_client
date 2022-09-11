@@ -2,5 +2,3 @@
 
 ## Skiils
     - Next.js, Typescript, scss module, styled components
-
-### CMS
