@@ -13,7 +13,7 @@ interface PostDetailInfoProps {
   tags: ITag[];
 }
 
-const Container = styled.div``;
+const Container = styled.header``;
 
 const PostDetailInfo = ({ title, createdAt, tags }: PostDetailInfoProps) => {
   return (

@@ -11,7 +11,15 @@ interface PostImageProps {
 const PostImage = ({ src, alt }: PostImageProps) => {
   return (
     <Container>
-      <Image src={src} alt={alt} layout="fill" />
+      <Image
+        src={src}
+        alt={alt}
+        layout="fill"
+        onError={(e) => {
+          const imageElement = e.target as HTMLImageElement;
+          imageElement.src = '/images/default.png';
+        }}
+      />
     </Container>
   );
 };

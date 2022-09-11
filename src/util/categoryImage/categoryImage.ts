@@ -2,10 +2,10 @@ class CategoryImage {
   constructor(private readonly category: string) {}
 
   get src() {
-    return `/images/${this.replaceDotWithBlank()}.png`;
+    return `/images/${this.replaceDotWithBlank}.png`;
   }
 
-  private replaceDotWithBlank() {
+  private get replaceDotWithBlank() {
     return this.category.replace(/\./gi, '');
   }
 }

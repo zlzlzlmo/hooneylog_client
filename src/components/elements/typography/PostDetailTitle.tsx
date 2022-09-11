@@ -8,7 +8,7 @@ const PostDetailTitle = (props: TypographyProps) => {
 
 export default PostDetailTitle;
 
-const Container = styled.h2`
+const Container = styled.h1`
   font-size: 3rem;
   margin: 2rem 0;
 `;
