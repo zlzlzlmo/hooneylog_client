@@ -96,7 +96,7 @@ hooneylog/
 ### 1. 레포지토리 클론
 
 ```bash
-git clone https://github.com/zlzlzlmo/hooneylog.git
+git clone https://github.com/zlzlzlmo/hooneylog_client.git
 cd hooneylog
 ```
 
@@ -108,7 +108,7 @@ npm install
 
 ### 3. 환경 변수 설정
 
-`.env` 파일을 생성하고 Notion API 키와 관련 정보를 입력하세요.
+`.env` 파일을 생성하고 Notion API 키와 관련 정보를 입력
 
 ### 4. 개발 서버 실행
 

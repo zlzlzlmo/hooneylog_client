@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { GetStaticProps } from 'next/types';
-import React from 'react';
+import React, { useEffect } from 'react';
 import NotionService, { NotionPost } from 'services/notion/notionApi';
 import MoveToAnotherPost from 'components/blocks/moveToAnotherPost/MoveToAnotherPost';
 import Layout from 'components/templates/layout/Layout';
@@ -16,7 +16,12 @@ interface Props {
 }
 const PostDetailPage = ({ notionList, notionPost, blocks }: Props) => {
   const router = useRouter();
-
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  useEffect(() => {
+    console.log(notionList);
+    console.log(notionPost);
+    console.log(blocks);
+  }, []);
   if (router.isFallback) {
     return <></>;
   }
